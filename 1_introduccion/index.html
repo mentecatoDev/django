@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>1. Introducción - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1. Introducci\u00f3n";
+    var mkdocs_page_input_path = "1_introduccion.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">1. Introducción</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#1-introduccion">1 Introducción</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#11-por-que-django-comes-with-the-box-o-batteries-included">1.1 Por qué Django "comes with the box" ó "batteries-included"</a></li>
+        
+            <li><a class="toctree-l3" href="#12-por-que-unos-apuntes">1.2 Por qué unos apuntes</a></li>
+        
+            <li><a class="toctree-l3" href="#13-estructura">1.3 Estructura</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>1. Introducción</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="1-introduccion">1 Introducción</h1>
+<ul>
+<li>Aprendizaje basado en proyectos <ul>
+<li>5 Proyectos progresivos</li>
+</ul>
+</li>
+<li>Libre y Open Source</li>
+<li>Lo que hace que Django sea impresionante es su filosofía de "viene en la caja" ó "pilas incluidas" (<em>"comes with the box"</em> ó <em>"batteries-included"</em>). Permite una rápida implementación porque las partes más importantes ya están allí.</li>
+<li>Robusto <ul>
+<li>Instagram, Pinterest (Flask; más personalizable y adecuado para  API's), Bitbucker, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite</li>
+</ul>
+</li>
+<li>Se usará <code>pipenv</code></li>
+</ul>
+<h2 id="11-por-que-django-comes-with-the-box-o-batteries-included">1.1 Por qué Django <em>"comes with the box"</em> ó <em>"batteries-included"</em></h2>
+<ul>
+<li>La mayoría de los sites usan las mismas funcionalidades básicas <ul>
+<li>Autenticación de usuarios</li>
+<li>Conexión a bases de datos</li>
+<li>Rutas</li>
+<li>Contenidos de una página</li>
+<li>Gestión de la seguridad</li>
+<li>Interfaz de administración</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Hay que centrarse en <strong>nuevas</strong> funcionalidades: no reinventar la rueda.</li>
+<li>Django abraza el "batteries-included" frente a la aproximación "microframework" (Flask). <ul>
+<li>Menos flexible pero también menos tendente al error (Django) frente a más personalizable y simple (Flask).</li>
+</ul>
+</li>
+<li>Es un entorno muy maduro (2005).</li>
+<li>Aprendamos de las mejores prácticas.</li>
+</ul>
+<h2 id="12-por-que-unos-apuntes">1.2 Por qué unos apuntes</h2>
+<ul>
+<li>Django está bien <a href="https://docs.djangoproject.com/es/2.2/">documentado</a> pero es difícil de abordar para el principiante</li>
+<li>Incluso el <a href="https://docs.djangoproject.com/es/2.2/intro/tutorial01/">tutorial básico</a> es notablemente arduo</li>
+<li>El problema viene de que está orientado a la <strong>profundidad</strong> y no a la <strong>facilidad de uso</strong></li>
+<li>Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS</li>
+</ul>
+<h2 id="13-estructura">1.3 Estructura</h2>
+<p>1.Configuración inicial </p>
+<ul>
+<li>Django 2.2 (3.0.2?)</li>
+<li>Python 3.8</li>
+<li>Pipenv</li>
+<li>Visual Studio Codium</li>
+<li>Terminal</li>
+</ul>
+<p>2.Aplicación "Hello World" </p>
+<ul>
+<li>Configuración de un proyecto Django</li>
+<li>Git/GitLab (BitBucker?)</li>
+</ul>
+<p>3.Aplicación "Pages" </p>
+<ul>
+<li>Don't Repeat Yourserlf (DRY)</li>
+<li>Platform as a service (PaaS): Heroku?</li>
+</ul>
+<p>4.Aplicación "Message Board" </p>
+<ul>
+<li>Bases de datos: ORM</li>
+<li>Test</li>
+<li>Bitbucker?</li>
+<li>Heroku?</li>
+</ul>
+<p>5-7.Aplicación "Blog" </p>
+<ul>
+<li>CRUD (Create-Read-Update-Delete)</li>
+<li>log in, log out, sign up</li>
+</ul>
+<p>8.Aplicación "Newspaper" </p>
+<ul>
+<li>Concepto de "Custom user models"</li>
+</ul>
+<p>9.Autenticación de usuarios </p>
+<p>10.Bootstrap </p>
+<p>11-12.Reseteo y cambio de contraseñas vía email </p>
+<p>13-15.Artículos y comentarios para "Newspaper" </p>
+<p>16.Conclusión </p>
+<p>Estamos preparados para empezar a aprender programación </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../2_configuracion_inicial/" class="btn btn-neutral float-right" title="2. Configuración Inicial">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="../2_configuracion_inicial/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

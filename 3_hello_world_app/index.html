@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>3. Hello World app - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "3. Hello World app";
+    var mkdocs_page_input_path = "3_hello_world_app.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">3. Hello World app</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#3-hello-world-app">3 Hello World app</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#31-configuracion-inicial">3.1 Configuración inicial</a></li>
+        
+            <li><a class="toctree-l3" href="#32-crear-una-app">3.2 Crear una app</a></li>
+        
+            <li><a class="toctree-l3" href="#33-vistas-views-y-configurariones-de-urls-urlconfs">3.3 Vistas (Views) y configurariones de URL's (URLConfs)</a></li>
+        
+            <li><a class="toctree-l3" href="#34-resumen">3.4 Resumen</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>3. Hello World app</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="3-hello-world-app">3 Hello World app</h1>
+<ul>
+<li>Objetivo: Crear la típica aplicación "Hello World"</li>
+</ul>
+<h2 id="31-configuracion-inicial">3.1 Configuración inicial</h2>
+<pre><code>$ cd ~/Escritorio
+$ mkdir helloworld
+$ cd helloworld
+$ pipenv install django
+$ pipenv shell
+(helloworld) $ django-admin startproject helloworld_project .
+(helloworld) $ sudo apt install tree
+(helloworld) $ tree
+.
+├── Pipfile
+├── Pipfile.lock
+├── helloworld_project
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+
+1 directory, 7 files
+</code></pre>
+
+<ul>
+<li><code>settings.py</code>: Controla la configuración del proyecto</li>
+<li><code>urls.py</code>: Indica a Django qué páginas construir en respuesta a una petición de URL</li>
+<li><code>wsgi.py</code>: (<em>Web Server Gateway Interface</em>) Punto de entrada para servidores web compatibles con WSGI para servir el proyecto.</li>
+<li><code>asgi.py</code>: (<em>Asynchronous Server Gateway Interface</em>) Punto de entrada para servidores web compatibles con ASGI para servir el proyecto (nuevo en la versión 3.0).</li>
+<li><code>manage.py</code>: Ejecuta varios comandos Django, como correr el servidor web local o crear una nueva <strong>app</strong></li>
+</ul>
+<pre><code>(helloworld) $ python manage.py runserver
+</code></pre>
+
+<p>Visitar: <code>http://localhost:8000</code></p>
+<h2 id="32-crear-una-app">3.2 Crear una <strong>app</strong></h2>
+<ul>
+<li>Un <strong>proyecto</strong> Django consta de una o más <strong>apps</strong></li>
+<li>Cada <strong>app</strong> resuelve una funcionalidad concreta</li>
+<li>Crear la <strong>app</strong> <code>pages</code></li>
+</ul>
+<pre><code>(helloworld) $ python manage.py startapp pages
+(helloworld) $ tree
+├── pages
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+</code></pre>
+
+<ul>
+<li>Nuevos FICHEROS </li>
+<li><code>admin.py</code>: Es un fichero de configuración para la <strong>app</strong> incorporada al Admin de Django</li>
+<li><code>apps.py</code>: Es una fichero de configuración para la propia <strong>app</strong></li>
+<li><code>migrations/</code>: Manteniene el seguimiento de cualquier cambio en el fichero <code>models.py</code> para que la <em>base de datos</em> y el fichero <code>models.py</code> estén sincronizados</li>
+<li><code>models.py</code>: Es donde se define el modelo de la base de datos que Django traduce en tablas dentro de la base de datos automáticamente.</li>
+<li><code>tests.py</code>: Es para los tests específicos de la <strong>app</strong></li>
+<li><code>views.py</code>: Es donde se gestiona la lógica petición/respuesta (<em>request/response</em>) de la <strong>app</strong></li>
+<li>Aunque la <strong>app</strong> existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.</li>
+</ul>
+<p>FICHERO: <code>settings.py</code> </p>
+<pre><code>...
+    # helloworld_project/settings.py
+    INSTALLED_APPS = [
+ç       'pages.apps.PagesConfig',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+    ]
+...
+</code></pre>
+
+<ul>
+<li><em>Ojo, el <strong>orden</strong> importa; si varias aplicaciones intentan acceder al mismo recurso, la <strong>app</strong> que aparece primero tiene preferencia.</em></li>
+</ul>
+<h2 id="33-vistas-views-y-configurariones-de-urls-urlconfs">3.3 Vistas (Views) y configurariones de URL's (URLConfs)</h2>
+<ul>
+<li>
+<p>En <em>Django</em>, las vistas determinan qué contenido se muestra mientras que <em>URLConfs</em> indica dónde va ese contendio.</p>
+</li>
+<li>
+<p>URLConf utiliza una expresión regular para mapear las peticiones a la función apropiada de la vista que devuelve los datos correctos. </p>
+<ul>
+<li>
+<p>La vista saca el texto <code>Hello, World</code> mientras que la url se asegurará de que cuando el usuario visita la página sea redireccionado a la vista correcta.</p>
+</li>
+<li>
+<p>Cuando se escribe una URL, lo primero que ocurre dentro del proyecto <em>Django</em> es que se encuentra un patrón que coincide con la página de inicio (<em>homepage</em>). El <code>urlpattern</code> especifica una <strong>vista</strong>, que determinará el contenido de la página (normalmente desde una base de datos), y una <strong>plantilla</strong> (<em>template</em>) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.
+<div class=text-center>
+ URL -&gt; View -&gt; Model (típicamente) -&gt; Template 
+</div></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Se empieza actualizando el fichero <code>views.py</code></p>
+</li>
+</ul>
+<p>FICHERO: <code>views.py</code> </p>
+<pre><code>    from django.shortcuts import render
+ç   from django.http import HttpResponse
+
+    # Create your views here.
+ç   def homePageView(request):
+ç       return HttpResponse(&quot;Hello, World!&quot;)
+</code></pre>
+
+<ul>
+<li>
+<p>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello, World!”</code> . </p>
+</li>
+<li>
+<p>Más específicamente se ha importado el método <code>HttpResponse</code> para poder devolver un objeto respuesta al usuario.</p>
+</li>
+<li>
+<p>Ahora a configurar <em>urls</em>. Crear un nuevo archivo <code>urls.py</code> dentro del directorio <code>pages</code>.</p>
+</li>
+</ul>
+<pre><code>(helloworld) $ touch pages/urls.py
+</code></pre>
+
+<ul>
+<li>Añadir el código</li>
+</ul>
+<p>FICHERO: <code>pages/urls.py</code> </p>
+<pre><code class="python">from django.urls import path
+from .views import homePageView
+urlpatterns = [
+    path('', homePageView, name='home')
+]
+</code></pre>
+
+<ul>
+<li>Importamos <code>path</code></li>
+<li><code>.views</code> utiliza "." para indicar el directorio actual</li>
+<li>El patrón URLpattern tiene tres partes <ul>
+<li>Un expresión regular Python para la cadena vacía ''</li>
+<li>Especifica la vista que se llamará: <code>homePageView</code></li>
+<li>Añade un nombre de URL opcional <code>home</code></li>
+</ul>
+</li>
+<li>Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces utilizar la vista llamada <code>homePageView</code></li>
+<li>El último paso es configurar el fichero <code>urls.py</code> a nivel de proyecto donde se recogen todas las <strong>apps</strong> dentro de un proyecto Django, dado que <strong>cada una precisa de su propia ruta</strong>.</li>
+</ul>
+<p>FICHERO: <code>helloworld_project/urls.py</code> </p>
+<pre><code class="python">    from django.contrib import admin
+ç   from django.urls import path, include
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+ç       path('', include('pages.urls')),
+]
+</code></pre>
+
+<ul>
+<li>Puede confundir un poco que no se necesite importar la app <code>pages</code> pero ya se hace referencia en la URLpattern como <code>pages.urls</code>.<ul>
+<li>La razón de hacerlo así es que el método <code>django.urls.include()</code> ya recibe un módulo, o <strong>app</strong>, como primer argumento. Así que, sin usar <code>include</code>, habría que importar la <strong>app</strong> <code>pages</code> pero, como sí que se usa, no se necesita a nivel de proyecto.</li>
+</ul>
+</li>
+</ul>
+<h2 id="34-resumen">3.4 Resumen</h2>
+<h3 id="1-crear-app">1.- CREAR APP</h3>
+<pre><code>(helloworld) $ python manage.py startapp pages
+</code></pre>
+
+<h3 id="2-informar-de-la-nueva-app">2.- INFORMAR DE LA NUEVA APP</h3>
+<p>FICHERO: <code>settings.py</code> </p>
+<pre><code>...
+    INSTALLED_APPS = [
+ç       'pages.apps.PagesConfig',
+...
+</code></pre>
+
+<h3 id="3-crear-la-vista">3.- CREAR LA VISTA</h3>
+<p>FICHERO: <code>pages/views.py</code> </p>
+<pre><code class="python">    from django.shortcuts import render
+ç   from django.http import HttpResponse
+
+    # Create your views here.
+ç   def homePageView(request):
+ç       return HttpResponse(&quot;Hello, World!&quot;)
+</code></pre>
+
+<h3 id="4-crear-el-fichero-de-rutas-de-la-app">4.- CREAR EL FICHERO DE RUTAS DE LA APP</h3>
+<p>FICHERO: <code>pages/urls.py</code> </p>
+<pre><code class="python">from django.urls import path
+from .views import homePageView
+urlpatterns = [
+    path('', homePageView, name='home')
+]
+</code></pre>
+
+<h3 id="5-incluir-el-fichero-de-rutas-de-la-app-en-el-principal">5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL</h3>
+<p>FICHERO: <code>helloworld_project/urls.py</code> </p>
+<pre><code class="python">    from django.contrib import admin
+ç   from django.urls import path, include
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+ç       path('', include('pages.urls')),
+]
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../2_configuracion_inicial/" class="btn btn-neutral" title="2. Configuración Inicial"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../2_configuracion_inicial/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
