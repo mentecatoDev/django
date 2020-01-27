@@ -81,6 +81,11 @@
     </ul>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -220,7 +225,7 @@ $ pipenv shell
 <p>Se empieza actualizando el fichero <code>views.py</code></p>
 </li>
 </ul>
-<p>FICHERO: <code>views.py</code> </p>
+<p>FICHERO: <code>pages/views.py</code> </p>
 <pre><code>    from django.shortcuts import render
 ç   from django.http import HttpResponse
 
@@ -247,17 +252,20 @@ $ pipenv shell
 <li>Añadir el código</li>
 </ul>
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">from django.urls import path
-from .views import homePageView
-urlpatterns = [
-    path('', homePageView, name='home')
-]
+<pre><code class="python">ç # pages/urls.py
+ç from django.urls import path
+
+ç from .views import homePageView
+
+ç urlpatterns = [
+ç     path('', homePageView, name='home')
+ç ]
 </code></pre>
 
 <ul>
 <li>Importamos <code>path</code></li>
 <li><code>.views</code> utiliza "." para indicar el directorio actual</li>
-<li>El patrón URLpattern tiene tres partes <ul>
+<li>El patrón <code>urlpattern</code> tiene tres partes:<ul>
 <li>Un expresión regular Python para la cadena vacía ''</li>
 <li>Especifica la vista que se llamará: <code>homePageView</code></li>
 <li>Añade un nombre de URL opcional <code>home</code></li>
@@ -276,19 +284,19 @@ urlpatterns = [
 </code></pre>
 
 <ul>
-<li>Puede confundir un poco que no se necesite importar la app <code>pages</code> pero ya se hace referencia en la URLpattern como <code>pages.urls</code>.<ul>
+<li>Puede confundir un poco que no se necesite importar la app <code>pages</code> pero ya se hace referencia en <code>urlpatterns</code> como <code>pages.urls</code>.<ul>
 <li>La razón de hacerlo así es que el método <code>django.urls.include()</code> ya recibe un módulo, o <strong>app</strong>, como primer argumento. Así que, sin usar <code>include</code>, habría que importar la <strong>app</strong> <code>pages</code> pero, como sí que se usa, no se necesita a nivel de proyecto.</li>
 </ul>
 </li>
 </ul>
 <h2 id="34-resumen">3.4 Resumen</h2>
 <h3 id="1-crear-app">1.- CREAR APP</h3>
-<pre><code>(helloworld) $ python manage.py startapp pages
+<pre><code class="bash">(helloworld) $ python manage.py startapp pages
 </code></pre>
 
 <h3 id="2-informar-de-la-nueva-app">2.- INFORMAR DE LA NUEVA APP</h3>
 <p>FICHERO: <code>settings.py</code> </p>
-<pre><code>...
+<pre><code class="python">...
     INSTALLED_APPS = [
 ç       'pages.apps.PagesConfig',
 ...
@@ -306,11 +314,11 @@ urlpatterns = [
 
 <h3 id="4-crear-el-fichero-de-rutas-de-la-app">4.- CREAR EL FICHERO DE RUTAS DE LA APP</h3>
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">from django.urls import path
-from .views import homePageView
-urlpatterns = [
-    path('', homePageView, name='home')
-]
+<pre><code class="python">ç from django.urls import path
+ç from .views import homePageView
+ç urlpatterns = [
+ç     path('', homePageView, name='home')
+ç ]
 </code></pre>
 
 <h3 id="5-incluir-el-fichero-de-rutas-de-la-app-en-el-principal">5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL</h3>
@@ -328,6 +336,8 @@ urlpatterns = [
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../4_pages_app/" class="btn btn-neutral float-right" title="4. Pages app">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../2_configuracion_inicial/" class="btn btn-neutral" title="2. Configuración Inicial"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -358,6 +368,8 @@ urlpatterns = [
       
         <span><a href="../2_configuracion_inicial/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../4_pages_app/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

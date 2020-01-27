@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Message Board app - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Message Board app";
+    var mkdocs_page_input_path = "5_message_board_app.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Message Board app</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="message-board-app">Message Board app</h1>
+<ul>
+<li>Aplicación en la que los usuarios pueden publicar y leer mensajes cortos con la ayuda de una base de datos.</li>
+<li>Se explorará la interfaz de administración incorporada de Django</li>
+<li>Se agregarán pruebas</li>
+<li>Se subirá a github y se desplegará en Heroku</li>
+<li>Django proporciona soporte incorporado para varios tipos de backends de bases de datos</li>
+<li>Se empezará con SQLite<ul>
+<li>Se ejecuta a partir de un único archivo</li>
+<li>No requiere una instalación compleja</li>
+<li>Es una elección perfecta para proyectos pequeños.</li>
+</ul>
+</li>
+</ul>
+<h2 id="setup-inicial">Setup Inicial</h2>
+<ul>
+<li>Crear un nuevo directorio para nuestro código en el Escritorio llamado <code>mb</code></li>
+<li>Instalar Django en un nuevo entorno virtual</li>
+<li>Crear un nuevo proyecto llamado <code>mb_project</code></li>
+<li>Crear una nueva aplicación <code>posts</code></li>
+<li>Actualizar <code>settings.py</code></li>
+</ul>
+<pre><code>$ cd ~/Desktop
+$ mkdir mb
+$ cd mb
+$ pipenv install django
+$ pipenv shell
+(mb) $ django-admin startproject mb_project .
+(mb) $ python manage.py startapp posts
+</code></pre>
+
+<p>FICHERO: <code>mb_project/settings.py</code></p>
+<pre><code># mb_project/settings.py
+INSTALL_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+django.contrib.contenttypes',
+django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+'posts', # new
+]
+</code></pre>
+
+<p>A continuación, ejecutar el comando <code>migrate</code> para crear una base de datos inicial basada en la configuración por defecto de Django.</p>
+<pre><code>(mb) $ python manage.py migrate
+</code></pre>
+
+<p>Ahora en el directorio habrá ahora un fichero <code>db.sqlite3</code> que representa a la base de datos SQLite.</p>
+<pre><code>(mb) $ ls
+db.sqlite3 mb_project manage.py
+</code></pre>
+
+<blockquote>
+<p><em>Nota</em>.- Técnicamente se crea un fichero <code>db.sqlite3</code> la primera vez que se ejecuta una migración (<code>migrate</code>) o se ejecuta el servidor (<code>runserver</code>). El uso de <code>runserver</code> configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en <code>INSTALLED_APPS</code>. En otras palabras, para asegurar de que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar <code>migrate</code> (y también <code>makemigrations</code>) cada vez que se actualiza un modelo. Más en breve.</p>
+</blockquote>
+<ul>
+<li>Lanzar el  servidor local y comprobar el funcionamiento</li>
+</ul>
+<pre><code>(mb) $ python manage.py runserver
+</code></pre>
+
+<h2 id="crear-un-modelo-de-base-de-datos">Crear un modelo de base de datos</h2>
+<ul>
+<li>Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes
+de los usuarios.</li>
+<li>Django convertirá este modelo en una tabla de base de datos.</li>
+</ul>
+<p>FICHERO: <code>posts/models.py</code></p>
+<pre><code># posts/models.py
+from django.db import models
+
+# Create your models here
+</code></pre>
+
+<p>Django importa un módulo <code>models</code> para ayudarnos a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
+- Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual podemos hacer de la siguiente manera:</p>
+<p>FICHERO: <code>post/models.py</code></p>
+<pre><code># posts/models.py
+from django.db import models
+
+class Post(models.Model):
+    text = models.TextField()
+</code></pre>
+
+<ul>
+<li>Se ha creado un nuevo modelo de base de datos llamado <code>Post</code> que tiene el campo <code>text</code> de tipo <code>TextField()</code>.</li>
+</ul>
+<h2 id="activating-models">Activating models</h2>
+<ul>
+<li>Una vez creado el model tiene que ser activado</li>
+<li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
+<li>En segundo lugar, construimos la base de datos actual con <code>migrate</code> que ejecuta la función en el archivo de migraciones.</li>
+</ul>
+<pre><code class="bash">(mb) $ python manage.py makemigrations posts
+(mb) $ python manage.py migrar posts
+</code></pre>
+
+<ul>
+<li>
+<p>No es necesario incluir un nombre después de <code>makemigrations</code> o de <code>migrate</code> pero es un buen hábito para ser específico.</p>
+<ul>
+<li>Si tenemos dos aplicaciones separadas en nuestro proyecto, se actualizan los modelos en ambos y luego se ejecuta <code>makemigrations</code> se genererá un archivo de migraciones que contiene datos sobre <strong>ambas</strong> modificaciones. Esto hace que la depuración sea más difícil en el futuro. Es deseable que cada archivo de migración sea lo más pequeño y aislado posible. De esta forma, si se necesita mirar las migraciones pasadas, sólo hay un cambio por migración en lugar de uno que se aplica a múltiples aplicaciones.</li>
+</ul>
+</li>
+</ul>
+<h2 id="django-admin">Django Admin</h2>
+<ul>
+<li>Django proporciona una robusta interfaz de administración para interactuar con la base de datos (pocos frameworks ofrecen tal cosa).<ul>
+<li>Originado como proyecto en un periódico, los desarrolladores querían un CMS para que los periodistas pudieran escribir y editar sus historias sin tocar "código".</li>
+</ul>
+</li>
+<li>Para utilizar el administrador de Django, primero necesitamos crear un superusuario que pueda iniciar sesión.</li>
+</ul>
+<pre><code class="bash">(mb) $ python manage.py createsuperuser
+Username (leave blank to use 'wsv'): wsv
+Email:
+Password:
+Password (again):
+Superuser created successfully.
+</code></pre>
+
+<ul>
+<li>
+<p>Reiniciar el servidor Django con <code>python manage.py</code> y en el navegador ir
+a http://127.0.0.1:8000/admin/.</p>
+</li>
+<li>
+<p>Necesitamos decirle explícitamente a Django qué mostrar en la página de administración.
+FICHERO: <code>post/admin.py</code></p>
+</li>
+</ul>
+<pre><code># posts/admin.py
+from django.contrib import admin
+
+from .models import Post
+
+admin.site.register(Post)
+</code></pre>
+
+<ul>
+<li>Ahora crear el primer mensaje en el tablero de mensajes.</li>
+<li><em>Problema</em>: La nueva entrada se llama “Post object”, lo cual no es muy útil<ul>
+<li>Cambiamos eso añadiendo una nueva función <code>__str__</code> como sigue:</li>
+</ul>
+</li>
+</ul>
+<p>FICHERO: <code>posts/models.py</code></p>
+<pre><code># posts/models.py
+from django.db import models
+
+
+class Post(models.Model):
+    text = models.TextField()
+
+
+def __str__(self):
+    &quot;&quot;&quot;A string representation of the model.&quot;&quot;&quot;
+    return self.text[:50]
+</code></pre>
+
+<ul>
+<li>Es una buena práctica añadir métodos <code>str()</code> a todos los modelos para aumentar la legibilidad.</li>
+</ul>
+<h2 id="viewstemplatesurls">Views/Templates/URLs</h2>
+<ul>
+<li>Para poder mostrar el contenido de la base de datos en la web, hay que conectar las vistas, las plantillas y las URLConfs.</li>
+</ul>
+<h3 id="vista">Vista</h3>
+<ul>
+<li>Django viene equipado con el <code>ListView</code> genérico basado en clases.</li>
+</ul>
+<p>FICHERO: <code>posts/views.py</code></p>
+<pre><code># posts/views.py
+from django.views.generic import ListView
+from .models import Post
+
+
+class HomePageView(ListView):
+    model = Post
+    template_name = 'home.html'
+</code></pre>
+
+<ul>
+<li>Importar <code>ListView</code></li>
+<li>Definir qué modelo se va a usar</li>
+<li>En la vista, se deriva la clase <code>ListView</code> para especificar el nombre del modelo y la referencia de la plantilla.<ul>
+<li>Internamente <code>ListView</code> devuelve un ojeto llamado <code>object_list</code> que hay que mostrar en la plantilla.</li>
+</ul>
+</li>
+</ul>
+<h3 id="plantilla">Plantilla</h3>
+<ul>
+<li>Crear un directorio en el nivel del proyecto que se llame <code>templates</code> y una plantilla <code>home.html</code> en él</li>
+</ul>
+<pre><code class="bash">(mb) $ mkdir templates
+(mb) $ touch templates/home.html
+</code></pre>
+
+<ul>
+<li>Actualizar el campo <code>DIRS</code> del archivo<code>settings.py</code> para que Django sepa cómo acceder a la carpeta <code>templates</code>.</li>
+</ul>
+<pre><code class="python"># settings.py
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        ...
+    },
+]
+</code></pre>
+
+<ul>
+<li>En el archivo <code>home.html</code> se puede usar bucle <code>for</code> del lenguaje de plantillas de Django para listar todos los objetos en <code>object_list</code>.
+FICHERO: <code>templates/home.html</code></li>
+</ul>
+<pre><code class="html">&lt;!-- templates/home.html --&gt;
+&lt;h1&gt;Message board homepage&lt;/h1&gt;
+&lt;ul&gt;
+    {% for post in object_list %}
+        &lt;li&gt;{{ post }}&lt;/li&gt;
+    {% endfor %}
+&lt;/ul&gt;
+</code></pre>
+
+<h3 id="urlconfs">URLConfs</h3>
+<p>FICHERO: <code>mb_project/urls.py</code></p>
+<pre><code># mb_project/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('posts.urls')),
+]
+</code></pre>
+
+<ul>
+<li>Crear el fichero <code>urls.py</code> a nivel de app</li>
+</ul>
+<pre><code>(mb) $ touch posts/urls.py
+</code></pre>
+
+<p>...con el siguiente contenido:
+FICHERO: <code>posts/urls.py</code></p>
+<pre><code># posts/urls.py
+from django.urls import path
+
+
+from . import views
+
+
+urlpatterns = [
+    path('', views.HomePageView.as_view(), name='home'),
+]
+</code></pre>
+
+<ul>
+<li>Reiniciar el servidor que ahora mostrará los post del tablón de mensajes</li>
+<li>Añádanse más posts ;-)</li>
+<li>No olvidar</li>
+</ul>
+<pre><code>(mb) $ git init
+(mb) $ git add -A
+(mb) $ git commit -m 'Realiza el commit inicial'
+</code></pre>
+
+<h3 id="tests">Tests</h3>
+<ul>
+<li>Se necesita usar <code>TestCase</code> dado que ahora tenemos una base de datos y no solo una página estática.</li>
+<li>Se creará una base de datos con la que se pueden hacer pruebas (no se hacen con la base de datos real).</li>
+<li>Se empezará añadiendo un mensaje de muestra al campo de la base de datos de texto para luego comprobar que se almacena correctamente.</li>
+<li>Es importante que todos los métodos de prueba comiencen con <code>test_</code> para que Django sepa cómo manejarlos</li>
+</ul>
+<p>FICHERO: <code>posts/test.py</code></p>
+<pre><code class="python"># posts/tests.py
+from django.test import TestCase
+from .models import Post
+
+
+class PostModelTest(TestCase):
+
+    def setUp(self):
+        Post.objects.create(text='just a test')
+
+    def test_text_content(self):
+        post=Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
+</code></pre>
+
+<ol>
+<li>Importa el módulo <code>TestCase</code> que permite crear una base de datos de muestra</li>
+<li>Importa el modelo <code>Post</code></li>
+<li>
+<p>Se crea una nueva clase <code>PostModelTest</code> y se le añade un método <code>setUp</code>
+para crear una nueva base de datos con una sola entrada: "just a test"</p>
+</li>
+<li>
+<p>Ejecutar <code>test_text_content</code>, para comprobar que el campo de la base de datos realmente contiene <code>just a test</code>.</p>
+<ul>
+<li>Se crea una variable llamada <code>post</code> que representa el primer <code>id</code> en el modelo de Post.</li>
+<li>Django asigna automáticamente esta identificación</li>
+</ul>
+</li>
+<li>La siguiente línea usa "cadenas f", que son una adición muy interesante a Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}</li>
+<li>Se establece <code>expected_object_name</code> como el valor de la cadena en <code>post.text</code> que permitirá hacer la prueba</li>
+<li>En la última línea se usa <code>assertEqual</code> para comprobar que la entrada recién creada coincide con la dispuesta al principio</li>
+<li>Ejecutar la prueba con <code>python manage.py test</code></li>
+</ol>
+<pre><code class="bash">(mb) $ python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.
+---------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+Destroying test database for alias 'default'...
+</code></pre>
+
+<ul>
+<li>A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos</li>
+<li>our second test. The first test was on the model but now we want test our
+  one and only page: the homepage. Specifically, we want to test that it exists (throws
+  an HTTP 200 response), uses the home view, and uses the home.html template.
+  We’ll need to add one more import at the top for reverse and a brand new class
+  HomePageViewTest for our test.88
+  Chapter 4: Message Board app
+  Code
+  from django.test import TestCase
+  from django.urls import reverse
+  from .models import Post
+  class PostModelTest(TestCase):
+  def setUp(self):
+  Post.objects.create(text='just a test')
+  def test_text_content(self):
+  post=Post.objects.get(id= )
+  expected_object_name = f'{post.text}'
+  self.assertEqual(expected_object_name, 'just a test')
+  class HomePageViewTest(TestCase):
+  def setUp(self):
+  Post.objects.create(text='this is another test')
+  def test_view_url_exists_at_proper_location(self):
+  resp = self.client.get('/')
+  self.assertEqual(resp.status_code,
+  )
+  def test_view_url_by_name(self):
+  resp = self.client.get(reverse('home'))
+  self.assertEqual(resp.status_code,
+  )89
+  Chapter 4: Message Board app
+  def test_view_uses_correct_template(self):
+  resp = self.client.get(reverse('home'))
+  self.assertEqual(resp.status_code,
+  )
+  self.assertTemplateUsed(resp, 'home.html')
+  If you run our tests again you should see that they pass.
+  Command Line
+  (mb) $ python manage.py test
+  Creating test database for alias 'default'...
+  System check identified no issues (
+  silenced).</li>
+</ul>
+<h2 id="_1">.</h2>
+<p>Ran
+tests in
+.
+s
+OK
+Destroying test database for alias 'default'...
+Why does it say four tests? Remember that our setUp methods are not actually tests,
+they merely let us run subsequent tests. Our four actual tests are test_text_content ,
+test_view_url_exists_at_proper_location , test_view_url_by_name , and test_view_-
+uses_correct_template .
+Any function that has the word test* at the beginning and exists in a tests.py file will
+be run when we execute the command python manage.py test .
+We’re done adding code for our testing so it’s time to commit the changes to git.90
+Chapter 4: Message Board app
+Command Line
+(mb) $ git add -A
+(mb) $ git commit -m 'added tests'</p>
+<h2 id="bitbucket">Bitbucket</h2>
+<p>We also need to store our code on Bitbucket. This is a good habit to get into in
+case anything happens to your local computer and it also allows you to share and
+collaborate with other developers.
+You should already have a Bitbucket account from Chapter 3 so go ahead and create
+a new repo which we’ll call mb-app .
+Bitbucket create app
+On the next page click on the bottom link for “I have an existing project”. Copy the
+two commands to connect and then push the repository to Bitbucket.Chapter 4: Message Board app
+91
+It should look like this, replacing wsvincent (my username) with your Bitbucket
+username:
+Command Line
+(mb) $ git remote add origin git@bitbucket.org:wsvincent/mb-app.git
+(mb) $ git push -u origin master</p>
+<h2 id="heroku-configuration">Heroku configuration</h2>
+<p>You should also already have a Heroku account setup and installed from Chapter 3.
+We need to make the following changes to our Message Board project to deploy it
+online:
+• update Pipfile.lock
+• new Procfile
+• install gunicorn
+• update settings.py
+Within your Pipfile specify the version of Python we’re using, which is . . Add these
+two lines at the bottom of the file.
+Code</p>
+<h1 id="pipfile">Pipfile</h1>
+<p>[requires]
+python_version = " . "
+Run pipenv lock to generate the appropriate Pipfile.lock .Chapter 4: Message Board app
+92
+Command Line
+(mb) $ pipenv lock
+Then create a Procfile which tells Heroku how to run the remote server where our
+code will live.
+Command Line
+(mb) $ touch Procfile
+For now we’re telling Heroku to use gunicorn as our production server and look in our
+mb_project.wsgi file for further instructions.
+Command Line
+web: gunicorn mb_project.wsgi --log-file -
+Next install gunicorn which we’ll use in production while still using Django’s internal
+server for local development use.
+Command Line
+(mb) $ pipenv install gunicorn
+Finally update ALLOWED_HOSTS in our settings.py file.
+Code</p>
+<h1 id="mb_projectsettingspy">mb_project/settings.py</h1>
+<p>ALLOWED_HOSTS = ['*']
+We’re all done! Add and commit our new changes to git and then push them up to
+Bitbucket.93
+Chapter 4: Message Board app
+Command Line
+(mb) $ git status
+(mb) $ git add -A
+(mb) $ git commit -m 'New updates for Heroku deployment'
+(mb) $ git push -u origin master</p>
+<h2 id="heroku-deployment">Heroku deployment</h2>
+<p>Make sure you’re logged into your correct Heroku account.
+Command Line
+(mb) $ heroku login
+Then run the create command and Heroku will randomly generate an app name for
+you. You can customize this later if desired.
+Command Line
+(mb) $ heroku create
+Creating app... done,
+https://agile-inlet-
+agile-inlet-
+.herokuapp.com/ | https://git.heroku.com/agile-inlet-
+.git
+Set git to use the name of your new app when you push code to Heroku. My Heroku-
+generated name is agile-inlet-
+so the command looks like this.
+\94
+Chapter 4: Message Board app
+Command Line
+(mb) $ heroku git:remote -a agile-inlet-
+Tell Heroku to ignore static files which we’ll cover in-depth when deploying our Blog
+app later in the book.
+Command Line
+(mb) $ heroku config:set DISABLE_COLLECTSTATIC=
+Push the code to Heroku and add free scaling so it’s actually running online, otherwise
+the code is just sitting there.
+Command Line
+(mb) $ git push heroku master
+(mb) $ heroku ps:scale web=
+If you open the new project with heroku open it will automatically launch a new
+browser window with the URL of your app. Mine is live at:
+https://agile-inlet-25811.herokuapp.com/.
+Live siteChapter 4: Message Board app
+95</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We’ve now built, tested, and deployed our first database-driven app. While it’s
+deliberately quite basic, now we know how to create a database model, update it
+with the admin panel, and then display the contents on a web page. But something is
+missing, no?
+In the real-world, users need forms to interact with our site. After all, not everyone
+should have access to the admin panel. In the next chapter we’ll build a blog appli-
+cation that uses forms so that users can create, edit, and delete posts. We’ll also add
+styling via CSS.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

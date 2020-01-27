@@ -87,6 +87,11 @@
     <a class="" href="../3_hello_world_app/">3. Hello World app</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -124,7 +129,7 @@
 <li>Objetivos <ul>
 <li>Configurar el entorno para programar en proyectos Django</li>
 <li>Uso de la línea de comandos para instalar: <ul>
-<li>Django 2.2 (3.0.2)</li>
+<li>Django 3.0</li>
 <li>Python 3.8</li>
 </ul>
 </li>
@@ -153,7 +158,7 @@
 </ul>
 <h2 id="22-instalar-python-3">2.2 Instalar Python 3</h2>
 <ul>
-<li>Entornos Virtuales</li>
+<li><a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">Entornos Virtuales</a></li>
 <li><a href="https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/">Instrucciones de instalación desde los ficheros fuentes</a></li>
 </ul>
 <h2 id="23-entornos-virtuales">2.3 Entornos Virtuales</h2>
@@ -161,7 +166,7 @@
 <li>Ver: https://mentecatodev.github.io/intermezzo/entornos_virtuales/</li>
 </ul>
 <h2 id="24-instalacion-de-django">2.4 Instalación de Django</h2>
-<pre><code>$ cd ~/Escritorio
+<pre><code class="bash">$ cd ~/Escritorio
 $ mkdir django
 $ cd django
 $ pipenv install django
@@ -171,7 +176,7 @@ $ pipenv shell
 <ul>
 <li>Crear nuevo proyecto <code>test</code>. No olvidar el "." al final.</li>
 </ul>
-<pre><code>django-admin startproject test_project .
+<pre><code class="bash">$ django-admin startproject test_project .
 </code></pre>
 
 <ul>
@@ -197,8 +202,23 @@ $ pipenv shell
 <li><code>&lt;Ctrl&gt;-c</code> para parar</li>
 <li><code>exit</code> para salir del entorno virtual</li>
 </ul>
+<h3 id="251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1 Cambiando la IP de escucha y el puerto</h3>
+<p>De manera predeterminada, el comando runserver inicia el servidor de desarrollo en la IP interna en el puerto 8000.</p>
+<p>Si desea cambiar el puerto del servidor, páselo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:</p>
+<pre><code class="bash">$ python manage.py runserver 8080
+</code></pre>
+
+<p>Si desea cambiar la IP del servidor, páselo junto con el puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si está ejecutando Vagrant o desea mostrar su trabajo en otras computadoras en la red), use:</p>
+<pre><code class="bash">$ python manage.py runserver 0:8000
+</code></pre>
+
+<p>0 es un atajo para 0.0.0.0. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.</p>
+<blockquote>
+<p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número de bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
+</blockquote>
+<p>Una descripción más detallada del servidor se puede encontrar <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">aquí</a>.</p>
 <h2 id="25-instalar-git">2.5 Instalar Git</h2>
-<pre><code>$ sudo apt install git
+<pre><code class="bash">$ sudo apt install git
 $ git config --global user.name &quot;&lt;Nombre&gt;&quot;
 $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 </code></pre>
