@@ -3,6 +3,7 @@ nav:
   - 1. Introducción : 1_introduccion.md
   - 2. Configuración Inicial : 2_configuracion_inicial.md
   - 3. Hello World app : 3_hello_world_app.md
+  - 4. Pages app : 4_pages_app.md
 theme: readthedocs
 
 plugins:

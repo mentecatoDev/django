@@ -3,7 +3,7 @@
 - Objetivos 
     - Configurar el entorno para programar en proyectos Django
     - Uso de la línea de comandos para instalar: 
-        - Django 2.2 (3.0.2)
+        - Django 3.0
         - Python 3.8
     - Git
     - Editor de texto
@@ -24,7 +24,7 @@
 
 ## 2.2 Instalar Python 3
 
-- Entornos Virtuales
+- [Entornos Virtuales](https://mentecatodev.github.io/intermezzo/entornos_virtuales/)
 - [Instrucciones de instalación desde los ficheros fuentes](https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/)
 
 ## 2.3 Entornos Virtuales
@@ -33,7 +33,7 @@
 
 ## 2.4 Instalación de Django
 
-```
+```bash
 $ cd ~/Escritorio
 $ mkdir django
 $ cd django
@@ -43,8 +43,8 @@ $ pipenv shell
 
 - Crear nuevo proyecto `test`. No olvidar el "." al final.
 
-```
-django-admin startproject test_project .
+```bash
+$ django-admin startproject test_project .
 ```
 
 - Si no se usa el "." aparecerá la siguiente estructura
@@ -69,9 +69,29 @@ $ python manage.py runserver
 - `<Ctrl>-c` para parar
 - `exit` para salir del entorno virtual
 
+### 2.5.1 Cambiando la IP de escucha y el puerto
+
+De manera predeterminada, el comando runserver inicia el servidor de desarrollo en la IP interna en el puerto 8000.
+
+Si desea cambiar el puerto del servidor, páselo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:
+
+```bash
+$ python manage.py runserver 8080
+```
+
+Si desea cambiar la IP del servidor, páselo junto con el puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si está ejecutando Vagrant o desea mostrar su trabajo en otras computadoras en la red), use:
+```bash
+$ python manage.py runserver 0:8000
+```
+0 es un atajo para 0.0.0.0. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.
+
+> Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número de bajo. Los números de puerto bajos están reservados para el superusuario (root).
+
+Una descripción más detallada del servidor se puede encontrar [aquí](https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver).
+
 ## 2.5 Instalar Git
 
-```
+```bash
 $ sudo apt install git
 $ git config --global user.name "<Nombre>"
 $ git config --globar user.email "<Correo electrónico>"

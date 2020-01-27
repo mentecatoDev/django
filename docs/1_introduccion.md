@@ -5,7 +5,7 @@
 - Libre y Open Source
 - Lo que hace que Django sea impresionante es su filosofía de "viene en la caja" ó "pilas incluidas" (*"comes with the box"* ó *"batteries-included"*). Permite una rápida implementación porque las partes más importantes ya están allí.
 - Robusto 
-    - Instagram, Pinterest (Flask; más personalizable y adecuado para  API's), Bitbucker, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite
+    - Instagram, Pinterest (Flask; más personalizable y adecuado para  API's), Bitbucket, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite
 - Se usará `pipenv`
 
 ## 1.1 Por qué Django *"comes with the box"* ó *"batteries-included"*
@@ -26,8 +26,8 @@
 
 ## 1.2 Por qué unos apuntes
 
-- Django está bien [documentado](https://docs.djangoproject.com/es/2.2/) pero es difícil de abordar para el principiante
-- Incluso el [tutorial básico](https://docs.djangoproject.com/es/2.2/intro/tutorial01/) es notablemente arduo
+- Django está bien [documentado](https://docs.djangoproject.com/es/3.0/) pero es difícil de abordar para el principiante
+- Incluso el [tutorial básico](https://docs.djangoproject.com/es/3.0/intro/tutorial01/) es notablemente arduo
 - El problema viene de que está orientado a la **profundidad** y no a la **facilidad de uso**
 - Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS
 
@@ -35,7 +35,7 @@
 
  1.Configuración inicial 
 
-- Django 2.2 (3.0.2?)
+- Django 3.0
 - Python 3.8
 - Pipenv
 - Visual Studio Codium

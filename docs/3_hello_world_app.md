@@ -101,7 +101,7 @@ $ pipenv shell
 
 - Se empieza actualizando el fichero `views.py`
 
- FICHERO: `views.py` 
+ FICHERO: `pages/views.py` 
 
 ```
     from django.shortcuts import render
@@ -127,16 +127,19 @@ $ pipenv shell
  FICHERO: `pages/urls.py` 
 
 ```python
-from django.urls import path
-from .views import homePageView
-urlpatterns = [
-    path('', homePageView, name='home')
-]
+ç # pages/urls.py
+ç from django.urls import path
+
+ç from .views import homePageView
+
+ç urlpatterns = [
+ç     path('', homePageView, name='home')
+ç ]
 ```
 
 - Importamos `path`
 - `.views` utiliza "." para indicar el directorio actual
-- El patrón URLpattern tiene tres partes 
+- El patrón `urlpattern` tiene tres partes:
     - Un expresión regular Python para la cadena vacía ''
     - Especifica la vista que se llamará: `homePageView`
     - Añade un nombre de URL opcional `home`
@@ -154,14 +157,14 @@ urlpatterns = [
 ]
 ```
 
-- Puede confundir un poco que no se necesite importar la app `pages` pero ya se hace referencia en la URLpattern como `pages.urls`.
+- Puede confundir un poco que no se necesite importar la app `pages` pero ya se hace referencia en `urlpatterns` como `pages.urls`.
     - La razón de hacerlo así es que el método `django.urls.include()` ya recibe un módulo, o **app**, como primer argumento. Así que, sin usar `include`, habría que importar la **app** `pages` pero, como sí que se usa, no se necesita a nivel de proyecto.
 
 ## 3.4 Resumen
 
 ### 1.- CREAR APP 
 
-```
+```bash
 (helloworld) $ python manage.py startapp pages
 ```
 
@@ -169,7 +172,7 @@ urlpatterns = [
 
  FICHERO: `settings.py` 
 
-```
+```python
 ...
     INSTALLED_APPS = [
 ç       'pages.apps.PagesConfig',
@@ -194,11 +197,11 @@ urlpatterns = [
  FICHERO: `pages/urls.py` 
 
 ```python
-from django.urls import path
-from .views import homePageView
-urlpatterns = [
-    path('', homePageView, name='home')
-]
+ç from django.urls import path
+ç from .views import homePageView
+ç urlpatterns = [
+ç     path('', homePageView, name='home')
+ç ]
 ```
 
 ### 5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL 
