@@ -258,7 +258,7 @@ para crear una nueva base de datos con una sola entrada: "just a test"
 - Ejecutar `test_text_content`, para comprobar que el campo de la base de datos realmente contiene `just a test`.
     + Se crea una variable llamada `post` que representa el primer `id` en el modelo de Post.
     + Django asigna automáticamente esta identificación
-- La siguiente línea usa "cadenas f", que son una adición muy interesante a Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}
+- La siguiente línea usa "cadenas f", que son una adición muy interesante desde Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}
 - Se establece `expected_object_name` como el valor de la cadena en `post.text` que permitirá hacer la prueba
 - En la última línea se usa `assertEqual` para comprobar que la entrada recién creada coincide con la dispuesta al principio
 - Ejecutar la prueba con `python manage.py test`
@@ -275,163 +275,143 @@ OK
 Destroying test database for alias 'default'...
 ```
 - A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos
--  our second test. The first test was on the model but now we want test our
-  one and only page: the homepage. Specifically, we want to test that it exists (throws
-  an HTTP 200 response), uses the home view, and uses the home.html template.
-  We’ll need to add one more import at the top for reverse and a brand new class
-  HomePageViewTest for our test.88
-  Chapter 4: Message Board app
-  Code
-  from django.test import TestCase
-  from django.urls import reverse
-  from .models import Post
-  class PostModelTest(TestCase):
-  def setUp(self):
-  Post.objects.create(text='just a test')
-  def test_text_content(self):
-  post=Post.objects.get(id= )
-  expected_object_name = f'{post.text}'
-  self.assertEqual(expected_object_name, 'just a test')
-  class HomePageViewTest(TestCase):
-  def setUp(self):
-  Post.objects.create(text='this is another test')
-  def test_view_url_exists_at_proper_location(self):
-  resp = self.client.get('/')
-  self.assertEqual(resp.status_code,
-  )
-  def test_view_url_by_name(self):
-  resp = self.client.get(reverse('home'))
-  self.assertEqual(resp.status_code,
-  )89
-  Chapter 4: Message Board app
-  def test_view_uses_correct_template(self):
-  resp = self.client.get(reverse('home'))
-  self.assertEqual(resp.status_code,
-  )
-  self.assertTemplateUsed(resp, 'home.html')
-  If you run our tests again you should see that they pass.
-  Command Line
-  (mb) $ python manage.py test
-  Creating test database for alias 'default'...
-  System check identified no issues (
-  silenced).
+- El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista `home` y la plantilla `home.html`.
+-  
+Se necesita añadir un `import` más para `reverse` y una nueva clase `HomePageViewTest`
+```python
+from django.test import TestCase
+from django.urls import reverse
+from .models import Post
 
+class PostModelTest(TestCase):
+
+
+    def setUp(self):
+        Post.objects.create(text='just a test')
+
+    def test_text_content(self):
+        post=Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
+
+    class HomePageViewTest(TestCase):
+
+        def setUp(self):
+            Post.objects.create(text='this is another test')
+
+        def test_view_url_exists_at_proper_location(self):
+            resp = self.client.get('/')
+            self.assertEqual(resp.status_code, 200)
+
+        def test_view_url_by_name(self):
+            resp = self.client.get(reverse('home'))
+            self.assertEqual(resp.status_code, 200)
+
+        def test_view_uses_correct_template(self):
+            resp = self.client.get(reverse('home'))
+            self.assertEqual(resp.status_code, 200)
+            self.assertTemplateUsed(resp, 'home.html')
+```
+- Ejecutando el test:
+```bash
+(mb) $ python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
 .
 ----------------------------------------------------------------------
-Ran
-tests in
-.
-s
+Ran 4 tests in 0.036s
+
 OK
 Destroying test database for alias 'default'...
-Why does it say four tests? Remember that our setUp methods are not actually tests,
-they merely let us run subsequent tests. Our four actual tests are test_text_content ,
-test_view_url_exists_at_proper_location , test_view_url_by_name , and test_view_-
-uses_correct_template .
-Any function that has the word test* at the beginning and exists in a tests.py file will
-be run when we execute the command python manage.py test .
-We’re done adding code for our testing so it’s time to commit the changes to git.90
-Chapter 4: Message Board app
-Command Line
+```
+- 4 test: `test_text_content`, `test_view_url_exists_at_proper_location`, `test_view_url_by_name` y  `test_view_uses_correct_template`.
+- Cualquier función que tenga la palabra `test*` al principio y exista en un fichero `tests.py` se lanzará cuando se ejecuta el comando `python manage.py test`.
+
+- Hora de hacer *commit* de los cambios.
+```bash
 (mb) $ git add -A
 (mb) $ git commit -m 'added tests'
-## Bitbucket
-We also need to store our code on Bitbucket. This is a good habit to get into in
-case anything happens to your local computer and it also allows you to share and
-collaborate with other developers.
-You should already have a Bitbucket account from Chapter 3 so go ahead and create
-a new repo which we’ll call mb-app .
-Bitbucket create app
-On the next page click on the bottom link for “I have an existing project”. Copy the
-two commands to connect and then push the repository to Bitbucket.Chapter 4: Message Board app
-91
-It should look like this, replacing wsvincent (my username) with your Bitbucket
-username:
-Command Line
-(mb) $ git remote add origin git@bitbucket.org:wsvincent/mb-app.git
-(mb) $ git push -u origin master
+```
+## GitHub
+- Subir el proyecto...
 ## Heroku configuration
-You should also already have a Heroku account setup and installed from Chapter 3.
-We need to make the following changes to our Message Board project to deploy it
-online:
-• update Pipfile.lock
-• new Procfile
-• install gunicorn
-• update settings.py
-Within your Pipfile specify the version of Python we’re using, which is . . Add these
-two lines at the bottom of the file.
-Code
+- Hay que hacer los siguientes cambios al projecto para desplegarlo online:
+    + Actualizar `Pipfile.lock`
+    + Crear `Procfile`
+    + Instalar `gunicorn`
+    + Actualizar `settings.py`
+
+### Actualizar `Pipfile.lock`
+- Especificar la versión de python que se está usando
+FICHERO: `Pipfile`
+```Pipfile
 # Pipfile
 [requires]
-python_version = " . "
-Run pipenv lock to generate the appropriate Pipfile.lock .Chapter 4: Message Board app
-92
-Command Line
+python_version = "3.6"
+```
+Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
+```
 (mb) $ pipenv lock
-Then create a Procfile which tells Heroku how to run the remote server where our
-code will live.
-Command Line
+```
+### Crear `Procfile`
+- Le dirá a Heroku *cómo* ejecutar el servidor remoto donde habita el código.
+```bash
 (mb) $ touch Procfile
-For now we’re telling Heroku to use gunicorn as our production server and look in our
-mb_project.wsgi file for further instructions.
-Command Line
+```
+### Instalar `gunicorn`
+- Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero`mb_project.wsgi` para más instrucciones.
+
+```
 web: gunicorn mb_project.wsgi --log-file -
-Next install gunicorn which we’ll use in production while still using Django’s internal
-server for local development use.
-Command Line
+```
+
+- Luego, se instala `gunicorn`, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.
+
+```
 (mb) $ pipenv install gunicorn
-Finally update ALLOWED_HOSTS in our settings.py file.
-Code
+```
+### Actualizar `settings.py`
+- Actualizar `ALLOWED_HOSTS` en el archivo `settings.py`.
+FICHERO: mb_project/settings.py
+```python
 # mb_project/settings.py
 ALLOWED_HOSTS = ['*']
-We’re all done! Add and commit our new changes to git and then push them up to
-Bitbucket.93
-Chapter 4: Message Board app
-Command Line
+```
+- `commit` y `push`
+```
 (mb) $ git status
 (mb) $ git add -A
 (mb) $ git commit -m 'New updates for Heroku deployment'
 (mb) $ git push -u origin master
-## Heroku deployment
-Make sure you’re logged into your correct Heroku account.
-Command Line
+```
+## Despliegue en Heroku
+- *Login*
+```bash
 (mb) $ heroku login
-Then run the create command and Heroku will randomly generate an app name for
-you. You can customize this later if desired.
-Command Line
+```
+- *Create*.- Genera un nombre aleatorio para la aplicación
+```bash
 (mb) $ heroku create
-Creating app... done,
-https://agile-inlet-
-agile-inlet-
-.herokuapp.com/ | https://git.heroku.com/agile-inlet-
-.git
-Set git to use the name of your new app when you push code to Heroku. My Heroku-
-generated name is agile-inlet-
-so the command looks like this.
-\94
-Chapter 4: Message Board app
-Command Line
-(mb) $ heroku git:remote -a agile-inlet-
-Tell Heroku to ignore static files which we’ll cover in-depth when deploying our Blog
-app later in the book.
-Command Line
-(mb) $ heroku config:set DISABLE_COLLECTSTATIC=
-Push the code to Heroku and add free scaling so it’s actually running online, otherwise
-the code is just sitting there.
-Command Line
+Creating app... done,agile-inlet-25811
+https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25811.git
+```
+- Establecer a git para usar el nombre de la nueva aplicación cuando se suba el código a Heroku.
+```bash
+(mb) $ heroku git:remote -a agile-inlet-25811
+```
+- Indicar a que ignore los archivos estáticos (se tratará más adelante).
+```
+(mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
+```
+-  Subir el código a Heroku y añadir escalado gratuito para que se ejecute realmente en línea, de lo contrario el código sólo se quedará alojado.
+```
 (mb) $ git push heroku master
-(mb) $ heroku ps:scale web=
-If you open the new project with heroku open it will automatically launch a new
-browser window with the URL of your app. Mine is live at:
-https://agile-inlet-25811.herokuapp.com/.
-Live siteChapter 4: Message Board app
-95
-## Conclusion
-We’ve now built, tested, and deployed our first database-driven app. While it’s
-deliberately quite basic, now we know how to create a database model, update it
-with the admin panel, and then display the contents on a web page. But something is
-missing, no?
-In the real-world, users need forms to interact with our site. After all, not everyone
-should have access to the admin panel. In the next chapter we’ll build a blog appli-
-cation that uses forms so that users can create, edit, and delete posts. We’ll also add
-styling via CSS.
+(mb) $ heroku ps:scale web=1
+```
+- Abrir el código con `heroku open` y automáticamente mostrará un navegador con la URL de la aplicación.
+
+## Conclusión
+- Se ha construido, probado e implementado la primera aplicación básica basada en una base de datos.
+- Faltarían formularios para interactuar con el sitio (el panel de administración no es lo adecuado).
+- Se creará una aplicación de blog con formularios para que los usuarios puedan crear, editar y borrar mensajes.
+- Se le añadirá estilo a través de CSS.
