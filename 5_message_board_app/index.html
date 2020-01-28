@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Message Board app - Django</title>
+  <title>5. Message Board app - Django</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Message Board app";
+    var mkdocs_page_name = "5. Message Board app";
     var mkdocs_page_input_path = "5_message_board_app.md";
     var mkdocs_page_url = null;
   </script>
@@ -68,6 +68,39 @@
     <a class="" href="../4_pages_app/">4. Pages app</a>
 	    </li>
           
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">5. Message Board app</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#message-board-app">Message Board app</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#setup-inicial">Setup Inicial</a></li>
+        
+            <li><a class="toctree-l3" href="#crear-un-modelo-de-base-de-datos">Crear un modelo de base de datos</a></li>
+        
+            <li><a class="toctree-l3" href="#activating-models">Activating models</a></li>
+        
+            <li><a class="toctree-l3" href="#django-admin">Django Admin</a></li>
+        
+            <li><a class="toctree-l3" href="#viewstemplatesurls">Views/Templates/URLs</a></li>
+        
+            <li><a class="toctree-l3" href="#github">GitHub</a></li>
+        
+            <li><a class="toctree-l3" href="#heroku-configuration">Heroku configuration</a></li>
+        
+            <li><a class="toctree-l3" href="#despliegue-en-heroku">Despliegue en Heroku</a></li>
+        
+            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -90,7 +123,7 @@
     
       
     
-    <li>Message Board app</li>
+    <li>5. Message Board app</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -406,7 +439,7 @@ para crear una nueva base de datos con una sola entrada: "just a test"</p>
 <li>Django asigna automáticamente esta identificación</li>
 </ul>
 </li>
-<li>La siguiente línea usa "cadenas f", que son una adición muy interesante a Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}</li>
+<li>La siguiente línea usa "cadenas f", que son una adición muy interesante desde Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}</li>
 <li>Se establece <code>expected_object_name</code> como el valor de la cadena en <code>post.text</code> que permitirá hacer la prueba</li>
 <li>En la última línea se usa <code>assertEqual</code> para comprobar que la entrada recién creada coincide con la dispuesta al principio</li>
 <li>Ejecutar la prueba con <code>python manage.py test</code></li>
@@ -424,169 +457,191 @@ Destroying test database for alias 'default'...
 
 <ul>
 <li>A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos</li>
-<li>our second test. The first test was on the model but now we want test our
-  one and only page: the homepage. Specifically, we want to test that it exists (throws
-  an HTTP 200 response), uses the home view, and uses the home.html template.
-  We’ll need to add one more import at the top for reverse and a brand new class
-  HomePageViewTest for our test.88
-  Chapter 4: Message Board app
-  Code
-  from django.test import TestCase
-  from django.urls import reverse
-  from .models import Post
-  class PostModelTest(TestCase):
-  def setUp(self):
-  Post.objects.create(text='just a test')
-  def test_text_content(self):
-  post=Post.objects.get(id= )
-  expected_object_name = f'{post.text}'
-  self.assertEqual(expected_object_name, 'just a test')
-  class HomePageViewTest(TestCase):
-  def setUp(self):
-  Post.objects.create(text='this is another test')
-  def test_view_url_exists_at_proper_location(self):
-  resp = self.client.get('/')
-  self.assertEqual(resp.status_code,
-  )
-  def test_view_url_by_name(self):
-  resp = self.client.get(reverse('home'))
-  self.assertEqual(resp.status_code,
-  )89
-  Chapter 4: Message Board app
-  def test_view_uses_correct_template(self):
-  resp = self.client.get(reverse('home'))
-  self.assertEqual(resp.status_code,
-  )
-  self.assertTemplateUsed(resp, 'home.html')
-  If you run our tests again you should see that they pass.
-  Command Line
-  (mb) $ python manage.py test
-  Creating test database for alias 'default'...
-  System check identified no issues (
-  silenced).</li>
+<li>El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
+<li>Se necesita añadir un <code>import</code> más para <code>reverse</code> y una nueva clase <code>HomePageViewTest</code></li>
 </ul>
-<h2 id="_1">.</h2>
-<p>Ran
-tests in
+<pre><code class="python">from django.test import TestCase
+from django.urls import reverse
+from .models import Post
+
+class PostModelTest(TestCase):
+
+
+    def setUp(self):
+        Post.objects.create(text='just a test')
+
+    def test_text_content(self):
+        post=Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
+
+    class HomePageViewTest(TestCase):
+
+        def setUp(self):
+            Post.objects.create(text='this is another test')
+
+        def test_view_url_exists_at_proper_location(self):
+            resp = self.client.get('/')
+            self.assertEqual(resp.status_code, 200)
+
+        def test_view_url_by_name(self):
+            resp = self.client.get(reverse('home'))
+            self.assertEqual(resp.status_code, 200)
+
+        def test_view_uses_correct_template(self):
+            resp = self.client.get(reverse('home'))
+            self.assertEqual(resp.status_code, 200)
+            self.assertTemplateUsed(resp, 'home.html')
+</code></pre>
+
+<ul>
+<li>Ejecutando el test:</li>
+</ul>
+<pre><code class="bash">(mb) $ python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
 .
-s
+----------------------------------------------------------------------
+Ran 4 tests in 0.036s
+
 OK
 Destroying test database for alias 'default'...
-Why does it say four tests? Remember that our setUp methods are not actually tests,
-they merely let us run subsequent tests. Our four actual tests are test_text_content ,
-test_view_url_exists_at_proper_location , test_view_url_by_name , and test_view_-
-uses_correct_template .
-Any function that has the word test* at the beginning and exists in a tests.py file will
-be run when we execute the command python manage.py test .
-We’re done adding code for our testing so it’s time to commit the changes to git.90
-Chapter 4: Message Board app
-Command Line
-(mb) $ git add -A
-(mb) $ git commit -m 'added tests'</p>
-<h2 id="bitbucket">Bitbucket</h2>
-<p>We also need to store our code on Bitbucket. This is a good habit to get into in
-case anything happens to your local computer and it also allows you to share and
-collaborate with other developers.
-You should already have a Bitbucket account from Chapter 3 so go ahead and create
-a new repo which we’ll call mb-app .
-Bitbucket create app
-On the next page click on the bottom link for “I have an existing project”. Copy the
-two commands to connect and then push the repository to Bitbucket.Chapter 4: Message Board app
-91
-It should look like this, replacing wsvincent (my username) with your Bitbucket
-username:
-Command Line
-(mb) $ git remote add origin git@bitbucket.org:wsvincent/mb-app.git
-(mb) $ git push -u origin master</p>
+</code></pre>
+
+<ul>
+<li>4 test: <code>test_text_content</code>, <code>test_view_url_exists_at_proper_location</code>, <code>test_view_url_by_name</code> y  <code>test_view_uses_correct_template</code>.</li>
+<li>
+<p>Cualquier función que tenga la palabra <code>test*</code> al principio y exista en un fichero <code>tests.py</code> se lanzará cuando se ejecuta el comando <code>python manage.py test</code>.</p>
+</li>
+<li>
+<p>Hora de hacer <em>commit</em> de los cambios.</p>
+</li>
+</ul>
+<pre><code class="bash">(mb) $ git add -A
+(mb) $ git commit -m 'added tests'
+</code></pre>
+
+<h2 id="github">GitHub</h2>
+<ul>
+<li>Subir el proyecto...</li>
+</ul>
 <h2 id="heroku-configuration">Heroku configuration</h2>
-<p>You should also already have a Heroku account setup and installed from Chapter 3.
-We need to make the following changes to our Message Board project to deploy it
-online:
-• update Pipfile.lock
-• new Procfile
-• install gunicorn
-• update settings.py
-Within your Pipfile specify the version of Python we’re using, which is . . Add these
-two lines at the bottom of the file.
-Code</p>
-<h1 id="pipfile">Pipfile</h1>
-<p>[requires]
-python_version = " . "
-Run pipenv lock to generate the appropriate Pipfile.lock .Chapter 4: Message Board app
-92
-Command Line
-(mb) $ pipenv lock
-Then create a Procfile which tells Heroku how to run the remote server where our
-code will live.
-Command Line
-(mb) $ touch Procfile
-For now we’re telling Heroku to use gunicorn as our production server and look in our
-mb_project.wsgi file for further instructions.
-Command Line
-web: gunicorn mb_project.wsgi --log-file -
-Next install gunicorn which we’ll use in production while still using Django’s internal
-server for local development use.
-Command Line
-(mb) $ pipenv install gunicorn
-Finally update ALLOWED_HOSTS in our settings.py file.
-Code</p>
-<h1 id="mb_projectsettingspy">mb_project/settings.py</h1>
-<p>ALLOWED_HOSTS = ['*']
-We’re all done! Add and commit our new changes to git and then push them up to
-Bitbucket.93
-Chapter 4: Message Board app
-Command Line
-(mb) $ git status
+<ul>
+<li>Hay que hacer los siguientes cambios al projecto para desplegarlo online:<ul>
+<li>Actualizar <code>Pipfile.lock</code></li>
+<li>Crear <code>Procfile</code></li>
+<li>Instalar <code>gunicorn</code></li>
+<li>Actualizar <code>settings.py</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="actualizar-pipfilelock">Actualizar <code>Pipfile.lock</code></h3>
+<ul>
+<li>Especificar la versión de python que se está usando
+FICHERO: <code>Pipfile</code></li>
+</ul>
+<pre><code class="Pipfile"># Pipfile
+[requires]
+python_version = &quot;3.6&quot;
+</code></pre>
+
+<p>Ejecutar <code>pipenv lock</code> para generar el <code>Pipfile.lock</code> adecuado.</p>
+<pre><code>(mb) $ pipenv lock
+</code></pre>
+
+<h3 id="crear-procfile">Crear <code>Procfile</code></h3>
+<ul>
+<li>Le dirá a Heroku <em>cómo</em> ejecutar el servidor remoto donde habita el código.</li>
+</ul>
+<pre><code class="bash">(mb) $ touch Procfile
+</code></pre>
+
+<h3 id="instalar-gunicorn">Instalar <code>gunicorn</code></h3>
+<ul>
+<li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero<code>mb_project.wsgi</code> para más instrucciones.</li>
+</ul>
+<pre><code>web: gunicorn mb_project.wsgi --log-file -
+</code></pre>
+
+<ul>
+<li>Luego, se instala <code>gunicorn</code>, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.</li>
+</ul>
+<pre><code>(mb) $ pipenv install gunicorn
+</code></pre>
+
+<h3 id="actualizar-settingspy">Actualizar <code>settings.py</code></h3>
+<ul>
+<li>Actualizar <code>ALLOWED_HOSTS</code> en el archivo <code>settings.py</code>.
+FICHERO: mb_project/settings.py</li>
+</ul>
+<pre><code class="python"># mb_project/settings.py
+ALLOWED_HOSTS = ['*']
+</code></pre>
+
+<ul>
+<li><code>commit</code> y <code>push</code></li>
+</ul>
+<pre><code>(mb) $ git status
 (mb) $ git add -A
 (mb) $ git commit -m 'New updates for Heroku deployment'
-(mb) $ git push -u origin master</p>
-<h2 id="heroku-deployment">Heroku deployment</h2>
-<p>Make sure you’re logged into your correct Heroku account.
-Command Line
-(mb) $ heroku login
-Then run the create command and Heroku will randomly generate an app name for
-you. You can customize this later if desired.
-Command Line
-(mb) $ heroku create
-Creating app... done,
-https://agile-inlet-
-agile-inlet-
-.herokuapp.com/ | https://git.heroku.com/agile-inlet-
-.git
-Set git to use the name of your new app when you push code to Heroku. My Heroku-
-generated name is agile-inlet-
-so the command looks like this.
-\94
-Chapter 4: Message Board app
-Command Line
-(mb) $ heroku git:remote -a agile-inlet-
-Tell Heroku to ignore static files which we’ll cover in-depth when deploying our Blog
-app later in the book.
-Command Line
-(mb) $ heroku config:set DISABLE_COLLECTSTATIC=
-Push the code to Heroku and add free scaling so it’s actually running online, otherwise
-the code is just sitting there.
-Command Line
-(mb) $ git push heroku master
-(mb) $ heroku ps:scale web=
-If you open the new project with heroku open it will automatically launch a new
-browser window with the URL of your app. Mine is live at:
-https://agile-inlet-25811.herokuapp.com/.
-Live siteChapter 4: Message Board app
-95</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>We’ve now built, tested, and deployed our first database-driven app. While it’s
-deliberately quite basic, now we know how to create a database model, update it
-with the admin panel, and then display the contents on a web page. But something is
-missing, no?
-In the real-world, users need forms to interact with our site. After all, not everyone
-should have access to the admin panel. In the next chapter we’ll build a blog appli-
-cation that uses forms so that users can create, edit, and delete posts. We’ll also add
-styling via CSS.</p>
+(mb) $ git push -u origin master
+</code></pre>
+
+<h2 id="despliegue-en-heroku">Despliegue en Heroku</h2>
+<ul>
+<li><em>Login</em></li>
+</ul>
+<pre><code class="bash">(mb) $ heroku login
+</code></pre>
+
+<ul>
+<li><em>Create</em>.- Genera un nombre aleatorio para la aplicación</li>
+</ul>
+<pre><code class="bash">(mb) $ heroku create
+Creating app... done,agile-inlet-25811
+https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25811.git
+</code></pre>
+
+<ul>
+<li>Establecer a git para usar el nombre de la nueva aplicación cuando se suba el código a Heroku.</li>
+</ul>
+<pre><code class="bash">(mb) $ heroku git:remote -a agile-inlet-25811
+</code></pre>
+
+<ul>
+<li>Indicar a que ignore los archivos estáticos (se tratará más adelante).</li>
+</ul>
+<pre><code>(mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
+</code></pre>
+
+<ul>
+<li>Subir el código a Heroku y añadir escalado gratuito para que se ejecute realmente en línea, de lo contrario el código sólo se quedará alojado.</li>
+</ul>
+<pre><code>(mb) $ git push heroku master
+(mb) $ heroku ps:scale web=1
+</code></pre>
+
+<ul>
+<li>Abrir el código con <code>heroku open</code> y automáticamente mostrará un navegador con la URL de la aplicación.</li>
+</ul>
+<h2 id="conclusion">Conclusión</h2>
+<ul>
+<li>Se ha construido, probado e implementado la primera aplicación básica basada en una base de datos.</li>
+<li>Faltarían formularios para interactuar con el sitio (el panel de administración no es lo adecuado).</li>
+<li>Se creará una aplicación de blog con formularios para que los usuarios puedan crear, editar y borrar mensajes.</li>
+<li>Se le añadirá estilo a través de CSS.</li>
+</ul>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../4_pages_app/" class="btn btn-neutral" title="4. Pages app"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -609,6 +664,8 @@ styling via CSS.</p>
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
+      
+        <span><a href="../4_pages_app/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
     </span>
