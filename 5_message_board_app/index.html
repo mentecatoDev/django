@@ -81,7 +81,7 @@
         
             <li><a class="toctree-l3" href="#crear-un-modelo-de-base-de-datos">Crear un modelo de base de datos</a></li>
         
-            <li><a class="toctree-l3" href="#activating-models">Activating models</a></li>
+            <li><a class="toctree-l3" href="#activando-modelos">Activando modelos</a></li>
         
             <li><a class="toctree-l3" href="#django-admin">Django Admin</a></li>
         
@@ -165,16 +165,16 @@ $ pipenv shell
 </code></pre>
 
 <p>FICHERO: <code>mb_project/settings.py</code></p>
-<pre><code># mb_project/settings.py
-INSTALL_APPS = [
-'django.contrib.admin',
-'django.contrib.auth',
-django.contrib.contenttypes',
-django.contrib.sessions',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-'posts', # new
-]
+<pre><code class="python">    # mb_project/settings.py
+    INSTALL_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+ç       'posts',
+    ]
 </code></pre>
 
 <p>A continuación, ejecutar el comando <code>migrate</code> para crear una base de datos inicial basada en la configuración por defecto de Django.</p>
@@ -187,22 +187,21 @@ db.sqlite3 mb_project manage.py
 </code></pre>
 
 <blockquote>
-<p><em>Nota</em>.- Técnicamente se crea un fichero <code>db.sqlite3</code> la primera vez que se ejecuta una migración (<code>migrate</code>) o se ejecuta el servidor (<code>runserver</code>). El uso de <code>runserver</code> configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en <code>INSTALLED_APPS</code>. En otras palabras, para asegurar de que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar <code>migrate</code> (y también <code>makemigrations</code>) cada vez que se actualiza un modelo. Más en breve.</p>
+<p><em>Nota</em>.- Técnicamente se crea un fichero <code>db.sqlite3</code> la primera vez que se ejecuta una migración (<code>migrate</code>) o se ejecuta el servidor (<code>runserver</code>). El uso de <code>runserver</code> configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en <code>INSTALLED_APPS</code>. En otras palabras, para asegurar que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar <code>migrate</code> (y también <code>makemigrations</code>) cada vez que se actualiza un modelo. Más en breve.</p>
 </blockquote>
 <ul>
-<li>Lanzar el  servidor local y comprobar el funcionamiento</li>
+<li>Lanzar el servidor local y comprobar el funcionamiento</li>
 </ul>
 <pre><code>(mb) $ python manage.py runserver
 </code></pre>
 
 <h2 id="crear-un-modelo-de-base-de-datos">Crear un modelo de base de datos</h2>
 <ul>
-<li>Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes
-de los usuarios.</li>
+<li>Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.</li>
 <li>Django convertirá este modelo en una tabla de base de datos.</li>
 </ul>
 <p>FICHERO: <code>posts/models.py</code></p>
-<pre><code># posts/models.py
+<pre><code class="python"># posts/models.py
 from django.db import models
 
 # Create your models here
@@ -211,7 +210,7 @@ from django.db import models
 <p>Django importa un módulo <code>models</code> para ayudarnos a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
 - Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual podemos hacer de la siguiente manera:</p>
 <p>FICHERO: <code>post/models.py</code></p>
-<pre><code># posts/models.py
+<pre><code class="python"># posts/models.py
 from django.db import models
 
 class Post(models.Model):
@@ -221,14 +220,14 @@ class Post(models.Model):
 <ul>
 <li>Se ha creado un nuevo modelo de base de datos llamado <code>Post</code> que tiene el campo <code>text</code> de tipo <code>TextField()</code>.</li>
 </ul>
-<h2 id="activating-models">Activating models</h2>
+<h2 id="activando-modelos">Activando modelos</h2>
 <ul>
-<li>Una vez creado el model tiene que ser activado</li>
-<li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
+<li>Una vez creado, el modelo tiene que ser activado</li>
+<li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
 <li>En segundo lugar, construimos la base de datos actual con <code>migrate</code> que ejecuta la función en el archivo de migraciones.</li>
 </ul>
 <pre><code class="bash">(mb) $ python manage.py makemigrations posts
-(mb) $ python manage.py migrar posts
+(mb) $ python manage.py migrate posts
 </code></pre>
 
 <ul>
@@ -265,7 +264,7 @@ a http://127.0.0.1:8000/admin/.</p>
 FICHERO: <code>post/admin.py</code></p>
 </li>
 </ul>
-<pre><code># posts/admin.py
+<pre><code class="python"># posts/admin.py
 from django.contrib import admin
 
 from .models import Post
@@ -281,17 +280,16 @@ admin.site.register(Post)
 </li>
 </ul>
 <p>FICHERO: <code>posts/models.py</code></p>
-<pre><code># posts/models.py
+<pre><code class="python"># posts/models.py
 from django.db import models
 
 
 class Post(models.Model):
     text = models.TextField()
 
-
-def __str__(self):
-    &quot;&quot;&quot;A string representation of the model.&quot;&quot;&quot;
-    return self.text[:50]
+ç   def __str__(self):
+ç       &quot;&quot;&quot;A string representation of the model.&quot;&quot;&quot;
+ç       return self.text[:50]
 </code></pre>
 
 <ul>
@@ -299,14 +297,14 @@ def __str__(self):
 </ul>
 <h2 id="viewstemplatesurls">Views/Templates/URLs</h2>
 <ul>
-<li>Para poder mostrar el contenido de la base de datos en la web, hay que conectar las vistas, las plantillas y las URLConfs.</li>
+<li>Para poder <strong>mostrar</strong> el contenido de la <strong>base de datos</strong> en la web, hay que conectar las <strong>vistas</strong>, las <strong>plantillas</strong> y las <strong>URLConfs</strong>.</li>
 </ul>
 <h3 id="vista">Vista</h3>
 <ul>
 <li>Django viene equipado con el <code>ListView</code> genérico basado en clases.</li>
 </ul>
 <p>FICHERO: <code>posts/views.py</code></p>
-<pre><code># posts/views.py
+<pre><code class="python"># posts/views.py
 from django.views.generic import ListView
 from .models import Post
 
@@ -360,15 +358,15 @@ FICHERO: <code>templates/home.html</code></li>
 
 <h3 id="urlconfs">URLConfs</h3>
 <p>FICHERO: <code>mb_project/urls.py</code></p>
-<pre><code># mb_project/urls.py
-from django.contrib import admin
-from django.urls import path, include
+<pre><code class="python">    # mb_project/urls.py
+    from django.contrib import admin
+ç   from django.urls import path, include
 
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('posts.urls')),
-]
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+ç       path('', include('posts.urls')),
+    ]
 </code></pre>
 
 <ul>
@@ -379,16 +377,14 @@ urlpatterns = [
 
 <p>...con el siguiente contenido:
 FICHERO: <code>posts/urls.py</code></p>
-<pre><code># posts/urls.py
-from django.urls import path
+<pre><code class="python">ç   # posts/urls.py
+ç   from django.urls import path
+ç   from . import views
 
 
-from . import views
-
-
-urlpatterns = [
-    path('', views.HomePageView.as_view(), name='home'),
-]
+ç   urlpatterns = [
+ç       path('', views.HomePageView.as_view(), name='home'),
+ç   ]
 </code></pre>
 
 <ul>
@@ -409,20 +405,20 @@ urlpatterns = [
 <li>Es importante que todos los métodos de prueba comiencen con <code>test_</code> para que Django sepa cómo manejarlos</li>
 </ul>
 <p>FICHERO: <code>posts/test.py</code></p>
-<pre><code class="python"># posts/tests.py
-from django.test import TestCase
-from .models import Post
+<pre><code class="python">    # posts/tests.py
+    from django.test import TestCase
+ç   from .models import Post
 
 
-class PostModelTest(TestCase):
+ç   class PostModelTest(TestCase):
 
-    def setUp(self):
-        Post.objects.create(text='just a test')
+ç       def setUp(self):
+ç           Post.objects.create(text='just a test')
 
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
+ç       def test_text_content(self):
+ç           post=Post.objects.get(id=1)
+ç           expected_object_name = f'{post.text}'
+ç           self.assertEqual(expected_object_name, 'just a test')
 </code></pre>
 
 <ol>
@@ -460,38 +456,39 @@ Destroying test database for alias 'default'...
 <li>El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
 <li>Se necesita añadir un <code>import</code> más para <code>reverse</code> y una nueva clase <code>HomePageViewTest</code></li>
 </ul>
-<pre><code class="python">from django.test import TestCase
-from django.urls import reverse
-from .models import Post
-
-class PostModelTest(TestCase):
+<pre><code class="python">    from django.test import TestCase
+ç   from django.urls import reverse
+    from .models import Post
 
 
-    def setUp(self):
-        Post.objects.create(text='just a test')
-
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
-
-    class HomePageViewTest(TestCase):
+    class PostModelTest(TestCase):
 
         def setUp(self):
-            Post.objects.create(text='this is another test')
+            Post.objects.create(text='just a test')
 
-        def test_view_url_exists_at_proper_location(self):
-            resp = self.client.get('/')
-            self.assertEqual(resp.status_code, 200)
+        def test_text_content(self):
+            post=Post.objects.get(id=1)
+            expected_object_name = f'{post.text}'
+            self.assertEqual(expected_object_name, 'just a test')
 
-        def test_view_url_by_name(self):
-            resp = self.client.get(reverse('home'))
-            self.assertEqual(resp.status_code, 200)
 
-        def test_view_uses_correct_template(self):
-            resp = self.client.get(reverse('home'))
-            self.assertEqual(resp.status_code, 200)
-            self.assertTemplateUsed(resp, 'home.html')
+ç    class HomePageViewTest(TestCase):
+
+ç        def setUp(self):
+ç            Post.objects.create(text='this is another test')
+
+ç        def test_view_url_exists_at_proper_location(self):
+ç            resp = self.client.get('/')
+ç            self.assertEqual(resp.status_code, 200)
+
+ç        def test_view_url_by_name(self):
+ç            resp = self.client.get(reverse('home'))
+ç            self.assertEqual(resp.status_code, 200)
+
+ç        def test_view_uses_correct_template(self):
+ç            resp = self.client.get(reverse('home'))
+ç            self.assertEqual(resp.status_code, 200)
+ç            self.assertTemplateUsed(resp, 'home.html')
 </code></pre>
 
 <ul>
@@ -542,11 +539,11 @@ FICHERO: <code>Pipfile</code></li>
 </ul>
 <pre><code class="Pipfile"># Pipfile
 [requires]
-python_version = &quot;3.6&quot;
+python_version = &quot;3.8&quot;
 </code></pre>
 
 <p>Ejecutar <code>pipenv lock</code> para generar el <code>Pipfile.lock</code> adecuado.</p>
-<pre><code>(mb) $ pipenv lock
+<pre><code class="bash">(mb) $ pipenv lock
 </code></pre>
 
 <h3 id="crear-procfile">Crear <code>Procfile</code></h3>
@@ -558,7 +555,7 @@ python_version = &quot;3.6&quot;
 
 <h3 id="instalar-gunicorn">Instalar <code>gunicorn</code></h3>
 <ul>
-<li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero<code>mb_project.wsgi</code> para más instrucciones.</li>
+<li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero <code>mb_project.wsgi</code> para más instrucciones.</li>
 </ul>
 <pre><code>web: gunicorn mb_project.wsgi --log-file -
 </code></pre>

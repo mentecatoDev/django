@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Blog app - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Blog app";
+    var mkdocs_page_input_path = "6_blog_app.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Blog app</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="blog-app">Blog app</h1>
+<ul>
+<li>Se construirá una aplicación de Blog que permita a los usuarios crear, editar y eliminar posts.</li>
+<li>La página de inicio listará todos los artículos del blog</li>
+<li>Habrá una página de detalles dedicada a cada artículo individual.</li>
+<li>Se introduce CSS para el estilo y se verá cómo funciona Django con los archivos estáticos.</li>
+</ul>
+<h2 id="configuracion-inicial">Configuración inicial</h2>
+<p>Nuevo proyecto Django:
+- crear un nuevo directorio para el código en el Escritorio llamado blog
+- instalar Django en un nuevo entorno virtual
+- crear un nuevo proyecto de Django llamado <code>blog_project</code>
+- crear un nuevo blog de aplicaciones
+- realizar una migración para configurar la base de datos
+- actualizar <code>settings.py</code></p>
+<pre><code class="bash">$ cd ~/Desktop
+$ mkdir blog
+$ cd blog
+$ pipenv install django
+$ pipenv shell
+(blog) $ django-admin startproject blog_project .
+(blog) $ python manage.py startapp blog
+(blog) $ python manage.py migrate
+(blog) $ python manage.py runserver
+</code></pre>
+
+<p>FICHERO: <code>blog_project/settings.py</code></p>
+<pre><code class="python">    # blog_project/settings.py
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+ç       'blog', # new
+    ]
+</code></pre>
+
+<h2 id="modelos-de-bases-de-datos">Modelos de Bases de Datos</h2>
+<ul>
+<li>Se asume que cada <em>post</em> tiene un título, un autor y un cuerpo que se convertirán en un modelo de base de datos:</li>
+</ul>
+<p>FICHERO: <code>blog/models.py</code></p>
+<pre><code>from django.db import models
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey(
+        'auth.User',
+        on_delete=models.CASCADE,
+    )
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title
+</code></pre>
+
+<ul>
+<li>Se importan los modelos de la clase y luego se crea una subclase del modelo llamada <code>Post</code>.</li>
+<li>Usando esta funcionalidad de subclase se tiene acceso automáticamente a todo lo que hay dentro de <code>django.db.models.Models</code> y se pueden añadir campos y métodos adicionales según se desee.</li>
+<li>El título se limita a 200 caracteres y para el cuerpo se usa un campo de texto que se expandirá automáticamente según sea necesario para adaptarse al texto del usuario.<ul>
+<li>Hay muchos tipos de campos disponibles en Django; se puede ver la lista completa <a href="https://docs.djangoproject.com/es/3.0/ref/models/fields/#field-types">aquí</a>.</li>
+</ul>
+</li>
+<li>Para el campo de autor se usa una clave foránea (<code>ForeignKey</code>) que permite una relación de <em>uno a muchos</em>: un autor puede tener muchas entradas de blog diferentes, pero no al revés.</li>
+<li>La referencia <code>auth.User</code> es para el modelo de usuario incorporado que Django proporciona para la autenticación.</li>
+<li>Para todas las relaciones de uno a muchos, con <code>ForeignKey</code>, también debemos especificar una opción de <code>on_delete</code>.</li>
+<li>Ahora que se ha creado el nuevo modelo de base de datos, se necesita crear un nuevo registro de migración para él y migrar el cambio a la base de datos. Este proceso de dos pasos se puede completar con los siguientes comandos:</li>
+</ul>
+<pre><code class="bash">(blog) $ python manage.py makemigrations blog
+(blog) $ python manage.py migrate blog
+</code></pre>
+
+<p>Base de datos configurada.</p>
+<h2 id="admin">Admin</h2>
+<p>We need a way to access our data. Enter the Django admin! First create a superuser account by typing the command below and following the prompts to set up an email and password. Note that when typing your password, it will not appear on the screen for security reasons.
+Command Line
+(blog) $ python manage.py createsuperuser
+Username (leave blank to use 'wsv'): wsv
+Email:
+Password:
+Password (again):
+Superuser created successfully.
+Now start running the Django server again with the command python manage.py runserver and open up the Django admin at http://127.0.0.1:8000/admin/. Login with your new superuser account.
+Oops! Where’s our new Post model?</p>
+<p>Admin homepage
+We forgot to update blog/admin.py so let’s do that now.
+Code</p>
+<h1 id="blogadminpy">blog/admin.py</h1>
+<p>from django.contrib import admin
+from .models import Post
+admin.site.register(Post)</p>
+<p>If you refresh the page you’ll see the update.</p>
+<p>Let’s add two blog posts so we have some sample data to work with. Click on the + Add button next to Posts to create a new entry. Make sure to add an “author” to each post too since by default all model fields are required. If you try to enter a post without an author you will see an error. If we wanted to change this, we could add field options to our model to make a given field optional or fill it with a default value.</p>
+<p>Admin homepage with two posts 
+Now that our database model is complete we need to create the necessary views, URLs, and templates so we can display the information on our web application.</p>
+<h2 id="urls">URLs</h2>
+<p>We want to display our blog posts on the homepage so, as in previous chapters, we’ll first configure our project-level URLConfs and then our app-level URLConfs to achieve this. Note that “project-level” means in the same parent folder as the blog_project and blog app folders.
+On the command line quit the existing server with Control-c and create a new urls.py file within our blog:</p>
+<p>Command Line
+(blog) $ touch blog/urls.py
+Now update it with the code below.
+Code</p>
+<h1 id="blogurlspy">blog/urls.py</h1>
+<p>from django.urls import path
+from . import views
+urlpatterns = [
+path('', views.BlogListView.as_view(), name='home'),
+]
+We’re importing our soon-to-be-created views at the top. The empty string '' tells Python to match all values and we make it a named URL, home , which we can refer to in our views later on. While it’s optional to add a named URL it’s a best practice you should adopt as it helps keep things organized as your number of URLs grows.
+We also should update our project-level urls.py file so that it knows to forward all requests directly to the blog app.</p>
+<p>Code</p>
+<h1 id="blog_projecturlspy">blog_project/urls.py</h1>
+<p>from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('', include('blog.urls')),
+]
+We’ve added include on the second line and a urlpattern using an empty string regular
+expression '' indicating that URL requests should be redirected as is to blog ’s URLs
+for further instructions.</p>
+<h2 id="views">Views</h2>
+<p>We’re going to use class-based views but if want to see a function-based way to build a blog application, I highly recommend the Django Girls Tutorial. It is excellent.
+In our views file, add the code below to display the contents of our Post model using ListView </p>
+<p>Code</p>
+<h1 id="blogviewspy">blog/views.py</h1>
+<p>from django.views.generic import ListView
+from . models import Post
+class BlogListView(ListView):
+model = Post
+template_name = 'home.html'
+On the top two lines we import ListView and our database model Post . Then we subclass ListView and add links to our model and template. This saves us a lot of code versus implementing it all from scratch.</p>
+<h2 id="templates">Templates</h2>
+<p>With our URLConfs and views now complete, we’re only missing the third piece of the puzzle: templates. As we already saw in Chapter 4, we can inherit from other templates to keep our code clean. Thus we’ll start off with a base.html file and a home.html file that inherits from it. Then later when we add templates for creating and editing blog posts, they too can inherit from base.html .
+Start by creating our project-level templates directory with the two template files.</p>
+<p>Command Line
+(blog) $ mkdir templates
+(blog) $ touch templates/base.html
+(blog) $ touch templates/home.html
+Then update settings.py so Django knows to look there for our templates.
+Code</p>
+<h1 id="blog_projectsettingspy">blog_project/settings.py</h1>
+<p>TEMPLATES = [
+{
+...
+'DIRS': [os.path.join(BASE_DIR, 'templates')],
+...
+},
+]</p>
+<p>Then update the base.html template as follows.
+Code
+<!-- templates/base.html -->
+<html></p>
+<p><head>
+<title>Django blog</title>
+</head>
+<body>
+<header>
+<h1><a href="/">Django blog</a></h1>
+</header>
+<div class="container">
+{% block content %}
+{% endblock content %}
+</div>
+</body>
+</html>
+Note that code between {% block content %} and {% endblock content %} can be filled by other templates. Speaking of which, here is the code for home.html .
+Code
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block content %}
+{% for post in object_list %}
+<div class="post-entry">
+<h2><a href="">{{ post.title }}</a></h2>
+<p>{{ post.body }}</p>
+</div>
+{% endfor %}
+{% endblock content %}</p>
+<p>At the top we note that this template extends base.html and then wraps our desired code with content blocks. We use the Django Templating Language to set up a simple for loop for each blog post. Note that object_list comes from ListView and contains all the objects in our view.
+If you start the Django server again: python manage.py runserver .</p>
+<p>And refresh http://127.0.0.1:8000/ we can see it’s working.
+Blog homepage with two posts
+But it looks terrible. Let’s fix that!</p>
+<h2 id="static-files">Static files</h2>
+<p>We need to add some CSS which is referred to as a static file because, unlike our dynamic database content, it doesn’t change. Fortunately it’s straightforward to add static files like CSS, JavaScript, and images to our Django project.
+In a production-ready Django project you would typically store this on a Content Delivery Network (CDN) for better performance, but for our purposes storing the files locally is fine.
+First quit our local server with Control-c . Then create a project-level folder called static.</p>
+<p>Command Line
+(blog) $ mkdir static
+Just as we did with our templates folder we need to update settings.py to tell Django where to look for these static files. We can update settings.py with a one-line change for STATICFILES_DIRS . Add it at the bottom of the file below the entry for STATIC_URL .
+Code</p>
+<h1 id="blog_projectsettingspy_1">blog_project/settings.py</h1>
+<p>STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+Now create a css folder within static and add a new base.css file in it.
+Command Line
+(blog) $ mkdir static/css
+(blog) $ touch static/css/base.css
+What should we put in our file? How about changing the title to be red?
+Code
+/<em> static/css/base.css </em>/
+header h1 a {
+color: red;
+}
+Last step now. We need to add the static files to our templates by adding {% load staticfiles %} to the top of base.html . Because our other templates inherit from base.html we only have to add this once. Include a new line at the bottom of the <head></head> code that explicitly references our new base.css file.</p>
+<p>Code
+<!-- templates/base.html -->
+{% load static %}
+<html>
+<head>
+<title>Django blog</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+...
+Phew! That was a bit of a pain but it’s a one-time pain. Now we can add static files to our static folder and they’ll automatically appear in all our templates.
+Start up the server again with python manage.py runserver and look at our updated homepage at http://127.0.0.1:8000/.
+Blog homepage with red title
+We can do a little better though. How about if we add a custom font and some more CSS? Since this book is not a tutorial on CSS simply insert the following between <head></head> tags to add Source Sans Pro, a free font from Google.</p>
+<p>Code
+<!-- templates/base.html -->
+{% load static %}
+<html>
+<head>
+<title>Django blog</title>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:
+stylesheet">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+...
+Then update our css file by copy and pasting the following code:
+Code
+/<em> static/css/base.css </em>/
+body {
+font-family: 'Source Sans Pro', sans-serif;
+font-size:
+px;
+}
+header {
+border-bottom: px solid #
+margin-bottom: rem;
+display: flex;
+}
+header h1 a {
+color: red;
+text-decoration: none;
+}
+.nav-left {
+margin-right: auto;
+}
+.nav-right {
+display: flex;
+padding-top:
+rem;
+}
+.post-entry {
+margin-bottom:
+rem;
+}
+.post-entry h2 {
+margin:
+. rem
+;
+}
+.post-entry h2 a,
+.post-entry h2 a:visited {
+color: blue;
+text-decoration: none;
+}
+.post-entry p {
+margin: 0;
+font-weight:
+;
+}
+.post-entry h2 a:hover {
+color: red;
+}
+Refresh the homepage at http://127.0.0.1:8000/ and you should see the following.
+Blog homepage with CSS</p>
+<h2 id="individual-blog-pages">Individual blog pages</h2>
+<p>Now we can add the functionality for individual blog pages. How do we do that? We need to create a new view, url, and template. I hope you’re noticing a pattern in development with Django now!
+Start with the view. We can use the generic class-based DetailView to simplify things. At the top of the file add DetailView to the list of imports and then create our new view called BlogDetailView .
+Code</p>
+<h1 id="blogviewspy_1">blog/views.py</h1>
+<p>from django.views.generic import ListView, DetailView
+from . models import Post
+class BlogListView(ListView):
+model = Post
+template_name = 'home.html'
+class BlogDetailView(DetailView):
+model = Post
+template_name = 'post_detail.html'
+In this new view we define the model we’re using, Post , and the template we want it associated with, post_detail.html . By default DetailView will provide a context object we can use in our template called either object or the lowercased name of our model, post . Also, DetailView expects either a primary key or a slug passed to it as the identifier. More on this shortly.
+Now exit the local server Control-c and create our new template for a post detail as follows:
+Command Line
+(blog) $ touch templates/post_detail.html
+Then type in the following code:
+Code
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-entry">
+<h2>{{ post.title }}</h2>
+<p>{{ post.body }}</p>
+</div>
+{% endblock content %}
+At the top we specify that this template inherits from base.html . Then display the title and body from our context object, which DetailView makes accessible as post . Personally I found the naming of context objects in generic views extremely confusing when first learning Django. Because our context object from DetailView is either our model name post or object we could also update our template as follows and it would work exactly the same.</p>
+<p>Code
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-entry">
+<h2>{{ object.title }}</h2>
+<p>{{ object.body }}</p>
+</div>
+{% endblock content %}
+If you find using post or object confusing, we can also explicitly set the name of the context object in our view. So if we wanted to call it anything_you_want and then use that in the template, the code would look as follows and it would work the same.
+Code</p>
+<h1 id="blogviewspy_2">blog/views.py</h1>
+<p>...
+class BlogDetailView(DetailView):
+model = Post
+template_name = 'post_detail.html'
+context_object_name = 'anything_you_want'
+Code
+<!-- templates/post_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-entry">
+<h2>{{ anything_you_want.title }}</h2>
+<p>{{ anything_you_want.body }}</p>
+</div>
+{% endblock content %}
+The “magic” naming of the context object is a price you pay for the ease and simplicity of using generic views. They’re great if you know what they’re doing but can be hard to customize if you want different behavior.
+Ok, what’s next? How about adding a new URLConf for our view, which we can do as follows.
+Code</p>
+<h1 id="blogurlspy_1">blog/urls.py</h1>
+<p>from django.urls import path
+from . import views
+urlpatterns = [
+path('', views.BlogListView.as_view(), name='home'),
+path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
+]
+All blog post entries will start with post/ . Next is the primary key for our post entry which will be represented as an integer <int:pk> . What’s the primary key you’re probably asking? Django automatically adds an auto-incrementing primary key to our database models. So while we only declared the fields title , author , and body on our Post model, under-the-hood Django also added another field called id , which is our primary key. We can access it as either id or pk .
+The pk for our first “Hello, World” post is 1. For the second post, it is 2. And so on. Therefore when we go to the individual entry page for our first post, we can expect that its urlpattern will be post/1.
+Note: Understanding how primary keys work with DetailView is a very common place of confusion for beginners. It’s worth re-reading the previous two paragraphs a few times if it doesn’t click. With practice it will become second nature.
+If you now start up the server with python manage.py runserver and go directly to http://127.0.0.1:8000/post/1/ you’ll see a dedicated page for our first blog post.
+Blog post one detail 
+Woohoo! You can also go to http://127.0.0.1:8000/post/2/ to see the second entry.
+To make our life easier, we should update the link on the homepage so we can directly access individual blog posts from there. Currently in home.html our link is empty: <a href=""> . Update it to <a href="{% url 'post_detail' post.pk %}">.</p>
+<p>Code
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block content %}
+{% for post in object_list %}
+<div class="post-entry">
+<h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+<p>{{ post.body }}</p>
+</div>
+{% endfor %}
+{% endblock content %}
+We start off by telling our Django template we want to reference a URLConf by using the code {% url ... %} . Which URL? The one named post_detail , which is the name we gave BlogDetailView in our URLConf just a moment ago. If we look at post_detail in our URLConf, we see that it expects to be passed an argument pk representing the primary key for the blog post. Fortunately, Django has already created and included this pk field on our post object. We pass it into the URLConf by adding it in the template as post.pk .
+To confirm everything works, refresh the main page at http://127.0.0.1:8000/ and click on the title of each blog post to confirm the new links work.</p>
+<h2 id="tests">Tests</h2>
+<p>We need to test our model and views now. We want to ensure that the Post model works as expected, including its str representation. And we want to test both ListView and DetailView .
+Here’s what sample tests look like in the blog/tests.py file.
+Code</p>
+<h1 id="blogtestspy">blog/tests.py</h1>
+<p>from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from django.urls import reverse
+from .models import Post
+class BlogTests(TestCase):
+def setUp(self):
+self.user = get_user_model().objects.create_user(
+username='testuser',
+email='test@email.com',
+password='secret'
+)
+self.post = Post.objects.create(
+title='A good title',
+body='Nice body content',
+author=self.user,
+)
+def test_string_representation(self):
+post = Post(title='A sample title')
+self.assertEqual(str(post), post.title)</p>
+<p>def test_post_content(self):
+self.assertEqual(f'{self.post.title}', 'A good title')
+self.assertEqual(f'{self.post.author}', 'testuser')
+self.assertEqual(f'{self.post.body}', 'Nice body content')
+def test_post_list_view(self):
+response = self.client.get(reverse('home'))
+self.assertEqual(response.status_code,
+)
+self.assertContains(response, 'Nice body content')
+self.assertTemplateUsed(response, 'home.html')
+def test_post_detail_view(self):
+response = self.client.get('/post/ /')
+no_response = self.client.get('/post/
+self.assertEqual(response.status_code,
+/')
+)
+self.assertEqual(no_response.status_code,
+)
+self.assertContains(response, 'A good title')
+self.assertTemplateUsed(response, 'post_detail.html')
+There’s a lot that’s new in these tests so we’ll walk through them slowly. At the top we import get_user_model to reference our active User . We import TestCase which we’ve seen before and also Client() which is new and used as a dummy Web browser for simulating GET and POST requests on a URL. In other words, whenever you’re testing views you should use Client() .
+In our setUp method we add a sample blog post to test and then confirm that both its string representation and content are correct. Then we use test_post_list_view to confirm that our homepage returns a 200 HTTP status code, contains our body text, and uses the correct home.html template. Finally test_post_detail_view tests that our detail page works as expected and that an incorrect page returns a 404. It’s always good to both test that something does exist and that something incorrect doesn’t exist in your tests.
+Go ahead and run these tests now. They should all pass.
+Command Line
+(testy) $ python manage.py test</p>
+<h2 id="git">Git</h2>
+<p>Now is also a good time for our first git commit. First initialize our directory.
+Command Line
+(testy) $ git init
+Then review all the content we’ve added by checking the status . Add all new files. And make our first commit .
+Command Line
+(testy) $ git status
+(testy) $ git add -A
+(testy) $ git commit -m 'initial commit'</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We’ve now built a basic blog application from scratch! Using the Django admin we can create, edit, or delete the content. And we used DetailView for the first time to create a detailed individual view of each blog post entry.</p>
+<p>In the next section Chapter 6: Blog app with forms, we’ll add forms so we don’t have to use the Django admin at all for these changes.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

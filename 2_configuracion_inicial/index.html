@@ -208,18 +208,18 @@ $ pipenv shell
 <li><code>exit</code> para salir del entorno virtual</li>
 </ul>
 <h3 id="251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1 Cambiando la IP de escucha y el puerto</h3>
-<p>De manera predeterminada, el comando runserver inicia el servidor de desarrollo en la IP interna en el puerto 8000.</p>
-<p>Si desea cambiar el puerto del servidor, páselo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:</p>
+<p>De manera predeterminada, el comando <code>runserver</code> inicia el servidor de desarrollo en la IP interna en el puerto 8000.</p>
+<p>Si se desea cambiar el puerto del servidor, hay que pasarlo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:</p>
 <pre><code class="bash">$ python manage.py runserver 8080
 </code></pre>
 
-<p>Si desea cambiar la IP del servidor, páselo junto con el puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si está ejecutando Vagrant o desea mostrar su trabajo en otras computadoras en la red), use:</p>
+<p>Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red), usar:</p>
 <pre><code class="bash">$ python manage.py runserver 0:8000
 </code></pre>
 
-<p>0 es un atajo para 0.0.0.0. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.</p>
+<p><code>0</code> es un atajo para <code>0.0.0.0</code>. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.</p>
 <blockquote>
-<p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número de bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
+<p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
 </blockquote>
 <p>Una descripción más detallada del servidor se puede encontrar <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">aquí</a>.</p>
 <h2 id="25-instalar-git">2.5 Instalar Git</h2>

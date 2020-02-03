@@ -86,7 +86,7 @@
         
             <li><a class="toctree-l3" href="#48-tests">4.8 Tests</a></li>
         
-            <li><a class="toctree-l3" href="#49-git-github-gitlab-and-bitbucket">4.9 Git, GitHub, GitLab and Bitbucket</a></li>
+            <li><a class="toctree-l3" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a></li>
         
             <li><a class="toctree-l3" href="#410-local-vs-produccion">4.10 Local vs Producción</a></li>
         
@@ -164,7 +164,7 @@ $ pipenv shell
 </code></pre>
 
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code>    # pages_project/settings.py
+<pre><code class="python">    # pages_project/settings.py
 ...
     INSTALLED_APPS = [
 ç       'pages.apps.PagesConfig',
@@ -174,12 +174,12 @@ $ pipenv shell
 <ul>
 <li>Arrancar servidor</li>
 </ul>
-<pre><code>(pages) $ python manage.py runserver
+<pre><code class="python">(pages) $ python manage.py runserver
 </code></pre>
 
 <h2 id="43-plantillas-templates">4.3 Plantillas (Templates)</h2>
 <ul>
-<li>Cada framework precisa generar de alguna manera ficheros HTML. En  Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
+<li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
 </ul>
 <div class=text-center>
  Plantilla –> Vista –> Ruta 
@@ -197,11 +197,10 @@ $ pipenv shell
 </ul>
 </li>
 </ul>
-<pre><code>    └── pages  
-        ├── pages   
-        ├── templates  
-            ├── home.html  
-
+<pre><code class="text">    └── pages
+        ├── templates
+            ├── pages
+                ├── home.html      
 </code></pre>
 
 <ul>
@@ -224,6 +223,9 @@ $ pipenv shell
        ]
 </code></pre>
 
+<blockquote>
+<p>La función <code>os.path.join</code> une el path base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente</p>
+</blockquote>
 <p>FICHERO: <code>templates/home.html</code> </p>
 <pre><code class="html">   &lt;h1&gt;Homepage&lt;/h1&gt;
 </code></pre>
@@ -235,8 +237,8 @@ $ pipenv shell
 <ul>
 <li>Las primeras versiones de Django solo incluían vistas basadas en <strong>funciones</strong>, pero los desarrolladores pronto se encontraron repitiendo los mismos patrones una y otra vez.</li>
 <li>Sin embargo, no había una manera fácil de ampliar o personalizar estas vistas.</li>
-<li>Django introdujo vistas genéricas basadas en clases que facilitan el  uso y también amplían las vistas que cubren casos de uso comunes.</li>
-<li>En el ejemplo se usará el <code>TemplateView</code> incorporado para mostrar la plantilla.  </li>
+<li>Django introdujo vistas genéricas basadas en clases que facilitan el uso y también amplían las vistas que cubren casos de uso comunes.</li>
+<li>En el ejemplo se usará la clase <code>TemplateView</code> incorporada para mostrar la plantilla.  </li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
 <pre><code class="python">from django.views.generic import TemplateView
@@ -246,7 +248,7 @@ class HomePageView(TemplateView):
 </code></pre>
 
 <ul>
-<li>Distíngase cómo se ha puesto en mayúsculas la vista porque ahora es una clase y cómo ésta es descendiente de la clase base <code>TemplateView</code>.</li>
+<li>Distíngase cómo se ha puesto en mayúsculas la vista, porque ahora es una clase, y cómo ésta es descendiente de la clase base <code>TemplateView</code>.</li>
 </ul>
 <h4 id="145-urls">1.4.5 URLs</h4>
 <ul>
@@ -291,7 +293,7 @@ urlpatterns = [
 <li>Crear una nueva vista para la página</li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code>from django.views.generic import TemplateView
+<pre><code class="python">from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -304,7 +306,7 @@ class AboutPageView(TemplateView):
 <li>Conectar la vista con la ruta</li>
 </ul>
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code>    from django.urls import path
+<pre><code class="python">    from django.urls import path
 ç   from .views import HomePageView, AboutPageView
 
     urlpatterns = [
@@ -318,12 +320,12 @@ class AboutPageView(TemplateView):
 </ul>
 <h2 id="47-extending-templates">4.7 Extending Templates</h2>
 <ul>
-<li>El poder real de las plantilla es la posibilidad de ser extendidas.</li>
+<li>El poder real de las plantillas es la posibilidad de ser extendidas.</li>
 <li>En las mayoría de webs encontramos contenido que se repite en cada página:<ul>
 <li>Hagamos una página canónica que será heredada por las demás</li>
 </ul>
 </li>
-<li>Django tiene un <a href="https://docs.djangoproject.com/en/3.0/ref/templates/builtins/">lenguaje mínimo de plantillas</a> para añadirles enlaces y lógica básica</li>
+<li>Django tiene un <a href="https://docs.djangoproject.com/es/3.0/ref/templates/builtins/">lenguaje mínimo de plantillas</a> para añadirles enlaces y lógica básica</li>
 <li>
 <p>Los tags de las plantillas tienen la forma 
 <div align=center>
@@ -333,7 +335,7 @@ class AboutPageView(TemplateView):
 </div></p>
 </li>
 <li>
-<p>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar el <strong>built-in url template tag</strong> que toma un patrón de URL como argumento.</p>
+<p>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar la etiqueta de plantilla <code>url</code> incorporada que toma un patrón de URL como argumento.</p>
 </li>
 <li>
 <p>El tag  <code>url</code> utiliza los nombres opcionales de URL para crear enlaces automáticos por nosotros.</p>
@@ -375,7 +377,7 @@ class AboutPageView(TemplateView):
 <h2 id="48-tests">4.8 Tests</h2>
 <ul>
 <li>Importancia de los tests <ul>
-<li>Jaco Kaplan-Moss: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)</li>
+<li><em>Jaco Kaplan-Moss</em>: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)</li>
 </ul>
 </li>
 <li>Django nos brinda herramientas para escribir y correr tests.</li>
@@ -387,10 +389,11 @@ class AboutPageView(TemplateView):
 ç class SimpleTests(SimpleTestCase):
 ç     def test_home_page_status_code(self):
 ç         response = self.client.get('/')
-ç         self.assertEqual(response.status_code,200)
+ç         self.assertEqual(response.status_code, 200)
+
 ç     def test_about_page_status_code(self):
 ç         response = self.client.get('/about/')
-ç         self.assertEqual(response.status_code,200)
+ç         self.assertEqual(response.status_code, 200)
 </code></pre>
 
 <ul>
@@ -398,27 +401,27 @@ class AboutPageView(TemplateView):
 <p>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </p>
 </li>
 <li>
-<p>Luego se realiza una comprobación de si el código de estado para  cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</p>
+<p>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</p>
 </li>
 <li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
 <li>Para ejecutar los tests:</li>
 </ul>
 <pre><code class="bash">(pages) $ python manage.py test
-Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
 ..
-----------------------------------------------------------------------
+---------------------------------------------------------------
 Ran 2 tests in 0.014s
 
 OK
-Destroying test database for alias 'default'...
 </code></pre>
 
-<h2 id="49-git-github-gitlab-and-bitbucket">4.9 Git, GitHub, GitLab and Bitbucket</h2>
+<h2 id="49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</h2>
 <pre><code class="bash">(pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m 'Commit inicial'
+(pages) $ git remote add origin git@bitbucket.org:wsvincent/pages-app.git
+(pages) $ git push -u origin master
 </code></pre>
 
 <h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
@@ -435,9 +438,7 @@ Destroying test database for alias 'default'...
 </ul>
 <h2 id="411-heroku">4.11 Heroku</h2>
 <ul>
-<li>
-<p>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</p>
-</li>
+<li>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</li>
 <li>
 <p>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.</p>
 <ul>
@@ -447,6 +448,14 @@ Destroying test database for alias 'default'...
 </li>
 <li>
 <p><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a></p>
+<ul>
+<li>
+<p><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a></p>
+<p><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</p>
+<p><code>bash
+$ yay -S heroku-cli</code></p>
+</li>
+</ul>
 </li>
 </ul>
 <pre><code class="bash">(pages) $ heroku login
@@ -484,11 +493,11 @@ python_version = &quot;3.8&quot;
 
 <p>Heroku busca en <code>Pipfile.lock</code> información sobre el entorno virtual.
 A continuación crea un <code>Procfile</code> que es específico para Heroku.</p>
-<p>FICHERO: <code>pages/Procfile</code></p>
+<p>FICHERO: <code>Procfile</code></p>
 <pre><code>web: gunicorn pages_project.wsgi --log-file -
 </code></pre>
 
-<p>Esto dice que se use el fichero <code>pagesproject.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django.</p>
+<p>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</p>
 <pre><code>(pages) $ pipenv install gunicorn
 </code></pre>
 
@@ -501,10 +510,10 @@ ALLOWED_HOSTS = ['*']
 <p>El parámetro ALLOWEDHOSTS representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.</p>
 <p>Sin embargo, se ha utilizado el comodín Asterisco "*", que significa que todos los dominios son aceptables para mantener las cosas simples.</p>
 <p>En un sitio Django de nivel de producción, se enumeran explícitamente los dominios que están permitidos.</p>
-<p>Usar <code>git status</code> para comprobar nuestros cambios, añade los nuevos archivos, y luego confírmalos:</p>
+<p>Usar <code>git status</code> para comprobar nuestros cambios, añadir los nuevos archivos, y luego confirmarlos:</p>
 <pre><code class="bash">(pages) $ git status
 (pages) $ git add -A
-(pages) $ git commit -m &quot;Actualiza para el despliegue de Heroku&quot;
+(pages) $ git commit -m &quot;Actualiza para el despliegue en Heroku&quot;
 (pages) $ git push -u origin master
 </code></pre>
 
