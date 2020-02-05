@@ -26,17 +26,17 @@ $ pipenv shell
 ```
 
 FICHERO: `mb_project/settings.py`
-```
-# mb_project/settings.py
-INSTALL_APPS = [
-'django.contrib.admin',
-'django.contrib.auth',
-django.contrib.contenttypes',
-django.contrib.sessions',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-'posts', # new
-]
+```python
+	# mb_project/settings.py
+	INSTALL_APPS = [
+		'django.contrib.admin',
+		'django.contrib.auth',
+		'django.contrib.contenttypes',
+		'django.contrib.sessions',
+		'django.contrib.messages',
+		'django.contrib.staticfiles',
+ç		'posts',
+	]
 ```
 A continuación, ejecutar el comando `migrate` para crear una base de datos inicial basada en la configuración por defecto de Django.
 ```
@@ -47,20 +47,19 @@ Ahora en el directorio habrá ahora un fichero `db.sqlite3` que representa a la 
 (mb) $ ls
 db.sqlite3 mb_project manage.py
 ```
-> *Nota*.- Técnicamente se crea un fichero `db.sqlite3` la primera vez que se ejecuta una migración (`migrate`) o se ejecuta el servidor (`runserver`). El uso de `runserver` configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en `INSTALLED_APPS`. En otras palabras, para asegurar de que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar `migrate` (y también `makemigrations`) cada vez que se actualiza un modelo. Más en breve.
+> *Nota*.- Técnicamente se crea un fichero `db.sqlite3` la primera vez que se ejecuta una migración (`migrate`) o se ejecuta el servidor (`runserver`). El uso de `runserver` configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en `INSTALLED_APPS`. En otras palabras, para asegurar que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar `migrate` (y también `makemigrations`) cada vez que se actualiza un modelo. Más en breve.
 
-- Lanzar el  servidor local y comprobar el funcionamiento
+- Lanzar el servidor local y comprobar el funcionamiento
 ```
 (mb) $ python manage.py runserver
 ```
 
 ## Crear un modelo de base de datos
-- Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes
-de los usuarios.
+- Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.
 - Django convertirá este modelo en una tabla de base de datos.
 
 FICHERO: `posts/models.py`
-```
+```python
 # posts/models.py
 from django.db import models
 
@@ -70,7 +69,7 @@ Django importa un módulo `models` para ayudarnos a construir nuevos modelos de 
 - Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual podemos hacer de la siguiente manera:
 
 FICHERO: `post/models.py`
-```
+```python
 # posts/models.py
 from django.db import models
 
@@ -79,13 +78,13 @@ class Post(models.Model):
 ```
 - Se ha creado un nuevo modelo de base de datos llamado `Post` que tiene el campo `text` de tipo `TextField()`.
 
-## Activating models
-- Una vez creado el model tiene que ser activado
-1. Primero se crea un archivo de migración con el comando `makemigrations` que genera los comandos SQL para aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.
+## Activando modelos
+- Una vez creado, el modelo tiene que ser activado
+1. Primero se crea un archivo de migración con el comando `makemigrations` que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.
 2. En segundo lugar, construimos la base de datos actual con `migrate` que ejecuta la función en el archivo de migraciones.
 ```bash
 (mb) $ python manage.py makemigrations posts
-(mb) $ python manage.py migrar posts
+(mb) $ python manage.py migrate posts
 ```
 - No es necesario incluir un nombre después de `makemigrations` o de `migrate` pero es un buen hábito para ser específico.
 
@@ -109,7 +108,7 @@ a http://127.0.0.1:8000/admin/.
 
 - Necesitamos decirle explícitamente a Django qué mostrar en la página de administración.
 FICHERO: `post/admin.py`
-```
+```python
 # posts/admin.py
 from django.contrib import admin
 
@@ -122,7 +121,7 @@ admin.site.register(Post)
     + Cambiamos eso añadiendo una nueva función `__str__` como sigue:
 
 FICHERO: `posts/models.py`
-```
+```python
 # posts/models.py
 from django.db import models
 
@@ -130,21 +129,20 @@ from django.db import models
 class Post(models.Model):
     text = models.TextField()
 
-
-def __str__(self):
-    """A string representation of the model."""
-    return self.text[:50]
+ç	def __str__(self):
+ç    	"""A string representation of the model."""
+ç    	return self.text[:50]
 ```
 
 - Es una buena práctica añadir métodos `str()` a todos los modelos para aumentar la legibilidad.
 
 ## Views/Templates/URLs
-- Para poder mostrar el contenido de la base de datos en la web, hay que conectar las vistas, las plantillas y las URLConfs.
+- Para poder **mostrar** el contenido de la **base de datos** en la web, hay que conectar las **vistas**, las **plantillas** y las **URLConfs**.
 ### Vista
 - Django viene equipado con el `ListView` genérico basado en clases.
 
 FICHERO: `posts/views.py`
-```
+```python
 # posts/views.py
 from django.views.generic import ListView
 from .models import Post
@@ -190,16 +188,16 @@ FICHERO: `templates/home.html`
 ```
 ### URLConfs
 FICHERO: `mb_project/urls.py`
-```
-# mb_project/urls.py
-from django.contrib import admin
-from django.urls import path, include
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('posts.urls')),
-]
+```python
+	# mb_project/urls.py
+	from django.contrib import admin
+ç	from django.urls import path, include
+	
+	
+	urlpatterns = [
+	    path('admin/', admin.site.urls),
+ç	    path('', include('posts.urls')),
+	]
 ```
 - Crear el fichero `urls.py` a nivel de app
 ```
@@ -207,17 +205,15 @@ urlpatterns = [
 ```
 ...con el siguiente contenido:
 FICHERO: `posts/urls.py`
-```
-# posts/urls.py
-from django.urls import path
-
-
-from . import views
-
-
-urlpatterns = [
-    path('', views.HomePageView.as_view(), name='home'),
-]
+```python
+ç	# posts/urls.py
+ç	from django.urls import path
+ç	from . import views
+	
+	
+ç	urlpatterns = [
+ç	    path('', views.HomePageView.as_view(), name='home'),
+ç	]
 ```
 - Reiniciar el servidor que ahora mostrará los post del tablón de mensajes
 - Añádanse más posts ;-)
@@ -235,20 +231,20 @@ urlpatterns = [
 
 FICHERO: `posts/test.py`
 ```python
-# posts/tests.py
-from django.test import TestCase
-from .models import Post
+	# posts/tests.py
+	from django.test import TestCase
+ç	from .models import Post
+	
+	
+ç	class PostModelTest(TestCase):
 
+ç	    def setUp(self):
+ç	        Post.objects.create(text='just a test')
 
-class PostModelTest(TestCase):
-
-    def setUp(self):
-        Post.objects.create(text='just a test')
-
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
+ç	    def test_text_content(self):
+ç	        post=Post.objects.get(id=1)
+ç	        expected_object_name = f'{post.text}'
+ç	        self.assertEqual(expected_object_name, 'just a test')
 ```
 1. Importa el módulo `TestCase` que permite crear una base de datos de muestra
 2. Importa el modelo `Post`
@@ -279,38 +275,39 @@ Destroying test database for alias 'default'...
 -  
 Se necesita añadir un `import` más para `reverse` y una nueva clase `HomePageViewTest`
 ```python
-from django.test import TestCase
-from django.urls import reverse
-from .models import Post
-
-class PostModelTest(TestCase):
+	from django.test import TestCase
+ç	from django.urls import reverse
+	from .models import Post
 
 
-    def setUp(self):
-        Post.objects.create(text='just a test')
+	class PostModelTest(TestCase):
 
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
+	    def setUp(self):
+	        Post.objects.create(text='just a test')
 
-    class HomePageViewTest(TestCase):
+	    def test_text_content(self):
+	        post=Post.objects.get(id=1)
+	        expected_object_name = f'{post.text}'
+	        self.assertEqual(expected_object_name, 'just a test')
 
-        def setUp(self):
-            Post.objects.create(text='this is another test')
 
-        def test_view_url_exists_at_proper_location(self):
-            resp = self.client.get('/')
-            self.assertEqual(resp.status_code, 200)
+ç    class HomePageViewTest(TestCase):
 
-        def test_view_url_by_name(self):
-            resp = self.client.get(reverse('home'))
-            self.assertEqual(resp.status_code, 200)
+ç        def setUp(self):
+ç            Post.objects.create(text='this is another test')
 
-        def test_view_uses_correct_template(self):
-            resp = self.client.get(reverse('home'))
-            self.assertEqual(resp.status_code, 200)
-            self.assertTemplateUsed(resp, 'home.html')
+ç      	 def test_view_url_exists_at_proper_location(self):
+ç            resp = self.client.get('/')
+ç            self.assertEqual(resp.status_code, 200)
+
+ç        def test_view_url_by_name(self):
+ç            resp = self.client.get(reverse('home'))
+ç            self.assertEqual(resp.status_code, 200)
+
+ç        def test_view_uses_correct_template(self):
+ç            resp = self.client.get(reverse('home'))
+ç            self.assertEqual(resp.status_code, 200)
+ç            self.assertTemplateUsed(resp, 'home.html')
 ```
 - Ejecutando el test:
 ```bash
@@ -347,10 +344,10 @@ FICHERO: `Pipfile`
 ```Pipfile
 # Pipfile
 [requires]
-python_version = "3.6"
+python_version = "3.8"
 ```
 Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
-```
+```bash
 (mb) $ pipenv lock
 ```
 ### Crear `Procfile`
@@ -359,7 +356,7 @@ Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 (mb) $ touch Procfile
 ```
 ### Instalar `gunicorn`
-- Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero`mb_project.wsgi` para más instrucciones.
+- Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero `mb_project.wsgi` para más instrucciones.
 
 ```
 web: gunicorn mb_project.wsgi --log-file -

@@ -71,21 +71,23 @@ $ python manage.py runserver
 
 ### 2.5.1 Cambiando la IP de escucha y el puerto
 
-De manera predeterminada, el comando runserver inicia el servidor de desarrollo en la IP interna en el puerto 8000.
+De manera predeterminada, el comando `runserver` inicia el servidor de desarrollo en la IP interna en el puerto 8000.
 
-Si desea cambiar el puerto del servidor, páselo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:
+Si se desea cambiar el puerto del servidor, hay que pasarlo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:
 
 ```bash
 $ python manage.py runserver 8080
 ```
 
-Si desea cambiar la IP del servidor, páselo junto con el puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si está ejecutando Vagrant o desea mostrar su trabajo en otras computadoras en la red), use:
+Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red), usar:
+
 ```bash
 $ python manage.py runserver 0:8000
 ```
-0 es un atajo para 0.0.0.0. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.
 
-> Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número de bajo. Los números de puerto bajos están reservados para el superusuario (root).
+`0` es un atajo para `0.0.0.0`. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.
+
+> Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).
 
 Una descripción más detallada del servidor se puede encontrar [aquí](https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver).
 

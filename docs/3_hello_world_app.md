@@ -66,6 +66,7 @@ $ pipenv shell
   - `tests.py`: Es para los tests específicos de la **app**
   - `views.py`: Es donde se gestiona la lógica petición/respuesta (*request/response*) de la **app**
 - Aunque la **app** existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.
+- Para incluir la app en el proyecto se necesita a;adir una referencia a su clase de configuración en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` class está en el archivo `pages/apps.py` , por eso su *path* con puntos es `'pages.apps.PagesConfig'`.
 
  FICHERO: `settings.py` 
 
