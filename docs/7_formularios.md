@@ -1,7 +1,6 @@
 # 7. Formularios
 
-In this chapter we’ll continue working on our blog application from Chapter 5 by
-adding forms so a user can create, edit, or delete any of their blog entries.
+- Se va a seguir trabajando sobre la aplicación Blog añadiendo Formularios para poder crear, editar o borrar cualquiera de las entradas.
 
 ## 7.1 Formularios
 
@@ -233,7 +232,7 @@ si esa es la primera entrada en el blog.
 -Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del *post* en el que se puede ver el cambio. Esto se debe a la configuración `get_absolute_url`.
 - Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.
 
-## 7. Borrar la vista
+## 7.3 Borrar la vista
 
 - El proceso de creación de un formulario para borrar entradas del blog es muy similar al de la actualización de un post.
 - Se usará otra vista genérica basada en clases, `DeleteView`, y se necesita crear una vista, una url y una plantilla para la funcionalidad.
@@ -327,7 +326,7 @@ views.BlogDeleteView.as_view(), name='post_delete'),
 ]
 ```
 
-## Tests
+## 7.4 Tests
 - Se ha añadido un método `get_absolute_url` al modelo y nuevas vistas para crear, actualizar y editar entradas. Eso significa que se necesitan cuatro nuevas pruebas:
   + def test_get_absolute_url
   + def test_post_create_view
@@ -410,5 +409,5 @@ class BlogTests(TestCase):
 - Finalmente se prueba la vista de borrado confirmando que si eliminamos un post el código de estado es 200 para que sea exitoso.
 - Siempre hay más pruebas que pueden ser añadidas, pero esto al menos da cobertura a todas las nuevas funcionalidades.
 
-## 7. Conclusión
+## 7.5 Conclusión
 - En una pequeña cantidad de código se ha construido una aplicación de blog que permite crear, leer, actualizar y borrar entradas de blog. Esta funcionalidad básica se conoce por el acrónimo CRUD: Create-Read-Update-Delete. Aunque hay múltiples maneras de lograr esta misma funcionalidad -se podría haber usado vistas basadas en funciones o haber escrito unas vistas propias basadas en clases- se ha demostrado lo poco de código que se necesita en Django para que esto suceda.
