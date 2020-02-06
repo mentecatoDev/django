@@ -13,7 +13,7 @@
 - Crear una nueva app `pages`
 - Actualizar `settings.py`
 
-```
+```bash
 $ cd ~/Desktop
 $ mkdir pages
 $ cd pages
@@ -181,7 +181,7 @@ class AboutPageView(TemplateView):
 
 ## 4.7 Extending Templates
 - El poder real de las plantillas es la posibilidad de ser extendidas.
-- En las mayoría de webs encontramos contenido que se repite en cada página:
+-  En las mayoría de webs encontramos contenido que se repite en cada página:
     + Hagamos una página canónica que será heredada por las demás
 - Django tiene un [lenguaje mínimo de plantillas](https://docs.djangoproject.com/es/3.0/ref/templates/builtins/) para añadirles enlaces y lógica básica
 - Los tags de las plantillas tienen la forma 

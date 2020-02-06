@@ -5,6 +5,8 @@ nav:
   - 3. Hello World app : 3_hello_world_app.md
   - 4. Pages app : 4_pages_app.md
   - 5. Message Board app : 5_message_board_app.md
+  - 6. Blog App : 6_blog_app.md
+  - 7. Formularios : 7_formularios.md
 theme: readthedocs
 
 plugins:
