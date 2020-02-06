@@ -89,25 +89,13 @@
         
             <li><a class="toctree-l3" href="#71-formularios">7.1 Formularios</a></li>
         
-            <li><a class="toctree-l3" href="#update-form">Update Form</a></li>
+            <li><a class="toctree-l3" href="#72-actualizar-formularios">7.2 Actualizar Formularios</a></li>
         
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#blogurlspy">blog/urls.py</a></li>
-    
-
-    <li class="toctree-l2"><a href="#blogviewspy">blog/views.py</a></li>
-    
-
-    <li class="toctree-l2"><a href="#blogurlspy_1">blog/urls.py</a></li>
-    
-
-    <li class="toctree-l2"><a href="#blogtestspy">blog/tests.py</a></li>
-    
-        <ul>
+            <li><a class="toctree-l3" href="#7-borrar-la-vista">7. Borrar la vista</a></li>
         
-            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+            <li><a class="toctree-l3" href="#tests">Tests</a></li>
+        
+            <li><a class="toctree-l3" href="#7-conclusion">7. Conclusión</a></li>
         
         </ul>
     
@@ -256,345 +244,332 @@ class BlogCreateView(CreateView):
 <li>Se añade un <code>{% csrf_token %}</code> que proporciona Django para proteger al formulario de ataques de cross-site scripting. Se debe usar en todos los formularios de Django.</li>
 <li>Luego para obtener los datos del formulario se usa <code>{{ form.as_p }}</code> que lo renderiza dentro etiquetas de párrafo <code>&lt;p&gt;</code>.</li>
 <li>Por último, se especifica un <code>input type="submit"</code> con el valor "Save".</li>
-<li>Iniciar el servidor con <code>python manage.py runserver</code> e ir a la página web en http://127.0.0.1:8000/.132</li>
+<li>
+<p>Iniciar el servidor con <code>python manage.py runserver</code> e ir a la página web en http://127.0.0.1:8000</p>
+</li>
+<li>
+<p>Hacer clic en el enlace para "+ New Blog Post" que le redirigirá a:
+  http://127.0.0.1:8000/post/new/.</p>
+</li>
+<li>Crear una nueva entrada de blog.</li>
+<li>¡Ups! ¿Qué ha pasado?</li>
+<li>El mensaje de error de Django se queja de que no se especificó dónde enviar al usuario después de haber enviado el formulario con éxito.</li>
+<li>Se enviará al usuario a la página de detalles después de haber tenido éxito; así se podrá ver el mensaje completo.</li>
+<li>Se puede seguir la sugerencia de Django y añadir un <code>get_absolute_url</code> al modelo. Esta es una buena práctica que siempre se debe hacer. Establece una URL canónica para un objeto, de modo que aunque la estructura de las URL cambie en el futuro, la referencia al objeto específico es la misma.</li>
+<li>En resumen, se debería añadir un método <code>get_absolute_url()</code> y <code>__str__()</code> a cada modelo que se escriba.</li>
 </ul>
-<p>Página de inicio con el botón Nuevo
-Haga clic en nuestro enlace para "+ Nueva entrada de blog" que le redirigirá a:
-http://127.0.0.1:8000/post/new/.133</p>
-<p>Blog new page
-Go ahead and try to create a new blog post and submit it.134
-Chapter 6: Forms
-Blog new page
-Oops! What happened?135
-Chapter 6: Forms
-Blog new page</p>
-<p>Django’s error message is quite helpful. It’s complaining that we did not specify where
-to send the user after successfully submitting the form. Let’s send a user to the detail
-page after success; that way they can see their completed post.
-We can follow Django’s suggestion and add a get_absolute_url to our model. This is a
-best practice that you should always do. It sets a canonical URL for an object so even if
-the structure of your URLs changes in the future, the reference to the specific object
-is the same. In short, you should add a get_absolute_url() and <strong>str</strong>() method to
-each model you write.</p>
-<p>Open the models.py file. Add an import on the second line for reverse and a new get_-
-absolute_url method.
-Command Line
-FICHERO: <code>blog/models.py</code></p>
-<pre><code>from django.db import models
-from django.urls import reverse
-class Post(models.Model):
-title = models.CharField(max_length=
-)
-author = models.ForeignKey(
-'auth.User',
-on_delete=models.CASCADE,
-)
-body = models.TextField()
-def __str__(self):
-return self.title
-def get_absolute_url(self):
-return reverse('post_detail', args=[str(self.id)])
+<p>FICHERO: <code>blog/models.py</code></p>
+<pre><code>    from django.db import models
+ç   from django.urls import reverse
+
+
+    class Post(models.Model):
+        title = models.CharField(max_length=200)
+        author = models.ForeignKey(
+            'auth.User',
+            on_delete=models.CASCADE,
+        )
+        body = models.TextField()
+
+        def __str__(self):
+            return self.title
+
+        def get_absolute_url(self):
+            return reverse('post_detail', args=[str(self.id)])
 </code></pre>
 
-<p>Reverse is a very handy utility function Django provides us to reference an object by
-its URL template name, in this case post_detail . If you recall our URL pattern it is the
-following:137</p>
-<p>Code
-path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
-That means in order for this route to work we must also pass in an argument with the
-pk or primary key of the object. Confusingly pk and id are interchangeable in Django
-though the Django docs recommend using self.id with get_absolute_url . So we’re
-telling Django that the ultimate location of a Post entry is its post_detail view which
-is posts/<int:pk>/ so the route for the first entry we’ve made will be at posts/ .
-Try to create a new blog post again at http://127.0.0.1:8000/post/new/ and you’ll find
-upon success you are redirected to the detailed view page where the post appears.
-Blog new page with input
-You’ll also notice that our earlier blog post is also there. It was successfully sent to the
-database, but Django didn’t know how to redirect us after that.
-Blog homepage with four posts
-While we could go into the Django admin to delete unwanted posts, it’s better if we
-add forms so a user can update and delete existing posts directly from the site.</p>
-<h2 id="update-form">Update Form</h2>
-<p>The process for creating an update form so users can edit blog posts should feel
-familiar. We’ll again use a built-in Django class-based generic view, UpdateView, and
-create the requisite template, url, and view.
-To start, let’s add a new link to post_detail.html so that the option to edit a blog post
-appears on an individual blog page.</p>
+<ul>
+<li><code>reverse</code> es una función muy útil que Django proporciona para referir a un objeto por el nombre de plantilla URL, en este caso <code>post_detail</code>.</li>
+</ul>
+<pre><code>path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
+</code></pre>
+
+<ul>
+<li>Eso significa que para que esta ruta funcione debemos pasar también como argumento la <code>pk</code> o clave primaria del objeto. A pesar de que <code>pk</code> e <code>id</code> son intercambiables en Django, la documentación de Django recomienda usar <code>self.id</code> con <code>get_absolute_url</code>.</li>
+<li>Así le decimos a Django que la última ubicación de una entrada de un Post es su vista <code>post_detail</code> que es <code>posts/&lt;int:pk&gt;/</code> por lo que la ruta para la primera entrada que hemos hecho estará en <code>posts/1</code>.</li>
+<li>Intentar crear una nueva entrada en el blog de nuevo en http://127.0.0.1:8000/post/new/ y se tendrá éxito al ser redirigido a la página de vista detallada donde aparece el post.</li>
+<li>También se notará que la entrada anterior en el blog también está ahí. Fue enviada con éxito a la base de datos pero Django no supo cómo redirigirse después de eso.</li>
+<li>Aunque se podría entrar en el administrador de Django para borrar los mensajes no deseados, es mejor añadir formularios para que un usuario pueda actualizar y eliminar los mensajes existentes directamente desde el sitio.</li>
+</ul>
+<h2 id="72-actualizar-formularios">7.2 Actualizar Formularios</h2>
+<ul>
+<li>Para empezar, se añade un nuevo enlace a <code>post_detail.html</code> para que la opción de editar una entrada de blog aparezca en una página de blog individual.</li>
+</ul>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
+
 {% block content %}
-&lt;div class=&quot;post-entry&quot;&gt;
-&lt;h2&gt;{{ object.title }}&lt;/h2&gt;
-&lt;p&gt;{{ object.body }}&lt;/p&gt;
-&lt;/div&gt;
-&lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;
+  &lt;div class=&quot;post-entry&quot;&gt;
+    &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
+    &lt;p&gt;{{ object.body }}&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;
 {% endblock content %}
 </code></pre>
 
-<p>We’ve added a link using <a href>...</a> and the Django template engine’s {% url
-... %} tag. Within it we’ve specified the target name of our url, which will be called
-post_edit and also passed the parameter needed, which is the primary key of the post
-post.pk .
-Next we create the template for our edit page called post_edit.html .
-Command Line
-(blog) $ touch templates/post_edit.html
-And add the following code:
-FICHERO: <code>templates/post_edit.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<ul>
+<li>Se ha  añadido un enlace usando <code>&lt;a href&gt;...&lt;/a&gt;</code> y la etiqueta del motor de plantillas de Django <code>{% url... %}</code>. Dentro de ella se ha especificado el nombre del objetivo de la url, que se llamará <code>post_edit</code>, y también se ha pasado el parámetro necesario, que es la clave principal del post <code>post.pk</code>.</li>
+<li>A continuación se crea la plantilla para la página de edición llamada <code>post_edit.html</code>.</li>
+</ul>
+<pre><code class="bash">(blog) $ touch templates/post_edit.html
+</code></pre>
+
+<p>FICHERO: <code>templates/post_edit.html</code></p>
+<pre><code class="python">{% extends 'base.html' %}
+
 {% block content %}
-&lt;h1&gt;Edit post&lt;/h1&gt;
-&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
-{{ form.as_p }}
-&lt;input type=&quot;submit&quot; value=&quot;Update&quot; /&gt;
-&lt;/form&gt;
+  &lt;h1&gt;Edit post&lt;/h1&gt;
+  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
+    {{ form.as_p }}
+    &lt;input type=&quot;submit&quot; value=&quot;Update&quot; /&gt;
+  &lt;/form&gt;
 {% endblock %}
 </code></pre>
 
-<p>We again use HTML <form></form> tags, Django’s csrf_token for security, form.as_p
-to display our form fields with paragraph tags, and finally give it the value “Update”
-on the submit button.
-Now to our view. We need to import UpdateView on the second-from-the-top line and
-then subclass it in our new view BlogUpdateView .
-FICHERO: <code>blog/views.py</code></p>
-<pre><code>from django.views.generic import ListView, DetailView
+<ul>
+<li>De nuevo se usan las etiquetas HTML <code>&lt;form&gt;&lt;/form&gt;</code>, el <code>csrf_token</code> de Django por seguridad, el <code>form.as_p</code> para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón <em>submit</em>.</li>
+<li>Ahora a nuestra vista. Necesitamos importar UpdateView en la segunda línea superior y luego subclasificarla en nuestra nueva vista BlogUpdateView .
+FICHERO: <code>blog/views.py</code></li>
+</ul>
+<pre><code class="python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from . models import Post
+
+
 class BlogListView(ListView):
-model = Post
-template_name = 'home.html'
+    model = Post
+    template_name = 'home.html'
+
 class BlogDetailView(DetailView):
-model = Post
-template_name = 'post_detail.html'
+    model = Post
+    template_name = 'post_detail.html'
+
+
 class BlogCreateView(CreateView):
-model = Post
-template_name = 'post_new.html'
-fields = '__all__'
+    model = Post
+    template_name = 'post_new.html'
+    fields = '__all__'
+
+
 class BlogUpdateView(UpdateView):
-model = Post
-fields = ['title', 'body']
-template_name = 'post_edit.html'
+    model = Post
+    fields = ['title', 'body']
+    template_name = 'post_edit.html'
 </code></pre>
 
-<p>Notice that in BlogUpdateView we are explicitly listing the fields we want to use
-['title', 'body'] rather than using '<strong>all</strong>' . This is because we assume that the
-author of the post is not changing; we only want the title and text to be editable.
-The final step is to update our urls.py file as follows:142
-Chapter 6: Forms
-Code</p>
-<h1 id="blogurlspy">blog/urls.py</h1>
-<p>from django.urls import path
+<ul>
+<li>Nótese que en <code>BlogUpdateView</code> se listan explícitamente los campos que se quieren usar <code>['title', 'body']</code> en lugar de usar <code>'__all__'</code>. Esto se debe a que se asume que el autor del post no cambia; sólo se quiere que el título y el texto sean editables.</li>
+<li>El último paso es actualizar el archivo <code>urls.py</code> de la siguiente manera:</li>
+</ul>
+<p>FICHERO: <code>blog/urls.py</code></p>
+<pre><code class="python">from django.urls import path
 from . import views
+
+
 urlpatterns = [
-path('', views.BlogListView.as_view(), name='home'),
-path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
-path('post/new/', views.BlogCreateView.as_view(), name='post_new'),
-path('post/<int:pk>/edit/',
-views.BlogUpdateView.as_view(), name='post_edit'),
+    path('', views.BlogListView.as_view(), name='home'),
+    path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
+    path('post/new/', views.BlogCreateView.as_view(), name='post_new'),
+    path('post/&lt;int:pk&gt;/edit/',views.BlogUpdateView.as_view(), name='post_edit'),
 ]
-At the top we add our view BlogUpdateView to the list of imported views, then created
-a new url pattern for /post/pk/edit and given it the name post_edit .
-Now if you click on a blog entry you’ll see our new Edit button.
-Blog page with edit button143
-Chapter 6: Forms
-If you click on “+ Edit Blog Post” you’ll be redirected to http://127.0.0.1:8000/post/1/edit/
-if it’s your first blog post.
-Blog edit page
-Note that the form is pre-filled with our database’s existing data for the post. Let’s
-make a change...144
-Chapter 6: Forms
-Blog edit page
-And after clicking the “Update” button we are redirected to the detail view of the
-post where you can see the change. This is because of our get_absolute_url setting.
-Navigate to the homepage and you can see the change next to all the other entries.145
-Chapter 6: Forms
-Blog homepage with edited post
-Delete View
-The process for creating a form to delete blog posts is very similar to that for updating
-a post. We’ll use yet another generic class-based view, DeleteView, to help and need
-to create a view, url, and template for the functionality.
-Let’s start by adding a link to delete blog posts on our individual blog page, post_-
-detail.html .Chapter 6: Forms
-146
-Code
-<!-- templates/post_detail.html -->
-{% extends 'base.html' %}
+</code></pre>
+
+<ul>
+<li>En la parte superior se agrega la vista <code>BlogUpdateView</code> a la lista de vistas importadas, luego se creará un nuevo patrón de url para <code>/post/pk/edit</code> y se le dará el nombre <code>post_edit</code>.</li>
+<li>Ahora, si se hace click en una entrada del blog, se verá el nuevo botón <em>Editar</em>.</li>
+<li>Si se hace clic en <em>"+ Edit Blog Post"</em> se redirigirá a http://127.0.0.1:8000/post/1/edit/
+si esa es la primera entrada en el blog.</li>
+<li>Tengase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.</li>
+<li>Vamos a hacer un cambio...</li>
+</ul>
+<p>-Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.
+- Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.</p>
+<h2 id="7-borrar-la-vista">7. Borrar la vista</h2>
+<ul>
+<li>El proceso de creación de un formulario para borrar entradas del blog es muy similar al de la actualización de un post.</li>
+<li>Se usará otra vista genérica basada en clases, <code>DeleteView</code>, y se necesita crear una vista, una url y una plantilla para la funcionalidad.</li>
+<li>Se comenzará por agregar un enlace para eliminar los post del blog en la página de blog individual, <code>post_detail.html</code>.</li>
+</ul>
+<p>FICHERO: <code>templates/post_detail.html</code></p>
+<pre><code class="python">{% extends 'base.html' %}
+
 {% block content %}
-<div class="post-entry">
-<h2>{{ object.title }}</h2>
-<p>{{ object.body }}</p>
-</div>
-<p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
-<p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+  &lt;div class=&quot;post-entry&quot;&gt;
+    &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
+    &lt;p&gt;{{ object.body }}&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;p&gt;&lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;{% url 'post_delete' post.pk %}&quot;&gt;+ Delete Blog Post&lt;/a&gt;&lt;/p&gt;
 {% endblock content %}
-Then create a new file for our delete page template. First quit the local server Control-
-c and then type the following command:
-Command Line
-(blog) $ touch templates/post_delete.html
-And fill it with this code:Chapter 6: Forms
-147
-Code
-<!-- templates/post_delete.html -->
-{% extends 'base.html' %}
+</code></pre>
+
+<ul>
+<li>A continuación, se crea un nuevo archivo para la plantilla de la página de borrado.</li>
+</ul>
+<pre><code class="bash">(blog) $ touch templates/post_delete.html
+</code></pre>
+
+<p>FICHERO: <code>templates/post_delete.html</code></p>
+<pre><code>{% extends 'base.html' %}
+
 {% block content %}
-<h1>Delete post</h1>
-<form action="" method="post">{% csrf_token %}
-<p>Are you sure you want to delete "{{ post.title }}"?</p>
-<input type="submit" value="Confirm" />
-</form>
+  &lt;h1&gt;Delete post&lt;/h1&gt;
+  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
+    &lt;p&gt;Are you sure you want to delete &quot;{{ post.title }}&quot;?&lt;/p&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Confirm&quot; /&gt;
+  &lt;/form&gt;
 {% endblock %}
-Note we are using post.title here to display the title of our blog post. We could also
-just use object.title as it too is provided by DetailView .
-Now update our views.py file, by importing DeleteView and reverse_lazy at the top,
-then create a new view that subclasses DeleteView .
-Code</p>
-<h1 id="blogviewspy">blog/views.py</h1>
-<p>from django.views.generic import ListView, DetailView
+</code></pre>
+
+<blockquote>
+<p>Nota: se usa <code>post.title</code> para mostrar el título de la entrada en el blog. También se podría usar <code>object.title</code> ya que también lo proporciona <code>DetailView</code>.
+- Ahora se actualiza el archivo <code>views.py</code>, importando <code>DeleteView</code> y <code>reverse_lazy</code> en la parte superior, y luego creamos una nueva vista que hereda de <code>DeleteView</code>.</p>
+</blockquote>
+<p>FICHERO: <code>blog/views.py</code></p>
+<pre><code class="python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from . models import Post
+
+
 class BlogListView(ListView):
-model = PostChapter 6: Forms
-148
-template_name = 'home.html'
+    model = PostChapter
+    template_name = 'home.html'
+
+
 class BlogDetailView(DetailView):
-model = Post
-template_name = 'post_detail.html'
+    model = Post
+    template_name = 'post_detail.html'
+
+
 class BlogCreateView(CreateView):
-model = Post
-template_name = 'post_new.html'
-fields = '<strong>all</strong>'
+    model = Post
+    template_name = 'post_new.html'
+    fields = '__all__'
+
+
 class BlogUpdateView(UpdateView):
-model = Post
-fields = ['title', 'body']
-template_name = 'post_edit.html'
+    model = Post
+    fields = ['title', 'body']
+    template_name = 'post_edit.html'
+
+
 class BlogDeleteView(DeleteView):
-model = Post
-template_name = 'post_delete.html'
-success_url = reverse_lazy('home')
-We use reverse_lazy as opposed to just reverse so that it won’t execute the URL
-redirect until our view has finished deleting the blog post.
-Finally add a url by importing our view BlogDeleteView and adding a new pattern:Chapter 6: Forms
-149
-Code</p>
-<h1 id="blogurlspy_1">blog/urls.py</h1>
-<p>from django.urls import path
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('home')
+</code></pre>
+
+<ul>
+<li>Se usa <code>reverse_lazy</code> en vez de sólo <code>reverse</code> para que no ejecute la redirección URL
+hasta que la vista haya terminado de borrar la entrada del blog.</li>
+<li>Finalmente agregar una url importando la vista <code>BlogDeleteView</code> y agregando un nuevo patrón:</li>
+</ul>
+<p>FICHERO: <code>blog/urls.py</code></p>
+<pre><code class="python">from django.urls import path
 from . import views
 urlpatterns = [
 path('', views.BlogListView.as_view(), name='home'),
-path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
+path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
 path('post/new/', views.BlogCreateView.as_view(), name='post_new'),
-path('post/<int:pk>/edit/',
+path('post/&lt;int:pk&gt;/edit/',
 views.BlogUpdateView.as_view(), name='post_edit'),
-path('post/<int:pk>/delete/',
+path('post/&lt;int:pk&gt;/delete/',
 views.BlogDeleteView.as_view(), name='post_delete'),
 ]
-If you start the server again python manage.py runserver and refresh the individual
-post page you’ll see our “Delete Blog Post” link.150
-Chapter 6: Forms
-Blog delete post
-Clicking on the link takes us to the delete page for the blog post, which displays the
-name of the blog post.
-Blog delete post page
-If you click on the “Confirm” button, it redirects you to the homepage where the blog
-post has been deleted!151
-Chapter 6: Forms
-Homepage with post deleted
-So it works!
-Tests
-Time for tests to make sure everything works now–and in the future–as expected.
-We’ve added a get_absolute_url method to our model and new views for create,
-update, and edit posts. That means we need four new tests:
-• def test_get_absolute_url
-• def test_post_create_view
-• def test_post_update_view
-• def test_post_delete_view
-Update your existing tests.py file as follows.Chapter 6: Forms
-Code</p>
-<h1 id="blogtestspy">blog/tests.py</h1>
-<p>from django.contrib.auth import get_user_model
+</code></pre>
+
+<h2 id="tests">Tests</h2>
+<ul>
+<li>Se ha añadido un método <code>get_absolute_url</code> al modelo y nuevas vistas para crear, actualizar y editar entradas. Eso significa que se necesitan cuatro nuevas pruebas:</li>
+<li>def test_get_absolute_url</li>
+<li>def test_post_create_view</li>
+<li>def test_post_update_view</li>
+<li>def test_post_delete_view</li>
+</ul>
+<p>FICHERO: <code>blog/tests.py</code></p>
+<pre><code class="python">from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from .models import Post
+
+
 class BlogTests(TestCase):
-def setUp(self):
-self.user = get_user_model().objects.create_user(
-username='testuser',
-email='test@email.com',
-password='secret'
-)
-self.post = Post.objects.create(
-title='A good title',
-body='Nice body content',
-author=self.user,
-)
-def test_string_representation(self):
-post = Post(title='A sample title')
-self.assertEqual(str(post), post.title)
-152153
-Chapter 6: Forms
-def test_get_absolute_url(self):
-self.assertEquals(self.post.get_absolute_url(), '/post/ /')
-def test_post_content(self):
-self.assertEqual(f'{self.post.title}', 'A good title')
-self.assertEqual(f'{self.post.author}', 'testuser')
-self.assertEqual(f'{self.post.body}', 'Nice body content')
-def test_post_list_view(self):
-response = self.client.get(reverse('home'))
-self.assertEqual(response.status_code,
-)
-self.assertContains(response, 'Nice body content')
-self.assertTemplateUsed(response, 'home.html')
-def test_post_detail_view(self):
-response = self.client.get('/post/ /')
-no_response = self.client.get('/post/
-self.assertEqual(response.status_code,
-/')
-)
-self.assertEqual(no_response.status_code,
-)
-self.assertContains(response, 'A good title')
-self.assertTemplateUsed(response, 'post_detail.html')
-def test_post_create_view(self):
-response = self.client.post(reverse('post_new'), {
-'title': 'New title',
-'body': 'New text',
-'author': self.user,
-})154
-Chapter 6: Forms
-self.assertEqual(response.status_code,
-)
-self.assertContains(response, 'New title')
-self.assertContains(response, 'New text')
-def test_post_update_view(self):
-response = self.client.post(reverse('post_edit', args=' '), {
-'title': 'Updated title',
-'body': 'Updated text',
-})
-self.assertEqual(response.status_code,
-)
-def test_post_delete_view(self):
-response = self.client.get(
-reverse('post_delete', args=' '))
-self.assertEqual(response.status_code,
-)
-We expect the url of our test to be at post/ / since there’s only one post and the
-is its primary key Django adds automatically for us. To test create view we make a
-new response and then ensure that the response goes through (status code 200) and
-contains our new title and body text. For update view we access the first post–which
-has a pk of
-which is passed in as the only argument–and we confirm that it results
-in a 302 redirect. Finally we test our delete view by confirming that if we delete a post
-the status code is 200 for success.
-There’s always more tests that can be added but this at least has coverage on all our
-new functionality.</p>
-<h2 id="conclusion">Conclusión</h2>
-<p>In a small amount of code we’ve built a blog application that allows for creating,
-reading, updating, and deleting blog posts. This core functionality is known by
-the acronym CRUD: Create-Read-Update-Delete. While there are multiple ways to
-achieve this same functionality–we could have used function-based views or written
-our own class-based views–we’ve demonstrated how little code it takes in Django to
-make this happen.
-In the next chapter we’ll add user accounts and login, logout, and signup functionality.</p>
+
+
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username='testuser',
+            email='test@email.com',
+            password='secret'
+        )
+
+        self.post = Post.objects.create(
+            title='A good title',
+            body='Nice body content',
+            author=self.user,
+        )
+
+    def test_string_representation(self):
+        post = Post(title='A sample title')
+        self.assertEqual(str(post), post.title)
+
+    def test_get_absolute_url(self):
+        self.assertEquals(self.post.get_absolute_url(), '/post/1/')
+
+    def test_post_content(self):
+        self.assertEqual(f'{self.post.title}', 'A good title')
+        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.body}', 'Nice body content')
+
+    def test_post_list_view(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Nice body content')
+        self.assertTemplateUsed(response, 'home.html')
+
+    def test_post_detail_view(self):
+        response = self.client.get('/post/1/')
+        no_response = self.client.get('/post/100000/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(no_response.status_code, 404)
+        self.assertContains(response, 'A good title')
+        self.assertTemplateUsed(response, 'post_detail.html')
+
+    def test_post_create_view(self):
+        response = self.client.post(reverse('post_new'), {
+            'title': 'New title',
+            'body': 'New text',
+            'author': self.user,
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'New title')
+        self.assertContains(response, 'New text')
+
+    def test_post_update_view(self):
+        response = self.client.post(reverse('post_edit', args='1'), {
+            'title': 'Updated title',
+            'body': 'Updated text',
+        })
+        self.assertEqual(response.status_code, 302)
+
+    def test_post_delete_view(self):
+        response = self.client.get(reverse('post_delete', args='1'))
+        self.assertEqual(response.status_code, 200)
+</code></pre>
+
+<ul>
+<li>Se espera que la url de la prueba esté en <code>post/1/</code> ya que sólo hay un post y el <code>1</code> es la clave primaria que Django añade automáticamente. Para testar la creación de la vista se crea una nueva respuesta y luego se asegura que se pase la respuesta (código de estado 200) y contenga nuestro el título y texto del cuerpo.</li>
+<li>Para actualizar la vista, se accede al primer post que tiene un <code>pk</code> de <code>1</code> que se pasa como único argumento y confirmamos que resulta en una redirección 302.</li>
+<li>Finalmente se prueba la vista de borrado confirmando que si eliminamos un post el código de estado es 200 para que sea exitoso.</li>
+<li>Siempre hay más pruebas que pueden ser añadidas, pero esto al menos da cobertura a todas las nuevas funcionalidades.</li>
+</ul>
+<h2 id="7-conclusion">7. Conclusión</h2>
+<ul>
+<li>En una pequeña cantidad de código se ha construido una aplicación de blog que permite crear, leer, actualizar y borrar entradas de blog. Esta funcionalidad básica se conoce por el acrónimo CRUD: Create-Read-Update-Delete. Aunque hay múltiples maneras de lograr esta misma funcionalidad -se podría haber usado vistas basadas en funciones o haber escrito unas vistas propias basadas en clases- se ha demostrado lo poco de código que se necesita en Django para que esto suceda.</li>
+</ul>
               
             </div>
           </div>
