@@ -179,7 +179,7 @@ class AboutPageView(TemplateView):
 ```
 - Lanzar `http://localhost:8000/about`
 
-## 4.7 Extending Templates
+## 4.7 Extendiendo Plantillas
 - El poder real de las plantillas es la posibilidad de ser extendidas.
 -  En las mayoría de webs encontramos contenido que se repite en cada página:
     + Hagamos una página canónica que será heredada por las demás
@@ -218,7 +218,7 @@ FICHERO: `templates/base.html`
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Homepage</h1>
+	<h1>Homepage</h1>
 {% endblock content %}
 ```
 
@@ -227,7 +227,7 @@ FICHERO: `templates/about.html`
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>About page</h1>
+	<h1>About page</h1>
 {% endblock content %}
 ```
 
@@ -240,17 +240,7 @@ FICHERO: `templates/about.html`
  FICHERO: `pages/tests.py`
 
 ``` python
-ç from django.test import SimpleTestCase
-
-
-ç class SimpleTests(SimpleTestCase):
-ç     def test_home_page_status_code(self):
-ç         response = self.client.get('/')
-ç         self.assertEqual(response.status_code, 200)
-
-ç     def test_about_page_status_code(self):
-ç         response = self.client.get('/about/')
-ç         self.assertEqual(response.status_code, 200)
+ç pyt
 ```
 
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
@@ -325,7 +315,7 @@ Se necesitan hacer cuatro cambios al proyecto para desplegar en Heroku:
 
 Especificar la versión de Python que se está usando en `Pipfile`
 
-```
+```pipfile
 # Pipfile
 [requires]
 python_version = "3.8"
@@ -343,7 +333,7 @@ web: gunicorn pages_project.wsgi --log-file -
 ```
 
 Esto indica que se use el fichero `pages_project.wsgi` existente pero con `gunicorn`, que es un *servidor web adecuado para la producción*, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.
-```
+```bash
 (pages) $ pipenv install gunicorn
 ```
 El último paso es un cambio de una línea a `settings.py`.
@@ -355,7 +345,7 @@ ALLOWED_HOSTS = ['*']
 ```
 El parámetro ALLOWEDHOSTS representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.
 
-Sin embargo, se ha utilizado el comodín Asterisco "\*", que significa que todos los dominios son aceptables para mantener las cosas simples.
+Sin embargo, se ha utilizado el comodín asterisco "\*", que significa que todos los dominios son aceptables para mantener las cosas simples.
 
 En un sitio Django de nivel de producción, se enumeran explícitamente los dominios que están permitidos.
 
@@ -377,9 +367,9 @@ Usar `git status` para comprobar nuestros cambios, añadir los nuevos archivos, 
 
 ### Crear una nueva aplicación de Heroku, desde la línea de comandos con heroku create
 
-```
+```bash
 (pages) $ heroku create
-Creating app... done, cryptic-oasis-40349
+Creating app... done, 
 https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasis-40349.git
 ```
 
