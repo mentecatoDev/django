@@ -78,36 +78,31 @@
     <a class="current" href="./">6. Blog App</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#blog-app">Blog app</a></li>
+    <li class="toctree-l2"><a href="#6-blog-app">6. Blog app</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#configuracion-inicial">Configuración inicial</a></li>
+            <li><a class="toctree-l3" href="#61-configuracion-inicial">6.1. Configuración inicial</a></li>
         
-            <li><a class="toctree-l3" href="#modelos-de-bases-de-datos">Modelos de Bases de Datos</a></li>
+            <li><a class="toctree-l3" href="#62-modelos-de-bases-de-datos">6.2. Modelos de Bases de Datos</a></li>
         
-            <li><a class="toctree-l3" href="#admin">Admin</a></li>
+            <li><a class="toctree-l3" href="#63-admin">6.3. Admin</a></li>
         
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#blogadminpy">blog/admin.py</a></li>
-    
-        <ul>
+            <li><a class="toctree-l3" href="#64-urls">6.4 URLs</a></li>
         
-            <li><a class="toctree-l3" href="#views">Views</a></li>
+            <li><a class="toctree-l3" href="#65-views">6.5. Views</a></li>
         
-            <li><a class="toctree-l3" href="#templates">Templates</a></li>
+            <li><a class="toctree-l3" href="#66-templates">6.6. Templates</a></li>
         
-            <li><a class="toctree-l3" href="#ficheros-estaticos">Ficheros estáticos</a></li>
+            <li><a class="toctree-l3" href="#67-ficheros-estaticos">6.7. Ficheros estáticos</a></li>
         
-            <li><a class="toctree-l3" href="#individual-blog-pages">Individual blog pages</a></li>
+            <li><a class="toctree-l3" href="#68-individual-blog-pages">6.8. Individual blog pages</a></li>
         
-            <li><a class="toctree-l3" href="#tests">Tests</a></li>
+            <li><a class="toctree-l3" href="#69-tests">6.9. Tests</a></li>
         
-            <li><a class="toctree-l3" href="#git">Git</a></li>
+            <li><a class="toctree-l3" href="#610-git">6.10. Git</a></li>
         
-            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+            <li><a class="toctree-l3" href="#611-conclusion">6.11. Conclusión</a></li>
         
         </ul>
     
@@ -162,21 +157,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="blog-app">Blog app</h1>
+                <h1 id="6-blog-app">6. Blog app</h1>
 <ul>
 <li>Se construirá una aplicación de Blog que permita a los usuarios crear, editar y eliminar posts.</li>
 <li>La página de inicio listará todos los artículos del blog</li>
 <li>Habrá una página de detalles dedicada a cada artículo individual.</li>
 <li>Se introduce CSS para el estilo y se verá cómo funciona Django con los archivos estáticos.</li>
 </ul>
-<h2 id="configuracion-inicial">Configuración inicial</h2>
-<p>Nuevo proyecto Django:
-- crear un nuevo directorio para el código en el Escritorio llamado blog
-- instalar Django en un nuevo entorno virtual
-- crear un nuevo proyecto de Django llamado <code>blog_project</code>
-- crear un nuevo blog de aplicaciones
-- realizar una migración para configurar la base de datos
-- actualizar <code>settings.py</code></p>
+<h2 id="61-configuracion-inicial">6.1. Configuración inicial</h2>
+<ul>
+<li>Nuevo proyecto Django:<ul>
+<li>crear un nuevo directorio para el código en el Escritorio llamado blog</li>
+<li>instalar Django en un nuevo entorno virtual</li>
+<li>crear un nuevo proyecto de Django llamado <code>blog_project</code></li>
+<li>crear un nuevo blog de aplicaciones</li>
+<li>realizar una migración para configurar la base de datos</li>
+<li>actualizar <code>settings.py</code></li>
+</ul>
+</li>
+</ul>
 <pre><code class="bash">$ cd ~/Desktop
 $ mkdir blog
 $ cd blog
@@ -201,12 +200,12 @@ $ pipenv shell
     ]
 </code></pre>
 
-<h2 id="modelos-de-bases-de-datos">Modelos de Bases de Datos</h2>
+<h2 id="62-modelos-de-bases-de-datos">6.2. Modelos de Bases de Datos</h2>
 <ul>
 <li>Se asume que cada <em>post</em> tiene un título, un autor y un cuerpo que se convertirán en un modelo de base de datos:</li>
 </ul>
 <p>FICHERO: <code>blog/models.py</code></p>
-<pre><code>from django.db import models
+<pre><code class="python">from django.db import models
 
 
 class Post(models.Model):
@@ -238,44 +237,46 @@ class Post(models.Model):
 </code></pre>
 
 <p>Base de datos configurada.</p>
-<h2 id="admin">Admin</h2>
-<h3 id="para-acceder-a-los-datos">Para acceder a los datos:</h3>
+<h2 id="63-admin">6.3. Admin</h2>
+<h3 id="631-para-acceder-a-los-datos">6.3.1. Para acceder a los datos:</h3>
 <ul>
-<li>
-<p>Crear una cuenta de superusuario
-      ```bash
-  (blog) $ python manage.py createsuperuser
-  Username (leave blank to use 'wsv'): wsv
-  Email:
-  Password:
-  Password (again):
-  Superuser created successfully.</p>
-<p>```</p>
-<p>```</p>
-</li>
+<li>Crear una cuenta de superusuario</li>
 </ul>
-<pre><code>
-- Arrancar el servidor y abrir http://127.0.0.1:8000/admin/
-- Logear con la nueva cuenta de superusuario
-- !Ups! ¿Dónde esta nuevo modelo Post?
-- Se olvidó actualizar `blog/admin.py`
-FICHERO: `blog/admin.py`
+<pre><code class="bash">(blog) $ python manage.py createsuperuser
+Username (leave blank to use 'wsv'): wsv
+Email:
+Password:
+Password (again):
+Superuser created successfully.
 </code></pre>
 
-<h1 id="blogadminpy">blog/admin.py</h1>
-<p>from django.contrib import admin
-from .models import Post</p>
-<p>admin.site.register(Post)</p>
-<pre><code>- Refrescar ahora y añadir dos blog post para tener algunos datos de muestra con los que trabajar
-    + Añadir un &quot;autor&quot; a cada entrada también, ya que por defecto todos los campos del modelo son obligatorios
+<ul>
+<li>Arrancar el servidor y abrir http://127.0.0.1:8000/admin/</li>
+<li>Logear con la nueva cuenta de superusuario</li>
+<li>!Ups! ¿Dónde esta nuevo modelo Post?</li>
+<li>Se olvidó actualizar <code>blog/admin.py</code></li>
+</ul>
+<p>FICHERO: <code>blog/admin.py</code></p>
+<pre><code class="python"># blog/admin.py
+from django.contrib import admin
+from .models import Post
 
-## URLs
-​```bash
-(blog) $ touch blog/urls.py
+
+admin.site.register(Post)
+</code></pre>
+
+<ul>
+<li>Refrescar ahora y añadir dos blog post para tener algunos datos de muestra con los que trabajar<ul>
+<li>Añadir un "autor" a cada entrada también, ya que por defecto todos los campos del modelo son obligatorios</li>
+</ul>
+</li>
+</ul>
+<h2 id="64-urls">6.4 URLs</h2>
+<pre><code class="bash">(blog) $ touch blog/urls.py
 </code></pre>
 
 <p>FICHERO:<code>blog/urls.py</code></p>
-<pre><code>from django.urls import path
+<pre><code class="python">from django.urls import path
 from . import views
 
 
@@ -285,17 +286,19 @@ urlpatterns = [
 </code></pre>
 
 <p>FICHERO: <code>blog_project/urls.py</code></p>
-<pre><code>from django.contrib import admin
+<pre><code class="python">from django.contrib import admin
 from django.urls import path, include
+
+
 urlpatterns = [
-path('admin/', admin.site.urls),
-path('', include('blog.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
 ]
 </code></pre>
 
-<h2 id="views">Views</h2>
+<h2 id="65-views">6.5. Views</h2>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code>from django.views.generic import ListView
+<pre><code class="python">from django.views.generic import ListView
 from . models import Post
 
 
@@ -304,14 +307,14 @@ class BlogListView(ListView):
     template_name = 'home.html'
 </code></pre>
 
-<h2 id="templates">Templates</h2>
+<h2 id="66-templates">6.6. Templates</h2>
 <pre><code class="bash">(blog) $ mkdir templates
 (blog) $ touch templates/base.html
 (blog) $ touch templates/home.html
 </code></pre>
 
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code>TEMPLATES = [
+<pre><code class="python">TEMPLATES = [
     {
         ...
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
@@ -358,7 +361,7 @@ class BlogListView(ListView):
 <li>Iniciar de nuevo el servidor Django: <code>python manage.py runserver</code></li>
 <li>Terrible, ¿no?</li>
 </ul>
-<h2 id="ficheros-estaticos">Ficheros estáticos</h2>
+<h2 id="67-ficheros-estaticos">6.7. Ficheros estáticos</h2>
 <ul>
 <li>Un poco de CSS, please</li>
 <li>En un proyecto Django listo para la producción, normalmente se almacenaría en una <a href="https://es.wikipedia.org/wiki/Red_de_distribuci%C3%B3n_de_contenidos">red de distribución de contenidos (CDN, <em>Content Delivery Network</em>)</a> para un mejor rendimiento, pero para este caso, el almacenamiento de los archivos en local está bien.</li>
@@ -371,7 +374,7 @@ class BlogListView(ListView):
 <li>Añadir en la parte inferior del archivo, debajo de la entrada para <code>STATIC_URL</code>.</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code>STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+<pre><code class="python">STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 </code></pre>
 
 <ul>
@@ -383,7 +386,7 @@ class BlogListView(ListView):
 
 <p>FICHERO: <code>satic/css/base.css</code></p>
 <pre><code class="css">header h1 a {
-color: red;
+  color: red;
 }
 </code></pre>
 
@@ -455,7 +458,6 @@ header h1 a {
   margin: 0.5rem 0;
 }
 
-
 .post-entry h2 a,
 .post-entry h2 a:visited {
   color: blue;
@@ -472,7 +474,7 @@ header h1 a {
 }
 </code></pre>
 
-<h2 id="individual-blog-pages">Individual blog pages</h2>
+<h2 id="68-individual-blog-pages">6.8. Individual blog pages</h2>
 <ul>
 <li>
 <p>Ahora se puede añadir funcionalidad a las páginas de blog individuales.</p>
@@ -485,7 +487,7 @@ header h1 a {
 </li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code>from django.views.generic import ListView, DetailView
+<pre><code class="python">from django.views.generic import ListView, DetailView
 from . models import Post
 
 
@@ -503,11 +505,11 @@ class BlogDetailView(DetailView):
 <li>Por defecto <code>DetailView</code> proporciona un objeto de contexto que podemos usar en la plantilla llamado <code>objeto</code> o el nombre en minúsculas de nuestro modelo, <code>post</code>.</li>
 <li>Además, <code>DetailView</code> espera que se le pase una clave primaria o un <em>slug</em> como identificador. Más sobre esto en breve.</li>
 </ul>
-<pre><code>(blog) $ touch templates/post_detail.html
+<pre><code class="bash">(blog) $ touch templates/post_detail.html
 </code></pre>
 
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -523,7 +525,7 @@ class BlogDetailView(DetailView):
 <li>La denominación de los objetos de contexto en vistas genéricas es extremadamente confusa cuando se ve Django por primera vez. Debido a que nuestro objeto de contexto de <code>DetailView</code> es o bien el nombre de modelo <code>post</code> o bien <code>object</code>, podríamos también actualizar nuestro modelo de la siguiente manera y funcionaría exactamente igual.</li>
 </ul>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -538,7 +540,7 @@ class BlogDetailView(DetailView):
 <li>Si se encuentra confuso el uso de <code>post</code> o de <code>objeto</code>, también podemos establecer explícitamente el nombre del objeto del contexto en la vista. Así que si quisiéramos llamarlo <code>anything_you_want</code> y luego usarlo en la plantilla, el código tendría el siguiente aspecto y funcionaría igual.</li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code>...
+<pre><code class="python">...
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
@@ -546,7 +548,7 @@ class BlogDetailView(DetailView):
 </code></pre>
 
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -562,7 +564,7 @@ class BlogDetailView(DetailView):
 <li>Añadir una nueva URLConf para la vista</li>
 </ul>
 <p>FICHERO: <code>blog/urls.py</code></p>
-<pre><code>from django.urls import path
+<pre><code class="python">from django.urls import path
 
 from . import views
 
@@ -584,7 +586,7 @@ urlpatterns = [
 <li>Para facilitar el acceso, se debería actualizar el enlace en la página de inicio para poder acceder directamente a las entradas individuales del blog desde allí. Actualmente en <code>home.html</code> el enlace está vacío: <code>&lt;a href=""&gt;</code> . Actualizarlo a <code>&lt;a href="{% url 'post_detail' post.pk %}"&gt;</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
   {% for post in object_list %}
@@ -605,9 +607,9 @@ urlpatterns = [
 </ul>
 </li>
 </ul>
-<h2 id="tests">Tests</h2>
+<h2 id="69-tests">6.9. Tests</h2>
 <p>FICHERO: <code>blog/tests.py</code></p>
-<pre><code>from django.contrib.auth import get_user_model
+<pre><code class="python">from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from .models import Post
@@ -660,20 +662,20 @@ class BlogTests(TestCase):
 <li>Finalmente <code>test_post_detail_view</code> comprueba que la página de detalles funciona como se espera y que una página incorrecta devuelve un <em>404</em>.</li>
 <li>Siempre es bueno probar que algo existe y que algo incorrecto no existe en las pruebas.</li>
 </ul>
-<pre><code>(testy) $ python manage.py test
+<pre><code class="bash">(testy) $ python manage.py test
 </code></pre>
 
-<h2 id="git">Git</h2>
+<h2 id="610-git">6.10. Git</h2>
 <ul>
 <li>Ahora también es un buen momento para el primer <em>commit</em> de git. </li>
 </ul>
-<pre><code>(testy) $ git init
+<pre><code class="bash">(testy) $ git init
 (testy) $ git status
 (testy) $ git add -A
 (testy) $ git commit -m 'initial commit'
 </code></pre>
 
-<h2 id="conclusion">Conclusión</h2>
+<h2 id="611-conclusion">6.11. Conclusión</h2>
 <ul>
 <li>Se ha construido una aplicación básica de blog desde cero</li>
 <li>Usando el administrador de Django se puede crear, editar o borrar el contenido.</li>

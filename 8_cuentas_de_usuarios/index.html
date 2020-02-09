@@ -91,28 +91,28 @@
     <li class="toctree-l2"><a href="#8-cuentas-de-usuarios">8. Cuentas de Usuarios</a></li>
     
 
-    <li class="toctree-l2"><a href="#71-login">7.1. Login</a></li>
+    <li class="toctree-l2"><a href="#81-login">8.1. Login</a></li>
     
 
-    <li class="toctree-l2"><a href="#actualizado-de-la-homepage">Actualizado de la homepage</a></li>
+    <li class="toctree-l2"><a href="#82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</a></li>
     
 
-    <li class="toctree-l2"><a href="#enlace-para-logout">Enlace para Logout</a></li>
+    <li class="toctree-l2"><a href="#83-enlace-para-logout">8.3. Enlace para Logout</a></li>
     
 
-    <li class="toctree-l2"><a href="#inscripcion">Inscripción</a></li>
+    <li class="toctree-l2"><a href="#84-inscripcion">8.4. Inscripción</a></li>
     
 
-    <li class="toctree-l2"><a href="#git">Git</a></li>
+    <li class="toctree-l2"><a href="#85-git">8.5. Git</a></li>
     
 
-    <li class="toctree-l2"><a href="#configuracion-de-heroku">Configuración de Heroku</a></li>
+    <li class="toctree-l2"><a href="#86-configuracion-de-heroku">8.6. Configuración de Heroku</a></li>
     
 
-    <li class="toctree-l2"><a href="#despliegue-en-heroku">Despliegue en Heroku</a></li>
+    <li class="toctree-l2"><a href="#87-despliegue-en-heroku">8.7. Despliegue en Heroku</a></li>
     
 
-    <li class="toctree-l2"><a href="#conclusion">Conclusión</a></li>
+    <li class="toctree-l2"><a href="#88-conclusion">8.8. Conclusión</a></li>
     
 
     </ul>
@@ -171,7 +171,7 @@
 <li>Nombre</li>
 <li>Apellidos</li>
 </ul>
-<h2 id="71-login">7.1. Login</h2>
+<h2 id="81-login">8.1. Login</h2>
 <ul>
 <li>
 <p>Se usará este objeto usuario para implementar:</p>
@@ -197,9 +197,9 @@
 <li>
 <p>Actualizar el archivo <code>urls.py</code> a nivel de proyecto</p>
 </li>
-<li>Se colocaran las páginas de <em>login</em> y <em>logout</em> en la URL <code>accounts/</code>.
-FICHERO: <code>blog_project/urls.py</code></li>
+<li>Se colocaran las páginas de <em>login</em> y <em>logout</em> en la URL <code>accounts/</code>.</li>
 </ul>
+<p>FICHERO: <code>blog_project/urls.py</code></p>
 <pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 
@@ -239,7 +239,7 @@ FICHERO: <code>settings.py</code></p>
 Navegar ahora a: http://127.0.0.1:8000/accounts/login/</p>
 <p>Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
 Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.</p>
-<h2 id="actualizado-de-la-homepage">Actualizado de la homepage</h2>
+<h2 id="82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</h2>
 <ul>
 <li>Actualizar la plantilla base.html para mostrar un mensaje a los usuarios tanto si están conectados como si no.</li>
 <li>Se puede usar el atributo <code>is_authenticated</code> para esto.</li>
@@ -261,7 +261,7 @@ Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un
 <ul>
 <li>Si el usuario está conectado, se le saludará por su nombre, si no,  se le dará un enlace a la recién creada página de acceso.</li>
 </ul>
-<h2 id="enlace-para-logout">Enlace para Logout</h2>
+<h2 id="83-enlace-para-logout">8.3. Enlace para Logout</h2>
 <ul>
 <li>Se añade un enlace de cierre de sesión que redirija a la página de inicio.</li>
 <li>Gracias al sistema de autentificación de Django, esto es muy sencillo de conseguir.</li>
@@ -285,7 +285,7 @@ Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un
 LOGOUT_REDIRECT_URL = 'home'
 </code></pre>
 
-<h2 id="inscripcion">Inscripción</h2>
+<h2 id="84-inscripcion">8.4. Inscripción</h2>
 <ul>
 <li>Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, <code>UserCreationForm</code>, para facilitar las cosas. </li>
 <li>Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.</li>
@@ -390,7 +390,7 @@ class SignUpView(generic.CreateView):
 <p><center>Inscripción (Signup) -&gt; Inicio de sesión (Login) -&gt; Página de inicio (Homepage)</center>
 - Y por supuesto podemos modificar esto como queramos. La <code>SignupView</code> se redirige a la entrada al sistema (login) porque se establece <code>success_url = reverse_lazy('login')</code>. La página de <em>login</em> se redirige a la <em>homepage</em> porque en el archivo <code>settings.py</code> se establece <code>LOGIN_REDIRECT_URL = 'home'</code>.
 - Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Pero prometo que con el tiempo empezarán a tener más sentido.</p>
-<h2 id="git">Git</h2>
+<h2 id="85-git">8.5. Git</h2>
 <pre><code class="bash">(blog) $ git commit -m 'Añade formulario y cuentas de usuario'
 </code></pre>
 
@@ -399,7 +399,7 @@ class SignUpView(generic.CreateView):
 (blog) $ git push -u origin master
 </code></pre>
 
-<h2 id="configuracion-de-heroku">Configuración de Heroku</h2>
+<h2 id="86-configuracion-de-heroku">8.6. Configuración de Heroku</h2>
 <ul>
 <li>Hay cuatro cambios que hacer para el despliegue en Heroku.</li>
 <li>actualizar <code>Pipfile.lock</code></li>
@@ -435,7 +435,7 @@ python_version = &quot;3.8&quot;
 (blog) $ git push -u origin master
 </code></pre>
 
-<h2 id="despliegue-en-heroku">Despliegue en Heroku</h2>
+<h2 id="87-despliegue-en-heroku">8.7. Despliegue en Heroku</h2>
 <pre><code class="bash">(blog) $ heroku login
 </code></pre>
 
@@ -500,7 +500,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 (blog) $ heroku ps:scale web=1
 </code></pre>
 
-<h2 id="conclusion">Conclusión</h2>
+<h2 id="88-conclusion">8.8. Conclusión</h2>
 <p>Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se ha ocupado de los muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.</p>
               
             </div>
