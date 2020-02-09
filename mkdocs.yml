@@ -8,10 +8,10 @@ nav:
   - 6. Blog App : 6_blog_app.md
   - 7. Formularios : 7_formularios.md
   - 8. Cuentas de Usuarios : 8_cuentas_de_usuarios.md
+  - 9. Modelo de usuario personalizado: 9_modelo_de_usuario_personalizado.md
 theme: readthedocs
 
 plugins:
     - search:
         separator: '[\s\-\.]+'
         lang: es
-

@@ -7,3 +7,4 @@
 #### [Blog app](6_blog_app.md)
 #### [Formularios](7_formularios.md)
 #### [Cuentas de usuarios](8_cuentas_de_usuarios.md)
+#### [Modelo de usuario personalizado](9_modelo_de_usuario_personalizado.md)
