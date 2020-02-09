@@ -1,18 +1,18 @@
-# Blog app
+# 6. Blog app
 
 - Se construirá una aplicación de Blog que permita a los usuarios crear, editar y eliminar posts.
 - La página de inicio listará todos los artículos del blog
 - Habrá una página de detalles dedicada a cada artículo individual.
 - Se introduce CSS para el estilo y se verá cómo funciona Django con los archivos estáticos.
 
-## Configuración inicial
-Nuevo proyecto Django:
-- crear un nuevo directorio para el código en el Escritorio llamado blog
-- instalar Django en un nuevo entorno virtual
-- crear un nuevo proyecto de Django llamado `blog_project`
-- crear un nuevo blog de aplicaciones
-- realizar una migración para configurar la base de datos
-- actualizar `settings.py`
+## 6.1. Configuración inicial
+- Nuevo proyecto Django:
+    - crear un nuevo directorio para el código en el Escritorio llamado blog
+    - instalar Django en un nuevo entorno virtual
+    - crear un nuevo proyecto de Django llamado `blog_project`
+    - crear un nuevo blog de aplicaciones
+    - realizar una migración para configurar la base de datos
+    - actualizar `settings.py`
 
 ```bash
 $ cd ~/Desktop
@@ -39,11 +39,11 @@ FICHERO: `blog_project/settings.py`
 ç       'blog', # new
     ]
 ```
-## Modelos de Bases de Datos
+## 6.2. Modelos de Bases de Datos
 - Se asume que cada *post* tiene un título, un autor y un cuerpo que se convertirán en un modelo de base de datos:
 
 FICHERO: `blog/models.py`
-```
+```python
 from django.db import models
 
 
@@ -73,28 +73,25 @@ class Post(models.Model):
 Base de datos configurada.
 
 
-## Admin
-### Para acceder a los datos:
+## 6.3. Admin
+### 6.3.1. Para acceder a los datos:
 - Crear una cuenta de superusuario
-      ```bash
-  (blog) $ python manage.py createsuperuser
-  Username (leave blank to use 'wsv'): wsv
-  Email:
-  Password:
-  Password (again):
-  Superuser created successfully.
-  
-    ```
-  
-    ```
+```bash
+(blog) $ python manage.py createsuperuser
+Username (leave blank to use 'wsv'): wsv
+Email:
+Password:
+Password (again):
+Superuser created successfully.
 ```
 
 - Arrancar el servidor y abrir http://127.0.0.1:8000/admin/
 - Logear con la nueva cuenta de superusuario
 - !Ups! ¿Dónde esta nuevo modelo Post?
 - Se olvidó actualizar `blog/admin.py`
+
 FICHERO: `blog/admin.py`
-```
+```python
 # blog/admin.py
 from django.contrib import admin
 from .models import Post
@@ -105,12 +102,12 @@ admin.site.register(Post)
 - Refrescar ahora y añadir dos blog post para tener algunos datos de muestra con los que trabajar
     + Añadir un "autor" a cada entrada también, ya que por defecto todos los campos del modelo son obligatorios
 
-## URLs
-​```bash
+## 6.4 URLs
+```bash
 (blog) $ touch blog/urls.py
 ```
 FICHERO:`blog/urls.py`
-```
+```python
 from django.urls import path
 from . import views
 
@@ -120,18 +117,20 @@ urlpatterns = [
 ]
 ```
 FICHERO: `blog_project/urls.py`
-```
+```python
 from django.contrib import admin
 from django.urls import path, include
+
+
 urlpatterns = [
-path('admin/', admin.site.urls),
-path('', include('blog.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
 ]
 ```
 
-## Views
+## 6.5. Views
 FICHERO: `blog/views.py`
-```
+```python
 from django.views.generic import ListView
 from . models import Post
 
@@ -141,15 +140,16 @@ class BlogListView(ListView):
     template_name = 'home.html'
 ```
 
-## Templates
+## 6.6. Templates
 
 ```bash
 (blog) $ mkdir templates
 (blog) $ touch templates/base.html
 (blog) $ touch templates/home.html
 ```
+
 FICHERO: `blog_project/settings.py`
-```
+```python
 TEMPLATES = [
     {
         ...
@@ -197,7 +197,7 @@ FICHERO:  `templates/home.html`
 - Iniciar de nuevo el servidor Django: `python manage.py runserver`
 - Terrible, ¿no?
 
-## Ficheros estáticos
+## 6.7. Ficheros estáticos
 - Un poco de CSS, please
 - En un proyecto Django listo para la producción, normalmente se almacenaría en una [red de distribución de contenidos (CDN, *Content Delivery Network*)](https://es.wikipedia.org/wiki/Red_de_distribuci%C3%B3n_de_contenidos) para un mejor rendimiento, pero para este caso, el almacenamiento de los archivos en local está bien.
 
@@ -208,7 +208,7 @@ FICHERO:  `templates/home.html`
 - Añadir en la parte inferior del archivo, debajo de la entrada para `STATIC_URL`.
 
 FICHERO: `blog_project/settings.py`
-```
+```python
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 ```
 
@@ -222,11 +222,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 FICHERO: `satic/css/base.css`
 ```css
 header h1 a {
-color: red;
+  color: red;
 }
 ```
 - Añadir el fichero estático a la plantilla añadiendo `{% load staticfiles %}` al pricipio de `base.html`
-    + Como las otras plantillas se heredan de `base.html` sólo hay que añadirlo una vez
+    - Como las otras plantillas se heredan de `base.html` sólo hay que añadirlo una vez
 
 FICHERO: `templates/base.html`
 ```html
@@ -289,7 +289,6 @@ header h1 a {
   margin: 0.5rem 0;
 }
 
-
 .post-entry h2 a,
 .post-entry h2 a:visited {
   color: blue;
@@ -306,7 +305,7 @@ header h1 a {
 }
 ```
 
-## Individual blog pages
+## 6.8. Individual blog pages
 - Ahora se puede añadir funcionalidad a las páginas de blog individuales.
 
 - Crear una nueva vista, url y plantilla.
@@ -316,7 +315,7 @@ header h1 a {
   
 
 FICHERO: `blog/views.py`
-```
+```python
 from django.views.generic import ListView, DetailView
 from . models import Post
 
@@ -333,12 +332,12 @@ class BlogDetailView(DetailView):
 - Por defecto `DetailView` proporciona un objeto de contexto que podemos usar en la plantilla llamado `objeto` o el nombre en minúsculas de nuestro modelo, `post`.
 -  Además, `DetailView` espera que se le pase una clave primaria o un *slug* como identificador. Más sobre esto en breve.
 
-```
+```bash
 (blog) $ touch templates/post_detail.html
 ```
 
 FICHERO: `templates/post_detail.html`
-```
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -353,7 +352,7 @@ FICHERO: `templates/post_detail.html`
 - La denominación de los objetos de contexto en vistas genéricas es extremadamente confusa cuando se ve Django por primera vez. Debido a que nuestro objeto de contexto de `DetailView` es o bien el nombre de modelo `post` o bien `object`, podríamos también actualizar nuestro modelo de la siguiente manera y funcionaría exactamente igual.
 
 FICHERO: `templates/post_detail.html`
-```
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -367,7 +366,7 @@ FICHERO: `templates/post_detail.html`
 - Si se encuentra confuso el uso de `post` o de `objeto`, también podemos establecer explícitamente el nombre del objeto del contexto en la vista. Así que si quisiéramos llamarlo `anything_you_want` y luego usarlo en la plantilla, el código tendría el siguiente aspecto y funcionaría igual.
 
 FICHERO: `blog/views.py`
-```
+```python
 ...
 class BlogDetailView(DetailView):
     model = Post
@@ -375,7 +374,7 @@ class BlogDetailView(DetailView):
     context_object_name = 'anything_you_want'
 ```
 FICHERO: `templates/post_detail.html`
-```
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -390,7 +389,7 @@ FICHERO: `templates/post_detail.html`
 - Añadir una nueva URLConf para la vista
 
 FICHERO: `blog/urls.py`
-```
+```python
 from django.urls import path
 
 from . import views
@@ -409,7 +408,7 @@ urlpatterns = [
 - Para facilitar el acceso, se debería actualizar el enlace en la página de inicio para poder acceder directamente a las entradas individuales del blog desde allí. Actualmente en `home.html` el enlace está vacío: `<a href="">` . Actualizarlo a `<a href="{% url 'post_detail' post.pk %}">`.
 
 FICHERO: `templates/home.html`
-```
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -427,9 +426,9 @@ FICHERO: `templates/home.html`
     +  Afortunadamente, Django ya ha creado e incluido este campo `pk` en el objeto `post`.
     +  Se pasa a la `URLConf` añadiéndolo en la plantilla como `post.pk`.
 
-## Tests
+## 6.9. Tests
 FICHERO: `blog/tests.py`
-```
+```python
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
@@ -480,19 +479,19 @@ class BlogTests(TestCase):
 - Luego se usa `test_post_list_view` para confirmar que la página de inicio devuelve un código de estado *HTTP 200*, contiene el texto del cuerpo y usa la plantilla `home.html` correcta.
 - Finalmente `test_post_detail_view` comprueba que la página de detalles funciona como se espera y que una página incorrecta devuelve un *404*.
 - Siempre es bueno probar que algo existe y que algo incorrecto no existe en las pruebas.
-```
+```bash
 (testy) $ python manage.py test
 ```
-## Git
+## 6.10. Git
 - Ahora también es un buen momento para el primer *commit* de git. 
-```
+```bash
 (testy) $ git init
 (testy) $ git status
 (testy) $ git add -A
 (testy) $ git commit -m 'initial commit'
 ```
 
-## Conclusión
+## 6.11. Conclusión
 - Se ha construido una aplicación básica de blog desde cero
 - Usando el administrador de Django se puede crear, editar o borrar el contenido.
 - Se ha usado `DetailView` por primera vez para crear una vista individual detallada de cada entrada del blog.

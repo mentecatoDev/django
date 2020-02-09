@@ -44,12 +44,10 @@ $ pipenv shell
 
 - Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  
 
-<div class=text-center>
- Plantilla –> Vista –> Ruta 
-</div>  
+<center>Plantilla –> Vista –> Ruta</center>  
 
 - Ruta (URL).- Controla la ruta inicial
-- Vista (View).- Contiene la lógica (el qué). En páginas relacionadas  con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué  datos estarán disponibles para la plantilla.
+- Vista (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
 - Plantilla (Template).- Contiene el HTML.
 
 ### 4.3.1 Dónde colocar el directorio de plantillas
@@ -412,7 +410,7 @@ Se puede utilizar el nivel más bajo, `web=1`, que también resulta ser gratuito
 
 Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.
 
-#### 4.13 Conclusión
+## 4.13 Conclusión
 
 - Plantillas
 - Vistas basadas en clases
