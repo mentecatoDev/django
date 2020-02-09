@@ -3,17 +3,17 @@
 - La implementación de una autenticación de usuario adecuada es conocida por su dificultad
 - Afortunadamente Django viene con un poderoso sistema de autenticación de usuarios incorporado.
 - Cada vez que se crea un nuevo proyecto, Django instala por defecto la aplicación de autenticación, que proporciona un objeto de usuario que contiene:
-  
+
   + Nombre de Usuario
   + Contraseña
   + Correo Electrónico
   + Nombre
   + Apellidos
   
-## 7.1. Login
+## 8.1. Login
 
 - Se usará este objeto usuario para implementar:
-  
+
   + El inicio de sesión
   + El cierre de sesión
   + El registro en la aplicación del blog
@@ -26,6 +26,7 @@
 
 - Actualizar el archivo `urls.py` a nivel de proyecto
   + Se colocaran las páginas de *login* y *logout* en la URL `accounts/`.
+
 FICHERO: `blog_project/urls.py`
 ```python
 from django.contrib import admin
@@ -67,7 +68,7 @@ Navegar ahora a: http://127.0.0.1:8000/accounts/login/
 
 Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
 Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.
-## Actualizado de la homepage
+## 8.2. Actualizado de la homepage
 
 - Actualizar la plantilla base.html para mostrar un mensaje a los usuarios tanto si están conectados como si no.
   + Se puede usar el atributo `is_authenticated` para esto.
@@ -88,7 +89,7 @@ FICHERO: `templates/base.html`
 ```
 - Si el usuario está conectado, se le saludará por su nombre, si no,  se le dará un enlace a la recién creada página de acceso.
 
-## Enlace para Logout
+## 8.3. Enlace para Logout
 - Se añade un enlace de cierre de sesión que redirija a la página de inicio.
   + Gracias al sistema de autentificación de Django, esto es muy sencillo de conseguir.
 - En el archivo `base.html` se agrega un enlace de una línea `{% url 'desconexión' %}` para desconectarse.
@@ -111,7 +112,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 ```
 
-## Inscripción
+## 8.4. Inscripción
 - Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, `UserCreationForm`, para facilitar las cosas. 
   + Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.
 - Hay muchas maneras de organizar el código y la estructura de urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, `accounts`, para la página de registro.
@@ -205,7 +206,7 @@ TEMPLATE: `templates/signup.html`
 - Y por supuesto podemos modificar esto como queramos. La `SignupView` se redirige a la entrada al sistema (login) porque se establece `success_url = reverse_lazy('login')`. La página de *login* se redirige a la *homepage* porque en el archivo `settings.py` se establece `LOGIN_REDIRECT_URL = 'home'`.
 - Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Pero prometo que con el tiempo empezarán a tener más sentido.
 
-## Git
+## 8.5. Git
 ```bash
 (blog) $ git commit -m 'Añade formulario y cuentas de usuario'
 ```
@@ -214,7 +215,7 @@ Crear un nuevo repo en GitHub al que puedes llamar como quieras.
 (blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
 (blog) $ git push -u origin master
 ```
-## Configuración de Heroku
+## 8.6. Configuración de Heroku
 - Hay cuatro cambios que hacer para el despliegue en Heroku.
   + actualizar `Pipfile.lock`
   + nuevo `Procfile`
@@ -251,7 +252,7 @@ ALLOWED_HOSTS = ['*']
 (blog) $ git commit -m 'Añade ficheros de configuración Heroku'
 (blog) $ git push -u origin master
 ```
-## Despliegue en Heroku
+## 8.7. Despliegue en Heroku
 ```bash
 (blog) $ heroku login
 ```
@@ -313,5 +314,5 @@ Finalmente podemos subir el código a Heroku y añadir un proceso web para que e
 (blog) $ heroku ps:scale web=1
 ```
 
-## Conclusión
+## 8.8. Conclusión
 Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se ha ocupado de los muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.
