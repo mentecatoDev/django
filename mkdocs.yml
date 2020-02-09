@@ -7,6 +7,7 @@ nav:
   - 5. Message Board app : 5_message_board_app.md
   - 6. Blog App : 6_blog_app.md
   - 7. Formularios : 7_formularios.md
+  - 8. Cuentas de Usuarios : 8_cuentas_de_usuarios.md
 theme: readthedocs
 
 plugins:
