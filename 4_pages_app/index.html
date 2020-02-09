@@ -350,7 +350,7 @@ class AboutPageView(TemplateView):
 <p>Los tags de las plantillas tienen la forma 
 <div align=center>
     <pre>
-        {%&amp;ltcualquier cosa&amp;gt%}
+        {% cualquier_cosa %}
     </pre>
 </div></p>
 </li>
@@ -403,7 +403,18 @@ class AboutPageView(TemplateView):
 <li>Django nos brinda herramientas para escribir y correr tests.</li>
 </ul>
 <p>FICHERO: <code>pages/tests.py</code></p>
-<pre><code class="python">ç pyt
+<pre><code class="python"># pages/tests.py
+from django.test import SimpleTestCase
+
+
+class SimpleTests(SimpleTestCase):
+    def test_home_page_status_code(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_about_page_status_code(self):
+        response = self.client.get('/about/')
+        self.assertEqual(response.status_code,200)
 </code></pre>
 
 <ul>
