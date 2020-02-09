@@ -82,7 +82,7 @@
         
             <li><a class="toctree-l3" href="#46-anadir-una-pagina-acerca-de">4.6 Añadir una página "Acerca de..."</a></li>
         
-            <li><a class="toctree-l3" href="#47-extending-templates">4.7 Extending Templates</a></li>
+            <li><a class="toctree-l3" href="#47-extendiendo-plantillas">4.7 Extendiendo Plantillas</a></li>
         
             <li><a class="toctree-l3" href="#48-tests">4.8 Tests</a></li>
         
@@ -115,6 +115,11 @@
             <li class="toctree-l1">
 		
     <a class="" href="../7_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
 	    </li>
           
         </ul>
@@ -328,7 +333,7 @@ class AboutPageView(TemplateView):
 <ul>
 <li>Lanzar <code>http://localhost:8000/about</code></li>
 </ul>
-<h2 id="47-extending-templates">4.7 Extending Templates</h2>
+<h2 id="47-extendiendo-plantillas">4.7 Extendiendo Plantillas</h2>
 <ul>
 <li>El poder real de las plantillas es la posibilidad de ser extendidas.</li>
 <li>En las mayoría de webs encontramos contenido que se repite en cada página:<ul>
@@ -372,7 +377,7 @@ class AboutPageView(TemplateView):
 <pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
-&lt;h1&gt;Homepage&lt;/h1&gt;
+    &lt;h1&gt;Homepage&lt;/h1&gt;
 {% endblock content %}
 </code></pre>
 
@@ -380,7 +385,7 @@ class AboutPageView(TemplateView):
 <pre><code class="html">{% extends 'base.html' %}
 
 {% block content %}
-&lt;h1&gt;About page&lt;/h1&gt;
+    &lt;h1&gt;About page&lt;/h1&gt;
 {% endblock content %}
 </code></pre>
 
@@ -393,17 +398,7 @@ class AboutPageView(TemplateView):
 <li>Django nos brinda herramientas para escribir y correr tests.</li>
 </ul>
 <p>FICHERO: <code>pages/tests.py</code></p>
-<pre><code class="python">ç from django.test import SimpleTestCase
-
-
-ç class SimpleTests(SimpleTestCase):
-ç     def test_home_page_status_code(self):
-ç         response = self.client.get('/')
-ç         self.assertEqual(response.status_code, 200)
-
-ç     def test_about_page_status_code(self):
-ç         response = self.client.get('/about/')
-ç         self.assertEqual(response.status_code, 200)
+<pre><code class="python">ç pyt
 </code></pre>
 
 <ul>
@@ -492,7 +487,7 @@ Logged in as will@wsvincent.com
 </li>
 </ul>
 <p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
-<pre><code># Pipfile
+<pre><code class="pipfile"># Pipfile
 [requires]
 python_version = &quot;3.8&quot;
 </code></pre>
@@ -508,7 +503,7 @@ A continuación crea un <code>Procfile</code> que es específico para Heroku.</p
 </code></pre>
 
 <p>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</p>
-<pre><code>(pages) $ pipenv install gunicorn
+<pre><code class="bash">(pages) $ pipenv install gunicorn
 </code></pre>
 
 <p>El último paso es un cambio de una línea a <code>settings.py</code>.</p>
@@ -518,7 +513,7 @@ ALLOWED_HOSTS = ['*']
 </code></pre>
 
 <p>El parámetro ALLOWEDHOSTS representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.</p>
-<p>Sin embargo, se ha utilizado el comodín Asterisco "*", que significa que todos los dominios son aceptables para mantener las cosas simples.</p>
+<p>Sin embargo, se ha utilizado el comodín asterisco "*", que significa que todos los dominios son aceptables para mantener las cosas simples.</p>
 <p>En un sitio Django de nivel de producción, se enumeran explícitamente los dominios que están permitidos.</p>
 <p>Usar <code>git status</code> para comprobar nuestros cambios, añadir los nuevos archivos, y luego confirmarlos:</p>
 <pre><code class="bash">(pages) $ git status
@@ -536,8 +531,8 @@ ALLOWED_HOSTS = ['*']
 <li>Visitar la aplicación en la URL proporcionada por Heroku</li>
 </ul>
 <h3 id="crear-una-nueva-aplicacion-de-heroku-desde-la-linea-de-comandos-con-heroku-create">Crear una nueva aplicación de Heroku, desde la línea de comandos con heroku create</h3>
-<pre><code>(pages) $ heroku create
-Creating app... done, cryptic-oasis-40349
+<pre><code class="bash">(pages) $ heroku create
+Creating app... done, 
 https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasis-40349.git
 </code></pre>
 

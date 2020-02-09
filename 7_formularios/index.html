@@ -91,16 +91,21 @@
         
             <li><a class="toctree-l3" href="#72-actualizar-formularios">7.2 Actualizar Formularios</a></li>
         
-            <li><a class="toctree-l3" href="#7-borrar-la-vista">7. Borrar la vista</a></li>
+            <li><a class="toctree-l3" href="#73-borrar-la-vista">7.3 Borrar la vista</a></li>
         
-            <li><a class="toctree-l3" href="#tests">Tests</a></li>
+            <li><a class="toctree-l3" href="#74-tests">7.4 Tests</a></li>
         
-            <li><a class="toctree-l3" href="#7-conclusion">7. Conclusión</a></li>
+            <li><a class="toctree-l3" href="#75-conclusion">7.5 Conclusión</a></li>
         
         </ul>
     
 
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
 	    </li>
           
         </ul>
@@ -136,8 +141,9 @@
             <div class="section">
               
                 <h1 id="7-formularios">7. Formularios</h1>
-<p>In this chapter we’ll continue working on our blog application from Chapter 5 by
-adding forms so a user can create, edit, or delete any of their blog entries.</p>
+<ul>
+<li>Se va a seguir trabajando sobre la aplicación Blog añadiendo Formularios para poder crear, editar o borrar cualquiera de las entradas.</li>
+</ul>
 <h2 id="71-formularios">7.1 Formularios</h2>
 <ul>
 <li>Los formularios son muy comunes y difíciles de implementar correctamente.</li>
@@ -385,7 +391,7 @@ si esa es la primera entrada en el blog.</li>
 </ul>
 <p>-Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.
 - Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.</p>
-<h2 id="7-borrar-la-vista">7. Borrar la vista</h2>
+<h2 id="73-borrar-la-vista">7.3 Borrar la vista</h2>
 <ul>
 <li>El proceso de creación de un formulario para borrar entradas del blog es muy similar al de la actualización de un post.</li>
 <li>Se usará otra vista genérica basada en clases, <code>DeleteView</code>, y se necesita crear una vista, una url y una plantilla para la funcionalidad.</li>
@@ -481,7 +487,7 @@ views.BlogDeleteView.as_view(), name='post_delete'),
 ]
 </code></pre>
 
-<h2 id="tests">Tests</h2>
+<h2 id="74-tests">7.4 Tests</h2>
 <ul>
 <li>Se ha añadido un método <code>get_absolute_url</code> al modelo y nuevas vistas para crear, actualizar y editar entradas. Eso significa que se necesitan cuatro nuevas pruebas:</li>
 <li>def test_get_absolute_url</li>
@@ -566,7 +572,7 @@ class BlogTests(TestCase):
 <li>Finalmente se prueba la vista de borrado confirmando que si eliminamos un post el código de estado es 200 para que sea exitoso.</li>
 <li>Siempre hay más pruebas que pueden ser añadidas, pero esto al menos da cobertura a todas las nuevas funcionalidades.</li>
 </ul>
-<h2 id="7-conclusion">7. Conclusión</h2>
+<h2 id="75-conclusion">7.5 Conclusión</h2>
 <ul>
 <li>En una pequeña cantidad de código se ha construido una aplicación de blog que permite crear, leer, actualizar y borrar entradas de blog. Esta funcionalidad básica se conoce por el acrónimo CRUD: Create-Read-Update-Delete. Aunque hay múltiples maneras de lograr esta misma funcionalidad -se podría haber usado vistas basadas en funciones o haber escrito unas vistas propias basadas en clases- se ha demostrado lo poco de código que se necesita en Django para que esto suceda.</li>
 </ul>
@@ -576,6 +582,8 @@ class BlogTests(TestCase):
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../8_cuentas_de_usuarios/" class="btn btn-neutral float-right" title="8. Cuentas de Usuarios">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../6_blog_app/" class="btn btn-neutral" title="6. Blog App"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -606,6 +614,8 @@ class BlogTests(TestCase):
       
         <span><a href="../6_blog_app/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../8_cuentas_de_usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
