@@ -187,7 +187,7 @@ class AboutPageView(TemplateView):
 - Los tags de las plantillas tienen la forma 
 <div align=center>
 	<pre>
-		{%&ltcualquier cosa&gt%}
+		{% cualquier_cosa %}
 	</pre>
 </div>
 
@@ -240,7 +240,18 @@ FICHERO: `templates/about.html`
  FICHERO: `pages/tests.py`
 
 ``` python
-ç pyt
+# pages/tests.py
+from django.test import SimpleTestCase
+
+
+class SimpleTests(SimpleTestCase):
+    def test_home_page_status_code(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_about_page_status_code(self):
+        response = self.client.get('/about/')
+        self.assertEqual(response.status_code,200)
 ```
 
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 

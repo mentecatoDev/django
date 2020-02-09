@@ -43,8 +43,10 @@ FICHERO: `users/models.py`
 ```python
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+
 class CustomUser(AbstractUser):
-age = models.PositiveIntegerField(default=0)
+    age = models.PositiveIntegerField(default=0)
 ```
 
 ## 9.3. Formularios
@@ -58,7 +60,7 @@ age = models.PositiveIntegerField(default=0)
 (noticias) $ touch users/forms.py
 ```
 FICHERO: `users/forms.py`
-```
+```python
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
@@ -86,7 +88,7 @@ class CustomUserChangeForm(UserChangeForm):
   + Por tanto, entender los formularios y los modelos correctamente lleva algún tiempo.
 - El paso final es actualizar el archivo `admin.py` ya que Admin está estrechamente unido al modelo de Usuario por defecto. Se extenderá la clase existente `UserAdmin` para usar el nuevo modelo de `CustomUser` y los dos nuevos formularios.
 FICHERO: `users/admin.py`
-```
+```python
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
