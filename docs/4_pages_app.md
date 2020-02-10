@@ -21,7 +21,7 @@ $ pipenv install --python 3.8
 $ pipenv install django
 $ pipenv shell
 (pages) $ django-admin startproject pages_project .
-(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startproject pages
+(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startapp pages
 ```
 
  FICHERO: `pages_project/settings.py` 
@@ -59,8 +59,7 @@ $ pipenv shell
 ```text
     └── pages
         ├── templates
-            ├── pages
-                ├── home.html      
+            ├── home.html      
 ```
 
 - **La otra aproximación** es hacer un directorio de plantillas común a todas las apps. 
