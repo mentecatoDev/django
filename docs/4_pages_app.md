@@ -59,7 +59,8 @@ $ pipenv shell
 ```text
     └── pages
         ├── templates
-            ├── home.html      
+            ├── home.html   
+                ├── home.html      
 ```
 
 - **La otra aproximación** es hacer un directorio de plantillas común a todas las apps. 
