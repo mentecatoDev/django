@@ -15,7 +15,7 @@
     - actualizar `settings.py`
 
 ```bash
-$ cd ~/Desktop
+$ cd ~/Desktop 
 $ mkdir blog
 $ cd blog
 $ pipenv install django
@@ -132,7 +132,7 @@ urlpatterns = [
 FICHERO: `blog/views.py`
 ```python
 from django.views.generic import ListView
-from . models import Post
+from .models import Post
 
 
 class BlogListView(ListView):
@@ -169,10 +169,10 @@ FICHERO: `templates/base.html`
     <header>
       <h1><a href="/">Django blog</a></h1>
     </header>
-      <div class="container">
-        {% block content %}
-        {% endblock content %}
-      </div>
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
   </body>
 </html>
 ```
@@ -317,7 +317,7 @@ header h1 a {
 FICHERO: `blog/views.py`
 ```python
 from django.views.generic import ListView, DetailView
-from . models import Post
+from .models import Post
 
 
 class BlogListView(ListView):
