@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>10. Autenticación de Usuarios - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "10. Autenticaci\u00f3n de Usuarios";
+    var mkdocs_page_input_path = "10_autenticacion_de_usuarios.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../9_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">10. Autenticación de Usuarios</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#10-autenticacion-de-usuarios">10. Autenticación de usuarios</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#101-plantillas">10.1. Plantillas</a></li>
+        
+            <li><a class="toctree-l3" href="#urls">URLs</a></li>
+        
+            <li><a class="toctree-l3" href="#admin">Admin</a></li>
+        
+            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>10. Autenticación de Usuarios</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="10-autenticacion-de-usuarios">10. Autenticación de usuarios</h1>
+<h2 id="101-plantillas">10.1. Plantillas</h2>
+<ul>
+<li>Por defecto, el cargador de plantillas de Django busca plantillas en una estructura anidada dentro de cada aplicación. Así que una plantilla <code>home.html</code> en usuarios tendría que estar ubicada en <code>users/templates/users/home.html</code>.</li>
+<li>Pero un enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que eso es lo que se usará.</li>
+</ul>
+<pre><code class="bash">(news) $ mkdir templates
+(news) $ mkdir templates/registration
+</code></pre>
+
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code class="python">TEMPLATES = [
+    {
+    ...
+    'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    ...
+    }
+]
+</code></pre>
+
+<ul>
+<li>Si se piensa en lo que sucede cuando se inicia o cierra sesión en un sitio, se es redirigido inmediatamente a una página subsiguiente. Por tanto, habrá que decirle a Django dónde enviar a los usuarios en cada caso. Las configuraciones <code>LOGIN_REDIRECT_URL</code> y <code>LOGOUT_REDIRECT_URL</code> hacen eso. Se configurará ambos para redirigirlos a la página de inicio, que tendrá el nombre de URL <code>home</code>.</li>
+<li>Recordar que cuando se crean las rutas URL se tiene la opción de añadir un nombre a cada una. Así que cuando se construya la URL de la página de inicio habrá que asegurarse de llamarla <code>home</code>.</li>
+<li>Añadir estas dos líneas en la parte inferior del archivo settings.py.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code class="python">LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+</code></pre>
+
+<p>Ahora se pueden crear cuatro nuevas plantillas:</p>
+<pre><code class="bash">(news) $ touch templates/registration/login.html
+(news) $ touch templates/base.html
+(news) $ touch templates/home.html
+(news) $ touch templates/signup.html
+</code></pre>
+
+<ul>
+<li>Este es el código HTML para cada archivo a utilizar. <code>base.html</code> será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como <code>{% block contente %}</code> se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.</li>
+</ul>
+<p>FICHERO: <code>templates/base.html</code></p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf- &quot;&gt;
+    &lt;title&gt;Newspaper App&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main&gt;
+      {% block content %}
+      {% endblock %}
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>FICHERO: <code>templates/home.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    &lt;p&gt;&lt;a href=&quot;{% url 'logout' %}&quot;&gt;logout&lt;/a&gt;&lt;/p&gt;
+  {% else %}
+    &lt;p&gt;You are not logged in&lt;/p&gt;
+    &lt;a href=&quot;{% url 'login' %}&quot;&gt;login&lt;/a&gt; |
+    &lt;a href=&quot;{% url 'signup' %}&quot;&gt;signup&lt;/a&gt;
+  {% endif %}
+{% endblock %}
+</code></pre>
+
+<p>FICHERO: <code>templates/registration/login.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+&lt;h2&gt;Login&lt;/h2&gt;
+&lt;form method=&quot;post&quot;&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;button type=&quot;submit&quot;&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+{% endblock %}
+</code></pre>
+
+<p>FICHERO: <code>templates/signup.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+&lt;h2&gt;Sign up&lt;/h2&gt;
+&lt;form method=&quot;post&quot;&gt;
+  {% csrf_token %}
+  {{ form.as_p }}
+  &lt;button type=&quot;submit&quot;&gt;Sign up&lt;/button&gt;
+&lt;/form&gt;
+{% endblock %}
+</code></pre>
+
+<h2 id="urls">URLs</h2>
+<ul>
+<li>En el archivo <code>urls.py</code>, a nivel de proyecto, se quiere que la plantilla <code>home.html</code> aparezca como página de inicio. Pero no se quiere construir una app <code>pages</code> dedicada todavía, así que se puede usar el atajo de importar <code>TemplateView</code> y establecer el <code>template_name</code> justo en el patrón url.</li>
+<li>A continuación se quiere "incluir" tanto la app <code>users</code> como la app <code>auth</code>incorporada. La razón es que la app <code>auth</code> incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el registro hay que crear una vista y una url propias. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>users/</code> para que las URLs eventuales sean <code>/users/login</code>, <code>/users/logout</code> y <code>/users/signup</code>.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/urls.py</code></p>
+<pre><code class="python">from django.contrib import admin
+from django.urls import path, include
+from django.views.generic.base import TemplateView
+
+
+urlpatterns = [
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
+]
+</code></pre>
+
+<ul>
+<li>Ahora se crea un archivo <code>urls.py</code> en la app <code>users</code>.</li>
+</ul>
+<pre><code class="bash">(news) $ touch users/urls.py
+</code></pre>
+
+<ul>
+<li>Actualizar a los <code>users/urls.py</code> con el siguiente código:</li>
+</ul>
+<p>FICHERO: <code>users/urls.py</code></p>
+<pre><code class="python">from django.urls import path
+from . import views
+urlpatterns = [
+    path('signup/', views.SignUp.as_view(), name='signup'),
+]
+</code></pre>
+
+<ul>
+<li>El último paso es el archivo <code>views.py</code> que contendrá la lógica del formulario de inscripción. Se usará el <code>CreateView</code> genérico de Django diciéndole que use <code>CustomUserCreationForm</code>, para redirigirse a <code>login</code> una vez que el usuario se registre con éxito, y que la plantilla se llama <code>signup.html</code>.</li>
+</ul>
+<p>FICHERO: <code>users/views.py</code></p>
+<pre><code>from django.urls import reverse_lazy
+from django.views import generic
+from .forms import CustomUserCreationForm
+
+
+class SignUp(generic.CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
+</code></pre>
+
+<ul>
+<li>Arrancar el servidor con python <code>manage.py runserver</code> e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario <code>testuser</code>.</li>
+</ul>
+<p>La página de inicio se desconectó
+Ahora estamos en la página de inicio de la sesión. Adelante, haz clic en el enlace de acceso y usa tus credenciales de superusuario.</p>
+<h2 id="admin">Admin</h2>
+<ul>
+<li>Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta de superusuario.</li>
+<li>Todo está funcionando pero no hay un campo <code>email</code> para el usuario <code>testuser</code>.<ul>
+<li>En  la página de registro users/signup/ se puede ver que sólo se pide un nombre de usuario y una contraseña, ¡no un correo electrónico!</li>
+<li>Así es como funciona la configuración predeterminada de Django pero se puede cambiar fácilmente en <code>users/forms.py</code>.</li>
+</ul>
+</li>
+<li>En pripio tiene este aspecto:</li>
+</ul>
+<p>FICHERO: <code>users/forms.py</code></p>
+<pre><code>from django import forms
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
+
+class CustomUserCreationForm(UserCreationForm):
+
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = UserCreationForm.Meta.fields
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta:
+        model = CustomUser
+        fields = UserChangeForm.Meta.fields
+</code></pre>
+
+<ul>
+<li>Como campos se usan <code>Meta.fields</code> que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como <code>('username', 'email',)</code> . ¡No se necesita incluir el campo <code>password</code> porque es obligatorio! Pero todos los demás campos pueden ser configurados como se quiera.</li>
+</ul>
+<p>FICHERO: <code>users/forms.py</code></p>
+<pre><code class="python">...
+class CustomUserCreationForm(UserCreationForm):
+
+
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ('username', 'email', ) # new
+
+
+    class CustomUserChangeForm(UserChangeForm):
+        class Meta:
+            model = CustomUser
+            fields = ('username', 'email', ) # new
+</code></pre>
+
+<p>Regístrate con una nueva cuenta de usuario. He nombrado a mi testuser con una dirección de correo electrónico de testuser @email.com . Si luego volvemos a la página de administración y nos registramos con nuestra cuenta de superusuario para hacerlo, los tres usuarios son ahora evidentes.
+-El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.</p>
+<h2 id="conclusion">Conclusión</h2>
+<p>Hasta ahora nuestra aplicación <code>Newspaper</code> tiene un modelo de usuario personalizado y funciona con páginas de registro, login y logout aunque no tiene muy buen aspecto. Próximamente se añadirá <strong>Bootstrap</strong> para mejorar para el estilo además de una app de páginas dedicadas.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../11_bootstrap/" class="btn btn-neutral float-right" title="11. Bootstrap">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../9_modelo_de_usuario_personalizado/" class="btn btn-neutral" title="9. Modelo de Usuario Personalizado"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../9_modelo_de_usuario_personalizado/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../11_bootstrap/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>11. Bootstrap - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "11. Bootstrap";
+    var mkdocs_page_input_path = "11_bootstrap.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../9_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">11. Bootstrap</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#11-bootstrap">11. Bootstrap</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#111-pages-app">11.1. Pages app</a></li>
+        
+            <li><a class="toctree-l3" href="#112-pruebas">11.2. Pruebas</a></li>
+        
+            <li><a class="toctree-l3" href="#113-bootstrap">11.3. Bootstrap</a></li>
+        
+            <li><a class="toctree-l3" href="#114-formulario-de-inscripcion">11.4. Formulario de inscripción</a></li>
+        
+            <li><a class="toctree-l3" href="#115-proximos-pasos">11.5. Próximos pasos</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>11. Bootstrap</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="11-bootstrap">11. Bootstrap</h1>
+<ul>
+<li>El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.</li>
+<li>Afortunadamente está <strong>Bootstrap</strong>, el marco de trabajo más popular para construir proyectos <em>responsivos</em> y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.</li>
+<li>Cuando centrarse en la funcionalidad de un proyecto y no en el diseño es lo importante, Bootstrap es una gran elección.</li>
+</ul>
+<h2 id="111-pages-app">11.1. Pages app</h2>
+<ul>
+<li>Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo <code>urls.py</code>. Aunque este enfoque funciona, es una triquiñuela y ciertamente no se escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar podemos y debemos crear una aplicación de páginas dedicadas para todas las páginas estáticas. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando <code>startapp</code> para crear la aplicación <code>pages</code>.</li>
+</ul>
+<pre><code class="bash">(news) $ python manage.py startapp pages
+</code></pre>
+
+<ul>
+<li>Actualizar inmediatamente el archivo <code>settings.py</code>.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code class="python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'users',
+    'pages', # new
+]
+</code></pre>
+
+<ul>
+<li>Ahora se puede actualizar el archivo <code>urls.py</code> a nivel de proyecto. Eliminar el <code>import</code> de <code>TemplateView</code>. También se actualizará la ruta <code>''</code> para incluir las páginas de la aplicación.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/urls.py</code></p>
+<pre><code class="python">from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('pages.urls')),
+    path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
+]
+</code></pre>
+
+<ul>
+<li>Es hora de añadir la página web, lo cual significa hacer el baile estándar de <em>urls/views/templates</em> de Django.</li>
+</ul>
+<pre><code class="bash">(news) $ touch pages/urls.py
+</code></pre>
+
+<ul>
+<li>Luego importar las vistas aún no creadas, establecer las rutas y asegurarse de nombrar cada url, también.</li>
+</ul>
+<p>FICHERO: <code>pages/urls.py</code></p>
+<pre><code class="python">from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.HomePageView.as_view(), name='home'),
+]
+</code></pre>
+
+<ul>
+<li>El código de <code>views.py</code> debería resultar familiar a estas alturas. Se usa la vista genérica basada en clases <code>TemplateView</code> de Django, lo que significa que sólo habrá que especificar el <code>template_name</code> para usarlo.</li>
+</ul>
+<p>FICHERO: <code>pages/views.py</code></p>
+<pre><code class="python">from django.views.generic import TemplateView
+
+
+class HomePageView(TemplateView):
+    template_name = 'home.html'
+</code></pre>
+
+<ul>
+<li>Ya existe una plantilla <code>home.html</code>. Confirmar que sigue funcionando como se esperaba con nuestra la nueva url y vista.</li>
+</ul>
+<h2 id="112-pruebas">11.2. Pruebas</h2>
+<ul>
+<li>Hay dos momentos ideales para añadir pruebas<ul>
+<li>Antes de escribir cualquier código (test-driven-development)</li>
+<li>Inmediatamente después de que hayas añadido una nueva funcionalidad y lo tengas claro en tu mente.</li>
+</ul>
+</li>
+<li>Actualmente nuestro proyecto tiene cuatro páginas:<ul>
+<li>home</li>
+<li>signup</li>
+<li>login</li>
+<li>logout</li>
+</ul>
+</li>
+<li>Sólo se necesita probar las dos primeras. El login y logut son parte de Django y ya tienen cobertura de pruebas.</li>
+</ul>
+<p>FICHERO: <code>pages/tests.py</code></p>
+<pre><code class="python">from django.contrib.auth import get_user_model
+from django.test import SimpleTestCase, TestCase
+from django.urls import reverse
+
+
+class HomePageTests(SimpleTestCase):
+
+    def test_home_page_status_code(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_by_name(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+
+
+class SignupPageTests(TestCase):
+    username = 'newuser'
+    email = 'newuser@email.com'
+
+    def test_signup_page_status_code(self):
+        response = self.client.get('/users/signup/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_by_name(self):
+        response = self.client.get(reverse('signup'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        response = self.client.get(reverse('signup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'signup.html')
+
+    def test_signup_form(self):
+        new_user = get_user_model().objects.create_user(
+            self.username, self.email)
+        self.assertEqual(get_user_model().objects.all().count(), 1)
+        self.assertEqual(get_user_model().objects.all()
+                         [0].username, self.username)
+        self.assertEqual(get_user_model().objects.all()
+                         [0].email, self.email)
+</code></pre>
+
+<ul>
+<li>En la línea superior se usa <code>get_user_model()</code> para referirnos al modelo de usuario personalizado.</li>
+<li>Luego para ambas páginas se prueban tres cosas:</li>
+<li>la página existe y devuelve un código de estado HTTP 200</li>
+<li>la página utiliza el nombre de la url correcta en la vista</li>
+<li>se está utilizando la plantilla adecuada</li>
+<li>La página de registro también tiene un formulario, así que se debería probar eso también.</li>
+<li>
+<p>En el formulario <code>test_signup_form</code> se está verificando que cuando un nombre de usuario y una dirección de correo electrónico son POSTeados (enviados a la base de datos), coinciden con lo que se almacena en el modelo <code>CustomUser</code>.</p>
+</li>
+<li>
+<p>Ejecutar:</p>
+</li>
+</ul>
+<pre><code class="bash">(news) $ python manage.py test
+</code></pre>
+
+<h2 id="113-bootstrap">11.3. Bootstrap</h2>
+<ul>
+<li>Hay dos maneras de añadir Bootstrap a un proyecto:<ul>
+<li>Se pueden descargar todos los archivos y servirlos localmente</li>
+<li>Confiar en una Red de Entrega de Contenido (CDN)</li>
+</ul>
+</li>
+<li>El segundo enfoque es más sencillo de implementar siempre que se tenga una conexión a Internet consistente, así que eso es lo que se usará aquí.</li>
+<li>Bootstrap viene con una plantilla inicial que incluye los archivos básicos necesarios. En particular, hay cuatro que se incorporarán:<ul>
+<li><code>Bootstrap.css</code></li>
+<li><code>jQuery.js</code></li>
+<li><code>Popper.js</code></li>
+<li><code>Bootstrap.js</code></li>
+</ul>
+</li>
+</ul>
+<p>FICHERO: <code>templates/base.html</code></p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+  &lt;!-- Required meta tags --&gt;
+  &lt;meta charset=&quot;utf- &quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+
+  &lt;!-- Bootstrap CSS --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot; integrity=&quot;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&quot; crossorigin=&quot;anonymous&quot;&gt;
+
+    &lt;title&gt;Hello, world!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+
+    &lt;!-- Optional JavaScript --&gt;
+    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.slim.min.js&quot; integrity=&quot;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&quot; integrity=&quot;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&quot; integrity=&quot;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ul>
+<li>Se añade ahora:<ul>
+<li>Una barra de navegación en la parte superior de la página que contiene los enlaces para:<ul>
+<li>la página de inicio</li>
+<li>inicio de sesión</li>
+<li>cierre de sesión</li>
+<li>registro.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>En particular, se pueden usar las etiquetas <code>if/else</code> en el motor de plantillas de Django para añadir algo de lógica básica. Se quiere mostrar un botón de "login" y "signup" a los usuarios que han cerrado la sesión, pero un botón de "logout" y "cambiar contraseña" a los usuarios que han iniciado la sesión.</li>
+</ul>
+<p>FICHERO: <code>templates/base.html</code></p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;!-- Required meta tags --&gt;
+    &lt;meta charset=&quot;utf- &quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale= , shrink-to-fit=no&quot;&gt;
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot; integrity=&quot;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&quot; crossorigin=&quot;anonymous&quot;&gt;
+
+    &lt;title&gt;{% block title %}Newspaper App{% endblock title %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav class=&quot;navbar navbar-expand-md navbar-dark bg-dark mb-4&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;{% url 'home' %}&quot;&gt;Newspaper&lt;/a&gt;
+    &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarCollapse&quot; aria-controls=&quot;navbarCollapse&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+      &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarCollapse&quot;&gt;
+      {% if user.is_authenticated %}
+        &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
+          &lt;li class=&quot;nav-item&quot;&gt;
+            &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;userMenu&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;
+              {{ user.username }}
+            &lt;/a&gt;
+            &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot; aria-labelledby=&quot;userMenu&quot;&gt;
+              &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'password_change' %}&quot;&gt;Change password&lt;/a&gt;
+                &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'logout' %}&quot;&gt;Log out&lt;/a&gt;
+              &lt;/div&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        {% else %}
+          &lt;form class=&quot;form-inline ml-auto&quot;&gt;
+            &lt;a href=&quot;{% url 'login' %}&quot; class=&quot;btn btn-outline-secondary&quot;&gt;Log in&lt;/a&gt;
+            &lt;a href=&quot;{% url 'signup' %}&quot; class=&quot;btn btn-primary ml- &quot;&gt;Sign up&lt;/a&gt;
+          &lt;/form&gt;
+        {% endif %}
+      &lt;/div&gt;
+    &lt;/nav&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      {% block content %}
+      {% endblock %}
+    &lt;/div&gt;
+
+    &lt;!-- Optional JavaScript --&gt;
+    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.slim.min.js&quot; integrity=&quot;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&quot; integrity=&quot;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&quot; integrity=&quot;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<ul>
+<li>Lo único que se ve mal es el botón de "Login". Se puede usar Bootstrap para añadir un estilo agradable, como hacerlo verde y atractivo.</li>
+</ul>
+<p>FICHERO: <code>templates/registration/login.html</code></p>
+<pre><code class="html">...
+  &lt;button class=&quot;btn btn-success ml-2&quot; type=&quot;submit&quot;&gt;Login&lt;/button&gt;
+...
+</code></pre>
+
+<h2 id="114-formulario-de-inscripcion">11.4. Formulario de inscripción</h2>
+<ul>
+<li>¿De dónde vino ese texto? Cuando algo se siente "mágico" en Django, seguro que no lo es.
+El método más rápido para averiguar lo que ocurre bajo el capó de Django es simplemente ir al código fuente de Django en Github, usar la barra de búsqueda e intentar encontrar el trozo de texto específico.</li>
+<li>Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página <code>django/contrib/auth/models.py</code> que se encuentra aquí en la línea 301. El texto viene como parte de la app <code>auth</code>, en el campo de nombre de usuario de <code>AbstractUser</code>.</li>
+<li>Ahora hat tres opciones:</li>
+<li>anular el <code>help_text</code> existente</li>
+<li>ocultar el <code>help_text</code></li>
+<li>reestilar el <code>help_text</code></li>
+<li>Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros <code>django-crispy-forms</code>. Trabajar con formularios es un reto y <code>django-crispy-forms</code> hace más fácil escribir código <em>ÁRIDO</em>.</li>
+</ul>
+<pre><code class="bash">(news) $ pipenv install django-crispy-forms
+</code></pre>
+
+<ul>
+<li>Añadir la nueva aplicación a la lista <code>INSTALLED_APPS</code> en el archivo <code>settings.py</code></li>
+<li>A medida que el número de aplicaciones comienza a crecer, es útil distinguir entre aplicaciones de terceros y aplicaciones locales que se han añadido. </li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code class="python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    #3rd Party
+    'crispy_forms',
+
+    # Local
+    'users',
+    'pages',
+]
+</code></pre>
+
+<ul>
+<li>Ya que se está usando <code>Bootstrap4</code> también se debería añadir esa configuración al archivo <code>settings.py</code>. Esto va en la parte inferior del archivo.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code>CRISPY_TEMPLATE_PACK = 'bootstrap '
+</code></pre>
+
+<ul>
+<li>Ahora en la plantilla de <code>signup.html</code> se puede usar rápidamente formularios crujientes (<em>crispy forms</em>). Primero se cargan las etiquetas <code>crispy_forms_tags</code> en la parte superior y luego se intercambia <code>{{ form.as_p }}</code> por <code>{{ form|crispy }}</code>.</li>
+</ul>
+<p>FICHERO: <code>templates/signup.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+  &lt;h2&gt;Sign up&lt;/h2&gt;
+  &lt;form method=&quot;post&quot;&gt;
+    {% csrf_token %}
+    {{ form|crispy }}
+    &lt;button type=&quot;submit&quot;&gt;Sign up&lt;/button&gt;
+  &lt;/form&gt;
+{% endblock %}
+</code></pre>
+
+<ul>
+<li>Mucho mejor. Aunque, ¿qué tal si nuestro botón de "Registrarse" fuera un poco más atractivo?¿Quizás hacerlo verde? Bootstrap tiene todo tipo de opciones de estilo de botones donde elegir. Se usará el "exitoso" fondo verde con texto blanco.</li>
+</ul>
+<p>FICHERO: <code>templates/signup.html</code></p>
+<pre><code class="html">...
+&lt;button class=&quot;btn btn-success&quot; type=&quot;submit&quot;&gt;Sign up&lt;/button&gt;
+...
+</code></pre>
+
+<h2 id="115-proximos-pasos">11.5. Próximos pasos</h2>
+<ul>
+<li>El último paso del flujo de autentificación de usuarios es configurar el cambio y el restablecimiento de la contraseña. Una vez más Django se ha encargado del trabajo pesado, así que solo se requiere una cantidad mínima de código adicional.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../10_autenticacion_de_usuarios/" class="btn btn-neutral" title="10. Autenticación de Usuarios"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../10_autenticacion_de_usuarios/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

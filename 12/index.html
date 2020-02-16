@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>12 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "12";
+    var mkdocs_page_input_path = "12.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../9_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>12</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter
+: Password Change and Reset
+In this chapter we will complete the authorization flow of our Newspaper app by
+adding password change and reset functionality. Users will be able to change their
+current password or, if they’ve forgotten it, to reset it via email.
+Just as Django comes with built-in views and urls for login and logout, so too it also
+comes with views/urls for both password change and reset. We’ll go through the
+default versions first and then learn how to customize them with our own Bootstrap-
+powered templates and email service.
+Password Change
+Letting users change their passwords is a common feature on many websites. Django
+provides a default implementation that already works at this stage. To try it out
+first click on the “log in” button to make sure you’re logged in. Then navigate to the
+“Password change” page at http://127.0.0.1:8000/users/password_change/.227
+Chapter 11: Password Change and Reset
+Password change
+Enter in both your old password and then a new one. Then click the “Change My
+Password” button.
+You’ll be redirected to the “Password change successful” page located at:
+http://127.0.0.1:8000/users/password_change/done/.
+Password change doneChapter 11: Password Change and Reset
+228
+Customizing password change
+Let’s customize these two password change pages so that they match the look and
+feel of our Newspaper site. Because Django already has created the views and URLs
+for us, we only need to add new templates.
+On the command line create two new template files in the registration folder.
+Command Line
+(news) $ touch templates/registration/password_change_form.html
+(news) $ touch templates/registration/password_change_done.html
+Update password_change_form.html with the following code.
+Code
+<!-- templates/registration/password_change_form.html -->
+{% extends 'base.html' %}
+{% block title %}Password Change{% endblock %}
+{% block content %}
+<h1>Password change</h1>
+<p>Please enter your old password, for security's sake, and then enter your ne\
+w password twice so we can verify you typed it in correctly.</p>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-success" type="submit" value="Change my password">Chapter 11: Password Change and Reset
+229
+</form>
+{% endblock %}
+At the top we extend base.html and set our page title. Because we used “block” titles in
+our base.html file we can override them here. The form uses POST since we’re sending
+data and a csrf_token for security reasons. By using form.as_p we’re simply displaying
+in paragraphs the content of the default password reset form. And finally we include
+a submit button that uses Bootstrap’s btn btn-success styling to make it green.
+Go ahead and refresh the page at http://127.0.0.1:8000/users/password_change/ to
+see our changes.
+New password change form
+Next up is the password_change_done template.Chapter 11: Password Change and Reset
+230
+Code
+<!-- templates/registration/password_change_done.html -->
+{% extends 'base.html' %}
+{% block title %}Password Change Successful{% endblock %}
+{% block content %}
+<h1>Password change successful</h1>
+<p>Your password was changed.</p>
+{% endblock content %}
+It also extends base.html and includes a new title. However there’s no form on the
+page, just new text.
+The new page is at http://127.0.0.1:8000/users/password_change/done/.
+New password change done
+That wasn’t too bad, right? Certainly it was a lot less work than creating everything
+from scratch, especially all the code around securely updating a user’s password.
+Next up is our password reset functionality.Chapter 11: Password Change and Reset
+231
+Password reset
+Password reset handles the common case of users forgetting their passwords. The
+steps are very similar to configuring password change, as we just did. Django already
+provides a default implementation that we will use and then customize the templates
+so it matches the rest of our site.
+The only configuration required is telling Django how to send emails. After all, a user
+can only reset a password if they have access to the email linked to the account. In
+production we’ll use the email service SendGrid to actually send the emails but for
+testing purposes we can rely on Django’s console backend setting which outputs the
+email text to our command line console instead.
+At the bottom of the settings.py file make the following one-line change.
+Code</p>
+<h1 id="newspaper_projectsettingspy">newspaper_project/settings.py</h1>
+<p>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+And we’re all set! Django will take care of all the rest for us. Let’s try it out.
+Navigate to http://127.0.0.1:8000/users/password_reset/ to view the default pass-
+word reset page.Chapter 11: Password Change and Reset
+232
+Default password reset page
+Make sure the email address you enter matches one of your user accounts. Upon
+submission you’ll then be redirected to the password reset done page at:
+http://127.0.0.1:8000/users/password_reset/done/.
+Default password reset done page
+Which says to check our email. Since we’ve told Django to send emails to the command
+line console, the email text will now be there. This is what I see in my console.233
+Chapter 11: Password Change and Reset
+Command Line
+Content-Type: text/plain; charset="utf- "
+MIME-Version:
+.
+Content-Transfer-Encoding:
+bit
+Subject: Password reset on
+. . . :
+From: webmaster@localhost
+To: will@wsvincent.com
+Date: Thu,
+Mar
+:
+Message-ID: &lt;
+.
+:
+-
+.
+@ . . .
+.in-addr.arpa&gt;
+You're receiving this email because you requested a password reset for your user\
+account at
+. . . :
+.
+Please go to the following page and choose a new password:
+http://
+. . . :
+/users/reset/MQ/ up-
+c
+db ead
+/
+Your username, in case you've forgotten: wsv
+Thanks for using our site!
+The
+. . . :
+team
+Your email text should be identical except for three lines:
+• the “To” on the sixth line contains the email address of the user
+• the URL link contains a secure token that Django randomly generates for us and
+can be used only onceChapter 11: Password Change and Reset
+234
+• Django helpfully reminds us of our username
+We will customize all of the email default text shortly but for now focus on finding
+the link provided. In the message above mine is:
+http://127.0.0.1:8000/users/reset/MQ/4up-678712c114db2ead7780/
+Enter this link into your web browser and you’ll be redirected to the “change password
+page”.
+Default change password page
+Now enter in a new password and click on the “Change my password” button. The
+final step is you’ll be redirected to the “Password reset complete” page.Chapter 11: Password Change and Reset
+235
+Default password reset complete
+To confirm everything worked, click on the “Log in” link and use your new password.
+It should work.
+Custom Templates
+As with “Password change” we only need to create new templates to customize the
+look and feel of password reset.
+Create four new template files.
+Command Line
+(news) $ touch templates/registration/password_reset_form.html
+(news) $ touch templates/registration/password_reset_done.html
+(news) $ touch templates/registration/password_reset_confirm.html
+(news) $ touch templates/registration/password_reset_complete.html
+Start with the password reset form which is password_reset_form.html .Chapter 11: Password Change and Reset
+236
+Code
+<!-- templates/registration/password_reset_form.html -->
+{% extends 'base.html' %}
+{% block title %}Forgot Your Password?{% endblock %}
+{% block content %}
+<h1>Forgot your password?</h1>
+<p>Enter your email address below, and we'll email instructions for setting a ne\
+w one.</p>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-success" type="submit" value="Send me instructions!">
+</form>
+{% endblock %}
+At the top we extend base.html and set our page title. Because we used “block” titles in
+our base.html file we can override them here. The form uses POST since we’re sending
+data and a csrf_token for security reasons. By using form.as_p we’re simply displaying
+in paragraphs the content of the default password reset form. Finally we include a
+submit button and use Bootstrap’s btn btn-success styling to make it green.
+If you navigate to http://127.0.0.1:8000/users/password_reset/ and refresh the page
+you can see our new page.237
+Chapter 11: Password Change and Reset
+New password reset
+Now we can update the other three pages. Each takes the same form of extending
+base.html , a new title, new content text, and for “password reset confirm” an updated
+form as well.
+Code
+<!-- templates/registration/password_reset_done.html -->
+{% extends 'base.html' %}
+{% block title %}Email Sent{% endblock %}
+{% block content %}
+<h1>Check your inbox.</h1>
+<p>We've emailed you instructions for setting your password. You should receiv\
+e the email shortly!</p>
+{% endblock %}
+Confirm the changes by going to http://127.0.0.1:8000/users/password_reset/done/.238
+Chapter 11: Password Change and Reset
+New reset done
+Next the password reset confirm page.
+Code
+<!-- templates/registration/password_reset_confirm.html -->
+{% extends 'base.html' %}
+{% block title %}Enter new password{% endblock %}
+{% block content %}
+<h1>Set a new password!</h1>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-success" type="submit" value="Change my password">
+</form>
+{% endblock %}
+In the command line grab the URL link from the email outputted to the console– mine
+was http://
+. . . :
+see the following.
+/users/reset/MQ/ up-
+c
+db ead
+/ –and you’ll239
+Chapter 11: Password Change and Reset
+New set password
+Finally here is the password reset complete code.
+Code
+<!-- templates/registration/password_reset_complete.html -->
+{% extends 'base.html' %}
+{% block title %}Password reset complete{% endblock %}
+{% block content %}
+<h1>Password reset complete</h1>
+<p>Your new password has been set. You can log in now on the <a href="{% url 'lo\
+gin' %}">log in page</a>.</p>
+{% endblock %}
+You can view it at http://127.0.0.1:8000/users/reset/done/.Chapter 11: Password Change and Reset
+240
+New password reset complete
+Users can now reset their account password!
+Conclusion
+In the next chapter we will connect our Newspaper app to the email service SendGrid
+to actually send our automated emails to users as opposed to outputting them in our
+command line console.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

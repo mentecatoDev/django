@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>1. Introducción - Django</title>
+  <title>17 - Django</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "1. Introducci\u00f3n";
-    var mkdocs_page_input_path = "1_introduccion.md";
+    var mkdocs_page_name = "17";
+    var mkdocs_page_input_path = "17.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -48,25 +48,9 @@
 	<ul class="current">
 	  
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">1. Introducción</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#1-introduccion">1 Introducción</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#11-por-que-django-comes-with-the-box-o-batteries-included">1.1 Por qué Django "comes with the box" ó "batteries-included"</a></li>
-        
-            <li><a class="toctree-l3" href="#12-por-que-unos-apuntes">1.2 Por qué unos apuntes</a></li>
-        
-            <li><a class="toctree-l3" href="#13-estructura">1.3 Estructura</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../1_introduccion/">1. Introducción</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -141,7 +125,7 @@
     
       
     
-    <li>1. Introducción</li>
+    <li>17</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -151,99 +135,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="1-introduccion">1 Introducción</h1>
-<ul>
-<li>Aprendizaje basado en proyectos <ul>
-<li>5 Proyectos progresivos</li>
-</ul>
-</li>
-<li>Libre y Open Source</li>
-<li>Lo que hace que Django sea impresionante es su filosofía de "viene en la caja" ó "pilas incluidas" (<em>"comes with the box"</em> ó <em>"batteries-included"</em>). Permite una rápida implementación porque las partes más importantes ya están allí.</li>
-<li>Robusto <ul>
-<li>Instagram, Pinterest (Flask; más personalizable y adecuado para  API's), Bitbucket, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite</li>
-</ul>
-</li>
-<li>Se usará <code>pipenv</code></li>
-</ul>
-<h2 id="11-por-que-django-comes-with-the-box-o-batteries-included">1.1 Por qué Django <em>"comes with the box"</em> ó <em>"batteries-included"</em></h2>
-<ul>
-<li>La mayoría de los sites usan las mismas funcionalidades básicas <ul>
-<li>Autenticación de usuarios</li>
-<li>Conexión a bases de datos</li>
-<li>Rutas</li>
-<li>Contenidos de una página</li>
-<li>Gestión de la seguridad</li>
-<li>Interfaz de administración</li>
-<li>etc.</li>
-</ul>
-</li>
-<li>Hay que centrarse en <strong>nuevas</strong> funcionalidades: no reinventar la rueda.</li>
-<li>Django abraza el "batteries-included" frente a la aproximación "microframework" (Flask). <ul>
-<li>Menos flexible pero también menos tendente al error (Django) frente a más personalizable y simple (Flask).</li>
-</ul>
-</li>
-<li>Es un entorno muy maduro (2005).</li>
-<li>Aprendamos de las mejores prácticas.</li>
-</ul>
-<h2 id="12-por-que-unos-apuntes">1.2 Por qué unos apuntes</h2>
-<ul>
-<li>Django está bien <a href="https://docs.djangoproject.com/es/3.0/">documentado</a> pero es difícil de abordar para el principiante</li>
-<li>Incluso el <a href="https://docs.djangoproject.com/es/3.0/intro/tutorial01/">tutorial básico</a> es notablemente arduo</li>
-<li>El problema viene de que está orientado a la <strong>profundidad</strong> y no a la <strong>facilidad de uso</strong></li>
-<li>Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS</li>
-</ul>
-<h2 id="13-estructura">1.3 Estructura</h2>
-<p>1.Configuración inicial </p>
-<ul>
-<li>Django 3.0</li>
-<li>Python 3.8</li>
-<li>Pipenv</li>
-<li>Visual Studio Codium</li>
-<li>Terminal</li>
-</ul>
-<p>2.Aplicación "Hello World" </p>
-<ul>
-<li>Configuración de un proyecto Django</li>
-<li>Git/GitLab (BitBucker?)</li>
-</ul>
-<p>3.Aplicación "Pages" </p>
-<ul>
-<li>Don't Repeat Yourserlf (DRY)</li>
-<li>Platform as a service (PaaS): Heroku?</li>
-</ul>
-<p>4.Aplicación "Message Board" </p>
-<ul>
-<li>Bases de datos: ORM</li>
-<li>Test</li>
-<li>Bitbucker?</li>
-<li>Heroku?</li>
-</ul>
-<p>5-7.Aplicación "Blog" </p>
-<ul>
-<li>CRUD (Create-Read-Update-Delete)</li>
-<li>log in, log out, sign up</li>
-</ul>
-<p>8.Aplicación "Newspaper" </p>
-<ul>
-<li>Concepto de "Custom user models"</li>
-</ul>
-<p>9.Autenticación de usuarios </p>
-<p>10.Bootstrap </p>
-<p>11-12.Reseteo y cambio de contraseñas vía email </p>
-<p>13-15.Artículos y comentarios para "Newspaper" </p>
-<p>16.Conclusión </p>
-<p>Estamos preparados para empezar a aprender programación </p>
+                <p>Conclusion
+Congratulations on finishing Django for Beginners! After starting from absolute zero
+we’ve now built five different web applications from scratch. And we’ve covered all
+the major features of Django: templates, views, urls, users, models, security, testing,
+and deployment. You now have the knowledge to go off and build your own modern
+websites with Django.
+As with any new skill, it’s important to practice and apply what you’ve just learned.
+The CRUD functionality in our Blog and Newspaper sites is common in many, many
+other web applications. For example, can you make a Todo List web application? You
+already have all the tools you need.
+Web development is a very deep field and there’s still much more to learn about
+what Django has to offer. For example a more advanced Django project would likely
+use multiple settings files, environment variables, and PostgreSQL locally instead
+of SQLite. It might even use third-party packages like django-allauth for social
+authentication, django-debug-toolbar for debugging, and django-extensions for extra
+goodies.
+The best way to learn more about Django and web development in general is to think
+of a project you want to build and then step-by-step learn what you need to complete
+it. An additional resource that may help is DjangoX, which is a real-world starter
+project that features social authentication and more.
+You can also sign up for the Django for Beginners newsletter for periodic updates on
+new content and discounts on future books.
+And a final resource is my own personal website, wsvincent.com, which is regularly
+updated and features articles on some of these advanced techniques already:Conclusion
+302
+• Django Social Authentication
+• Django Login Mega-Tutorial
+• Django, PostgreSQL, and Docker
+• Django Rest Framework Tutorial
+• Django Rest Framework with React
+Django Resources
+To continue learning Django, I recommend working through the following free online
+tutorials:
+• Official Polls Tutorial
+• Django Girls Tutorial
+• MDN: Django Web Framework
+• A Complete Beginner’s Guide to Django
+I also strongly recommend Two Scoops of Django 1.11: Best Practices for the Django
+Web Framework, which is the current best-practices bible for Django developers.
+Python Books
+If you’re new to Python, there are several excellent books available for beginners to
+advanced Pythonistas:
+• Python Crash Course is a fantastic introduction to Python that also walks you
+through three real-world projects, including a Django application.
+• Think Python introduces Python and computer science fundamentals at the
+same time.Conclusion
+303
+• Automate the Boring Stuff is another great guide to learning and using Python
+in real-world settings.
+• The Hitchhiker’s Guide to Python covers best practices in Python programming.
+• Python Tricks demonstrates how to write Pythonic code.
+• Effective Python is an excellent guide not just to Python but programming in
+general.
+• Fluent Python is amazing and provides a deep understanding of the Python
+language.
+Blogs to Follow
+These sites provide regular, high-quality writings on Python and web development.
+• Real Python
+• Dan Bader
+• Trey Hunner
+• Full Stack Python
+• Ned Batchelder
+• Armin Ronacher
+• Kenneth Reitz
+• Daniel Greenfeld
+Feedback
+If you’ve made it through the entire book, I’d love to hear your thoughts. What did you
+like or dislike? What areas were especially difficult? And what new content would you
+like to see? I can be reached at will@wsvincent.com.</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../2_configuracion_inicial/" class="btn btn-neutral float-right" title="2. Configuración Inicial">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-    </div>
   
 
   <hr/>
@@ -267,8 +231,6 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-      
-        <span style="margin-left: 15px"><a href="../2_configuracion_inicial/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
