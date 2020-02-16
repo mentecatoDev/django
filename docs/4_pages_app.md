@@ -45,7 +45,6 @@ $ pipenv shell
 - Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  
 
 <center>Plantilla –> Vista –> Ruta</center>  
-
 - Ruta (URL).- Controla la ruta inicial
 - Vista (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
 - Plantilla (Template).- Contiene el HTML.
@@ -275,8 +274,6 @@ OK
 (pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m 'Commit inicial'
-(pages) $ git remote add origin git@bitbucket.org:wsvincent/pages-app.git
-(pages) $ git push -u origin master
 ```
 
 ## 4.10 Local vs Producción
@@ -298,9 +295,9 @@ OK
 
         [Este paquete](https://aur.archlinux.org/packages/heroku-cli) está mantenido por la comunidad y no por Heroku.
 
-        ```bash
-        $ yay -S heroku-cli
-        ```
+```bash
+$ yay -S heroku-cli
+```
 
 ```bash
 (pages) $ heroku login
@@ -334,7 +331,7 @@ Luego ejecutar `pipenv lock` para generar el archivo `Pipfile.lock` apropiado.
 (pages) $ pipenv lock
 ```
 Heroku busca en `Pipfile.lock` información sobre el entorno virtual.
-A continuación crea un `Procfile` que es específico para Heroku.
+A continuación crear un `Procfile` que es específico para Heroku.
 
 FICHERO: `Procfile`
 ```

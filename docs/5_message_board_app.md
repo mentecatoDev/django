@@ -1,4 +1,4 @@
-# Message Board app
+# 5. Message Board app
 - Aplicación en la que los usuarios pueden publicar y leer mensajes cortos con la ayuda de una base de datos.
 - Se explorará la interfaz de administración incorporada de Django
 - Se agregarán pruebas
@@ -9,7 +9,7 @@
     + No requiere una instalación compleja
     + Es una elección perfecta para proyectos pequeños.
 
-##  Setup Inicial
+##  5.1. Setup Inicial
 - Crear un nuevo directorio para nuestro código en el Escritorio llamado `mb`
 - Instalar Django en un nuevo entorno virtual
 - Crear un nuevo proyecto llamado `mb_project`
@@ -28,7 +28,7 @@ $ pipenv shell
 FICHERO: `mb_project/settings.py`
 ```python
 	# mb_project/settings.py
-	INSTALL_APPS = [
+	INSTALLED_APPS = [
 		'django.contrib.admin',
 		'django.contrib.auth',
 		'django.contrib.contenttypes',
@@ -54,7 +54,7 @@ db.sqlite3 mb_project manage.py
 (mb) $ python manage.py runserver
 ```
 
-## Crear un modelo de base de datos
+## 5.2. Crear un modelo de base de datos
 - Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.
 - Django convertirá este modelo en una tabla de base de datos.
 
@@ -78,7 +78,7 @@ class Post(models.Model):
 ```
 - Se ha creado un nuevo modelo de base de datos llamado `Post` que tiene el campo `text` de tipo `TextField()`.
 
-## Activando modelos
+## 5.3. Activando modelos
 - Una vez creado, el modelo tiene que ser activado
 1. Primero se crea un archivo de migración con el comando `makemigrations` que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.
 2. En segundo lugar, construimos la base de datos actual con `migrate` que ejecuta la función en el archivo de migraciones.
@@ -90,7 +90,7 @@ class Post(models.Model):
 
 	+ Si tenemos dos aplicaciones separadas en nuestro proyecto, se actualizan los modelos en ambos y luego se ejecuta `makemigrations` se genererá un archivo de migraciones que contiene datos sobre **ambas** modificaciones. Esto hace que la depuración sea más difícil en el futuro. Es deseable que cada archivo de migración sea lo más pequeño y aislado posible. De esta forma, si se necesita mirar las migraciones pasadas, sólo hay un cambio por migración en lugar de uno que se aplica a múltiples aplicaciones.
 
-## Django Admin
+## 5.4. Django Admin
 - Django proporciona una robusta interfaz de administración para interactuar con la base de datos (pocos frameworks ofrecen tal cosa).
     + Originado como proyecto en un periódico, los desarrolladores querían un CMS para que los periodistas pudieran escribir y editar sus historias sin tocar "código".
 - Para utilizar el administrador de Django, primero necesitamos crear un superusuario que pueda iniciar sesión.
@@ -107,6 +107,7 @@ Superuser created successfully.
 a http://127.0.0.1:8000/admin/.
 
 - Necesitamos decirle explícitamente a Django qué mostrar en la página de administración.
+
 FICHERO: `post/admin.py`
 ```python
 # posts/admin.py
@@ -136,9 +137,9 @@ class Post(models.Model):
 
 - Es una buena práctica añadir métodos `str()` a todos los modelos para aumentar la legibilidad.
 
-## Views/Templates/URLs
+## 5.5. Views/Templates/URLs
 - Para poder **mostrar** el contenido de la **base de datos** en la web, hay que conectar las **vistas**, las **plantillas** y las **URLConfs**.
-### Vista
+### 5.5.1. Vista
 - Django viene equipado con el `ListView` genérico basado en clases.
 
 FICHERO: `posts/views.py`
@@ -155,9 +156,9 @@ class HomePageView(ListView):
 - Importar `ListView`
 - Definir qué modelo se va a usar
 - En la vista, se deriva la clase `ListView` para especificar el nombre del modelo y la referencia de la plantilla.
-    + Internamente `ListView` devuelve un ojeto llamado `object_list` que hay que mostrar en la plantilla.
+    + Internamente `ListView` devuelve un objeto llamado `object_list` que hay que mostrar en la plantilla.
 
-### Plantilla
+### 5.4.2. Plantilla
 - Crear un directorio en el nivel del proyecto que se llame `templates` y una plantilla `home.html` en él
 ```bash
 (mb) $ mkdir templates
@@ -176,6 +177,7 @@ TEMPLATES = [
 ]
 ```
 - En el archivo `home.html` se puede usar bucle `for` del lenguaje de plantillas de Django para listar todos los objetos en `object_list`.
+
 FICHERO: `templates/home.html`
 ```html
 <!-- templates/home.html -->
@@ -186,7 +188,6 @@ FICHERO: `templates/home.html`
     {% endfor %}
 </ul>
 ```
-### URLConfs
 FICHERO: `mb_project/urls.py`
 ```python
 	# mb_project/urls.py
@@ -208,11 +209,11 @@ FICHERO: `posts/urls.py`
 ```python
 ç	# posts/urls.py
 ç	from django.urls import path
-ç	from . import views
+ç	from .views import HomePageView
 	
 	
 ç	urlpatterns = [
-ç	    path('', views.HomePageView.as_view(), name='home'),
+ç	    path('', HomePageView.as_view(), name='home'),
 ç	]
 ```
 - Reiniciar el servidor que ahora mostrará los post del tablón de mensajes
@@ -223,7 +224,7 @@ FICHERO: `posts/urls.py`
 (mb) $ git add -A
 (mb) $ git commit -m 'Realiza el commit inicial'
 ```
-### Tests
+## 5.6. Tests
 - Se necesita usar `TestCase` dado que ahora tenemos una base de datos y no solo una página estática.
 - Se creará una base de datos con la que se pueden hacer pruebas (no se hacen con la base de datos real).
 - Se empezará añadiendo un mensaje de muestra al campo de la base de datos de texto para luego comprobar que se almacena correctamente.
@@ -329,16 +330,16 @@ Destroying test database for alias 'default'...
 (mb) $ git add -A
 (mb) $ git commit -m 'added tests'
 ```
-## GitHub
+## 5.7. GitHub
 - Subir el proyecto...
-## Heroku configuration
+## 5.8. Heroku configuration
 - Hay que hacer los siguientes cambios al projecto para desplegarlo online:
     + Actualizar `Pipfile.lock`
     + Crear `Procfile`
     + Instalar `gunicorn`
     + Actualizar `settings.py`
 
-### Actualizar `Pipfile.lock`
+### 5.8.1. Actualizar `Pipfile.lock`
 - Especificar la versión de python que se está usando
 FICHERO: `Pipfile`
 ```Pipfile
@@ -350,12 +351,12 @@ Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 ```bash
 (mb) $ pipenv lock
 ```
-### Crear `Procfile`
+### 5.8.2. Crear `Procfile`
 - Le dirá a Heroku *cómo* ejecutar el servidor remoto donde habita el código.
 ```bash
 (mb) $ touch Procfile
 ```
-### Instalar `gunicorn`
+### 5.8.3. Instalar `gunicorn`
 - Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero `mb_project.wsgi` para más instrucciones.
 
 ```
@@ -367,7 +368,7 @@ web: gunicorn mb_project.wsgi --log-file -
 ```
 (mb) $ pipenv install gunicorn
 ```
-### Actualizar `settings.py`
+### 5.8.4. Actualizar `settings.py`
 - Actualizar `ALLOWED_HOSTS` en el archivo `settings.py`.
 FICHERO: mb_project/settings.py
 ```python
@@ -381,7 +382,7 @@ ALLOWED_HOSTS = ['*']
 (mb) $ git commit -m 'New updates for Heroku deployment'
 (mb) $ git push -u origin master
 ```
-## Despliegue en Heroku
+## 5.9. Despliegue en Heroku
 - *Login*
 ```bash
 (mb) $ heroku login
@@ -407,7 +408,7 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 ```
 - Abrir el código con `heroku open` y automáticamente mostrará un navegador con la URL de la aplicación.
 
-## Conclusión
+## 5.10. Conclusión
 - Se ha construido, probado e implementado la primera aplicación básica basada en una base de datos.
 - Faltarían formularios para interactuar con el sitio (el panel de administración no es lo adecuado).
 - Se creará una aplicación de blog con formularios para que los usuarios puedan crear, editar y borrar mensajes.

@@ -29,7 +29,7 @@
 
 ## 2.3 Entornos Virtuales
 
-- Ver: https://mentecatodev.github.io/intermezzo/entornos_virtuales/
+- Ver: [Entornos Virtuales](https://mentecatodev.github.io/intermezzo/entornos_virtuales/)
 
 ## 2.4 Instalación de Django
 
