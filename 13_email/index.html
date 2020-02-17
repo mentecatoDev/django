@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>13. Email - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "13. Email";
+    var mkdocs_page_input_path = "13_email.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../1_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../2_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../3_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../4_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../5_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../6_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../7_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../8_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../9_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">13. Email</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#12-correo-electronico">12. Correo electrónico</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#121-sendgrid">12.1. SendGrid</a></li>
+        
+            <li><a class="toctree-l3" href="#correos-electronicos-personalizados">Correos electrónicos personalizados</a></li>
+        
+            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>13. Email</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="12-correo-electronico">12. Correo electrónico</h1>
+<ul>
+<li>Ahora se quiere que los correos electrónicos se envíen realmente a los usuarios, no sólo a la consola de línea de comandos.</li>
+<li>Se precisa de una <em>SendGrid</em> y actualizar los archivos <code>settings.py</code>. Django se encargará del resto.</li>
+</ul>
+<h2 id="121-sendgrid">12.1. SendGrid</h2>
+<ul>
+<li><em>SendGrid</em> es un servicio popular para el envío de e-mails transaccionales, así que lo usaremos.<ul>
+<li>A Django no le importa el servicio que se elija; se puede usar <em>MailGun</em> o cualquier otro servicio con la misma facilidad.</li>
+</ul>
+</li>
+<li>En la página de inicio de <em>SendGrid</em>, haga clic en el gran botón azul para "See Plans and Pricing".</li>
+<li>En la siguiente página, desplarse ligeramente hacia abajo y buscar en el lado izquierdo el botón "Try for Free". <em>SendGrid</em> proporciona un nivel gratuito que se puede utilizar, aunque lo hace un poco difícil de encontrar.</li>
+<li>Registrarse para obtener su cuenta gratuita en la siguiente página.</li>
+<li>Asegurarse de que la cuenta de correo electrónico que se utiliza para <em>SendGrid</em> no sea la misma cuenta de correo electrónico que tiene para la cuenta de superusuario en el proyecto de Newspaper o pueden suceder errores extraños.</li>
+<li>Luego de confirmar su nueva cuenta a través de un correo electrónico, se pedirá que ingrese y se lo llevará a la página del panel de control de <em>SendGrid</em>.</li>
+<li>Ahora podemos configurar el código Django en el archivo <code>settings.py</code>. Primero se actualizará el backend de correo electrónico para usar SMTP.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+</code></pre>
+
+<ul>
+<li>Luego, justo debajo, agregar las siguientes cinco líneas de configuración de correo electrónico. Tener en cuenta que lo ideal sería almacenar información segura como la contraseña en variables de entorno, pero no estamos aquí para mantener las cosas simples.</li>
+</ul>
+<p>FICHERO: <code>newspaper_project/settings.py</code></p>
+<pre><code class="python">EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sendgrid_username'
+EMAIL_HOST_PASSWORD = 'sendgrid_password'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+</code></pre>
+
+<ul>
+<li>Asegúrarse de usar el nombre de usuario SendGrid para EMAIL_HOST_USER y
+la contraseña de EMAIL_HOST_PASSWORD.</li>
+<li>Eso es todo.</li>
+</ul>
+<h2 id="correos-electronicos-personalizados">Correos electrónicos personalizados</h2>
+<ul>
+<li>Utiliza la barra de búsqueda de Github e introduce algunas palabras del texto del correo electrónico. Si se escribe "You're receiving this email because" se terminará en una página muy concreta de Github.</li>
+<li>El primer resultado es el que queremos. Muestra que el código se encuentra en <code>django/contrib/admin/templates/registration/password_reset_email.html</code>. Eso significa que en la app <code>contrib</code> el archivo que queremos se llama <code>password_reset_email.html</code>.</li>
+</ul>
+<p>Aquí está el texto por defecto del código fuente de Django.</p>
+<pre><code class="html">{% load i18n %}{% autoescape off %}
+{% blocktrans %}You're receiving this email because you requested a password reset for your user account at {{ site_name }}.{% endblocktrans %}
+
+{% trans &quot;Please go to the following page and choose a new password:&quot; %}
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}
+{% trans &quot;Your username, in case you've forgotten:&quot; %} {{ user.get_username }}
+
+{% trans &quot;Thanks for using our site!&quot; %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+
+{% endautoescape %}
+</code></pre>
+
+<ul>
+<li>Para cambiarlo, se necesita crear un nuevo archivo <code>password_reset_email.html</code> en la
+carpeta <code>registration</code>.</li>
+</ul>
+<pre><code class="bash">(news) $ touch templates/registration/password_reset_email.html
+</code></pre>
+
+<ul>
+<li>Usar el siguiente código que ajusta lo que Django proporcionó por defecto.</li>
+</ul>
+<p>FICHERO: <code>templates/registration/password_reset_email.html</code></p>
+<pre><code class="html">{% load i18n %}{% autoescape off %}
+{% trans &quot;Hi&quot; %} {{ user.get_username }},
+
+{% trans &quot;We've received a request to reset your password. If you didn't make this request, you can safely ignore this email. Otherwise, click the button below to reset your password.&quot; %}
+
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}
+{% endautoescape %}
+</code></pre>
+
+<ul>
+<li>Arriba se carga la etiqueta de la plantilla i18n lo que significa que este texto puede ser traducido a varios idiomas. Django tiene un sólido soporte de internacionalización aunque cubrirlo está fuera de nuestro alcance, por ahora.</li>
+<li>Se saluda al usuario por su nombre gracias a <code>user.get_username</code>. Luego se usa el bloque <code>reset_link</code> incorporado para incluir el enlace URL personalizado.</li>
+<li>También se actualiza el título del asunto del correo electrónico. Para ello, se crea un nuevo archivo <code>templates/registration/password_reset_subject.txt</code>.</li>
+</ul>
+<pre><code class="bash">(news) $ touch templates/registration/password_reset_subject.txt
+</code></pre>
+
+<ul>
+<li>Luego agregar la siguiente línea de código al archivo <code>password_reset_subject.txt</code>.</li>
+</ul>
+<pre><code class="text">Please reset your password
+</code></pre>
+
+<h2 id="conclusion">Conclusión</h2>
+<ul>
+<li>Se ha terminado de implementar un flujo de autenticación de usuario completo. Los usuarios pueden ingresar una nueva cuenta, iniciar sesión, cerrar sesión, cambiar contraseña y restablecerla.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../12_cambio_y_restauracion_de_contrasenas/" class="btn btn-neutral" title="12. Cambio y Restauración de Contraseñas"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../12_cambio_y_restauracion_de_contrasenas/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
