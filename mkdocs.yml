@@ -9,8 +9,10 @@ nav:
   - 7. Formularios : 7_formularios.md
   - 8. Cuentas de Usuarios : 8_cuentas_de_usuarios.md
   - 9. Modelo de Usuario Personalizado: 9_modelo_de_usuario_personalizado.md
-  - 10. Autenticación de Usuarios: 10_atenticacion_de_usuarios.md
+  - 10. Autenticación de Usuarios: 10_autenticacion_de_usuarios.md
   - 11. Bootstrap: 11_bootstrap.md
+  - 12. Cambio y Restauración de Contraseñas: 12_cambio_y_restauracion_de_contrasenas.md
+  - 13. Email: 13_email.md
 theme: readthedocs
 
 plugins:

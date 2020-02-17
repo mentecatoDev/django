@@ -104,7 +104,7 @@ FICHERO: `templates/signup.html`
 {% endblock %}
 ```
 
-## URLs
+## 10.2. URLs
 
 - En el archivo `urls.py`, a nivel de proyecto, se quiere que la plantilla `home.html` aparezca como página de inicio. Pero no se quiere construir una app `pages` dedicada todavía, así que se puede usar el atajo de importar `TemplateView` y establecer el `template_name` justo en el patrón url.
 - A continuación se quiere "incluir" tanto la app `users` como la app `auth`incorporada. La razón es que la app `auth` incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el registro hay que crear una vista y una url propias. Para asegurar que las rutas URL sean consistentes se colocarán ambas en `users/` para que las URLs eventuales sean `/users/login`, `/users/logout` y `/users/signup`.
@@ -160,7 +160,7 @@ class SignUp(generic.CreateView):
 La página de inicio se desconectó
 Ahora estamos en la página de inicio de la sesión. Adelante, haz clic en el enlace de acceso y usa tus credenciales de superusuario.
 
-## Admin
+## 10.3. Admin
 - Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta de superusuario.
 - Todo está funcionando pero no hay un campo `email` para el usuario `testuser`.
     - En  la página de registro users/signup/ se puede ver que sólo se pide un nombre de usuario y una contraseña, ¡no un correo electrónico!
@@ -205,9 +205,9 @@ class CustomUserCreationForm(UserCreationForm):
             model = CustomUser
             fields = ('username', 'email', ) # new
 ```
-Regístrate con una nueva cuenta de usuario. He nombrado a mi testuser con una dirección de correo electrónico de testuser @email.com . Si luego volvemos a la página de administración y nos registramos con nuestra cuenta de superusuario para hacerlo, los tres usuarios son ahora evidentes.
+Regístrate con una nueva cuenta de usuario. He nombrado a mi testuser con una dirección de correo electrónico de testuser@email.com . Si luego volvemos a la página de administración y nos registramos con nuestra cuenta de superusuario para hacerlo, los tres usuarios son ahora evidentes.
 -El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.
 
-## Conclusión
+## 10.4. Conclusión
 
 Hasta ahora nuestra aplicación `Newspaper` tiene un modelo de usuario personalizado y funciona con páginas de registro, login y logout aunque no tiene muy buen aspecto. Próximamente se añadirá **Bootstrap** para mejorar para el estilo además de una app de páginas dedicadas.

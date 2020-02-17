@@ -10,3 +10,5 @@
 #### [Modelo de Usuario Personalizado](9_modelo_de_usuario_personalizado.md)
 #### [Autenticación de Usuarios](10_autenticacion_de_usuarios.md)
 #### [Bootstrap](11_bootstrap.md)
+#### [Cambio y Restauración de contraseñas](12_cambio_y_restauracion_de_contrasenas.md)
+#### [Email](13_email.com)
