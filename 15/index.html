@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>15 - Django</title>
+  <title>Permisos y Autorización - Django</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "15";
+    var mkdocs_page_name = "Permisos y Autorizaci\u00f3n";
     var mkdocs_page_input_path = "15.md";
     var mkdocs_page_url = null;
   </script>
@@ -113,6 +113,11 @@
     <a class="" href="../13_email/">13. Email</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -135,7 +140,7 @@
     
       
     
-    <li>15</li>
+    <li>Permisos y Autorización</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -145,31 +150,13 @@
           <div role="main">
             <div class="section">
               
-                <p>Chapter
-: Permissions and
-Authorization
-There are several issues with our current Newspaper website. For one thing we want
-our newspaper to be financially sustainable. With more time we could add a payments
-app to charge for access, but for now we will require a user to log in to view any
-articles. This is known as authorization. It’s common to set different rules around who
-is authorized to view areas of your site. Note that this is different than authentication
-which is the process of registering and logging-in users. Authorization restricts
-access; authentication enables a user signup and login flow.
-As a mature web framework, Django has built-in functionality for authorization that
-we can quickly use. In this chapter we’ll limit access to various pages only to logged-in
-users. We will also add permissions so that only the author of an article can update
-or delete it; right now any user can!
-Improved CreateView
-At present the author on a new article can be set to any user. Instead it should be
-automatically set to the current user. Then we will set permissions on edit/delete
-so that only the author of an article can make such changes. The default CreateView
-provides a lot of functionality for us but in order to set the current user to author we
-will need to customize it. We will remove author from the fields and instead set it
-automatically via the form_valid method.Chapter 14: Permissions and Authorization
-278
-Code</p>
-<h1 id="articlesviewspy">articles/views.py</h1>
-<p>...
+                <h1 id="permisos-y-autorizacion">Permisos y Autorización</h1>
+<p>Hay varios problemas con nuestro actual sitio web del periódico. Por un lado, queremos que nuestro periódico sea financieramente sostenible. Con más tiempo podríamos añadir una aplicación de pago para cobrar por el acceso, pero por ahora requeriremos que un usuario se registre para ver cualquier artículo. Esto se conoce como autorización. Es común establecer diferentes reglas acerca de quién está autorizado para ver áreas de su sitio. Tenga en cuenta que esto es diferente de la autenticación, que es el proceso de registro e inicio de sesión de los usuarios. La autorización restringe el acceso; la autenticación permite el flujo de registro e inicio de sesión de un usuario.
+Como marco web maduro, Django tiene incorporada una funcionalidad de autorización que podemos utilizar rápidamente. En este capítulo limitaremos el acceso a varias páginas sólo a los usuarios que hayan iniciado la sesión. También añadiremos permisos para que sólo el autor de un artículo pueda actualizarlo o borrarlo; ¡ahora cualquier usuario puede hacerlo!
+Mejora de CreateView
+En la actualidad el autor de un nuevo artículo puede ser fijado a cualquier usuario. En cambio, debería ser automáticamente establecido al usuario actual. Entonces estableceremos permisos de edición/borrado para que sólo el autor de un artículo pueda hacer tales cambios. El CreateView por defecto nos proporciona una gran funcionalidad pero para establecer el usuario actual como autor necesitaremos personalizarlo. Eliminaremos el autor de los campos y en su lugar lo estableceremos automáticamente a través del método form_valid.</p>
+<p>FICHERO: <code>articles/views.py</code></p>
+<pre><code>...
 class ArticleCreateView(CreateView):
 model = models.Article
 template_name = 'article_new.html'
@@ -178,75 +165,38 @@ def form_valid(self, form):
 form.instance.author = self.request.user
 return super().form_valid(form)
 ...
-How did I know I could update CreateView like this? The answer is I looked at the
-source code and used Google. Generic class-based views are amazing for starting new
-projects but when you want to customize them, it is necessary roll up your sleeves and
-start to understand what’s going on under the hood. The more you use and customize
-built-in views, the more comfortable you will become making customizations like this.
-Chances are whatever you are trying to do has already been solved somewhere, either
-within Django itself or on a forum like Stack Overflow. Don’t be afraid to ask for help!
-Now reload the browser and try clicking on the “+ New” link in the top nav. It will
-redirect to the updated create page where author is no longer a field. If you create
-a new article and then go into the admin you will see it is automatically set to the
-current logged-in user.Chapter 14: Permissions and Authorization
-279
-New article link
-Authorizations
-There are multiple issues around the lack of authorizations in our current project.
-Obviously we would like to restrict access to only users so we have the option of one
-day charging readers to our newspaper. But beyond that, any random logged-out user
-who knows the correct URL can access any part of the site.
-Consider what would happen if a logged-out user tried to create a new article? To try
-it out, click on your username in the upper right corner of the nav bar, then select
-“Log out” from the dropdown options. The “+ New” link disappears from the nav bar
-but what happens if you go to it directly: http://127.0.0.1:8000/articles/new/?
-The page is still there.Chapter 14: Permissions and Authorization
-Logged out new
-Now try to create a new article with a title and body. Click on the “Save” button.
-Create page error
-280Chapter 14: Permissions and Authorization
-281
-An error. This is because our model expects an author field which is linked to the
-current logged-in user. But since we are not logged in, there’s no author, and therefore
-the submission fails.
+</code></pre>
+
+<p>¿Cómo supe que podía actualizar CreateView de esta manera? La respuesta es que miré el código fuente y usé Google. Las vistas genéricas basadas en clases son increíbles para empezar nuevos proyectos, pero cuando quieres personalizarlas, es necesario arremangarse y empezar a entender lo que pasa bajo el capó. Cuanto más uses y personalices las vistas incorporadas, más cómodo te sentirás haciendo personalizaciones como esta. Lo más probable es que lo que estás intentando hacer ya haya sido resuelto en algún lugar, ya sea dentro de Django mismo o en un foro como Stack Overflow. No tengas miedo de pedir ayuda!
+Ahora recarga el navegador e intenta hacer clic en el enlace "+ Nuevo" en la parte superior de la pantalla. Se redirigirá a la página de creación actualizada donde el autor ya no es un campo. Si creas un nuevo artículo y luego entras en el administrador verás que se establece automáticamente en el usuario actual conectado.
+Enlace a un nuevo artículo
+Autorizaciones
+Hay múltiples problemas en torno a la falta de autorizaciones en nuestro proyecto actual. Obviamente nos gustaría restringir el acceso sólo a los usuarios para tener la opción de cobrar un día a los lectores de nuestro periódico. Pero más allá de eso, cualquier usuario desconectado al azar que conozca la URL correcta puede acceder a cualquier parte del sitio.
+Considere lo que sucedería si un usuario desconectado intentara crear un nuevo artículo. Para probarlo, haga clic en su nombre de usuario en la esquina superior derecha de la barra de navegación, y luego seleccione "Cerrar sesión" en las opciones desplegables. El enlace "+ Nuevo" desaparece de la barra de navegación, pero ¿qué pasa si vas directamente a él: http://127.0.0.1:8000/articles/new/?
+La página sigue ahí.
+Desconexión nueva
+Ahora intenta crear un nuevo artículo con un título y un cuerpo. Haz clic en el botón "Guardar".
+Crear error de página
+Un error. Esto se debe a que nuestro modelo espera un campo de autor que está ligado al usuario actual conectado. Pero como no estamos conectados, no hay autor, y por lo tanto la presentación falla.
 Mixins
-We clearly want to set some authorizations so only logged-in users can access the
-site. To do this we can use a mixin, which is a special kind of multiple inheritance that
-Django uses to avoid duplicate code and allow for customization. For example, the
-built-in generic ListView needs a way to return a template. But so does DetailView and
-in fact almost every other view. Rather than repeat the same code in each big generic
-view, Django breaks out this functionality into a “mixin” known as TemplateRespon-
-seMixin. Both ListView and DetailView use this mixin to render the proper template.
-If you read the Django source code, which is freely available on Github, you’ll see
-mixins used all over the place.
-To restrict view access to only logged in users, Django has a LoginRequired mixin that
-we can use. It’s powerful and extremely concise.
-Within the existing articles/views.py file import it at the top and then add Login-
-RequiredMixin to our ArticleCreateView . Make sure that the mixin is to the left of
-ListView so it will be read first. We want the ListView to already know we intend to
-restrict access.
-And that’s it! We’re done.282
-Chapter 14: Permissions and Authorization
-Code</p>
-<h1 id="articlesviewspy_1">articles/views.py</h1>
-<p>from django.contrib.auth.mixins import LoginRequiredMixin # new
+Claramente queremos establecer algunas autorizaciones para que sólo los usuarios registrados puedan acceder al sitio. Para ello podemos utilizar un mixin, que es un tipo especial de herencia múltiple que Django utiliza para evitar la duplicación de código y permitir la personalización. Por ejemplo, el ListView genérico incorporado necesita una forma de devolver una plantilla. Pero también lo hace DetailView y, de hecho, casi todas las demás vistas. En lugar de repetir el mismo código en cada gran vista genérica, Django descompone esta funcionalidad en una "mezcla" conocida como TemplateResponseMixin. Tanto la Vista Lista como la Vista Detallada usan esta mezcla para mostrar la plantilla adecuada.
+Si lees el código fuente de Django, que está disponible gratuitamente en Github, verás que se utilizan mixins por todas partes.
+Para restringir el acceso a la vista a sólo los usuarios conectados, Django tiene un mixin LoginRequired que podemos utilizar. Es potente y extremadamente conciso.
+Dentro del archivo existente articles/views.py, impórtalo en la parte superior y luego agrega LoginRequiredMixin a nuestro ArticleCreateView . Asegúrate de que el mixin esté a la izquierda de ListView para que sea leído primero. Queremos que el ListView ya sepa que pretendemos restringir el acceso.
+Y eso es todo! Hemos terminado.</p>
+<p>FICHERO: <code>articles/views.py</code></p>
+<pre><code>from django.contrib.auth.mixins import LoginRequiredMixin # new
 ...
 class ArticleCreateView(LoginRequiredMixin, CreateView): # new
 ...
-Now return to the URL for creating new messages at http://127.0.0.1:8000/articles/new/
-and you’ll see the following error:
-Error page
-What’s happening? Django has automatically redirected us to the default location for
-the login page which is at /accounts/login however if you recall, in our project-level
-URLs we are using users/ as our route. That’s why our login page is at users/login .
-So how do we tell our ArticleCreateView about this?
-If you look at the documentation for LoginRequired mixin it tells us the answer. We
-can add a login_url to override the default parameter. We’re using the named URL of
-our login route here login .Chapter 14: Permissions and Authorization
-283
-Code</p>
-<h1 id="articlesviewspy_2">articles/views.py</h1>
-<p>...
+</code></pre>
+
+<p>Ahora regresa a la URL para crear nuevos mensajes en http://127.0.0.1:8000/articles/new/ y verás el siguiente error:
+Página de error
+¿Qué es lo que está pasando? Django nos ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en /cuentas/login, sin embargo, si recuerdas, en nuestros URLs a nivel de proyecto estamos usando usuarios/ como nuestra ruta. Por eso nuestra página de acceso está en users/login. Entonces, ¿cómo le decimos a nuestro ArticleCreateView sobre esto?
+Si miras la documentación de la mezcla LoginRequired nos dice la respuesta. Podemos agregar una ruta de login_url para anular el parámetro por defecto. Estamos usando la URL con nombre de nuestra ruta de acceso aquí login .</p>
+<p>FICHERO: <code>articles/views.py</code></p>
+<pre><code>...
 class ArticleCreateView(LoginRequiredMixin, CreateView):
 model = models.Article
 template_name = 'article_new.html'
@@ -255,17 +205,12 @@ login_url = 'login' # new
 def form_valid(self, form):
 form.instance.author = self.request.user
 return super().form_valid(form)
-Try the link for creating new messages again: http://127.0.0.1:8000/articles/new/.
-It now redirects users to the login page. Just as we desired!
-Updating views
-Now we see that restricting view access is just a matter of adding LoginRequiredMixin
-at the beginning of all existing views and specifying the correct login_url . Let’s update
-the rest of our articles views since we don’t want a user to be able to create, read,
-update, or delete a message if they aren’t logged in.
-The complete views.py file should now look like this:Chapter 14: Permissions and Authorization
-Code</p>
-<h1 id="articlesviewspy_3">articles/views.py</h1>
-<p>from django.contrib.auth.mixins import LoginRequiredMixin
+</code></pre>
+
+<p>Pruebe el enlace para crear nuevos mensajes de nuevo: http://127.0.0.1:8000/articles/new/. Ahora redirige a los usuarios a la página de acceso. Tal como lo deseábamos. Actualizando las vistas Ahora vemos que restringir el acceso a las vistas es sólo cuestión de añadir LoginRequiredMixin al principio de todas las vistas existentes y especificar el login_url correcto. Vamos a actualizar el resto de las vistas de nuestros artículos ya que no queremos que un usuario pueda crear, leer, actualizar o borrar un mensaje si no está conectado.
+El archivo completo views.py debería tener ahora este aspecto:</p>
+<p>FICHERO: <code>articles/views.py</code></p>
+<pre><code>from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -283,8 +228,6 @@ model = models.Article
 fields = ['title', 'body', ]
 template_name = 'article_edit.html'
 login_url = 'login'
-284Chapter 14: Permissions and Authorization
-285
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
 model = models.Article
 template_name = 'article_delete.html'
@@ -298,14 +241,11 @@ login_url = 'login'
 def form_valid(self, form):
 form.instance.author = self.request.user
 return super().form_valid(form)
-Go ahead and play around with the site to confirm that the login redirects now work
-as expected. If you need help recalling what the proper URLs are, log in first and write
-down the URLs for each of the routes for create, edit, delete, and all articles.
-Conclusion
-Our Newspaper app is almost done. We have our articles properly configured, have set
-permissions and authorizations, user authentication is in good shape. The last item is
-to add the ability for fellow logged-in users to leave comments which we’ll cover in
-the next chapter.</p>
+</code></pre>
+
+<p>Adelante, juega con el sitio para confirmar que las redirecciones de acceso ahora funcionan como se esperaba. Si necesitas ayuda para recordar cuáles son las URL adecuadas, inicia sesión primero y escribe las URL de cada una de las rutas para crear, editar, borrar y todos los artículos.</p>
+<h2 id="conclusion">Conclusión</h2>
+<p>Nuestra aplicación para el periódico está casi terminada. Tenemos nuestros artículos correctamente configurados, hemos establecido permisos y autorizaciones, la autentificación de los usuarios está en buen estado. El último punto es añadir la posibilidad de que otros usuarios conectados dejen comentarios que cubriremos en el próximo capítulo.</p>
               
             </div>
           </div>

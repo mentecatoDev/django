@@ -145,6 +145,11 @@
     <a class="" href="../13_email/">13. Email</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -404,14 +409,14 @@ class BlogListView(ListView):
 (blog) $ touch static/css/base.css
 </code></pre>
 
-<p>FICHERO: <code>satic/css/base.css</code></p>
+<p>FICHERO: <code>static/css/base.css</code></p>
 <pre><code class="css">header h1 a {
   color: red;
 }
 </code></pre>
 
 <ul>
-<li>Añadir el fichero estático a la plantilla añadiendo <code>{% load staticfiles %}</code> al pricipio de <code>base.html</code><ul>
+<li>Añadir el fichero estático a la plantilla añadiendo <code>{% load static %}</code> al pricipio de <code>base.html</code><ul>
 <li>Como las otras plantillas se heredan de <code>base.html</code> sólo hay que añadirlo una vez</li>
 </ul>
 </li>
@@ -652,7 +657,7 @@ class BlogTests(TestCase):
     def test_string_representation(self):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
-
+    t
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
         self.assertEqual(f'{self.post.author}', 'testuser')

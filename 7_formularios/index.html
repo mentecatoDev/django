@@ -133,6 +133,11 @@
     <a class="" href="../13_email/">13. Email</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -187,7 +192,7 @@
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">{% load staticfiles %}
+<pre><code class="html">{% load static %}
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Django blog&lt;/title&gt;
@@ -225,8 +230,7 @@ urlpatterns = [
 
 <ul>
 <li>La url empezará con <code>post/new/</code>, la vista se llama <code>BlogCreateView</code>, y la url se llamará <code>post_new</code>.</li>
-<li>Crear la vista importando una nueva clase genérica llamada <code>CreateView</code> y luego
-heredarla para crear una nueva vista llamada <code>BlogCreateView</code>.</li>
+<li>Crear la vista importando una nueva clase genérica llamada <code>CreateView</code> y luego heredarla para crear una nueva vista llamada <code>BlogCreateView</code>.</li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
 <pre><code class="python">from django.views.generic import ListView, DetailView
@@ -286,7 +290,7 @@ class BlogCreateView(CreateView):
 <li>¡Ups! ¿Qué ha pasado?</li>
 <li>El mensaje de error de Django se queja de que no se especificó dónde enviar al usuario después de haber enviado el formulario con éxito.</li>
 <li>Se enviará al usuario a la página de detalles después de haber tenido éxito; así se podrá ver el mensaje completo.</li>
-<li>Se puede seguir la sugerencia de Django y añadir un <code>get_absolute_url</code> al modelo. Esta es una buena práctica que siempre se debe hacer. Establece una URL canónica para un objeto, de modo que aunque la estructura de las URL cambie en el futuro, la referencia al objeto específico es la misma.</li>
+<li>Se puede seguir la sugerencia de Django y añadir un <code>get_absolute_url</code> al modelo. Esta es una buena práctica que siempre se debe hacer. Establecer una URL canónica para un objeto, de modo que aunque la estructura de las URL cambie en el futuro, la referencia al objeto específico sea la misma.</li>
 <li>En resumen, se debería añadir un método <code>get_absolute_url()</code> y <code>__str__()</code> a cada modelo que se escriba.</li>
 </ul>
 <p>FICHERO: <code>blog/models.py</code></p>
@@ -326,6 +330,9 @@ class BlogCreateView(CreateView):
 <ul>
 <li>Para empezar, se añade un nuevo enlace a <code>post_detail.html</code> para que la opción de editar una entrada de blog aparezca en una página de blog individual.</li>
 </ul>
+<blockquote>
+<p>Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema previo, se tendrá el contexto <code>anything_you_want</code> que habrá que eliminar para volver a usar los habituales <code>object</code>y <code>post</code>.</p>
+</blockquote>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
 <pre><code class="html">{% extends 'base.html' %}
 
@@ -343,9 +350,6 @@ class BlogCreateView(CreateView):
 <li>Se ha  añadido un enlace usando <code>&lt;a href&gt;...&lt;/a&gt;</code> y la etiqueta del motor de plantillas de Django <code>{% url... %}</code>. Dentro de ella se ha especificado el nombre del objetivo de la url, que se llamará <code>post_edit</code>, y también se ha pasado el parámetro necesario, que es la clave principal del post <code>post.pk</code>.</li>
 <li>A continuación se crea la plantilla para la página de edición llamada <code>post_edit.html</code>.</li>
 </ul>
-<pre><code class="bash">(blog) $ touch templates/post_edit.html
-</code></pre>
-
 <p>FICHERO: <code>templates/post_edit.html</code></p>
 <pre><code class="python">{% extends 'base.html' %}
 
@@ -360,7 +364,7 @@ class BlogCreateView(CreateView):
 
 <ul>
 <li>De nuevo se usan las etiquetas HTML <code>&lt;form&gt;&lt;/form&gt;</code>, el <code>csrf_token</code> de Django por seguridad, el <code>form.as_p</code> para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón <em>submit</em>.</li>
-<li>Ahora a nuestra vista. Necesitamos importar UpdateView en la segunda línea superior y luego subclasificarla en nuestra nueva vista BlogUpdateView .
+<li>Ahora a nuestra vista. Necesitamos importar <code>UpdateView</code> en la segunda línea superior y luego heredarla en nuestra nueva vista <code>BlogUpdateView</code>.
 FICHERO: <code>blog/views.py</code></li>
 </ul>
 <pre><code class="python">from django.views.generic import ListView, DetailView
@@ -412,10 +416,14 @@ urlpatterns = [
 <li>Si se hace clic en <em>"+ Edit Blog Post"</em> se redirigirá a http://127.0.0.1:8000/post/1/edit/
 si esa es la primera entrada en el blog.</li>
 <li>Tengase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.</li>
-<li>Vamos a hacer un cambio...</li>
+<li>
+<p>Vamos a hacer un cambio...</p>
+</li>
+<li>
+<p>Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.</p>
+</li>
+<li>Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.</li>
 </ul>
-<p>-Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.
-- Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.</p>
 <h2 id="73-borrar-la-vista">7.3 Borrar la vista</h2>
 <ul>
 <li>El proceso de creación de un formulario para borrar entradas del blog es muy similar al de la actualización de un post.</li>
@@ -439,9 +447,6 @@ si esa es la primera entrada en el blog.</li>
 <ul>
 <li>A continuación, se crea un nuevo archivo para la plantilla de la página de borrado.</li>
 </ul>
-<pre><code class="bash">(blog) $ touch templates/post_delete.html
-</code></pre>
-
 <p>FICHERO: <code>templates/post_delete.html</code></p>
 <pre><code>{% extends 'base.html' %}
 
@@ -494,9 +499,12 @@ class BlogDeleteView(DeleteView):
 </code></pre>
 
 <ul>
-<li>Se usa <code>reverse_lazy</code> en vez de sólo <code>reverse</code> para que no ejecute la redirección URL
-hasta que la vista haya terminado de borrar la entrada del blog.</li>
-<li>Finalmente agregar una url importando la vista <code>BlogDeleteView</code> y agregando un nuevo patrón:</li>
+<li>
+<p>Se usa <code>reverse_lazy</code> en vez de sólo <code>reverse</code> para que no ejecute la redirección URL hasta que la vista haya terminado de borrar la entrada del blog.</p>
+</li>
+<li>
+<p>Finalmente agregar una url importando la vista <code>BlogDeleteView</code> y agregando un nuevo patrón:</p>
+</li>
 </ul>
 <p>FICHERO: <code>blog/urls.py</code></p>
 <pre><code class="python">from django.urls import path
@@ -529,14 +537,12 @@ from .models import Post
 
 class BlogTests(TestCase):
 
-
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='testuser',
             email='test@email.com',
             password='secret'
         )
-
         self.post = Post.objects.create(
             title='A good title',
             body='Nice body content',
@@ -546,9 +552,6 @@ class BlogTests(TestCase):
     def test_string_representation(self):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
-
-    def test_get_absolute_url(self):
-        self.assertEquals(self.post.get_absolute_url(), '/post/1/')
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
@@ -568,6 +571,9 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
+
+    def test_get_absolute_url(self):
+        self.assertEquals(self.post.get_absolute_url(), '/post/1/')
 
     def test_post_create_view(self):
         response = self.client.post(reverse('post_new'), {
