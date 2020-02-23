@@ -90,29 +90,25 @@
             
     <li class="toctree-l2"><a href="#8-cuentas-de-usuarios">8. Cuentas de Usuarios</a></li>
     
-
-    <li class="toctree-l2"><a href="#81-login">8.1. Login</a></li>
-    
-
-    <li class="toctree-l2"><a href="#82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</a></li>
-    
-
-    <li class="toctree-l2"><a href="#83-enlace-para-logout">8.3. Enlace para Logout</a></li>
-    
-
-    <li class="toctree-l2"><a href="#84-inscripcion">8.4. Inscripción</a></li>
-    
-
-    <li class="toctree-l2"><a href="#85-git">8.5. Git</a></li>
-    
-
-    <li class="toctree-l2"><a href="#86-configuracion-de-heroku">8.6. Configuración de Heroku</a></li>
-    
-
-    <li class="toctree-l2"><a href="#87-despliegue-en-heroku">8.7. Despliegue en Heroku</a></li>
-    
-
-    <li class="toctree-l2"><a href="#88-conclusion">8.8. Conclusión</a></li>
+        <ul>
+        
+            <li><a class="toctree-l3" href="#81-login">8.1. Login</a></li>
+        
+            <li><a class="toctree-l3" href="#82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</a></li>
+        
+            <li><a class="toctree-l3" href="#83-enlace-para-logout">8.3. Enlace para Logout</a></li>
+        
+            <li><a class="toctree-l3" href="#84-inscripcion">8.4. Inscripción</a></li>
+        
+            <li><a class="toctree-l3" href="#85-git">8.5. Git</a></li>
+        
+            <li><a class="toctree-l3" href="#86-configuracion-de-heroku">8.6. Configuración de Heroku</a></li>
+        
+            <li><a class="toctree-l3" href="#87-despliegue-en-heroku">8.7. Despliegue en Heroku</a></li>
+        
+            <li><a class="toctree-l3" href="#88-conclusion">8.8. Conclusión</a></li>
+        
+        </ul>
     
 
     </ul>
@@ -148,6 +144,16 @@
     <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -180,7 +186,7 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="8-cuentas-de-usuarios">8. Cuentas de Usuarios</h2>
+                <h1 id="8-cuentas-de-usuarios">8. Cuentas de Usuarios</h1>
 <ul>
 <li>La mayoría de las aplicaciones web cuentan con una importante pieza: la <strong>autenticación del usuario</strong>.</li>
 <li>La implementación de una autenticación de usuario adecuada es conocida por su dificultad</li>
@@ -236,7 +242,9 @@ urlpatterns = [
 ]
 </code></pre>
 
-<p>Como se indica en la documentación de <code>LoginView</code>, por defecto Django buscará dentro de una carpeta de plantillas llamada <code>registration</code> un archivo llamado <code>login.html</code> para un formulario de inicio de sesión. Así que tenemos que crear un nuevo directorio llamado <code>registration</code> y el archivo requerido dentro de él.</p>
+<ul>
+<li>Como se indica en la documentación de <code>LoginView</code>, por defecto Django buscará dentro de una carpeta de plantillas llamada <code>registration</code> un archivo llamado <code>login.html</code> para un formulario de inicio de sesión. Así que tenemos que crear un nuevo directorio llamado <code>registration</code> y el archivo requerido dentro de él.</li>
+</ul>
 <pre><code class="bash">(blog) $ mkdir templates/registration
 (blog) $ touch templates/registration/login.html
 </code></pre>
@@ -254,24 +262,32 @@ urlpatterns = [
 {% endblock content %}
 </code></pre>
 
-<p>Se usan las etiquetas HTML <form></form> y se especifica el método POST ya que se están enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade <code>{% csrf_token %}</code> por motivos de seguridad, es decir, para evitar un ataque XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a <code>{{ form.as_p }}</code> y luego se añade un botón de "enviar".
-En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración <code>LOGIN_REDIRECT_URL</code>. En la parte inferior del archivo <code>settings.py</code> agregar:
-FICHERO: <code>settings.py</code></p>
+<ul>
+<li>Se usan las etiquetas HTML <form></form> y se especifica el método POST ya que se están enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade <code>{% csrf_token %}</code> por motivos de seguridad, es decir, para evitar un ataque XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a <code>{{ form.as_p }}</code> y luego se añade un botón de "enviar".</li>
+<li>En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración <code>LOGIN_REDIRECT_URL</code>. En la parte inferior del archivo <code>settings.py</code> agregar:
+  FICHERO: <code>settings.py</code></li>
+</ul>
 <pre><code>LOGIN_REDIRECT_URL = 'home'
 </code></pre>
 
+<ul>
+<li>
 <p>Ahora el usuario será redirigido a la plantilla <code>home</code> que es la página de inicio.
-Navegar ahora a: http://127.0.0.1:8000/accounts/login/</p>
-<p>Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
-Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.</p>
+  Navegar ahora a: http://127.0.0.1:8000/accounts/login/</p>
+</li>
+<li>
+<p>Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.</p>
+</li>
+<li>Nótese que no se ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.</li>
+</ul>
 <h2 id="82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</h2>
 <ul>
-<li>Actualizar la plantilla base.html para mostrar un mensaje a los usuarios tanto si están conectados como si no.</li>
+<li>Actualizar la plantilla <code>base.html</code> para mostrar un mensaje a los usuarios tanto si están conectados como si no.</li>
 <li>Se puede usar el atributo <code>is_authenticated</code> para esto.</li>
-<li>Por ahora, se pondrá este código en una posición prominente. Más adelante se le pordrá dar un estilo más apropiado.</li>
+<li>Por ahora, se pondrá este código en una posición preeminente. Más adelante se le podrá dar un estilo más apropiado.</li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code>...
+<pre><code class="html">...
 &lt;/header&gt;
 {% if user.is_authenticated %}
   &lt;p&gt;Hi {{ user.username }}!&lt;/p&gt;
@@ -290,7 +306,7 @@ Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un
 <ul>
 <li>Se añade un enlace de cierre de sesión que redirija a la página de inicio.</li>
 <li>Gracias al sistema de autentificación de Django, esto es muy sencillo de conseguir.</li>
-<li>En el archivo <code>base.html</code> se agrega un enlace de una línea <code>{% url 'desconexión' %}</code> para desconectarse.</li>
+<li>En el archivo <code>base.html</code> se agrega un enlace de una línea <code>{% url 'logout' %}</code> para desconectarse.</li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code>...
@@ -302,7 +318,7 @@ Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un
 </code></pre>
 
 <ul>
-<li>Eso es todo lo que se necesita hacer ya que la <code>view</code> necesaria proporciona aplicación de autentificación <code>auth</code>. Aún se necesita especificar dónde redirigir al usuario al cerrar la sesión.</li>
+<li>Eso es todo lo que se necesita hacer ya que la vista necesaria proporciona una app de autenticación <code>auth</code>. Aún se necesita especificar dónde redirigir al usuario al cerrar la sesión.</li>
 <li>Actualizar <code>settings.py</code> para proporcionar un enlace de redireccionamiento que se llama, apropiadamente, <code>LOGOUT_REDIRECT_URL</code>. Podemos añadirlo justo al lado de nuestra redirección de inicio de sesión, de manera que la parte inferior del archivo tenga el siguiente aspecto:</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
@@ -339,7 +355,7 @@ FICHERO: <code>blog_project/settings.py</code></li>
 <li>A continuación añadimos una url a nivel de proyecto que apunta a esta nueva aplicación directamente debajo de donde incluimos la aplicación de autorización incorporada.
 FICHERO: <code>blog_project/urls.py</code></li>
 </ul>
-<pre><code>from django.contrib import admin
+<pre><code class="python">from django.contrib import admin
 from django.urls import path, include
 
 
@@ -358,7 +374,7 @@ urlpatterns = [
 </code></pre>
 
 <p>And add the following code:
-FICHERO: <code>acounts/urls.py</code></p>
+FICHERO: <code>accounts/urls.py</code></p>
 <pre><code class="python">from django.urls import path
 from . import views
 
@@ -416,7 +432,7 @@ class SignUpView(generic.CreateView):
 - Y por supuesto podemos modificar esto como queramos. La <code>SignupView</code> se redirige a la entrada al sistema (login) porque se establece <code>success_url = reverse_lazy('login')</code>. La página de <em>login</em> se redirige a la <em>homepage</em> porque en el archivo <code>settings.py</code> se establece <code>LOGIN_REDIRECT_URL = 'home'</code>.
 - Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Pero prometo que con el tiempo empezarán a tener más sentido.</p>
 <h2 id="85-git">8.5. Git</h2>
-<pre><code class="bash">(blog) $ git commit -m 'Añade formulario y cuentas de usuario'
+<pre><code class="bash">(blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 </code></pre>
 
 <p>Crear un nuevo repo en GitHub al que puedes llamar como quieras.</p>
@@ -443,7 +459,7 @@ python_version = &quot;3.8&quot;
 <pre><code class="bash">(blog) $ touch Procfile
 </code></pre>
 
-<p>FICHERO: <code>procfile</code></p>
+<p>FICHERO: <code>Procfile</code></p>
 <pre><code>web: gunicorn blog_project.wsgi --log-file -
 </code></pre>
 

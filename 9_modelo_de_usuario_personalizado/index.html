@@ -138,6 +138,16 @@
     <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
         </ul>
       </div>
       &nbsp;
@@ -210,7 +220,7 @@ $ pipenv shell
     'users', # new
 ]
 ...
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser' # new
 </code></pre>
 
 <p>FICHERO: <code>users/models.py</code></p>
@@ -227,8 +237,7 @@ class CustomUser(AbstractUser):
 <li>Hay dos formas de interactuar con el nuevo modelo de Usuario Personalizado</li>
 <li>Cuando un usuario se registra para una nueva cuenta en nuestro sitio web</li>
 <li>Dentro de la aplicación de administración que permite, como superusuarios, modificar los usuarios existentes.</li>
-<li>Así que hay que actualizar los dos formularios incorporados para esta funcionalidad:
-<code>UserCreationFrom</code> y <code>UserChangeform</code>.</li>
+<li>Así que hay que actualizar los dos formularios incorporados para esta funcionalidad: <code>UserCreationForm</code> y <code>UserChangeForm</code>.</li>
 </ul>
 <pre><code>(noticias) $ touch users/forms.py
 </code></pre>
