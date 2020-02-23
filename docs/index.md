@@ -12,3 +12,6 @@
 #### [Bootstrap](11_bootstrap.md)
 #### [Cambio y Restauración de contraseñas](12_cambio_y_restauracion_de_contrasenas.md)
 #### [Email](13_email.com)
+#### [Newspaper app](14_newspaper_app.md)
+#### [Permisos y Autorización](15_permisos_y_autorizacion.md)
+#### [Comentarios](16_comentarios.md)

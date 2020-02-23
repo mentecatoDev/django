@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'users', # new
 ]
 ...
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser' # new
 ```
 
 FICHERO: `users/models.py`
@@ -53,8 +53,7 @@ class CustomUser(AbstractUser):
 - Hay dos formas de interactuar con el nuevo modelo de Usuario Personalizado
   + Cuando un usuario se registra para una nueva cuenta en nuestro sitio web
   + Dentro de la aplicación de administración que permite, como superusuarios, modificar los usuarios existentes.
-- Así que hay que actualizar los dos formularios incorporados para esta funcionalidad:
-`UserCreationFrom` y `UserChangeform`.
+- Así que hay que actualizar los dos formularios incorporados para esta funcionalidad: `UserCreationForm` y `UserChangeForm`.
 
 ```
 (noticias) $ touch users/forms.py

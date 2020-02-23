@@ -219,13 +219,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 (blog) $ touch static/css/base.css
 ```
 
-FICHERO: `satic/css/base.css`
+FICHERO: `static/css/base.css`
 ```css
 header h1 a {
   color: red;
 }
 ```
-- Añadir el fichero estático a la plantilla añadiendo `{% load staticfiles %}` al pricipio de `base.html`
+- Añadir el fichero estático a la plantilla añadiendo `{% load static %}` al pricipio de `base.html`
     - Como las otras plantillas se heredan de `base.html` sólo hay que añadirlo una vez
 
 FICHERO: `templates/base.html`
@@ -452,7 +452,7 @@ class BlogTests(TestCase):
     def test_string_representation(self):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
-    
+    t
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
         self.assertEqual(f'{self.post.author}', 'testuser')

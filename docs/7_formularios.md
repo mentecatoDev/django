@@ -16,7 +16,7 @@
 
 FICHERO: `templates/base.html`
 ```html
-{% load staticfiles %}
+{% load static %}
 <html>
   <head>
     <title>Django blog</title>
@@ -53,8 +53,7 @@ urlpatterns = [
 ]
 ```
 - La url empezará con `post/new/`, la vista se llama `BlogCreateView`, y la url se llamará `post_new`.
-- Crear la vista importando una nueva clase genérica llamada `CreateView` y luego
-heredarla para crear una nueva vista llamada `BlogCreateView`.
+- Crear la vista importando una nueva clase genérica llamada `CreateView` y luego heredarla para crear una nueva vista llamada `BlogCreateView`.
 
 FICHERO: `blog/views.py`
 ```python
@@ -109,7 +108,7 @@ FICHERO: `templates/post_new.html`
 - ¡Ups! ¿Qué ha pasado?
   + El mensaje de error de Django se queja de que no se especificó dónde enviar al usuario después de haber enviado el formulario con éxito.
   + Se enviará al usuario a la página de detalles después de haber tenido éxito; así se podrá ver el mensaje completo.
-  + Se puede seguir la sugerencia de Django y añadir un `get_absolute_url` al modelo. Esta es una buena práctica que siempre se debe hacer. Establece una URL canónica para un objeto, de modo que aunque la estructura de las URL cambie en el futuro, la referencia al objeto específico es la misma.
+  + Se puede seguir la sugerencia de Django y añadir un `get_absolute_url` al modelo. Esta es una buena práctica que siempre se debe hacer. Establecer una URL canónica para un objeto, de modo que aunque la estructura de las URL cambie en el futuro, la referencia al objeto específico sea la misma.
   +  En resumen, se debería añadir un método `get_absolute_url()` y `__str__()` a cada modelo que se escriba.
 
 FICHERO: `blog/models.py`
@@ -147,6 +146,8 @@ path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
 
 - Para empezar, se añade un nuevo enlace a `post_detail.html` para que la opción de editar una entrada de blog aparezca en una página de blog individual.
 
+> Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema previo, se tendrá el contexto `anything_you_want` que habrá que eliminar para volver a usar los habituales `object`y `post`.
+
 FICHERO: `templates/post_detail.html`
 ```html
 {% extends 'base.html' %}
@@ -162,9 +163,7 @@ FICHERO: `templates/post_detail.html`
 ```
 - Se ha  añadido un enlace usando `<a href>...</a>` y la etiqueta del motor de plantillas de Django `{% url... %}`. Dentro de ella se ha especificado el nombre del objetivo de la url, que se llamará `post_edit`, y también se ha pasado el parámetro necesario, que es la clave principal del post `post.pk`.
 - A continuación se crea la plantilla para la página de edición llamada `post_edit.html`.
-```bash
-(blog) $ touch templates/post_edit.html
-```
+
 FICHERO: `templates/post_edit.html`
 ```python
 {% extends 'base.html' %}
@@ -178,7 +177,7 @@ FICHERO: `templates/post_edit.html`
 {% endblock %}
 ```
 - De nuevo se usan las etiquetas HTML `<form></form>`, el `csrf_token` de Django por seguridad, el `form.as_p` para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón *submit*.
-- Ahora a nuestra vista. Necesitamos importar UpdateView en la segunda línea superior y luego subclasificarla en nuestra nueva vista BlogUpdateView .
+- Ahora a nuestra vista. Necesitamos importar `UpdateView` en la segunda línea superior y luego heredarla en nuestra nueva vista `BlogUpdateView`.
 FICHERO: `blog/views.py`
 ```python
 from django.views.generic import ListView, DetailView
@@ -229,7 +228,7 @@ si esa es la primera entrada en el blog.
 - Tengase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.
 -  Vamos a hacer un cambio...
 
--Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del *post* en el que se puede ver el cambio. Esto se debe a la configuración `get_absolute_url`.
+- Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del *post* en el que se puede ver el cambio. Esto se debe a la configuración `get_absolute_url`.
 - Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.
 
 ## 7.3 Borrar la vista
@@ -254,9 +253,6 @@ FICHERO: `templates/post_detail.html`
 ```
 - A continuación, se crea un nuevo archivo para la plantilla de la página de borrado.
 
-```bash
-(blog) $ touch templates/post_delete.html
-```
 FICHERO: `templates/post_delete.html`
 ```
 {% extends 'base.html' %}
@@ -307,8 +303,10 @@ class BlogDeleteView(DeleteView):
     template_name = 'post_delete.html'
     success_url = reverse_lazy('home')
 ```
-- Se usa `reverse_lazy` en vez de sólo `reverse` para que no ejecute la redirección URL
-hasta que la vista haya terminado de borrar la entrada del blog.
+- Se usa `reverse_lazy` en vez de sólo `reverse` para que no ejecute la redirección URL hasta que la vista haya terminado de borrar la entrada del blog.
+
+  
+
 - Finalmente agregar una url importando la vista `BlogDeleteView` y agregando un nuevo patrón:
 
 FICHERO: `blog/urls.py`
@@ -343,14 +341,12 @@ from .models import Post
 
 class BlogTests(TestCase):
 
-
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='testuser',
             email='test@email.com',
             password='secret'
         )
-
         self.post = Post.objects.create(
             title='A good title',
             body='Nice body content',
@@ -360,9 +356,6 @@ class BlogTests(TestCase):
     def test_string_representation(self):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
-
-    def test_get_absolute_url(self):
-        self.assertEquals(self.post.get_absolute_url(), '/post/1/')
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
@@ -382,6 +375,9 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
+
+    def test_get_absolute_url(self):
+        self.assertEquals(self.post.get_absolute_url(), '/post/1/')
  
     def test_post_create_view(self):
         response = self.client.post(reverse('post_new'), {

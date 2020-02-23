@@ -1,4 +1,4 @@
-## 8. Cuentas de Usuarios
+# 8. Cuentas de Usuarios
 - La mayoría de las aplicaciones web cuentan con una importante pieza: la **autenticación del usuario**.
 - La implementación de una autenticación de usuario adecuada es conocida por su dificultad
 - Afortunadamente Django viene con un poderoso sistema de autenticación de usuarios incorporado.
@@ -39,7 +39,8 @@ urlpatterns = [
     path('', include('blog.urls')),
 ]
 ```
-Como se indica en la documentación de `LoginView`, por defecto Django buscará dentro de una carpeta de plantillas llamada `registration` un archivo llamado `login.html` para un formulario de inicio de sesión. Así que tenemos que crear un nuevo directorio llamado `registration` y el archivo requerido dentro de él.
+- Como se indica en la documentación de `LoginView`, por defecto Django buscará dentro de una carpeta de plantillas llamada `registration` un archivo llamado `login.html` para un formulario de inicio de sesión. Así que tenemos que crear un nuevo directorio llamado `registration` y el archivo requerido dentro de él.
+
 ```bash
 (blog) $ mkdir templates/registration
 (blog) $ touch templates/registration/login.html
@@ -57,25 +58,27 @@ FICHERO: `templates/registration/login.html`
 </form>
 {% endblock content %}
 ```
-Se usan las etiquetas HTML <form></form> y se especifica el método POST ya que se están enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade `{% csrf_token %}` por motivos de seguridad, es decir, para evitar un ataque XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a `{{ form.as_p }}` y luego se añade un botón de "enviar".
-En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración `LOGIN_REDIRECT_URL`. En la parte inferior del archivo `settings.py` agregar:
-FICHERO: `settings.py`
+- Se usan las etiquetas HTML <form></form> y se especifica el método POST ya que se están enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade `{% csrf_token %}` por motivos de seguridad, es decir, para evitar un ataque XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a `{{ form.as_p }}` y luego se añade un botón de "enviar".
+- En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración `LOGIN_REDIRECT_URL`. En la parte inferior del archivo `settings.py` agregar:
+  FICHERO: `settings.py`
+
 ```
 LOGIN_REDIRECT_URL = 'home'
 ```
-Ahora el usuario será redirigido a la plantilla `home` que es la página de inicio.
-Navegar ahora a: http://127.0.0.1:8000/accounts/login/
+- Ahora el usuario será redirigido a la plantilla `home` que es la página de inicio.
+  Navegar ahora a: http://127.0.0.1:8000/accounts/login/
 
-Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
-Nótese no se  ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.
+- Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
+- Nótese que no se ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.
+
 ## 8.2. Actualizado de la homepage
 
-- Actualizar la plantilla base.html para mostrar un mensaje a los usuarios tanto si están conectados como si no.
+- Actualizar la plantilla `base.html` para mostrar un mensaje a los usuarios tanto si están conectados como si no.
   + Se puede usar el atributo `is_authenticated` para esto.
-- Por ahora, se pondrá este código en una posición prominente. Más adelante se le pordrá dar un estilo más apropiado.
+- Por ahora, se pondrá este código en una posición preeminente. Más adelante se le podrá dar un estilo más apropiado.
 
 FICHERO: `templates/base.html`
-```
+```html
 ...
 </header>
 {% if user.is_authenticated %}
@@ -92,7 +95,7 @@ FICHERO: `templates/base.html`
 ## 8.3. Enlace para Logout
 - Se añade un enlace de cierre de sesión que redirija a la página de inicio.
   + Gracias al sistema de autentificación de Django, esto es muy sencillo de conseguir.
-- En el archivo `base.html` se agrega un enlace de una línea `{% url 'desconexión' %}` para desconectarse.
+- En el archivo `base.html` se agrega un enlace de una línea `{% url 'logout' %}` para desconectarse.
 
 FICHERO: `templates/base.html`
 ```
@@ -103,7 +106,7 @@ FICHERO: `templates/base.html`
 {% else %}
 ...
 ```
-- Eso es todo lo que se necesita hacer ya que la `view` necesaria proporciona aplicación de autentificación `auth`. Aún se necesita especificar dónde redirigir al usuario al cerrar la sesión.
+- Eso es todo lo que se necesita hacer ya que la vista necesaria proporciona una app de autenticación `auth`. Aún se necesita especificar dónde redirigir al usuario al cerrar la sesión.
 - Actualizar `settings.py` para proporcionar un enlace de redireccionamiento que se llama, apropiadamente, `LOGOUT_REDIRECT_URL`. Podemos añadirlo justo al lado de nuestra redirección de inicio de sesión, de manera que la parte inferior del archivo tenga el siguiente aspecto:
 
 FICHERO: `blog_project/settings.py`
@@ -136,7 +139,7 @@ INSTALLED_APPS = [
 ```
 - A continuación añadimos una url a nivel de proyecto que apunta a esta nueva aplicación directamente debajo de donde incluimos la aplicación de autorización incorporada.
 FICHERO: `blog_project/urls.py`
-```
+```python
 from django.contrib import admin
 from django.urls import path, include
 
@@ -153,7 +156,7 @@ urlpatterns = [
 (blog) $ touch accounts/urls.py
 ```
 And add the following code:
-FICHERO: `acounts/urls.py`
+FICHERO: `accounts/urls.py`
 ```python
 from django.urls import path
 from . import views
@@ -208,7 +211,7 @@ TEMPLATE: `templates/signup.html`
 
 ## 8.5. Git
 ```bash
-(blog) $ git commit -m 'Añade formulario y cuentas de usuario'
+(blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 ```
 Crear un nuevo repo en GitHub al que puedes llamar como quieras.
 ```bash
@@ -235,7 +238,7 @@ python_version = "3.8"
 ```bash
 (blog) $ touch Procfile
 ```
-FICHERO: `procfile`
+FICHERO: `Procfile`
 ```
 web: gunicorn blog_project.wsgi --log-file -
 ```
