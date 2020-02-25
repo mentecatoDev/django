@@ -50,6 +50,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../1_introduccion/">1. Introducción</a>
 	    </li>
           
@@ -222,7 +227,7 @@ LOGOUT_REDIRECT_URL = 'home'
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
-    &lt;meta charset=&quot;utf- &quot;&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;Newspaper App&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
@@ -284,7 +289,7 @@ LOGOUT_REDIRECT_URL = 'home'
 <h2 id="102-urls">10.2. URLs</h2>
 <ul>
 <li>En el archivo <code>urls.py</code>, a nivel de proyecto, se quiere que la plantilla <code>home.html</code> aparezca como página de inicio. Pero no se quiere construir una app <code>pages</code> dedicada todavía, así que se puede usar el atajo de importar <code>TemplateView</code> y establecer el <code>template_name</code> justo en el patrón url.</li>
-<li>A continuación se quiere "incluir" tanto la app <code>users</code> como la app <code>auth</code>incorporada. La razón es que la app <code>auth</code> incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el registro hay que crear una vista y una url propias. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>users/</code> para que las URLs eventuales sean <code>/users/login</code>, <code>/users/logout</code> y <code>/users/signup</code>.</li>
+<li>A continuación se quiere "incluir" tanto la app <code>users</code> como la app <code>auth</code> incorporada. La razón es que la app <code>auth</code> incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el registro hay que crear una vista y una url propias. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>users/</code> para que las URLs eventuales sean <code>/users/login</code>, <code>/users/logout</code> y <code>/users/signup</code>.</li>
 </ul>
 <p>FICHERO: <code>newspaper_project/urls.py</code></p>
 <pre><code class="python">from django.contrib import admin
@@ -321,7 +326,7 @@ urlpatterns = [
 <li>El último paso es el archivo <code>views.py</code> que contendrá la lógica del formulario de inscripción. Se usará el <code>CreateView</code> genérico de Django diciéndole que use <code>CustomUserCreationForm</code>, para redirigirse a <code>login</code> una vez que el usuario se registre con éxito, y que la plantilla se llama <code>signup.html</code>.</li>
 </ul>
 <p>FICHERO: <code>users/views.py</code></p>
-<pre><code>from django.urls import reverse_lazy
+<pre><code class="python">from django.urls import reverse_lazy
 from django.views import generic
 from .forms import CustomUserCreationForm
 
@@ -335,8 +340,6 @@ class SignUp(generic.CreateView):
 <ul>
 <li>Arrancar el servidor con python <code>manage.py runserver</code> e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario <code>testuser</code>.</li>
 </ul>
-<p>La página de inicio se desconectó
-Ahora estamos en la página de inicio de la sesión. Adelante, haz clic en el enlace de acceso y usa tus credenciales de superusuario.</p>
 <h2 id="103-admin">10.3. Admin</h2>
 <ul>
 <li>Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta de superusuario.</li>
@@ -345,10 +348,10 @@ Ahora estamos en la página de inicio de la sesión. Adelante, haz clic en el en
 <li>Así es como funciona la configuración predeterminada de Django pero se puede cambiar fácilmente en <code>users/forms.py</code>.</li>
 </ul>
 </li>
-<li>En pripio tiene este aspecto:</li>
+<li>En principio tiene este aspecto:</li>
 </ul>
 <p>FICHERO: <code>users/forms.py</code></p>
-<pre><code>from django import forms
+<pre><code class="python">from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 
@@ -386,10 +389,13 @@ class CustomUserCreationForm(UserCreationForm):
             fields = ('username', 'email', ) # new
 </code></pre>
 
-<p>Regístrate con una nueva cuenta de usuario. He nombrado a mi testuser con una dirección de correo electrónico de testuser@email.com . Si luego volvemos a la página de administración y nos registramos con nuestra cuenta de superusuario para hacerlo, los tres usuarios son ahora evidentes.
--El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.</p>
+<ul>
+<li>El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.</li>
+</ul>
 <h2 id="104-conclusion">10.4. Conclusión</h2>
-<p>Hasta ahora nuestra aplicación <code>Newspaper</code> tiene un modelo de usuario personalizado y funciona con páginas de registro, login y logout aunque no tiene muy buen aspecto. Próximamente se añadirá <strong>Bootstrap</strong> para mejorar para el estilo además de una app de páginas dedicadas.</p>
+<ul>
+<li>Hasta ahora nuestra aplicación <code>Newspaper</code> tiene un modelo de usuario personalizado y funciona con páginas de <em>registro</em>, <em>login</em> y <em>logout</em> aunque no tiene muy buen aspecto. Próximamente se añadirá <strong>Bootstrap</strong> para mejorar para el estilo además de una app de páginas dedicadas.</li>
+</ul>
               
             </div>
           </div>

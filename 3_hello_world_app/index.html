@@ -50,6 +50,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../1_introduccion/">1. Introducción</a>
 	    </li>
           
@@ -243,7 +248,7 @@ $ pipenv shell
 <li><code>tests.py</code>: Es para los tests específicos de la <strong>app</strong></li>
 <li><code>views.py</code>: Es donde se gestiona la lógica petición/respuesta (<em>request/response</em>) de la <strong>app</strong></li>
 <li>Aunque la <strong>app</strong> existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.</li>
-<li>Para incluir la app en el proyecto se necesita a;adir una referencia a su clase de configuración en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> class está en el archivo <code>pages/apps.py</code> , por eso su <em>path</em> con puntos es <code>'pages.apps.PagesConfig'</code>.</li>
+<li>Para incluir la app en el proyecto se necesita añadir una referencia a su clase de configuración en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> está en el archivo <code>pages/apps.py</code> , por eso su <em>path</em> con puntos es <code>'pages.apps.PagesConfig'</code>.</li>
 </ul>
 <p>FICHERO: <code>settings.py</code> </p>
 <pre><code>...
@@ -263,6 +268,20 @@ $ pipenv shell
 <ul>
 <li><em>Ojo, el <strong>orden</strong> importa; si varias aplicaciones intentan acceder al mismo recurso, la <strong>app</strong> que aparece primero tiene preferencia.</em></li>
 </ul>
+<blockquote>
+<p>DETALLE: <code>settings.py</code>
+Es un módulo Python normal con variables a nivel de módulo que representan los ajustes de Django. Una de las primeras cosas que se puede hacer en él es establecer la <code>TIME_ZONE</code> (zona horaria) que se desee.
+En la configuración de <code>INSTALLED_APPS</code>, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, <code>INSTALLED_APPS</code> contiene las siguientes aplicaciones, todas ellas incluidas en Django:</p>
+<p><code>django.contrib.admin</code> : El sitio de administración.
+<code>django.contrib.auth</code> : Un sistema de autenticación.
+<code>django.contrib.contenttypes</code> : Un marco de trabajo para los tipos de contenido.
+<code>django.contrib.sessions</code> : Un marco de trabajo de sesiones.
+<code>django.contrib.messages</code> : Un marco de mensajes.
+<code>django.contrib.staticfiles</code>: Un marco de trabajo para la gestión de archivos estáticos.</p>
+<p>Estas aplicaciones se incluyen de forma predeterminada como una conveniencia para el caso común. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesitan crear las tablas de la base de datos antes de poder utilizarlas. Para ello, hemos de hacer una <strong>migración</strong> con el siguiente comando:</p>
+<p><code>python manage.py migrate</code></p>
+<p>El comando de migración mira la configuración de <code>INSTALLED_APPS</code> y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos del archivo <code>settings.py</code> y las migraciones de bases de datos enviadas con cada aplicación. Se cubrirá más adelante.</p>
+</blockquote>
 <h2 id="33-vistas-views-y-configurariones-de-urls-urlconfs">3.3 Vistas (Views) y configurariones de URL's (URLConfs)</h2>
 <ul>
 <li>
@@ -296,15 +315,23 @@ $ pipenv shell
 </code></pre>
 
 <ul>
-<li>
-<p>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello, World!”</code> . </p>
+<li>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello, World!”</code> . <ul>
+<li>Más específicamente se ha importado el método <code>HttpResponse</code> para poder devolver un objeto respuesta al usuario.</li>
+</ul>
 </li>
-<li>
-<p>Más específicamente se ha importado el método <code>HttpResponse</code> para poder devolver un objeto respuesta al usuario.</p>
-</li>
-<li>
-<p>Ahora a configurar <em>urls</em>. Crear un nuevo archivo <code>urls.py</code> dentro del directorio <code>pages</code>.</p>
-</li>
+</ul>
+<blockquote>
+<p>DETALLE
+- Primero, se importa la clase <code>HttpResponse</code>, que vive en el módulo <code>django.http</code>. Se necesita importar esta clase porque se usa más tarde en el código.</p>
+<ul>
+<li>A continuación, se define una función llamada <code>homePageView</code>- la función de la vista.</li>
+</ul>
+<p>Cada función <code>view</code> toma al menos un parámetro, llamado <code>request</code> por convención. Se trata de un objeto que contiene información sobre la solicitud web actual que ha activado esta vista, y es una instancia de la clase <code>django.http.HttpRequest</code>.
+  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Se le llama <code>homePageView</code> aquí, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una simple línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
+  La principal lección aquí es ésta: <strong>una vista es sólo una función Python que toma una <code>HttpRequest</code> como primer parámetro y devuelve una instancia de <code>HttpResponse</code></strong>. Para que una función Python sea una vista Django, debe hacer estas dos cosas. (Hay excepciones, pero se verán más tarde).</p>
+</blockquote>
+<ul>
+<li>Ahora a configurar <em>urls</em>. Crear un nuevo archivo <code>urls.py</code> dentro del directorio <code>pages</code>.</li>
 </ul>
 <pre><code>(helloworld) $ touch pages/urls.py
 </code></pre>
