@@ -1,4 +1,5 @@
 # Django
+#### [¿Por qué Django?](por_que_django.md)
 #### [Introducción](1_introduccion.md)
 #### [Configuración Inicial](2_configuracion_inicial.md)
 #### [Hello World app](3_hello_world_app.md)
@@ -11,7 +12,7 @@
 #### [Autenticación de Usuarios](10_autenticacion_de_usuarios.md)
 #### [Bootstrap](11_bootstrap.md)
 #### [Cambio y Restauración de contraseñas](12_cambio_y_restauracion_de_contrasenas.md)
-#### [Email](13_email.com)
+#### [Email](13_email.md)
 #### [Newspaper app](14_newspaper_app.md)
 #### [Permisos y Autorización](15_permisos_y_autorizacion.md)
 #### [Comentarios](16_comentarios.md)

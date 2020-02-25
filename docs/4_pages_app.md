@@ -248,7 +248,7 @@ class SimpleTests(SimpleTestCase):
 
     def test_about_page_status_code(self):
         response = self.client.get('/about/')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code, 200)
 ```
 
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 

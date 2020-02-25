@@ -66,7 +66,7 @@ $ pipenv shell
   - `tests.py`: Es para los tests específicos de la **app**
   - `views.py`: Es donde se gestiona la lógica petición/respuesta (*request/response*) de la **app**
 - Aunque la **app** existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.
-- Para incluir la app en el proyecto se necesita a;adir una referencia a su clase de configuración en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` class está en el archivo `pages/apps.py` , por eso su *path* con puntos es `'pages.apps.PagesConfig'`.
+- Para incluir la app en el proyecto se necesita añadir una referencia a su clase de configuración en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` está en el archivo `pages/apps.py` , por eso su *path* con puntos es `'pages.apps.PagesConfig'`.
 
  FICHERO: `settings.py` 
 
@@ -85,7 +85,26 @@ $ pipenv shell
 ...
 ```
 
-- _Ojo, el **orden** importa; si varias aplicaciones intentan acceder al mismo recurso, la **app** que aparece primero tiene preferencia._
+- *Ojo, el **orden** importa; si varias aplicaciones intentan acceder al mismo recurso, la **app** que aparece primero tiene preferencia.*
+
+>DETALLE: `settings.py`
+>Es un módulo Python normal con variables a nivel de módulo que representan los ajustes de Django. Una de las primeras cosas que se puede hacer en él es establecer la `TIME_ZONE` (zona horaria) que se desee.
+En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, `INSTALLED_APPS` contiene las siguientes aplicaciones, todas ellas incluidas en Django:
+>
+>`django.contrib.admin` : El sitio de administración.
+>`django.contrib.auth` : Un sistema de autenticación.
+>`django.contrib.contenttypes` : Un marco de trabajo para los tipos de contenido.
+>`django.contrib.sessions` : Un marco de trabajo de sesiones.
+>`django.contrib.messages` : Un marco de mensajes.
+>`django.contrib.staticfiles`: Un marco de trabajo para la gestión de archivos estáticos.
+>
+>Estas aplicaciones se incluyen de forma predeterminada como una conveniencia para el caso común. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesitan crear las tablas de la base de datos antes de poder utilizarlas. Para ello, hemos de hacer una **migración** con el siguiente comando:
+>
+>```
+>python manage.py migrate
+>```
+>
+>El comando de migración mira la configuración de `INSTALLED_APPS` y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos del archivo `settings.py` y las migraciones de bases de datos enviadas con cada aplicación. Se cubrirá más adelante.
 
 ## 3.3 Vistas (Views) y configurariones de URL's (URLConfs)
 
@@ -114,8 +133,18 @@ $ pipenv shell
 ```
 
 - Básicamente se indica que siempre que se llame a la función de la vista `homePageView` se devolverá el texto `“Hello, World!”` . 
+    - Más específicamente se ha importado el método `HttpResponse` para poder devolver un objeto respuesta al usuario.
 
-  - Más específicamente se ha importado el método `HttpResponse` para poder devolver un objeto respuesta al usuario.
+> DETALLE
+> - Primero, se importa la clase `HttpResponse`, que vive en el módulo `django.http`. Se necesita importar esta clase porque se usa más tarde en el código.
+>
+> - A continuación, se define una función llamada `homePageView`- la función de la vista.
+>
+>   
+>
+>   Cada función `view` toma al menos un parámetro, llamado `request` por convención. Se trata de un objeto que contiene información sobre la solicitud web actual que ha activado esta vista, y es una instancia de la clase `django.http.HttpRequest`.
+>   En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Se le llama `homePageView` aquí, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse `hola_mundo_maravilloso_y_hermoso`, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una simple línea que devuelve un objeto `HttpResponse` instanciado con el texto `Hello, world!`.
+>   La principal lección aquí es ésta: **una vista es sólo una función Python que toma una `HttpRequest` como primer parámetro y devuelve una instancia de `HttpResponse`**. Para que una función Python sea una vista Django, debe hacer estas dos cosas. (Hay excepciones, pero se verán más tarde).
 
 - Ahora a configurar *urls*. Crear un nuevo archivo `urls.py` dentro del directorio `pages`.
 
