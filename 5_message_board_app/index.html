@@ -211,14 +211,13 @@
 </ul>
 <h2 id="51-setup-inicial">5.1. Setup Inicial</h2>
 <ul>
-<li>Crear un nuevo directorio para nuestro código en el Escritorio llamado <code>mb</code></li>
+<li>Crear un nuevo directorio para el código llamado <code>mb</code></li>
 <li>Instalar Django en un nuevo entorno virtual</li>
 <li>Crear un nuevo proyecto llamado <code>mb_project</code></li>
 <li>Crear una nueva aplicación <code>posts</code></li>
 <li>Actualizar <code>settings.py</code></li>
 </ul>
-<pre><code>$ cd ~/Desktop
-$ mkdir mb
+<pre><code class="bash">$ mkdir mb
 $ cd mb
 $ pipenv install django
 $ pipenv shell
@@ -235,16 +234,20 @@ $ pipenv shell
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-ç       'posts',
+        'posts.apps.PostsConfig', # new
     ]
 </code></pre>
 
-<p>A continuación, ejecutar el comando <code>migrate</code> para crear una base de datos inicial basada en la configuración por defecto de Django.</p>
+<ul>
+<li>A continuación, ejecutar el comando <code>migrate</code> para crear una base de datos inicial basada en la configuración por defecto de Django.</li>
+</ul>
 <pre><code>(mb) $ python manage.py migrate
 </code></pre>
 
-<p>Ahora en el directorio habrá ahora un fichero <code>db.sqlite3</code> que representa a la base de datos SQLite.</p>
-<pre><code>(mb) $ ls
+<ul>
+<li>Ahora en el directorio habrá un fichero <code>db.sqlite3</code> que representa a la base de datos SQLite.</li>
+</ul>
+<pre><code class="bash">(mb) $ ls
 db.sqlite3 mb_project manage.py
 </code></pre>
 
@@ -260,7 +263,7 @@ db.sqlite3 mb_project manage.py
 <h2 id="52-crear-un-modelo-de-base-de-datos">5.2. Crear un modelo de base de datos</h2>
 <ul>
 <li>Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.</li>
-<li>Django convertirá este modelo en una tabla de base de datos.</li>
+<li><strong>Django convertirá este modelo en una tabla de base de datos</strong>.</li>
 </ul>
 <p>FICHERO: <code>posts/models.py</code></p>
 <pre><code class="python"># posts/models.py
@@ -269,11 +272,16 @@ from django.db import models
 # Create your models here
 </code></pre>
 
-<p>Django importa un módulo <code>models</code> para ayudarnos a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
-- Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual podemos hacer de la siguiente manera:</p>
+<ul>
+<li>
+<p>Django importa un módulo <code>models</code> para ayudar a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.</p>
+</li>
+<li>
+<p>Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual se puede hacer de la siguiente manera:</p>
+</li>
+</ul>
 <p>FICHERO: <code>post/models.py</code></p>
-<pre><code class="python"># posts/models.py
-from django.db import models
+<pre><code class="python">from django.db import models
 
 class Post(models.Model):
     text = models.TextField()
@@ -285,7 +293,7 @@ class Post(models.Model):
 <h2 id="53-activando-modelos">5.3. Activando modelos</h2>
 <ul>
 <li>Una vez creado, el modelo tiene que ser activado</li>
-<li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
+<li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de <code>INSTALLED_APPS</code>. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
 <li>En segundo lugar, construimos la base de datos actual con <code>migrate</code> que ejecuta la función en el archivo de migraciones.</li>
 </ul>
 <pre><code class="bash">(mb) $ python manage.py makemigrations posts

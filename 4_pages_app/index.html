@@ -101,7 +101,7 @@
         
             <li><a class="toctree-l3" href="#412-despliegue">4.12 Despliegue</a></li>
         
-            <li><a class="toctree-l3" href="#413-conclusion">4.13 Conclusión</a></li>
+            <li><a class="toctree-l3" href="#413-errores-404">4.13 Errores 404</a></li>
         
         </ul>
     
@@ -226,27 +226,26 @@ $ pipenv shell
 </code></pre>
 
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code class="python">    # pages_project/settings.py
-...
+<pre><code class="python">...
     INSTALLED_APPS = [
-ç       'pages.apps.PagesConfig',
+        'pages.apps.PagesConfig', # new
 ...
 </code></pre>
 
 <ul>
 <li>Arrancar servidor</li>
 </ul>
-<pre><code class="python">(pages) $ python manage.py runserver
+<pre><code class="bash">(pages) $ python manage.py runserver
 </code></pre>
 
 <h2 id="43-plantillas-templates">4.3 Plantillas (Templates)</h2>
 <ul>
 <li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
 </ul>
-<p><center>Plantilla –&gt; Vista –&gt; Ruta</center><br />
-- Ruta (URL).- Controla la ruta inicial
-- Vista (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
-- Plantilla (Template).- Contiene el HTML.</p>
+<p><center>Plantilla –&gt; Vista –&gt; Ruta</center>
+- <strong>Ruta</strong> (URL).- Controla la ruta inicial
+- <strong>Vista</strong> (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
+- <strong>Plantilla</strong> (Template).- Contiene el HTML.</p>
 <h3 id="431-donde-colocar-el-directorio-de-plantillas">4.3.1 Dónde colocar el directorio de plantillas</h3>
 <ul>
 <li><strong>Por defecto</strong>, Django mira dentro de cada <strong>app</strong> en busca de plantillas.<ul>
@@ -274,7 +273,7 @@ $ pipenv shell
 <pre><code class="python">       TEMPLATES = [
            {
                ...
-   ç           'DIRS': [os.path.join(BASE_DIR, 'templates')],
+               'DIRS': [os.path.join(BASE_DIR, 'templates')],
                ...
            },
        ]
@@ -312,13 +311,13 @@ class HomePageView(TemplateView):
 <li>El último paso es actualizar los <code>URLConfs</code>.</li>
 </ul>
 <p>FICHERO: <code>pages_project/urls.py</code> </p>
-<pre><code class="python">    from django.contrib import admin
-ç   from django.urls import path, include
+<pre><code class="python">from django.contrib import admin
+from django.urls import path, include # new
 
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-ç       path('', include('pages.urls')),
-    ]
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('pages.urls')), # new
+]
 </code></pre>
 
 <p>FICHERO: <code>pages/urls.py</code> </p>
@@ -364,10 +363,10 @@ class AboutPageView(TemplateView):
 </ul>
 <p>FICHERO: <code>pages/urls.py</code> </p>
 <pre><code class="python">    from django.urls import path
-ç   from .views import HomePageView, AboutPageView
+    from .views import HomePageView, AboutPageView # new
 
     urlpatterns = [
-ç       path('about/', AboutPageView.as_view(), name='about'),
+        path('about/', AboutPageView.as_view(), name='about'), # new
         path('', HomePageView.as_view(), name='home'),
     ]
 </code></pre>
@@ -383,23 +382,21 @@ class AboutPageView(TemplateView):
 </ul>
 </li>
 <li>Django tiene un <a href="https://docs.djangoproject.com/es/3.0/ref/templates/builtins/">lenguaje mínimo de plantillas</a> para añadirles enlaces y lógica básica</li>
-<li>
-<p>Los tags de las plantillas tienen la forma 
+<li>Los tags de las plantillas tienen la forma</li>
+</ul>
 <div align=center>
     <pre>
         {% cualquier_cosa %}
     </pre>
-</div></p>
-</li>
-<li>
-<p>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar la etiqueta de plantilla <code>url</code> incorporada que toma un patrón de URL como argumento.</p>
-</li>
+</div>
+
+<ul>
+<li>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar la etiqueta de plantilla <code>url</code> incorporada que toma un patrón de URL como argumento.</li>
 <li>
 <p>El tag  <code>url</code> utiliza los nombres opcionales de URL para crear enlaces automáticos por nosotros.</p>
-</li>
-<li>
-<p>Por ejemplo:
-<code>{% url 'home' %}</code></p>
+<ul>
+<li>Por ejemplo: <code>{% url 'home' %}</code></li>
+</ul>
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
@@ -455,12 +452,8 @@ class SimpleTests(SimpleTestCase):
 </code></pre>
 
 <ul>
-<li>
-<p>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </p>
-</li>
-<li>
-<p>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</p>
-</li>
+<li>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </li>
+<li>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</li>
 <li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
 <li>Para ejecutar los tests:</li>
 </ul>
@@ -482,32 +475,24 @@ OK
 
 <h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
 <ul>
-<li>
-<p>Código en producción</p>
-<ul>
+<li>Código en producción<ul>
 <li>Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.</li>
 </ul>
 </li>
-<li>
-<p>Hay muchos proveedores de servidores disponibles, pero usaremos <em>Heroku</em> porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.</p>
-</li>
+<li>Hay muchos proveedores de servidores disponibles, pero usaremos <em>Heroku</em> porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.</li>
 </ul>
 <h2 id="411-heroku">4.11 Heroku</h2>
 <ul>
 <li>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</li>
-<li>
-<p>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.</p>
-<ul>
+<li>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.<ul>
 <li>Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.</li>
 <li>Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.</li>
 </ul>
 </li>
-<li>
-<p><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a></p>
-<ul>
-<li>
-<p><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a></p>
-<p><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</p>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a><ul>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a><ul>
+<li><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -523,51 +508,65 @@ Logged in as will@wsvincent.com
 </code></pre>
 
 <h2 id="411-ficheros-adicionales">4.11 Ficheros adicionales</h2>
-<p>Se necesitan hacer cuatro cambios al proyecto para desplegar en Heroku:</p>
 <ul>
 <li>
-<p>actualizar el archivo <code>Pipfile.lock</code></p>
+<p>Se necesitan hacer cuatro cambios al proyecto para desplegar en Heroku:</p>
+<ul>
+<li>actualizar el archivo <code>Pipfile.lock</code></li>
+<li>hacer un nuevo archivo <code>Procfile</code></li>
+<li>instalar <code>gunicorn</code> como servidor web</li>
+<li>hacer un cambio de una línea al archivo <code>settings.py</code></li>
+</ul>
 </li>
 <li>
-<p>hacer un nuevo archivo <code>Procfile</code></p>
-</li>
-<li>
-<p>instalar <code>gunicorn</code> como servidor web</p>
-</li>
-<li>
-<p>hacer un cambio de una línea al archivo <code>settings.py</code></p>
+<p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
 </li>
 </ul>
-<p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
 <pre><code class="pipfile"># Pipfile
 [requires]
 python_version = &quot;3.8&quot;
 </code></pre>
 
-<p>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</p>
+<ul>
+<li>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</li>
+</ul>
 <pre><code>(pages) $ pipenv lock
 </code></pre>
 
-<p>Heroku busca en <code>Pipfile.lock</code> información sobre el entorno virtual.
-A continuación crear un <code>Procfile</code> que es específico para Heroku.</p>
+<ul>
+<li>Heroku busca en <code>Pipfile.lock</code> información sobre el entorno virtual.</li>
+<li>A continuación crear un <code>Procfile</code> que es específico para Heroku.</li>
+</ul>
 <p>FICHERO: <code>Procfile</code></p>
 <pre><code>web: gunicorn pages_project.wsgi --log-file -
 </code></pre>
 
-<p>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</p>
+<ul>
+<li>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</li>
+</ul>
 <pre><code class="bash">(pages) $ pipenv install gunicorn
 </code></pre>
 
 <p>El último paso es un cambio de una línea a <code>settings.py</code>.</p>
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code># pages_project/settings.py
+<pre><code class="python"># pages_project/settings.py
 ALLOWED_HOSTS = ['*']
 </code></pre>
 
-<p>El parámetro ALLOWEDHOSTS representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.</p>
-<p>Sin embargo, se ha utilizado el comodín asterisco "*", que significa que todos los dominios son aceptables para mantener las cosas simples.</p>
+<ul>
+<li>
+<p>El parámetro <code>ALLOWEDHOSTS</code> representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.</p>
+</li>
+<li>
+<p>Sin embargo, se ha utilizado el comodín asterisco <code>*</code>, que significa que todos los dominios son aceptables para mantener las cosas simples.</p>
+</li>
+<li>
 <p>En un sitio Django de nivel de producción, se enumeran explícitamente los dominios que están permitidos.</p>
+</li>
+<li>
 <p>Usar <code>git status</code> para comprobar nuestros cambios, añadir los nuevos archivos, y luego confirmarlos:</p>
+</li>
+</ul>
 <pre><code class="bash">(pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m &quot;Actualiza para el despliegue en Heroku&quot;
@@ -589,34 +588,46 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 </code></pre>
 
 <h3 id="anadir-un-hook-para-heroku-dentro-de-git">Añadir un “hook” para Heroku dentro de git</h3>
-<p>Git almacenará tanto la configuración para enviar el código a GitHub como a Heroku.</p>
+<ul>
+<li>Git almacenará tanto la configuración para enviar el código a GitHub como a Heroku.</li>
+</ul>
 <pre><code class="bash">(pages) $ heroku git:remote -a cryptic-oasis-40349
 </code></pre>
 
 <h3 id="configurar-la-aplicacion-para-ignorar-los-archivos-estaticos">Configurar la aplicación para ignorar los archivos estáticos</h3>
-<p>Hay que decirle a Heroku que ignore los archivos estáticos como CSS y JavaScript que Django por defecto intenta optimizar para nosotros (se verá más adelante).
-Por ahora sólo hay que ejecutar:</p>
+<ul>
+<li>Hay que decirle a Heroku que ignore los archivos estáticos como CSS y JavaScript que Django por defecto intenta optimizar para nosotros (se verá más adelante).</li>
+<li>Por ahora sólo hay que ejecutar:</li>
+</ul>
 <pre><code>(pages) $ heroku config:set DISABLE_COLLECTSTATIC=1
 </code></pre>
 
-<p>Ahora ya podemos enviar nuestro código a Heroku.</p>
+<ul>
+<li>Ahora ya podemos enviar nuestro código a Heroku.</li>
+</ul>
 <pre><code>(pages) $ git push heroku master
 </code></pre>
 
 <h3 id="iniciar-el-servidor-de-heroku-para-que-la-aplicacion-este-activa">Iniciar el servidor de Heroku para que la aplicación esté activa</h3>
-<p>Se puede utilizar el nivel más bajo, <code>web=1</code>, que también resulta ser gratuito.</p>
+<ul>
+<li>Se puede utilizar el nivel más bajo, <code>web=1</code>, que también resulta ser gratuito.</li>
+</ul>
 <pre><code>(pages) $ heroku ps:scale web=1
 </code></pre>
 
 <h3 id="visitar-la-aplicacion-en-la-url-proporcionada-por-heroku">Visitar la aplicación en la URL proporcionada por Heroku</h3>
-<p>Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.</p>
-<h2 id="413-conclusion">4.13 Conclusión</h2>
 <ul>
-<li>Plantillas</li>
-<li>Vistas basadas en clases</li>
-<li>URLConfs</li>
-<li>Tests básicos</li>
-<li>Heroku</li>
+<li>Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.</li>
+</ul>
+<h2 id="413-errores-404">4.13 Errores 404</h2>
+<ul>
+<li>En las URLconf anteriores, se han definido varios patrones URL. ¿Qué pasaría si se solicita una URL diferente a las recogidas en URLconf?</li>
+<li>Para averiguarlo, probar ejecutar el servidor de desarrollo Django e intentar acceder a una página Web como <code>http://127.0.0.1:8000/hello/</code> o <code>http://127.0.0.1:8000/does-not-exist/</code>. Se debería ver el mensaje <em>"Page not found"</em>. (Es linda, ¿no? A la gente de Django seguro le gustan los colores pasteles). Django muestra este mensaje porque se solicitó una URL que no está definida en URLconf.</li>
+</ul>
+<p><img alt="Captura de pantalla de la página 404 de Django." src="../img_pages_app/404.png" /></p>
+<ul>
+<li>La utilidad de esta página va más allá del mensaje básico de error 404; nos dice también, <strong>qué URLconf utilizó Django y todos los patrones de esa URLconf</strong>. Con esa información, tendríamos que ser capaces de establecer porqué la URL solicitada lanzó un error 404.</li>
+<li>Naturalmente, esta es <strong>información importante sólo destinada al programador</strong>. Si esto fuera un sitio en producción alojado en Internet, no quisiéramos mostrar esta información al público. Por esta razón, la página <em>"Page not found"</em> sólo se muestra si el proyecto en Django está en modo de depuración (<em>debug mode</em>). Se explicará cómo desactivar este modo más adelante. Por ahora, todos los proyectos están en modo de depuración cuando se crean, y si el proyecto no lo estuviese, se retornaría una respuesta diferente.</li>
 </ul>
               
             </div>

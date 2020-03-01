@@ -75,11 +75,11 @@
         
             <li><a class="toctree-l3" href="#24-instalacion-de-django">2.4 Instalación de Django</a></li>
         
-            <li><a class="toctree-l3" href="#25-instalar-git">2.5 Instalar Git</a></li>
+            <li><a class="toctree-l3" href="#25-instalar-git">2.5. Instalar Git</a></li>
         
-            <li><a class="toctree-l3" href="#26-editores-de-texto">2.6 Editores de texto</a></li>
+            <li><a class="toctree-l3" href="#26-editores-de-texto">2.6. Editores de texto</a></li>
         
-            <li><a class="toctree-l3" href="#27-conclusion">2.7 Conclusión</a></li>
+            <li><a class="toctree-l3" href="#27-conclusion">2.7. Conclusión</a></li>
         
         </ul>
     
@@ -225,6 +225,14 @@
 <ul>
 <li><a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">Entornos Virtuales</a></li>
 <li><a href="https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/">Instrucciones de instalación desde los ficheros fuentes</a></li>
+<li>Python Path<ul>
+<li><strong>Python path</strong> es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia <code>import</code> de Python.</li>
+<li>Por ejemplo, supongamos que el Python path tiene el valor <code>['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']</code></li>
+<li>Si se ejecuta el código Python <code>from foo import bar</code>, Python en primer lugar se va a buscar el módulo <code>foo.py</code> en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual.") Si ese archivo no existe, Python va a buscar el módulo en <code>/usr/lib/python2.4/site-packages/foo.py</code>. Si ese archivo no existe, entonces se probará en <code>/home/username/djcode/foo.py</code>. Finalmente, si ese archivo no existe, Python lanzará un <code>ImportError</code>.</li>
+<li>Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir <code>import sys</code>, seguido de <code>print(sys.path)</code>.</li>
+<li>Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</li>
+</ul>
+</li>
 </ul>
 <h2 id="23-entornos-virtuales">2.3 Entornos Virtuales</h2>
 <ul>
@@ -267,7 +275,7 @@ $ pipenv shell
 <li><code>&lt;Ctrl&gt;-c</code> para parar</li>
 <li><code>exit</code> para salir del entorno virtual</li>
 </ul>
-<h3 id="251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1 Cambiando la IP de escucha y el puerto</h3>
+<h3 id="251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1. Cambiando la IP de escucha y el puerto</h3>
 <p>De manera predeterminada, el comando <code>runserver</code> inicia el servidor de desarrollo en la IP interna en el puerto 8000.</p>
 <p>Si se desea cambiar el puerto del servidor, hay que pasarlo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:</p>
 <pre><code class="bash">$ python manage.py runserver 8080
@@ -282,19 +290,19 @@ $ pipenv shell
 <p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
 </blockquote>
 <p>Una descripción más detallada del servidor se puede encontrar <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">aquí</a>.</p>
-<h2 id="25-instalar-git">2.5 Instalar Git</h2>
+<h2 id="25-instalar-git">2.5. Instalar Git</h2>
 <pre><code class="bash">$ sudo apt install git
 $ git config --global user.name &quot;&lt;Nombre&gt;&quot;
 $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 </code></pre>
 
-<h2 id="26-editores-de-texto">2.6 Editores de texto</h2>
+<h2 id="26-editores-de-texto">2.6. Editores de texto</h2>
 <ul>
 <li>Emacs ó Vim</li>
 <li>Code-OSS ó Visual Studio Codium</li>
 <li>PyCharm</li>
 </ul>
-<h2 id="27-conclusion">2.7 Conclusión</h2>
+<h2 id="27-conclusion">2.7. Conclusión</h2>
               
             </div>
           </div>
