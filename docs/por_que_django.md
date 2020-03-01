@@ -1,14 +1,16 @@
 # ¿Por qué Django?
 
-La primera pregunta que la gente casi siempre se hace cuando se les presenta Django es "¿por qué debo aprender Django?"
+Esta es la primera pregunta que los no iniciados casi siempre se hace cuando se les presenta Django:
 
-"¿Qué tiene Django que lo hace mejor que el Marco X o el lenguaje Y para construir aplicaciones web?"
+- "¿Por qué debo aprender Django?"
+
+- "¿Qué tiene Django que lo hace mejor que el Marco X o el lenguaje Y para construir aplicaciones web?"
 
 Buena pregunta.
 
 La programación, como la mayoría de las actividades creativas, tiene a mucha gente dedicada que lleva sus pasiones al extremo.
 
-Es por esta razón que desconfío de las comparaciones entre este software y aquel.
+Es por esta razón que se debe desconfiar de las comparaciones entre este software y aquel.
 
 El resultado final es que **todos los lenguajes de programación y las herramientas y marcos construidos sobre ellos tienen puntos buenos y malos**.
 
@@ -176,8 +178,9 @@ La documentación debería ser la razón número uno de esta lista porque fue la
 Django también cuenta con un fuerte apoyo de los miembros de la comunidad que producen materiales de aprendizaje gratuitos, libros, cursos pagados y gratuitos y muchos consejos, trucos y asistencia en sus sitios web.
 
 Hay muchos grupos. Algunos de los más relevantes son:
-- [Tango con Django](https://www.tangowithdjango.com/)
-- Cualquier cosa de Danny y Audrey en [TwoScoops Press](https://www.roygreenfeld.com/)
-- [Django Girls](https://djangogirls.org/)
+
++ [Tango con Django](https://www.tangowithdjango.com/)
++ Cualquier cosa de Danny y Audrey en [TwoScoops Press](https://www.roygreenfeld.com/)
++ [Django Girls](https://djangogirls.org/)
 
 Por supuesto, también se van a descubrir cosas sobre Django que parezcan frustrantes pero, dado que todos los lenguajes de programación y los frameworks construidos sobre ellos tienen sus idiosincrasias, seguro que se descubrirá que cuando se trata de construir rápidamente sitios web seguros y escalables, los beneficios de Django superan con creces a sus desafíos.

@@ -26,6 +26,12 @@
 
 - [Entornos Virtuales](https://mentecatodev.github.io/intermezzo/entornos_virtuales/)
 - [Instrucciones de instalación desde los ficheros fuentes](https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/)
+- Python Path
+    - **Python path** es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia `import` de Python.
+    - Por ejemplo, supongamos que el Python path tiene el valor `['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']`
+    - Si se ejecuta el código Python `from foo import bar`, Python en primer lugar se va a buscar el módulo `foo.py` en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual.") Si ese archivo no existe, Python va a buscar el módulo en `/usr/lib/python2.4/site-packages/foo.py`. Si ese archivo no existe, entonces se probará en `/home/username/djcode/foo.py`. Finalmente, si ese archivo no existe, Python lanzará un `ImportError`.
+    - Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir `import sys`, seguido de `print(sys.path)`.
+    - Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
 
 ## 2.3 Entornos Virtuales
 
@@ -69,7 +75,7 @@ $ python manage.py runserver
 - `<Ctrl>-c` para parar
 - `exit` para salir del entorno virtual
 
-### 2.5.1 Cambiando la IP de escucha y el puerto
+### 2.5.1. Cambiando la IP de escucha y el puerto
 
 De manera predeterminada, el comando `runserver` inicia el servidor de desarrollo en la IP interna en el puerto 8000.
 
@@ -91,7 +97,7 @@ $ python manage.py runserver 0:8000
 
 Una descripción más detallada del servidor se puede encontrar [aquí](https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver).
 
-## 2.5 Instalar Git
+## 2.5. Instalar Git
 
 ```bash
 $ sudo apt install git
@@ -99,10 +105,10 @@ $ git config --global user.name "<Nombre>"
 $ git config --globar user.email "<Correo electrónico>"
 ```
 
-## 2.6 Editores de texto
+## 2.6. Editores de texto
 
 - Emacs ó Vim
 - Code-OSS ó Visual Studio Codium
 - PyCharm
 
-## 2.7 Conclusión
+## 2.7. Conclusión

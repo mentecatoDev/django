@@ -10,13 +10,12 @@
     + Es una elección perfecta para proyectos pequeños.
 
 ##  5.1. Setup Inicial
-- Crear un nuevo directorio para nuestro código en el Escritorio llamado `mb`
+- Crear un nuevo directorio para el código llamado `mb`
 - Instalar Django en un nuevo entorno virtual
 - Crear un nuevo proyecto llamado `mb_project`
 - Crear una nueva aplicación `posts`
 - Actualizar `settings.py`
-```
-$ cd ~/Desktop
+```bash
 $ mkdir mb
 $ cd mb
 $ pipenv install django
@@ -35,15 +34,17 @@ FICHERO: `mb_project/settings.py`
 		'django.contrib.sessions',
 		'django.contrib.messages',
 		'django.contrib.staticfiles',
-ç		'posts',
+		'posts.apps.PostsConfig', # new
 	]
 ```
-A continuación, ejecutar el comando `migrate` para crear una base de datos inicial basada en la configuración por defecto de Django.
+- A continuación, ejecutar el comando `migrate` para crear una base de datos inicial basada en la configuración por defecto de Django.
+
 ```
 (mb) $ python manage.py migrate
 ```
-Ahora en el directorio habrá ahora un fichero `db.sqlite3` que representa a la base de datos SQLite.
-```
+- Ahora en el directorio habrá un fichero `db.sqlite3` que representa a la base de datos SQLite.
+
+```bash
 (mb) $ ls
 db.sqlite3 mb_project manage.py
 ```
@@ -56,7 +57,7 @@ db.sqlite3 mb_project manage.py
 
 ## 5.2. Crear un modelo de base de datos
 - Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.
-- Django convertirá este modelo en una tabla de base de datos.
+- **Django convertirá este modelo en una tabla de base de datos**.
 
 FICHERO: `posts/models.py`
 ```python
@@ -65,12 +66,12 @@ from django.db import models
 
 # Create your models here
 ```
-Django importa un módulo `models` para ayudarnos a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
-- Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual podemos hacer de la siguiente manera:
+- Django importa un módulo `models` para ayudar a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
+
+- Se quiere crear un modelo para almacenar el contenido textual de un mensaje en el tablero de mensajes, lo cual se puede hacer de la siguiente manera:
 
 FICHERO: `post/models.py`
 ```python
-# posts/models.py
 from django.db import models
 
 class Post(models.Model):
@@ -80,7 +81,7 @@ class Post(models.Model):
 
 ## 5.3. Activando modelos
 - Una vez creado, el modelo tiene que ser activado
-1. Primero se crea un archivo de migración con el comando `makemigrations` que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de INSTALLED_APPS. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.
+1. Primero se crea un archivo de migración con el comando `makemigrations` que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de `INSTALLED_APPS`. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.
 2. En segundo lugar, construimos la base de datos actual con `migrate` que ejecuta la función en el archivo de migraciones.
 ```bash
 (mb) $ python manage.py makemigrations posts

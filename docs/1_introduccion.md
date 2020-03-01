@@ -14,11 +14,7 @@ Pero PHP tiene sus propios problemas; su gran facilidad de uso fomenta un códig
 Estas y otras frustraciones similares condujeron directamente al desarrollo de la actual cosecha de marcos de desarrollo web de tercera generación. Con esta nueva explosión de desarrollo web viene otro aumento de la ambición; se espera que los desarrolladores web hagan más y más cada día.
 Django fue inventado para satisfacer estas nuevas ambiciones.*
 
-
-
 ## 1.2. La historia de Django
-
-
 
 Django creció orgánicamente a partir de aplicaciones del mundo real escritas por un equipo de desarrollo web en Lawrence, Kansas, USA. Nació en el otoño de 2003, cuando los programadores web del periódico Lawrence Journal-World, **Adrian Holovaty** y **Simon Willison**, comenzaron a usar Python para construir aplicaciones.
 
@@ -62,7 +58,7 @@ Django utiliza una terminología ligeramente diferente en su aplicación del MVC
 
 El patrón de diseño de MVC se ha utilizado tanto para aplicaciones de escritorio como para aplicaciones web durante muchos años, por lo que hay un gran número de variaciones en este tema, de las que Django no es una excepción. Si se desea profundizar un poco más en el patrón de diseño de MVC, sólo se debe advertir que la gente puede ser muy apasionada sobre lo que es una interpretación diferente de la misma cosa. Tomando prestada una cita del equipo de desarrollo de Django:
 
-> "Al final del día, por supuesto, todo se reduce a hacer las cosas. Y, sin importar el nombre de las cosas, Django las hace de la manera más lógica para nosotros."
+> "Al final del día, por supuesto, todo se reduce a hacer las cosas. Y, sin importar el nombre de las mismas, Django las hace de la manera más lógica para nosotros."
 
 ### 1.3.1. Modelos Django
 
@@ -204,11 +200,11 @@ También se proporcionan vistas de fechas genéricas adicionales basadas en clas
 
 Un sitio web no es de mucha utilidad si no se puede navegar por él: hay que decirle a la vista qué mostrar en el navegador, en base a lo que el usuario ha solicitado.
 
-La navegación en un sitio web Django es la misma que en cualquier otro sitio web: las páginas y otros contenidos se acceden a través de la URL. Cuando un usuario hace clic en un enlace de un sitio web, se envía una solicitud de esa URL a Django.
+La navegación en un sitio web Django es la misma que en cualquier otro sitio web: **las páginas y otros contenidos se acceden a través de la URL**. Cuando un usuario hace clic en un enlace de un sitio web, se envía una solicitud de esa URL a Django.
 
 ![img](./img_introduccion/browser2django.png)
 
-Una vez que Django recibe la URL solicitada, debe decidir qué vista se ocupará de la solicitud. Como programador, se decide qué vista servirá en qué URL creando una Configuración de URL (URLconf para abreviar) en un archivo de Python llamado `urls.py`. Cuando Django encuentra una URL en `urls.py` que coincide con la URL solicitada, llama a la vista asociada a esa URL.
+Una vez que Django recibe la URL solicitada, debe decidir qué vista se ocupará de la solicitud. El programador decide qué vista servirá en qué URL creando una Configuración de URL (URLconf para abreviar) en un archivo de Python llamado `urls.py`. Cuando Django encuentra una URL en `urls.py` que coincide con la URL solicitada, llama a la vista asociada a esa URL.
 
 ![Django Tutorials - URLs to View](./img_introduccion/urls2view.png)
 
@@ -216,7 +212,7 @@ La vista seleccionada entonces renderiza el contenido a una plantilla, según la
 
 ![Django Tutorials - Views to Browser](./img_introduccion/views2browser.png)
 
-Por supuesto, esto es una simplificación: Django puede recoger datos mucho más complejos del navegador que una URL, y las vistas no sólo representan páginas web. También hay otra capa colchón en Django que se sitúa entre la solicitud del navegador y la respuesta de la vista (a la que Django llama, de forma bastante inteligente, "middleware") que permite hacer toneladas de cosas geniales con los datos.
+Por supuesto, esto es una simplificación: Django puede recoger datos mucho más complejos del navegador que una URL, y las vistas no sólo representan páginas web. También hay otra capa colchón en Django que se sitúa entre la solicitud del navegador y la respuesta de la vista (a la que Django llama, de forma bastante inteligente, "**middleware**") que permite hacer toneladas de cosas geniales con los datos.
 
 La clave aquí es que, independientemente de lo complejo que sea un sitio web, este simple proceso subyace en toda la comunicación entre Django, el navegador y el usuario final.
 

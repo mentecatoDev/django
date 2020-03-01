@@ -28,11 +28,11 @@ $ pipenv shell
 
 - `settings.py`: Controla la configuración del proyecto
 - `urls.py`: Indica a Django qué páginas construir en respuesta a una petición de URL
-- `wsgi.py`: (*Web Server Gateway Interface*) Punto de entrada para servidores web compatibles con WSGI para servir el proyecto.
-- `asgi.py`: (*Asynchronous Server Gateway Interface*) Punto de entrada para servidores web compatibles con ASGI para servir el proyecto (nuevo en la versión 3.0).
+- `wsgi.py`: (*Web Server Gateway Interface*) Punto de entrada para servidores web compatibles con WSGI para servir el proyecto. Este archivo solo se usa en la fase de despliegue.
+- `asgi.py`: (*Asynchronous Server Gateway Interface*) Punto de entrada para servidores web compatibles con ASGI para servir el proyecto (nuevo en la versión 3.0). Este archivo solo se usa en la fase de despliegue.
 - `manage.py`: Ejecuta varios comandos Django, como correr el servidor web local o crear una nueva **app**
 
-```
+```bash
 (helloworld) $ python manage.py runserver
 ```
 
@@ -68,6 +68,10 @@ $ pipenv shell
 - Aunque la **app** existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.
 - Para incluir la app en el proyecto se necesita añadir una referencia a su clase de configuración en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` está en el archivo `pages/apps.py` , por eso su *path* con puntos es `'pages.apps.PagesConfig'`.
 
+> DETALLE
+> Tener en cuenta que dentro de cada aplicación, Django crea un archivo, `apps.py`, que contiene una clase de configuración con el nombre de la aplicación. En este caso, la clase se llama `PagesConfig`. Para registrar nuestra aplicación con Django, se necesita apuntar a la clase `PagesConfig`.
+> `PagesConfig` por defecto contiene una única opción de configuración: el nombre de la aplicación, en nuestro caso `pages`.
+
  FICHERO: `settings.py` 
 
 ```
@@ -88,8 +92,18 @@ $ pipenv shell
 - *Ojo, el **orden** importa; si varias aplicaciones intentan acceder al mismo recurso, la **app** que aparece primero tiene preferencia.*
 
 >DETALLE: `settings.py`
->Es un módulo Python normal con variables a nivel de módulo que representan los ajustes de Django. Una de las primeras cosas que se puede hacer en él es establecer la `TIME_ZONE` (zona horaria) que se desee.
-En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, `INSTALLED_APPS` contiene las siguientes aplicaciones, todas ellas incluidas en Django:
+>El fichero **settings.py** se usa para configurar muchos otros ajustes, pero en este punto probablemente sólo se querrá cambiar la [TIME_ZONE](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-TIME_ZONE) — ésta debería ser igual a una cadena de la [Lista de base de datos tz de time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (la columna TZ column de la tabla contiene los valores que quieres). Cambiar la `TIME_ZONE` al valor de entre estas cadenas que sea apropiado para el uso horario que se requiera, por ejemplo:
+>
+>```
+>TIME_ZONE = 'Europe/Madrid'
+>```
+>
+>Hay otros dos otros ajustes que no se cambiarán ahora, pero de los que se debería ser consciente:
+>
+>- `SECRET_KEY`. Ésta es una clave secreta que se usa como parte de la estrategia de seguridad del sitio web de Django. Si no se va a proteger este código durante el desarrollo, se necesitará usar un código diferente (quizás leyendo de una variable de entorno o un fichero)  cuando se ponga en producción. 
+>- `DEBUG`. Ésto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a `false` en producción, ya que la información de depuración es útil a los atacantes. 
+>
+>En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, `INSTALLED_APPS` contiene las siguientes aplicaciones, todas ellas incluidas en Django:
 >
 >`django.contrib.admin` : El sitio de administración.
 >`django.contrib.auth` : Un sistema de autenticación.
@@ -118,6 +132,9 @@ En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se e
 <div class=text-center>
  URL -> View -> Model (típicamente) -> Template 
 </div>
+
+> DETALLE:
+> Una URLconf es como una tabla de contenido para un sitio web hecho con Django. Básicamente, es un mapeo entre los patrones URL y las funciones de vista que deben ser llamadas por esos patrones URL. Es como decirle a Django, "Para esta URL, llama a este código, y para esta URL, llama a este otro código". Recordar que estas funciones de vista deben estar en el Python path. 
 
 - Se empieza actualizando el fichero `views.py`
 
@@ -175,6 +192,8 @@ En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se e
     - Añade un nombre de URL opcional `home`
 - Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces utilizar la vista llamada `homePageView`
 - El último paso es configurar el fichero `urls.py` a nivel de proyecto donde se recogen todas las **apps** dentro de un proyecto Django, dado que **cada una precisa de su propia ruta**.
+> DETALLE
+> Notemos que se pasa la función de vista `homePageView` como un objeto sin llamar a la función. Esto es una característica de Python (y otros lenguajes dinámicos): las funciones son objetos de primera clase, lo cual significa que se puede pasar como cualquier otra variable. ¡Qué bueno!, ¿no?
 
  FICHERO: `helloworld_project/urls.py` 
 
@@ -189,6 +208,17 @@ En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se e
 
 - Puede confundir un poco que no se necesite importar la app `pages` pero ya se hace referencia en `urlpatterns` como `pages.urls`.
     - La razón de hacerlo así es que el método `django.urls.include()` ya recibe un módulo, o **app**, como primer argumento. Así que, sin usar `include`, habría que importar la **app** `pages` pero, como sí que se usa, no se necesita a nivel de proyecto.
+
+> DETALLE: **URLconfs y el acoplamiento débil**
+>
+> Ahora es el momento de resaltar una parte clave de filosofía detrás de las URLconf y detrás de Django en general: el **principio de acoplamiento débil** (loose coupling). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (loosely coupled) los cambios realizados sobre una de dichas piezas va a tener poco o ningún efecto sobre la otra.
+>
+> Las URLconfs de Django son un claro ejemplo de este principio en la práctica. En una aplicación Web de Django, la definición de la URL y la función de vista que se llamará están débilmente acopladas; de esta manera, la decisión de cuál debe ser la URL para una función, y la implementación de la función misma, residen en dos lugares separados. Esto permite el desarrollo de una pieza sin afectar a la otra.
+>
+> En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python CherryPy (http://www.cherrypy.org/) la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo conveniente en el corto plazo, pero puede tornarse inmanejable a largo plazo.
+>
+> Por ejemplo, consideremos una función de vista que nos muestra la fecha y la hora actual. Si se quiere cambiar la URL de la aplicación — digamos, mover desde algo como `/time` a `/currenttime/` — se puede hacer un rápido cambio en la URLconf, sin tener que preocuparse acerca de la implementación subyacente de la función. Similarmente, si se quiere cambiar la función de la vista — alterando la lógica de alguna manera — se puede hacer sin afectar la URL a la que está asociada la función de vista. Además, si se quiere exponer la funcionalidad de fecha actual en varias URL se podría hacer editando el URLconf con cuidado, sin tener que tocar una sola línea de código de la vista.
+> Eso es el acoplamiento débil en acción: una **filosofía de desarrollo**.
 
 ## 3.4 Resumen
 
@@ -246,3 +276,28 @@ En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se e
 ç       path('', include('pages.urls')),
 ]
 ```
+## 3.5. Cómo procesa una petición Django
+- Se deben señalar varias cosas en lo que hemos visto. Este es el detalle de lo que sucede cuando se ejecuta el servidor de desarrollo de Django y se hace una petición a una página Web.
+    - El comando python `manage.py runserver` importa un archivo llamado `settings.py` desde el mismo directorio. Este archivo contiene todo tipo de configuraciones opcionales para esa instancia de Django en particular, pero una de las configuraciones más importantes es `ROOT_URLCONF`. La variable `ROOT_URLCONF` le dice a Django qué módulo de Python debería usar para la URLconf de este sitio Web.  `settings.py` que es generado automáticamente tiene un `ROOT_URLCONF` que apunta al `urls.py` generado automáticamente.
+    - Cuando llega una petición Django carga la URLconf apuntada por la variable `ROOT_URLCONF`. Luego comprueba cada uno de los patrones de URL en la URLconf en orden, comparando la URL solicitada con un patrón a la vez, hasta que encuentra uno que coincida. Cuando lo encuentra, llama a la función de vista asociada con ese patrón, pasando un objeto `HttpRequest` como primer parámetro de la función.
+    - La función de vista es responsable de retornar un objeto `HttpResponse`.
+
+- Una vez se conoce lo básico sobre cómo hacer páginas Web con Django. Es muy sencillo, realmente sólo hay que escribir funciones de vista y relacionarlas con URLs mediante URLconfs. Se podría pensar que es lento enlazar URL's con funciones.
+
+### 3.3.1. Cómo procesa una petición Django: Detalles completos
+
+- Además del mapeo directo de URLs con funciones vista que acabamos de describir, Django nos provee un poco más de flexibilidad en el procesamiento de peticiones.
+
+- El flujo típico — resolución de URLconf a una función de vista que retorna un HttpResponse — puede ser cortocircuitado o aumentado mediante middleware. Los secretos del middleware serán tratados en profundidad más adelante, pero un esquema ayudará conceptualmente a poner todas las piezas juntas.
+
+![El flujo completo de un petición y una respuesta Django](./img_hello_world_app/get_response.png)
+
+- Cuando llega una petición HTTP desde el navegador, un manejador específico a cada servidor construye la `HttpRequest`, para pasarla a los componentes y maneja el flujo del procesamiento de la respuesta.
+
+- El manejador luego llama a cualquier middleware de Petición o Vista disponible. Estos tipos de middleware son útiles para augmenting los objetos HttpRequest así como también para proveer manejo especial a determinados tipos de peticiones. En el caso de que alguno de los mismos retornara un HttpResponse la vista no es invocada.
+
+- Hasta a los mejores programadores se le escapan errores (bugs), pero el middleware de excepción ayuda a aplastarlos. Si una función de vista lanza una excepción, el control pasa al middleware de Excepción. Si este middleware no retorna un `HttpResponse`, la excepción se vuelve a lanzar.
+
+- Sin embargo, no todo está perdido. Django incluye vistas por omisión para respuestas amigables a errores 404 y 500.
+
+- Finalmente, el middleware de respuesta es bueno para el procesamiento posterior a un `HttpResponse` justo antes de que se envíe al navegador o haciendo una limpieza de recursos específicos a una petición.
