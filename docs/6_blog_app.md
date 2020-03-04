@@ -36,7 +36,7 @@ FICHERO: `blog_project/settings.py`
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-ç       'blog', # new
+        'blog.apps.BlogConfig',        # new
     ]
 ```
 ## 6.2. Modelos de Bases de Datos
@@ -61,9 +61,9 @@ class Post(models.Model):
 - Se importan los modelos de la clase y luego se crea una subclase del modelo llamada `Post`.
 - Usando esta funcionalidad de subclase se tiene acceso automáticamente a todo lo que hay dentro de `django.db.models.Models` y se pueden añadir campos y métodos adicionales según se desee.
 - El título se limita a 200 caracteres y para el cuerpo se usa un campo de texto que se expandirá automáticamente según sea necesario para adaptarse al texto del usuario.
-    + Hay muchos tipos de campos disponibles en Django; se puede ver la lista completa [aquí](https://docs.djangoproject.com/es/3.0/ref/models/fields/#field-types).
+    + **Hay muchos tipos de campos disponibles en Django**; se puede ver la lista completa [aquí](https://docs.djangoproject.com/es/3.0/ref/models/fields/#field-types).
 - Para el campo de autor se usa una clave foránea (`ForeignKey`) que permite una relación de *uno a muchos*: un autor puede tener muchas entradas de blog diferentes, pero no al revés.
-- La referencia `auth.User` es para el modelo de usuario incorporado que Django proporciona para la autenticación.
+- La referencia `auth.User` pertenece al modelo de usuario incorporado que Django proporciona para la autenticación.
 - Para todas las relaciones de uno a muchos, con `ForeignKey`, también debemos especificar una opción de `on_delete`.
 - Ahora que se ha creado el nuevo modelo de base de datos, se necesita crear un nuevo registro de migración para él y migrar el cambio a la base de datos. Este proceso de dos pasos se puede completar con los siguientes comandos:
 ```bash
@@ -87,7 +87,7 @@ Superuser created successfully.
 
 - Arrancar el servidor y abrir http://127.0.0.1:8000/admin/
 - Logear con la nueva cuenta de superusuario
-- !Ups! ¿Dónde esta nuevo modelo Post?
+- !Ups! ¿Dónde está el nuevo modelo `Post`?
 - Se olvidó actualizar `blog/admin.py`
 
 FICHERO: `blog/admin.py`
@@ -247,7 +247,7 @@ FICHERO: ` templates/base.html`
 <html>
   <head>
     <title>Django blog</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:4000" rel="\stylesheet">
+    <link rel="\stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:4000">  <!-- new -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
   </head>
 ...
@@ -400,9 +400,11 @@ urlpatterns = [
 ]
 ```
 - Todas las entradas del blog comenzarán con `post/`. Lo siguiente es la clave principal de la entrada que se representará como un entero `<int:pk>`.
--  ¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos `title`, `author` and `body` en el modelo de publicación, bajo el capó Django también añadió otro campo llamado `id`, que es la clave primaria. Se puede acceder a ella como `id` o `pk`.
-- El `pk` para el primer post "Hola, Mundo" es 1. Para el segundo post, es 2. Y así sucesivamente. Por lo tanto, cuando vayamos a la página de entrada individual para nuestro primer post, podemos esperar que su patrón de dirección sea `post/1`.
-> Nota: Entender cómo funcionan claves primarias con `DetailView` es un lugar de confusión muy común para los principiantes. Vale la pena releer los dos párrafos anteriores unas cuantas veces. Con la práctica se convertirá en algo natural.
+-  ¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos `title`, `author` and `body` en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado `id`, que es la clave primaria. Se puede acceder a ella como `id` o `pk`.
+- La `pk` para el primer post "Hola, Mundo" es 1. Para el segundo post, es 2. Y así sucesivamente. Por lo tanto, cuando se vaya a la página de entrada individual para el primer post, el patrón de dirección es `post/1`.
+> Nota:
+>
+> Entender cómo funcionan claves primarias con `DetailView` es un punto de confusión muy común en los principiantes. Vale la pena releer los dos párrafos anteriores unas cuantas veces. Con la práctica se convertirá en algo natural.
 - Si se inicia el servidor con `python manage.py runserver` y se va directamente a http://127.0.0.1:8000/post/1/ se verá una página dedicada para la primera entrada en el blog.
 - También se puede ir a http://127.0.0.1:8000/post/2/ para ver la segunda entrada.
 - Para facilitar el acceso, se debería actualizar el enlace en la página de inicio para poder acceder directamente a las entradas individuales del blog desde allí. Actualmente en `home.html` el enlace está vacío: `<a href="">` . Actualizarlo a `<a href="{% url 'post_detail' post.pk %}">`.
@@ -452,7 +454,7 @@ class BlogTests(TestCase):
     def test_string_representation(self):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
-    t
+
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
         self.assertEqual(f'{self.post.author}', 'testuser')

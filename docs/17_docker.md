@@ -1,6 +1,5 @@
-
 # 18. Docker
----
+
 - La configuración adecuada de un entorno de desarrollo local sigue siendo un gran reto a pesar de todos los otros avances de la programación moderna. Simplemente hay demasiadas variables: **diferentes ordenadores**, **sistemas operativos**, **versiones de lenguajes** y **frameworks**, **opciones de entornos virtuales**,  y así sucesivamente. Cuando se añade el reto de **trabajar en equipo** en un entorno en el que todos necesitan tener la misma configuración, el problema se magnifica.
 
 - En los últimos años ha surgido una solución: [Docker](https://www.docker.com/). Aunque sólo tiene unos pocos años, Docker se ha convertido rápidamente en la opción por defecto para muchos desarrolladores que trabajan en proyectos a nivel de producción.

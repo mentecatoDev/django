@@ -1,7 +1,7 @@
 # 8. Cuentas de Usuarios
 - La mayoría de las aplicaciones web cuentan con una importante pieza: la **autenticación del usuario**.
 - La implementación de una autenticación de usuario adecuada es conocida por su dificultad
-- Afortunadamente Django viene con un poderoso sistema de autenticación de usuarios incorporado.
+- Afortunadamente Django viene con un poderoso sistema de autenticación de usuarios **incorporado**.
 - Cada vez que se crea un nuevo proyecto, Django instala por defecto la aplicación de autenticación, que proporciona un objeto de usuario que contiene:
 
   + Nombre de Usuario
@@ -35,7 +35,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')), # new
     path('', include('blog.urls')),
 ]
 ```
@@ -58,11 +58,11 @@ FICHERO: `templates/registration/login.html`
 </form>
 {% endblock content %}
 ```
-- Se usan las etiquetas HTML <form></form> y se especifica el método POST ya que se están enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade `{% csrf_token %}` por motivos de seguridad, es decir, para evitar un ataque XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a `{{ form.as_p }}` y luego se añade un botón de "enviar".
+- Se usan las etiquetas HTML <form></form> con el método POST ya que se está enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade `{% csrf_token %}` por motivos de seguridad, es decir, para evitar ataques XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a `{{ form.as_p }}` y luego se añade un botón "enviar" (`submit`).
 - En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración `LOGIN_REDIRECT_URL`. En la parte inferior del archivo `settings.py` agregar:
   FICHERO: `settings.py`
 
-```
+```python
 LOGIN_REDIRECT_URL = 'home'
 ```
 - Ahora el usuario será redirigido a la plantilla `home` que es la página de inicio.
@@ -84,7 +84,7 @@ FICHERO: `templates/base.html`
 {% if user.is_authenticated %}
   <p>Hi {{ user.username }}!</p>
 {% else %}
-  <p>You are not logged in.</p>
+  <p>You are not logged in</p>
   <a href="{% url 'login' %}">login</a>
 {% endif %}
 {% block content %}
@@ -98,7 +98,7 @@ FICHERO: `templates/base.html`
 - En el archivo `base.html` se agrega un enlace de una línea `{% url 'logout' %}` para desconectarse.
 
 FICHERO: `templates/base.html`
-```
+```html
 ...
 {% if user.is_authenticated %}
   <p>Hi {{ user.username }}!</p>
@@ -110,7 +110,7 @@ FICHERO: `templates/base.html`
 - Actualizar `settings.py` para proporcionar un enlace de redireccionamiento que se llama, apropiadamente, `LOGOUT_REDIRECT_URL`. Podemos añadirlo justo al lado de nuestra redirección de inicio de sesión, de manera que la parte inferior del archivo tenga el siguiente aspecto:
 
 FICHERO: `blog_project/settings.py`
-```
+```python
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 ```
@@ -118,7 +118,7 @@ LOGOUT_REDIRECT_URL = 'home'
 ## 8.4. Inscripción
 - Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, `UserCreationForm`, para facilitar las cosas. 
   + Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.
-- Hay muchas maneras de organizar el código y la estructura de urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, `accounts`, para la página de registro.
+- Hay muchas maneras de organizar el código y la estructura de las urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, `accounts`, para la página de registro.
 
 ```bash
 (blog) $ python manage.py startapp accounts
@@ -172,15 +172,15 @@ FICHERO: `accounts/views.py`
 ```python
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views.generic import CreateView
 
 
-class SignUpView(generic.CreateView):
+class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 ```
-- Se está heredando de la vista genérica basada en clases `CreateView` la clase `SignUpView`. Se especifica el uso de `UserCreationForm` incorporado y la plantilla aún no creada en `signup.html`. Y se usa `reverse_lazy` para redirigir al usuario a la página de inicio de sesión cuando se registra con éxito.
+- Se está heredando de la vista genérica basada en clases `CreateView` la clase `SignUpView`. Se especifica el uso del `UserCreationForm` incorporado y la plantilla, aún no creada,  `signup.html`. Y se usa `reverse_lazy` para redirigir al usuario a la página de inicio de sesión cuando se registra con éxito.
 - ¿Por qué usar aquí `reverse_lazy` en lugar de `reverse`? La razón es que para todas las vistas genéricas basadas en clases las urls no se cargan cuando se importa el archivo, por lo que tenemos que usar la forma perezosa de `reverse` para cargarlas más tarde cuando estén disponibles.
 - Añadir `signup.html` a la carpeta de plantillas a nivel de proyecto:
 ```bash
@@ -191,29 +191,29 @@ TEMPLATE: `templates/signup.html`
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Sign up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign up</button>
-</form>
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign up</button>
+  </form>
 {% endblock %}
 ```
 - Al principio se extiende la plantilla base, se coloca la lógica entre las etiquetas `<form></form>`, y se usa `csrf_token` por seguridad. El contenido del formulario se muestra en etiquetas de párrafo con `form.as_p` y se incluye un botón de envío.
 - Navegar en: http://127.0.0.1:8000/accounts/signup/
 - Observar que hay mucho texto extra que Django incluye por defecto. Se puede personalizar usando el *marco de mensajes* incorporado, pero por ahora probar el formulario.
-- Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado `Hi <nombre de usuario>`.
+- Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado `Hi William`.
 - El último flujo es, por lo tanto:
 
 <center>Inscripción (Signup) -> Inicio de sesión (Login) -> Página de inicio (Homepage)</center>
 - Y por supuesto podemos modificar esto como queramos. La `SignupView` se redirige a la entrada al sistema (login) porque se establece `success_url = reverse_lazy('login')`. La página de *login* se redirige a la *homepage* porque en el archivo `settings.py` se establece `LOGIN_REDIRECT_URL = 'home'`.
-- Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Pero prometo que con el tiempo empezarán a tener más sentido.
+- Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.
 
 ## 8.5. Git
 ```bash
 (blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 ```
-Crear un nuevo repo en GitHub al que puedes llamar como quieras.
+Crear un nuevo repo en GitHub al que se puedes llamar como se desee.
 ```bash
 (blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
 (blog) $ git push -u origin master
@@ -274,8 +274,8 @@ ALLOWED_HOSTS = ['*']
 ```bash
 (blog) $ pipenv install whitenoise
 ```
-- Hay que actualizar la configuración estática para que se use en producción. En su editor de texto abra settings.py . Añade whitenoise al INSTALLED_APPS encima de la aplicación de archivos estáticos incorporada y también al MIDDLEWARE en la tercera línea. El orden importa tanto para INSTALLED_APPS como para MIDDLEWARE .
-  En la parte inferior del archivo añade nuevas líneas tanto para STATIC_ROOT como para STATICFILES_STORAGE . Debería verse como lo siguiente.
+- Hay que actualizar la configuración estática para que se use en producción. En el editor de texto abrir `settings.py` . Añadir `whitenoise` a `INSTALLED_APPS` encima de la aplicación de archivos estáticos incorporada y también a `MIDDLEWARE` en la tercera línea. El orden importa tanto para `INSTALLED_APPS` como para `MIDDLEWARE`.
+  En la parte inferior del archivo añadir nuevas líneas tanto para `STATIC_ROOT` como para `STATICFILES_STORAGE`. Debería verse lo siguiente:
 
 FICHERO: `blog_project/settings.py`
 ```python
@@ -312,10 +312,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 (blog) $ git push origin master
 ```
 Finalmente podemos subir el código a Heroku y añadir un proceso web para que el banco de pruebas se ponga en marcha.
-```
+```bash
 (blog) $ git push heroku master
 (blog) $ heroku ps:scale web=1
 ```
 
 ## 8.8. Conclusión
-Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se ha ocupado de los muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.
+Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.

@@ -41,3 +41,45 @@ Estos sitios proporcionan escritos regulares de alta calidad sobre Python y el d
 - Daniel Greenfeld
 Comentarios
 Si has conseguido terminar el libro entero, me encantaría escuchar tus pensamientos. ¿Qué te gustó o no te gustó? ¿Qué áreas fueron especialmente difíciles? ¿Y qué nuevo contenido te gustaría ver? Me pueden contactar en will@wsvincent.com.
+
+# Conclusion 2
+Building a “professional” website is no small task even with all the help that a batteries-
+included web framework like Django provides. Docker provides a major advantage in
+standardizing both local and production environments regardless of local machine–
+and especially in a team context. However Docker is a complicated beast on its own.
+While we have used it judiciously in this book there is much more that it can do
+depending on the needs of a project.
+Django itself is friendly to small projects because its defaults emphasize rapid local
+development but these settings must be systematically updated for production, from
+upgrading the database to PostgreSQL, using a custom user model, environment
+variables, configuring user registration flow, static assets, email...on and on it goes.
+The good news is that the steps needed for a production-level approach are quite
+similar. Hence the first half of this book is deliberately agnostic about the eventual
+project that is built: you’ll find these steps are standard on almost any new Django
+project. The second half focused on building a real Bookstore site with modern
+best practices, added Reviews, image uploads, set permissions, configured payments
+with Stripe, added search, reviewed performance and security measures, and finally
+deployed on Heroku with containers.
+For all the content covered in this book we’ve really only scratched the surface of what
+Django can do. This is the nature of modern web development: constant iteration.
+Django is a magnificent partner in building out a professional website because so
+many of the considerations required have already been thought of and included. But
+knowledge is needed to know how to turn these production switches on to take
+full advantage of the customization Django allows. Ultimately that is the goal of this
+Conclusion
+ 362
+book: to expose you, the reader, to the full spectrum of what Django and professional
+websites require.
+As you learn more about web development and Django I’d urge caution when it comes
+to premature optimization. It is always tempting to features and optimizations to your
+project that you think you’ll need later. The short list includes adding a CDN for static
+and media assets, judiciously analyzing database queries, adding indexes to models,
+and so on.
+The truth is that in any given web project there will always be more to do than
+time allows. This book has covered the fundamentals that are worthy of upfront
+time to get right. Additional steps around security, performance, and features will
+present themselves to you in real-time. Try to resist the urge to add complexity until
+absolutely necessary.
+If you have feedback on this book or examples of what you’ve built as a result, I
+read and respond to every email I receive at will@wsvincent.com377. I look forward
+to hearing from you!

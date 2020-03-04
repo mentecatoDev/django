@@ -61,10 +61,7 @@ db.sqlite3 mb_project manage.py
 
 FICHERO: `posts/models.py`
 ```python
-# posts/models.py
 from django.db import models
-
-# Create your models here
 ```
 - Django importa un módulo `models` para ayudar a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.
 
@@ -74,8 +71,8 @@ FICHERO: `post/models.py`
 ```python
 from django.db import models
 
-class Post(models.Model):
-    text = models.TextField()
+class Post(models.Model):     # new
+    text = models.TextField() # new
 ```
 - Se ha creado un nuevo modelo de base de datos llamado `Post` que tiene el campo `text` de tipo `TextField()`.
 
@@ -89,7 +86,7 @@ class Post(models.Model):
 ```
 - No es necesario incluir un nombre después de `makemigrations` o de `migrate` pero es un buen hábito para ser específico.
 
-	+ Si tenemos dos aplicaciones separadas en nuestro proyecto, se actualizan los modelos en ambos y luego se ejecuta `makemigrations` se genererá un archivo de migraciones que contiene datos sobre **ambas** modificaciones. Esto hace que la depuración sea más difícil en el futuro. Es deseable que cada archivo de migración sea lo más pequeño y aislado posible. De esta forma, si se necesita mirar las migraciones pasadas, sólo hay un cambio por migración en lugar de uno que se aplica a múltiples aplicaciones.
+	+ Si tenemos dos *apps* separadas en nuestro proyecto, se actualizan los modelos en ambos y luego se ejecuta `makemigrations` se genererá un archivo de migraciones que contiene datos sobre **ambas** modificaciones. Esto hace que la depuración sea más difícil en el futuro. Es deseable que cada archivo de migración sea lo más pequeño y aislado posible. De esta forma, si se necesita mirar las migraciones pasadas, sólo hay un cambio por migración en lugar de uno que se aplica a múltiples aplicaciones.
 
 ## 5.4. Django Admin
 - Django proporciona una robusta interfaz de administración para interactuar con la base de datos (pocos frameworks ofrecen tal cosa).
@@ -111,10 +108,9 @@ a http://127.0.0.1:8000/admin/.
 
 FICHERO: `post/admin.py`
 ```python
-# posts/admin.py
 from django.contrib import admin
 
-from .models import Post
+from posts.models import Post
 
 admin.site.register(Post)
 ```
@@ -131,12 +127,11 @@ from django.db import models
 class Post(models.Model):
     text = models.TextField()
 
-ç	def __str__(self):
-ç    	"""A string representation of the model."""
-ç    	return self.text[:50]
+    def __str__(self):        # new
+        return self.text[:50] # new
 ```
 
-- Es una buena práctica añadir métodos `str()` a todos los modelos para aumentar la legibilidad.
+- Es una buena práctica añadir métodos `__str__()` a todos los modelos para aumentar la legibilidad.
 
 ## 5.5. Views/Templates/URLs
 - Para poder **mostrar** el contenido de la **base de datos** en la web, hay que conectar las **vistas**, las **plantillas** y las **URLConfs**.
@@ -156,8 +151,8 @@ class HomePageView(ListView):
 ```
 - Importar `ListView`
 - Definir qué modelo se va a usar
-- En la vista, se deriva la clase `ListView` para especificar el nombre del modelo y la referencia de la plantilla.
-    + Internamente `ListView` devuelve un objeto llamado `object_list` que hay que mostrar en la plantilla.
+- En la vista, se deriva la clase `ListView` para especificar el nombre del **modelo** y la referencia de la **plantilla**.
+    + Internamente `ListView` devuelve un **objeto** llamado `object_list` que hay que mostrar en la plantilla.
 
 ### 5.4.2. Plantilla
 - Crear un directorio en el nivel del proyecto que se llame `templates` y una plantilla `home.html` en él
@@ -244,19 +239,19 @@ FICHERO: `posts/test.py`
 ç	        Post.objects.create(text='just a test')
 
 ç	    def test_text_content(self):
-ç	        post=Post.objects.get(id=1)
+ç	        post = Post.objects.get(id=1)
 ç	        expected_object_name = f'{post.text}'
 ç	        self.assertEqual(expected_object_name, 'just a test')
 ```
 1. Importa el módulo `TestCase` que permite crear una base de datos de muestra
 2. Importa el modelo `Post`
 3. Se crea una nueva clase `PostModelTest` y se le añade un método `setUp`
-para crear una nueva base de datos con una sola entrada: "just a test"
+para crear una nueva base de datos con una sola entrada: `'just a test'`
 
-- Ejecutar `test_text_content`, para comprobar que el campo de la base de datos realmente contiene `just a test`.
-    + Se crea una variable llamada `post` que representa el primer `id` en el modelo de Post.
+- Se ejecuta `test_text_content` para comprobar que el campo de la base de datos realmente contiene `just a test`.
+    + Se crea una variable llamada `post` que representa el primer `id` del modelo Post.
     + Django asigna automáticamente esta identificación
-- La siguiente línea usa "cadenas f", que son una adición muy interesante desde Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes {}
+- La siguiente línea usa "cadenas f", que son una adición muy interesante desde Python 3.6, y permiten poner variables directamente en las cadenas siempre y cuando estén rodeadas de corchetes `{}`
 - Se establece `expected_object_name` como el valor de la cadena en `post.text` que permitirá hacer la prueba
 - En la última línea se usa `assertEqual` para comprobar que la entrada recién creada coincide con la dispuesta al principio
 - Ejecutar la prueba con `python manage.py test`
@@ -272,44 +267,44 @@ Ran 1 test in 0.001s
 OK
 Destroying test database for alias 'default'...
 ```
-- A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos
+- A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos.
 - El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista `home` y la plantilla `home.html`.
 -  
 Se necesita añadir un `import` más para `reverse` y una nueva clase `HomePageViewTest`
 ```python
-	from django.test import TestCase
-ç	from django.urls import reverse
-	from .models import Post
+from django.test import TestCase
+from django.urls import reverse  #new
+from .models import Post
 
 
-	class PostModelTest(TestCase):
+class PostModelTest(TestCase):
 
-	    def setUp(self):
-	        Post.objects.create(text='just a test')
+    def setUp(self):
+        Post.objects.create(text='just a test')
 
-	    def test_text_content(self):
-	        post=Post.objects.get(id=1)
-	        expected_object_name = f'{post.text}'
-	        self.assertEqual(expected_object_name, 'just a test')
+    def test_text_content(self):
+        post=Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
 
 
-ç    class HomePageViewTest(TestCase):
+class HomePageViewTest(TestCase): # new
 
-ç        def setUp(self):
-ç            Post.objects.create(text='this is another test')
+    def setUp(self):# new
+        Post.objects.create(text='this is another test')# new
 
-ç      	 def test_view_url_exists_at_proper_location(self):
-ç            resp = self.client.get('/')
-ç            self.assertEqual(resp.status_code, 200)
+    def test_view_url_exists_at_proper_location(self):  # new
+        resp = self.client.get('/')                     # new
+        self.assertEqual(resp.status_code, 200)         # new
 
-ç        def test_view_url_by_name(self):
-ç            resp = self.client.get(reverse('home'))
-ç            self.assertEqual(resp.status_code, 200)
+     def test_view_url_by_name(self):                   # new
+        resp = self.client.get(reverse('home'))         # new
+        self.assertEqual(resp.status_code, 200)         # new
 
-ç        def test_view_uses_correct_template(self):
-ç            resp = self.client.get(reverse('home'))
-ç            self.assertEqual(resp.status_code, 200)
-ç            self.assertTemplateUsed(resp, 'home.html')
+    def test_view_uses_correct_template(self):          # new
+        resp = self.client.get(reverse('home'))         # new
+        self.assertEqual(resp.status_code, 200)         # new
+        self.assertTemplateUsed(resp, 'home.html')      # new
 ```
 - Ejecutando el test:
 ```bash
