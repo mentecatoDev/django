@@ -1,15 +1,15 @@
 site_name: Django
 nav:
   - ¿Por qué Django? : por_que_django.md
-  - 1. Introducción : 1_introduccion.md
-  - 2. Configuración Inicial : 2_configuracion_inicial.md
-  - 3. Hello World app : 3_hello_world_app.md
-  - 4. Pages app : 4_pages_app.md
-  - 5. Message Board app : 5_message_board_app.md
-  - 6. Blog app : 6_blog_app.md
-  - 7. Formularios : 7_formularios.md
-  - 8. Cuentas de Usuarios : 8_cuentas_de_usuarios.md
-  - 9. Modelo de Usuario Personalizado: 9_modelo_de_usuario_personalizado.md
+  - 1. Introducción : 01_introduccion.md
+  - 2. Configuración Inicial : 02_configuracion_inicial.md
+  - 3. Hello World app : 03_hello_world_app.md
+  - 4. Pages app : 04_pages_app.md
+  - 5. Message Board app : 05_message_board_app.md
+  - 6. Blog app : 06_blog_app.md
+  - 7. Formularios : 07_formularios.md
+  - 8. Cuentas de Usuarios : 08_cuentas_de_usuarios.md
+  - 9. Modelo de Usuario Personalizado: 09_modelo_de_usuario_personalizado.md
   - 10. Autenticación de Usuarios: 10_autenticacion_de_usuarios.md
   - 11. Bootstrap: 11_bootstrap.md
   - 12. Cambio y Restauración de Contraseñas: 12_cambio_y_restauracion_de_contrasenas.md
