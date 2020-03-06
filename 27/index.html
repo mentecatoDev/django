@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>27 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "27";
+    var mkdocs_page_input_path = "27.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>27</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter 11: Reviews App
+In this chapter we’ll add a reviews app so that readers can leave reviews of their
+favorite books. It gives us a chance to discuss foreign keys, app structure, and dive
+into forms.
+Foreign Keys
+We’ve already used a foreign key with our user model, but didn’t have to think about
+it. Now we do! Fundamentally a database table can be thought of as similar to a
+spreadsheet with rows and columns. There needs to be a primary key field that is
+unique and refers to each record. In the last chapter we changed that from id to a
+UUID, but one still exists!
+This matters when we want to link two tables together. For example, our Books model
+will link to a Reviews model since each review has to be connected to a relevant book.
+This implies a foreign key relationship.
+There are three possible types of foreign key relationships:
+• One-to-one197
+• One-to-many198
+• Many-to-many199
+197 https://docs.djangoproject.com/en/2.2/ref/models/fields/#onetoonefield
+198 https://docs.djangoproject.com/en/2.2/ref/models/fields/#foreignkey
+199 https://docs.djangoproject.com/en/2.2/ref/models/fields/#manytomanyfield
+Chapter 11: Reviews App
+ 219
+A one-to-one relationship is the simplest kind. An example would be a table of people’s
+names and a table of social security numbers. Each person has only one social security
+number and each social security number is linked to only one person.
+In practice one-to-one relationships are rare. It’s unusual for both sides of a relation-
+ship to only be matched to one counterpart. Some other examples though would be
+country-flag or person-passport.
+A one-to-many relationship is far more common and is the default foreign key200
+setting within Django. For example, one student can sign up for many classes. Or
+an employee has one job title, maybe “Software Engineer,” but there can be many
+software engineers within a given company.
+It’s also possible to have a ManyToManyField201 relationship. Let’s consider a list of
+books and a list of authors: each book could have more than one author and each
+author can write more than one book. That’s a many-to-many relationship. Just as
+with the previous two examples you need a linked Foreign Key field to connect the two
+lists. Additional examples include doctors and patients (every doctor sees multiple
+patients and vice versa) or employees and tasks (each employee has multiple tasks
+while each task is worked on by multiple employees).
+Database design is a fascinating, deep topic that is both an art and a science. As the
+number of tables grow in a project over time it is almost inevitable that a refactoring
+will need to occur to address issues around inefficiency, bloat, and outright errors.
+Normalization202 is the process of structuring a relational database though far beyond
+the scope of this book.
+200 <a href="https://docs.djangoproject.com/en/2.2/ref/models/fields/#foreignkey">ForeignKey</a>
+201 https://docs.djangoproject.com/en/2.2/ref/models/fields/#manytomanyfield
+202 https://en.wikipedia.org/wiki/Database_normalization
+Chapter 11: Reviews App
+ 220
+Reviews model
+Coming back to our basic reviews app, the first consideration is what type of foreign
+key relationship will there be. If we are going to link a user to a review, then it is
+a straightforward one-to-many relationship. However it could also be possible to
+link books to reviews which would be many-to-many. The “correct” choice quickly
+becomes somewhat subjective and certainly dependent upon the particular needs of
+the project.
+In this project we’ll treat the reviews app as a one-to-many between authors and
+reviews as it’s the simpler approach.
+Here again we face a choice around how to design our project. Do we add the Reviews
+model within our existing books/models.py file or create a dedicated reviews app that
+we then link to? Let’s start by adding a Reviews model to the books app.
+Code</p>
+<h1 id="booksmodelspy">books/models.py</h1>
+<p>import uuid
+from django.contrib.auth import get_user_model # new
+from django.db import models
+from django.urls import reverse
+class Book(models.Model):
+id = models.UUIDField(
+primary_key=True,
+default=uuid.uuid4,
+editable=False)
+title = models.CharField(max_length=200)
+Chapter 11: Reviews App
+author = models.CharField(max_length=200)
+price = models.DecimalField(max_digits=6, decimal_places=2)
+def <strong>str</strong>(self):
+return self.title
+def get_absolute_url(self):
+return reverse('book_detail', kwargs={'pk': str(self.pk)})
+221
+class Review(models.Model): # new
+book = models.ForeignKey(
+Book,
+on_delete=models.CASCADE,
+related_name='reviews',
+)
+review = models.CharField(max_length=255)
+author = models.ForeignKey(
+get_user_model(),
+on_delete=models.CASCADE,
+)
+def__str__(self):
+return self.review
+At the top under imports include get_user_model which is needed to refer to our
+CustomUser model, then create a dedicated Review model. The book field is the one-to-
+many foreign key that links Book to Review and we’re following the standard practice
+of naming it the same as the linked model. All many-to-one relationships now require
+Chapter 11: Reviews App
+ 222
+we specify an on_delete203 option, too. The review field contains the actual content
+which perhaps could be a TextField204 depending on how much space you want to
+provide for review length! For now, we’ll force reviews to be short at 255 characters
+or less. And then we’ll also link to the author field to auto-populate the current user
+with the review.
+For all many-to-one relationships such as a ForeignKey we must also specify an on_-
+delete205 option. And we’re using get_user_model206 to reference our custom user
+model.
+Create a new migrations file for our changes and then run migrate to apply them.
+Command Line
+$ docker-compose exec web python manage.py makemigrations books
+Migrations for 'books':
+books/migrations/0002_review.py
+- Create model Review
+$ docker-compose exec web python manage.py migrate
+Admin
+For the reviews app to appear in the admin we need to update books/admin.py
+substantially by adding the Review model and specifying a display of TabularInline207 .
+203 https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.ForeignKey.on_delete
+204 https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.TextField
+205 https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.ForeignKey.on_delete
+206 https://wsvincent.com/django-referencing-the-user-model/
+207 https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.TabularInline
+Chapter 11: Reviews App
+Code</p>
+<h1 id="booksadminpy">books/admin.py</h1>
+<p>from django.contrib import admin
+from .models import Book, Review
+class ReviewInline(admin.TabularInline):
+model = Review
+223
+class BookAdmin(admin.ModelAdmin):
+inlines = [
+ReviewInline,
+]
+list_display = ("title", "author", "price",)
+admin.site.register(Book, BookAdmin)
+Now navigate to the books section at http://127.0.0.1:8000/admin/books/book/208
+and then click on any of the books to see the reviews visible on the individual book
+page.
+208 http://127.0.0.1:8000/admin/books/book/
+Chapter 11: Reviews App
+ 224
+Django for Professionals Admin Reviews
+We’re limited to reviews by existing users at this point, although we have previously
+created a testuser@email.com that was deleted when we removed the database volume
+mount in the previous chapter. There are two options for adding this account: we
+could go to the main site and use the “Sign Up” link or we can add it directly from the
+admin. Let’s do the latter. From the Users section on the Admin homepage click on
+the “+ Add” button. Add a new user called testuser.
+Chapter 11: Reviews App
+ 225
+Admin testuser
+Then on the next page add testuser@email.com as the email address. Scroll down to
+the bottom of the page and click the “Save” button.
+Chapter 11: Reviews App
+ 226
+Admin testuser
+Ok, finally, we can add reviews to the “Django for Professionals” book using testuser.
+Navigate back to the Books section and click on the correct book. Write two reviews
+and as AUTHOR make sure to select testuser.
+Chapter 11: Reviews App
+ 227
+Add Two Reviews
+Templates
+With the reviews model set it’s time to update our templates to display reviews on
+the individual page for each book. Add a basic “Reviews” section and then loop over
+all existing reviews. Since this is a foreign key relationship we follow it by using
+book.reviews.all. Then display the review field with review.review and the author
+with review.author.
+Chapter 11: Reviews App
+Code</p>
+<h1 id="templatesbooksbook_detailhtml">templates/books/book_detail.html</h1>
+<p>{% extends '_base.html' %}
+{% block title %}{{ book.title }}{% endblock title %}
+228
+{% block content %}
+<div class="book-detail">
+<h2><a href="">{{ book.title }}</a></h2>
+<p>Author: {{ book.author }}</p>
+<p>Price: {{ book.price }}</p>
+<div>
+<h3>Reviews</h3>
+<ul>
+{% for review in book.reviews.all %}
+<li>{{ review.review }} ({{ review.author }})</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+{% endblock content %}
+That’s it! Navigate over to the “Django for Professionals” individual page to see the
+result. Your url will be different than the one here because we’re using a UUID.
+Chapter 11: Reviews App
+ 229
+Reviews on Detail Page
+Tests
+Time for tests. We need to create a new user for our review and add a review to the
+setUp method in our test suite. Then we can test that the book object contains the
+correct review.
+This involves importing get_user_model as well as adding the Review model at the top.
+We can use create_user to make a new user called reviewuser and then a review object
+that is linked to our single book object. Finally under test_book_detail_view we can
+add an additional assertContains test to the response object.
+Chapter 11: Reviews App
+Code</p>
+<h1 id="bookstestspy">books/tests.py</h1>
+<p>from django.contrib.auth import get_user_model # new
+from django.test import Client, TestCase
+from django.urls import reverse
+from .models import Book, Review # new
+class BookTests(TestCase):
+def setUp(self):
+self.user = get_user_model().objects.create_user( # new
+username='reviewuser',
+email='reviewuser@email.com',
+password='testpass123'
+)
+self.book = Book.objects.create(
+title='Harry Potter',
+author='JK Rowling',
+price='25.00',
+)
+self.review = Review.objects.create( # new
+book = self.book,
+author = self.user,
+review = 'An excellent review',
+)
+230
+Chapter 11: Reviews App
+def test_book_listing(self):
+self.assertEqual(f'{self.book.title}', 'Harry Potter')
+self.assertEqual(f'{self.book.author}', 'JK Rowling')
+self.assertEqual(f'{self.book.price}', '25.00')
+def test_book_list_view(self):
+response = self.client.get(reverse('book_list'))
+self.assertEqual(response.status_code, 200)
+self.assertContains(response, 'Harry Potter')
+self.assertTemplateUsed(response, 'books/book_list.html')
+def test_book_detail_view(self):
+response = self.client.get(self.book.get_absolute_url())
+no_response = self.client.get('/books/12345/')
+self.assertEqual(response.status_code, 200)
+self.assertEqual(no_response.status_code, 404)
+self.assertContains(response, 'Harry Potter')
+self.assertContains(response, 'An excellent review') # new
+self.assertTemplateUsed(response, 'books/book_detail.html')
+If you run the tests now they all should pass.
+231
+Chapter 11: Reviews App
+Command Line
+$ docker-compose exec web python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.................</p>
+<hr />
+<p>Ran 17 tests in 0.675s
+232
+OK
+Destroying test database for alias 'default'...
+Git
+Add our new code changes to Git and include a commit message for the chapter.
+Command Line
+$ git status
+....
+$ git add .
+$ git commit -m 'ch11'
+The code for this chapter can be found on the official Github repository209 .
+Conclusion
+With more time we might update the reviews’ functionality with a form on the page
+itself, however this means AJAX calls using jQuery, React, Vue, or another dedicated
+209 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch11-reviews
+Chapter 11: Reviews App
+ 233
+JavaScript framework. Unfortunately covering that fully is well beyond the scope of
+this book.
+As the project grows it might also make sense to split reviews off into its own
+dedicated app. Doing so is a very subjective call. In general, keeping things as simple
+as possible–adding foreign keys within an existing app until it becomes too large to
+easily understand–is a solid approach.
+In the next chapter we will add image uploads to our site so there can be covers for
+each book.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>22 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "22";
+    var mkdocs_page_input_path = "22.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>22</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter 6: Static Assets
+Static assets like CSS, JavaScript, and images are a core component of any website and
+Django provides us with a large degree of flexibility around their configuration and
+storage. In this chapter we’ll configure our initial static assets and add Bootstrap115 to
+our project for improved styling.
+staticfiles app
+Django relies on the staticfiles app116 to manage static files from across our entire
+project, make them accessible for rapid local development on the file system, and also
+combine them into a single location that can be served in a better performing manner
+in production. This process and the distinction between local and production static
+files confuses many Django newcomers.
+To start we’ll update the staticfiles app117 configuration in settings.py.
+STATIC_URL
+The first static file setting, STATIC_URL118 , is already included for us in the bookstore_-
+project/settings.py file.
+115 https://getbootstrap.com/
+116 https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/
+117 https://docs.djangoproject.com/en/2.2/ref/settings/#static-files
+118 https://docs.djangoproject.com/en/2.2/ref/settings/#static-url
+Chapter 6: Static Assets
+ 113
+Code</p>
+<h1 id="bookstore_projectsettingspy">bookstore_project/settings.py</h1>
+<p>STATIC_URL = '/static/'
+This sets the URL that we can use to use to reference static files. Note that it is
+important to include a trailing slash / at the end of the directory name.
+STATICFILES_DIRS
+Next up is STATICFILES_DIRS119 which defines the location of static files in local
+development. In our project these will all live within a top-level static directory.
+Code</p>
+<h1 id="bookstore_projectsettingspy_1">bookstore_project/settings.py</h1>
+<p>STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),] # new
+It’s often the case that there will be multiple directories with static files within a
+project so Python brackets [], which denote a list120, are typically added here to
+accommodate future additions.
+STATIC_ROOT
+STATIC_ROOT121 is the location of static files for production so it must be set to
+a different name, typically staticfiles. When it comes time to deploy a Django
+project, the collectstatic122 command will automatically compile all available static
+119 https://docs.djangoproject.com/en/2.2/ref/settings/#staticfiles-dirs
+120 https://docs.python.org/3.7/tutorial/datastructures.html#more-on-lists
+121 https://docs.djangoproject.com/en/2.2/ref/settings/#static-root
+122 https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#django-admin-collectstatic
+Chapter 6: Static Assets
+ 114
+files throughout the entire project into a single directory. This is far faster than having
+static files sprinkled across the project as is the case in local development.
+Code</p>
+<h1 id="bookstore_projectsettingspy_2">bookstore_project/settings.py</h1>
+<p>STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # new
+STATICFILES_FINDERS
+The last setting is STATICFILES_FINDERS123 which tells Django how to look for static
+file directories. It is implicitly set for us and although this is an optional step, I prefer
+to make it explicit in all projects.
+Code</p>
+<h1 id="bookstore_projectsettingspy_3">bookstore_project/settings.py</h1>
+<p>STATICFILES_FINDERS = [
+"django.contrib.staticfiles.finders.FileSystemFinder",
+"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+The FileSystemFinder looks within the STATICFILES_DIRS setting, which we set to
+static, for any static files. Then the AppDirectoriesFinder looks for any directories
+named static located within an app, as opposed to located at a project-level static
+directory. This setting is read top-to-bottom meaning if a file called static/img.jpg
+is first found by FileSystemFinder it will be in place of an img.jpg file located within,
+say, the pages app at pages/static/img.jpg.
+123 https://docs.djangoproject.com/en/2.2/ref/settings/#staticfiles-finders
+Chapter 6: Static Assets
+Our final group of settings therefore should look as follows:
+Code</p>
+<h1 id="bookstore_projectsettingspy_4">bookstore_project/settings.py</h1>
+<p>STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+"django.contrib.staticfiles.finders.FileSystemFinder",
+"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+115
+Static Directory
+Let’s now add some static files and incorporate them into our project. Even though
+we’re referring to a static directory for our files it’s up to us to create it so do that
+now along with new subdirectories for CSS, JavaScript, and images.
+Command Line
+$ mkdir static
+$ mkdir static/css
+$ mkdir static/js
+$ mkdir static/images
+Next create a base.css file.
+Chapter 6: Static Assets
+ 116
+Command Line
+$ touch static/css/base.css
+We’ll keep things basic and have our h1 headline be red. The point is to show how CSS
+can be added to our project, not to delve too deeply into CSS itself.
+Code
+/<em> static/css/base.css </em>/
+h1 {
+color: red;
+}
+If you refresh the homepage now you’ll see that nothing has changed. That’s because
+static assets must be explicitly loaded into the templates. First load all static files at
+the top of the page with {% load static %} and then include a link to the base.css file.
+The static124 template tag uses STATIC_URL, which we set to /static/, so rather than
+needing to write out static/css/base.css we can simply refer to css/base.css.
+Code
+<!-- templates/_base.html -->
+{% load static %}
+&lt;!DOCTYPE html&gt;
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Bookstore{% endblock %}</title>
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+124 https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#std:templatetag-static
+Chapter 6: Static Assets
+</head>
+...
+Refresh the homepage to see our work. There’s our CSS in action!
+117
+Homepage with red text
+If instead you see an error screen saying Invalid block tag on line 7: 'static'.
+Did you forget to register or load this tag? then you forgot to include the line {%
+load static %} at the top of the file. I do this all the time myself.
+Images
+How about an image? You can download the book cover for Django for Professionals at
+this link125 . Save it into the directory books/static/images as djangoforprofessionals.jpg.
+To display it on the homepage, update templates/home.html. Add both the {% load
+static %} tags at the top and on the next-to-last line the <img> link for the file.
+125 https://wsvincent.com/assets/images/djangoforprofessionals.jpg
+Chapter 6: Static Assets
+Code
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+118
+{% block content %}
+<h1>Homepage</h1>
+<img class="bookcover" src="{% static 'images/djangoforprofessionals.jpg' %}">
+{% if user.is_authenticated %}
+<p>Hi {{ user.email }}!</p>
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+<p>You are not logged in</p>
+<p><a href="{% url 'login' %}">Log In</a> |
+<a href="{% url 'signup' %}">Sign Up</a></p>
+{% endif %}
+{% endblock content %}
+Refreshing the homepage you’ll see the raw file is quite large! Let’s control that with
+some additional CSS.
+Chapter 6: Static Assets
+Code
+/<em> static/css/base.css </em>/
+h1 {
+color: red;
+}
+.bookcover {
+height: 300px;
+width: auto;
+}
+Now update the homepage and the book cover image fits nicely.
+119
+Homepage with Book Cover
+Chapter 6: Static Assets
+ 120
+JavaScript
+To add JavaScript we’ll go through a similar process. Create a new file called base.js.
+Command Line
+$ touch static/js/base.js
+Often I put a tracking code of some kind here, such as for Google Analytics, but for
+demonstration purposes we’ll add a console.log statement so we can confirm the
+JavaScript loaded correctly.
+Code
+// static/js/base.js
+console.log('JavaScript here!')
+Now add it to our _base.html template. JavaScript should be added at the bottom of
+the file so it is loaded last, after the HTML, CSS, and other assets that appear first
+on the screen when rendered in the web browser. This gives the appearance of the
+complete webpage loading faster.
+Chapter 6: Static Assets
+Code
+<!-- templates/_base.html -->
+{% load static %}
+&lt;!DOCTYPE html&gt;
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Bookstore{% endblock title %}</title>
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<div class="container">
+{% block content %}
+{% endblock content %}
+</div>
+<!-- JavaScript -->
+{% block javascript %}
+<script src="{% static 'js/base.js' %}"></script>
+{% endblock javascript %}
+</body>
+</html>
+121
+In your web browser, make the JavaScript console available. This involves opening up
+Developer Tools and making sure you’re on the “Console” section. On Chrome which
+is being used for the images in this book, go to View in the top menu, then Developer
+-&gt; Developer Tools which will open a sidebar. Make sure Console is selected from the
+options.
+If you refresh the page, you should see the following:
+Chapter 6: Static Assets
+ 122
+Homepage JavaScript console view
+collectstatic
+Imagine we wanted to deploy our website right away. Among other steps, we’d need
+to run collectstatic126 to create a single, production-ready directory of all the static
+files in our project.
+Command Line
+$ docker-compose exec web python manage.py collectstatic
+122 static files copied to '/code/staticfiles'.
+If you look within your text editor, there is now a staticfiles directory with four
+subdirectories: admin, css, images, and js. The first one is the static assets of the Django
+admin app and the other three we specified. That’s why there are 122 files copied over.
+126 https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#collectstatic
+Chapter 6: Static Assets
+ 123
+Bootstrap
+Writing custom CSS for your website is a worthy goal and something I advise
+all software developers, even back-end ones, to try at some point. But practically
+speaking there is a reason front-end frameworks like Bootstrap127 exist: they save you
+a ton of time when starting a new project. Unless you have a dedicated designer to
+collaborate with, stick with a framework for the early iterations of your website.
+In this section we’ll add Bootstrap to our project alongside our existing base.css file.
+Typing all this out by hand would take a while and be error prone so this is a rare case
+where I advise simply copy/pasting from the official source code128 .
+Note that order matters here for both the CSS and JavaScript. The file will be loaded
+top-to-bottom so our base.css file comes after the Bootstrap CSS so our h1 style
+overrides the Bootstrap default. At the bottom of the file, it’s similarly important to
+load jQuery first, then PopperJS, and only then the Bootstrap JavaScript file.
+Finally observe that a navigation header has been added to the project with basic logic
+so if a user is logged in, only the “Log Out” link is visible while a logged out user will
+see both “Log In” and “Sign Up” links.
+127 https://getbootstrap.com/
+128 https://github.com/wsvincent/djangoforprofessionals/blob/master/ch6-static-assets/templates/_base.html
+Chapter 6: Static Assets
+ 124
+Code
+<!-- templates/_base.html -->
+{% load static %}
+&lt;!DOCTYPE html&gt;
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Bookstore{% endblock title %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,
+shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/\
+4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/\
+1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<header>
+<!-- Fixed navbar -->
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4
+mb-3 bg-white border-bottom shadow-sm">
+<a href="{% url 'home' %}" class="navbar-brand my-0 mr-md-auto
+font-weight-normal">Bookstore</a>
+<nav class="my-2 my-md-0 mr-md-3">
+<a class="p-2 text-dark" href="#">About</a>
+{% if user.is_authenticated %}
+<a class="p-2 text-dark" href="{% url 'logout' %}">Log Out</a>
+{% else %}
+<a class="p-2 text-dark" href="{% url 'login' %}">Log In</a>
+<a class="btn btn-outline-primary"
+Chapter 6: Static Assets
+href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+</nav>
+</div>
+</header>
+<div class="container">
+{% block content %}
+{% endblock content %}
+</div>
+<!-- JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8\
+abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/\
+umd/popper.min.js" integrity="sha384UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1\
+clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/\
+bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6V\
+rjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+125
+It’s best not to attempt to type this code. Instead copy and paste it from the official
+repo129 with one noticeable change: on line 18 of the source code, make sure to change
+the href tag to # not {% url 'about' %}. In other words it should match the above code
+and look like this:
+129 https://github.com/wsvincent/djangoforprofessionals/blob/master/ch6-static-assets/templates/_base.html
+Chapter 6: Static Assets
+ 126
+Code
+<!-- templates/_base.html -->
+<a class="p-2 text-dark" href="#">About</a>
+We’ll add the about page URL route in the next section. If you refresh the homepage
+after making these changes it should look as follows:
+Homepage with Bootstrap
+About Page
+Did you notice the navbar link for an About page? Trouble is the page and the link don’t
+exist yet. But because we already have a handy pages app it’s quite quick to make one.
+Since this will be a static page we don’t need a database model involved. However we
+will need a template, view, and url. Let’s start with the template called about.html.
+Chapter 6: Static Assets
+ 127
+Command Line
+$ touch templates/about.html
+The page will literally just say “About Page” for now while inheriting from _base.html.
+Code
+<!-- templates/about.html -->
+{% extends '_base.html' %}
+{% block title %}About{% endblock title %}
+{% block content %}
+<h1>About Page</h1>
+{% endblock content %}
+The view can rely on Django’s built-in TemplateView just like our homepage.
+Code</p>
+<h1 id="pagesviewspy">pages/views.py</h1>
+<p>from django.views.generic import TemplateView
+class HomePageView(TemplateView):
+template_name = 'home.html'
+class AboutPageView(TemplateView): # new
+template_name = 'about.html'
+And the URL path will be pretty similar as well. Set it to about/, import the appropriate
+view, and provide a URL name of about.
+Chapter 6: Static Assets
+Code</p>
+<h1 id="pagesurlspy">pages/urls.py</h1>
+<p>from django.urls import path
+from .views import HomePageView, AboutPageView # new
+128
+urlpatterns = [
+path('about/', AboutPageView.as_view(), name='about'), # new
+path('', HomePageView.as_view(), name='home'),
+]
+If you go now to http://127.0.0.1:8000/about/130 you can see the About page.
+About Page
+As a final step, update the link in the navbar to the page. Because we provided a name
+in the URL path of about that’s what we’ll use.
+On line 18 of <em>base.html change the line with the About page link to the following:
+130 http://127.0.0.1:8000/about/
+Chapter 6: Static Assets
+Code
+<!-- templates/_base.html -->
+<a class="p-2 text-dark" href="{% url 'about' %}">About</a>
+129
+Django Crispy Forms
+One last update concerns our forms. The popular 3rd party package django-crispy-
+forms131 provides a host of welcome upgrades.
+We’ll follow the usual pattern to install it which is: install within Docker, stop our
+Docker container and then rebuild it.
+Command Line
+$ docker-compose exec web pipenv install django-crispy-forms==1.8.0
+$ docker-compose down
+$ docker-compose up -d --build
+Now add crispy forms to the INSTALLED_APPS setting. Note that it’s name needs to be
+cripsy_forms here. A nice additional feature is to specify bootstrap4 under CRISPY</em>-
+TEMPLATE_PACK which will provide pre-styled forms for us.
+131 https://github.com/django-crispy-forms/django-crispy-forms
+Chapter 6: Static Assets
+Code</p>
+<h1 id="bookstore_projectsettingspy_5">bookstore_project/settings.py</h1>
+<p>INSTALLED_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',</p>
+<h1 id="third-party">Third-party</h1>
+<p>'crispy_forms', # new
+130
+]</p>
+<h1 id="local">Local</h1>
+<p>'users.apps.UsersConfig',
+'pages.apps.PagesConfig',</p>
+<h1 id="django-crispy-forms">django-crispy-forms</h1>
+<p>CRISPY_TEMPLATE_PACK = 'bootstrap4' # new
+To use Crispy Forms we load crispy_forms_tags at the top of a template and add {{
+form|crispy }} to replace {{ form.as_p}} for displaying form fields. We will take this
+time to also add Bootstrap styling to the Submit button.
+Start with templates/signup.html. Make the updates below.
+Chapter 6: Static Assets
+Code
+<!-- templates/signup.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+<h2>Sign Up</h2>
+<form method="post">
+{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-success" type="submit">Sign Up</button>
+</form>
+{% endblock content %}
+131
+Chapter 6: Static Assets
+ 132
+Sign Up Page with Crispy Forms
+Update login.html as well with crispy_forms_tags at the top and {{ form|crispy }}
+in the form.
+Chapter 6: Static Assets
+Code
+<!-- templates/registration/login.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Log In{% endblock title %}
+{% block content %}
+<h2>Log In</h2>
+<form method="post">
+{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-success" type="submit">Log In</button>
+</form>
+{% endblock content %}
+133
+Log In Page with Crispy Forms
+Chapter 6: Static Assets
+ 134
+Tests
+Time for tests which will be very similar to those we added previously for our
+homepage.
+Code</p>
+<h1 id="pagestestspy">pages/tests.py</h1>
+<p>from django.test import SimpleTestCase
+from django.urls import reverse, resolve
+from .views import HomePageView, AboutPageView # new
+class HomepageTests(SimpleTestCase):
+...
+class AboutPageTests(SimpleTestCase): # new
+def setUp(self):
+url = reverse('about')
+self.response = self.client.get(url)
+def test_aboutpage_status_code(self):
+self.assertEqual(self.response.status_code, 200)
+def test_aboutpage_template(self):
+self.assertTemplateUsed(self.response, 'about.html')
+Chapter 6: Static Assets
+def test_aboutpage_contains_correct_html(self):
+self.assertContains(self.response, 'About Page')
+def test_aboutpage_does_not_contain_incorrect_html(self):
+self.assertNotContains(
+self.response, 'Hi there! I should not be on the page.')
+def test_aboutpage_url_resolves_aboutpageview(self):
+view = resolve('/about/')
+self.assertEqual(
+view.func.<strong>name</strong>,
+AboutPageView.as_view().<strong>name</strong>
+)
+Run the tests.
+Command Line
+$ docker-compose exec web python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+...............</p>
+<hr />
+<p>Ran 15 tests in 0.433s
+OK
+Destroying test database for alias 'default'...
+135
+Chapter 6: Static Assets
+ 136
+Git
+Check the status of our changes in this chapter, add them all, and then provide a
+commit message.
+Command Line
+$ git status
+$ git add .
+$ git commit -m 'ch6'
+As alway you can compare your code with the official code on Github132 if there are
+any issues.
+Conclusion
+Static assets are a core part of every website and in Django we have to take a number
+of additional steps so they are compiled and hosted efficiently in production. Later
+on in the book we’ll learn how to use a dedicated content delivery network (CDN) for
+hosting and displaying our project’s static files.
+132 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch6-static-assets
+Chapter 7: Advanced User Registration
+At this point we have the standard Django user registration implemented. But often
+that’s just the starting point on professional projects. What about customizing things
+a bit? For example, Django’s default username/email/password pattern is somewhat
+dated these days. It’s far more common to simply require email/password for sign up
+and log in. And really every part of the authentication flow–the forms, emails, pages–
+can be customized if so desired.
+Another major factor in many projects is the need for social authentication, that is
+handling sign up and log in via a third-party service like Google, Facebook, and so on.
+We could implement our own solutions here from scratch but there are some definite
+risks: user registration is a complex area with many moving parts and one area where
+we really do not want to make a security mistake.
+For this reason, many professional Django developers rely on the popular third-
+party django-allauth133 . Adding any third party package should come with a degree
+of caution since you are adding another dependency to your technical stack. It’s
+important to make sure any package is both up-to-date and well tested. Fortunately
+django-allauth is both.
+At the cost of a little bit of magic it addresses all of these concerns and makes
+customization much, much easier.
+133 https://github.com/pennersr/django-allauth
+Chapter 7: Advanced User Registration
+ 138
+django-allauth
+Start by installing django-allauth. Because we’re using Pipenv we want to avoid
+conflicts with the Pipfile.lock so we’ll install it within Dock</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

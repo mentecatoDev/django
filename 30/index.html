@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>30 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "30";
+    var mkdocs_page_input_path = "30.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>30</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter 12: File/Image Uploads
+We previously configured static assets such as images in Chapter 6, but user-
+uploaded files, such as book covers, are somewhat different. To start with, Django
+refers to the former as static whereas anything uploaded by a user, whether it be a
+file or an image, is referred to as media.
+The process for adding this feature for files or images is similar, but for images the
+Python image processing library Pillow210 must be installed which includes additional
+features such as basic validation.
+Let’s install pillow using our by-now-familiar pattern of installing it within Docker,
+stopping our containers, and forcing a build of the new image.
+Command Line
+$ docker-compose exec web pipenv install pillow==6.2.1
+$ docker-compose down
+$ docker-compose up -d --build
+Media Files
+Fundamentally the difference between static and media files is that we can trust the
+former, but we definitely can’t trust the latter by default. There are always security
+concerns211 when dealing with user-uploaded content212. Notably, it’s important to
+validate all uploaded files to ensure they are what they say they are. There are a
+210 https://python-pillow.org/
+211 https://docs.djangoproject.com/en/2.2/ref/models/fields/#file-upload-security
+212 https://docs.djangoproject.com/en/2.2/topics/security/#user-uploaded-content
+Chapter 12: File/Image Uploads
+ 235
+number of nasty ways a malicious actor can attack a website that blindly accepts user
+uploads.
+To start let’s add two new configurations to the bookstore_project/settings.py file.
+By default MEDIA_URL and MEDIA_ROOT are empty and not displayed so we need to
+configure them:
+• MEDIA_ROOT213 is the absolute file system path to the directory for user-
+uploaded files
+• MEDIA_URL214 is the URL we can use in our templates for the files
+For convenience lump the static and media file configurations together so add both
+of these settings after STATICFILES_FINDERS near the bottom of the file. We’ll use the
+common convention of calling both media. Don’t forget to include the trailing slash /
+for MEDIA_URL!
+Code</p>
+<h1 id="bookstore_projectsettingspy">bookstore_project/settings.py</h1>
+<p>MEDIA_URL = '/media/' # new
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # new
+Next add a new directory called media and a subdirectory called covers within it.
+Command Line
+$ mkdir media
+$ mkdir media/covers
+And finally since user-uploaded content is assumed to exist in a production context,
+to see media items locally we need to update bookstore_project/urls.py to show the
+files locally. This involves importing both settings and static at the top and then
+adding an additional line at the bottom.
+213 https://docs.djangoproject.com/en/2.2/ref/settings/#media-root
+214 https://docs.djangoproject.com/en/2.2/ref/settings/#media-url
+Chapter 12: File/Image Uploads
+Code</p>
+<h1 id="bookstore_projecturlspy">bookstore_project/urls.py</h1>
+<p>from django.conf import settings # new
+from django.conf.urls.static import static # new
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [</p>
+<h1 id="django-admin">Django admin</h1>
+<p>path('admin/', admin.site.urls),
+236</p>
+<h1 id="user-management">User management</h1>
+<p>path('accounts/', include('allauth.urls')),</p>
+<h1 id="local-apps">Local apps</h1>
+<p>path('', include('pages.urls')),
+path('books/', include('books.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # new
+Models
+With our generic media configuration out of the way we can now turn to our models.
+To store these images we’ll use Django’s ImageField215 which comes with some basic
+image processing validation included.
+The name of the field is cover and we specify the location of the uploaded image will be
+in MEDIA_ROOT/covers (the MEDIA_ROOT part is implied based on our earlier settings.py
+config).
+215 https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.ImageField
+Chapter 12: File/Image Uploads
+Code</p>
+<h1 id="booksmodelspy">books/models.py</h1>
+<p>class Book(models.Model):
+id = models.UUIDField(
+primary_key=True,
+default=uuid.uuid4,
+editable=False)
+title = models.CharField(max_length=200)
+author = models.CharField(max_length=200)
+price = models.DecimalField(max_digits=6, decimal_places=2)
+cover = models.ImageField(upload_to='covers/') # new
+def__str__(self):
+return self.title
+def get_absolute_url(self):
+return reverse('book_detail', kwargs={'pk': str(self.pk)})
+237
+If we wanted to allow uploads of a regular file rather than an image file the only
+difference could be to change ImageField to FileField.
+Since we’ve updated the model it’s time to create a migrations file.
+Chapter 12: File/Image Uploads
+ 238
+Command Line
+$ docker-compose exec web python manage.py makemigrations books
+You are trying to add a non-nullable field 'cover_image' to book
+without a default; we can't do that (the database needs something to populate
+existing rows).
+Please select a fix:
+1) Provide a one-off default now (will be set on all existing rows with a
+null value for this column)
+2) Quit, and let me add a default in models.py
+Select an option:
+Oops! What happened? We’re adding a new database field, but we already have three
+entries in our database for each book. Yet we failed to set a default value for cover.
+To fix this type 2 to quit and we’ll add a blank216 field set to True for existing images.
+Code</p>
+<h1 id="bookstore_projectmodelspy">bookstore_project/models.py</h1>
+<p>cover = models.ImageField(upload_to='covers/', blank=True) # new
+It’s common to see blank and nulla used together to set a default value on a field. A
+gotcha is that the field type – ImageField vs. CharField and so on – dictates how to use
+them properly so closely read the documentation for future use.
+ahttps://docs.djangoproject.com/en/2.2/ref/models/fields/#null
+Now we can create a migrations file without errors.
+216 https://docs.djangoproject.com/en/2.2/ref/models/fields/#blank
+Chapter 12: File/Image Uploads
+Command Line
+$ docker-compose exec web python manage.py makemigrations books
+Migrations for 'books':
+books/migrations/0003_book_cover.py
+- Add field cover to book
+239
+And then apply the migration to our database.
+Command Line
+$ docker-compose exec web python manage.py migrate
+Operations to perform:
+Apply all migrations: account, admin, auth, books, contenttypes, reviews, ses
+sions, sites, users
+Running migrations:
+Applying books.0003_book_cover... OK
+Admin
+We’re in the home stretch now! Navigate over to the admin and to the entry for the
+book “Django for Professionals.” The cover field is visible already and we already have
+a copy of it locally within static/images/djangoforprofessionals.jpg so use that file
+for the upload and then click the “Save” button in bottom right.
+Chapter 12: File/Image Uploads
+ 240
+Admin add cover
+This will redirect back to the main Books section. Click on the link again for “Django
+for Profesionals” and we can see it currently exists in our desired location of covers/.
+Chapter 12: File/Image Uploads
+ 241
+Admin with cover
+Template
+OK, final step. Let’s update our template to display the book cover on the individual
+page. The route will be book.cover.url pointing to the location of the cover in our file
+system.
+Chapter 12: File/Image Uploads
+ 242
+Here’s what the updated book_detail.html file looks like with this one line change
+above the title.
+Code</p>
+<h1 id="templatesbooksbook_detailhtml">templates/books/book_detail.html</h1>
+<p>{% extends '_base.html' %}
+{% block title %}{{ book.title }}{% endblock title %}
+{% block content %}
+<div class="book-detail">
+<img class="bookcover" src="{{ book.cover.url}}" alt="{{ book.title }}">
+<h2><a href="">{{ book.title }}</a></h2>
+<p>Author: {{ book.author }}</p>
+<p>Price: {{ book.price }}</p>
+<div>
+<h3>Reviews</h3>
+<ul>
+{% for review in book.reviews.all %}
+<li>{{ review.review }} ({{ review.author }})</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+{% endblock content %}
+If you now visit the page for “Django for Professionals” you’ll see the cover image
+proudly there!
+Chapter 12: File/Image Uploads
+ 243
+Cover image
+One potential gotcha is that our template now expects a cover to be present. If you
+navigate to either of the two other books, for which we have not added a cover, you’ll
+see the following error message.
+Chapter 12: File/Image Uploads
+ 244
+Cover image error
+We must add some basic logic to our template so that if a cover is not present the
+template doesn’t look for it! This can be done using an if statement that checks for
+book.cover and displays it if it exists.
+Code</p>
+<h1 id="templatesbooksbook_detailhtml_1">templates/books/book_detail.html</h1>
+<p>{% extends '_base.html' %}
+{% block title %}{{ book.title }}{% endblock title %}
+{% block content %}
+<div class="book-detail">
+{% if book.cover %}
+<img class="bookcover" src="{{ book.cover.url}}" alt="{{ book.title }}">
+{% endif %}
+<p>Author: {{ book.author }}</p>
+Chapter 12: File/Image Uploads
+ 245
+...
+If you refresh either book page now you’ll see they display the correct page albeit
+without a cover.
+Next Steps
+There are several additional steps that might be nice to take in a project, but are
+beyond the scope of this book. These include adding dedicated create/edit/delete
+forms for the creation of books and cover image. A quite lengthy list of extra
+validations can and should be placed on the image-uploading form to ensure that
+only a normal image is added to the database.
+A further step would be to store media files in a dedicated CDN (Content Delivery
+Network) for additional security. This can also be helpful for performance on very
+large sites for static files, but for media files is a good idea regardless of the size.
+Finally tests would be nice to have here although they would be primarily focused on
+the form validation section, not the basic image-uploading via the admin. Again this
+is an area that can become quite complex, but is worthy of further study.
+Git
+Make sure to create a new Git commit for the changes in this chapter.
+Chapter 12: File/Image Uploads
+ 246
+Command Line
+$ git status
+$ git add .
+$ git commit -m 'ch12'
+As always you can compare your code against the official source code on Github217 .
+Conclusion
+This chapter demonstrated how to add user files to a project. In practice it is
+straightforward, but the additional layer of security concerns makes it an area worthy
+of focus at scale.
+In the next chapter we will add permissions to our site to lock it down.
+217 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch12-file-image-uploads</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

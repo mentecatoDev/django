@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>19. Proyecto Bookstore - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "19. Proyecto Bookstore";
+    var mkdocs_page_input_path = "19_.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>19. Proyecto Bookstore</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="19-proyecto-bookstore">19. Proyecto Bookstore</h1>
+<p>​   Es hora de construir el proyecto principal del curso, una <strong>librería en línea</strong>. Se comenzará con un nuevo proyecto, se cambiará a Docker, se le añadirá un modelo de usuario personalizado y se implementarán las primeras pruebas.
+Se comienza creando un nuevo proyecto Django con Pipenv localmente y luego se cambiará a Docker.</p>
+<p>​   Se creará un directorio <code>books</code> para el código, y luego se instalará django. También se usará <code>PostgreSQL</code> por lo que se instalará también el adaptador <code>psycopg2</code>. Sólo después de que se haya construido la imagen inicial, se empezarán a instalar los futuros paquetes de software dentro del propio Docker. Por último, se usará el comando shell para entrar en el nuevo entorno virtual.</p>
+<pre><code class="bash">$ cd ..
+$ mkdir books &amp;&amp; cd books
+$ pipenv install django==2.2.7 psycopg2-binary==2.8.4
+$ pipenv shell
+</code></pre>
+
+<p>​   Le daremos un nombre a nuestro nuevo proyecto de librería de Django. Asegúrate de no olvidar ese punto, ., al final del comando o Django creará un directorio extra que no necesitamos. Luego usa el servidor de ejecución para iniciar el servidor web local de Django y confirmar que todo funciona correctamente.</p>
+<p>(books) $ django-admin startproject bookstore_project .
+(books) $ python manage.py runserver</p>
+<p>En tu navegador de Internet ve a http://127.0.0.1:8000/49 y deberías ver la amistosa página de bienvenida de Django.</p>
+<p>En la línea de comandos es probable que veas una advertencia sobre "migración(es) no aplicada(s)". Es seguro ignorar esto por ahora ya que estamos a punto de cambiar a Docker y PostgreSQL.</p>
+<h2 id="docker">Docker</h2>
+<p>Ahora podemos cambiar a Docker en nuestro proyecto. Adelante, detenga el servidor local Control+c y también salga del shell del entorno virtual.</p>
+<p>(books) $ exit
+$</p>
+<p>Docker ya debería estar instalado y la aplicación de escritorio funcionando desde el capítulo anterior. Por lo general necesitamos crear un archivo Dockerfile y un archivo docker-compose.yml.</p>
+<p>$ touch Dockerfile
+$ touch docker-compose.yml</p>
+<p>El Dockerfile será el mismo que antes.</p>
+<p>Dockerfile</p>
+<pre><code># Pull base image
+FROM python:3.7
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+# Set work directory
+WORKDIR /code
+# Install dependencies
+Chapter 3: Bookstore Project
+COPY Pipfile Pipfile.lock /code/
+RUN pip install pipenv &amp;&amp; pipenv install --system
+52
+# Copy project
+COPY . /code/
+</code></pre>
+
+<p>Pero para el archivo docker-compose.yml añadiremos una característica adicional que es un volumen dedicado para nuestra base de datos para que persista incluso cuando los contenedores de servicios se detengan. La eliminación del volumen en sí es un proceso separado.
+Podemos hacerlo especificando una ruta para los volúmenes dentro del contenedor db y luego especificando un volumen fuera de nuestros servicios con el mismo nombre postgres_data. Puedes ver la documentación de Docker sobre volúmenes50 para una explicación más técnica de cómo funciona todo esto si estás interesado.</p>
+<p>docker-compose.yml
+ººº
+version: '3.7'
+services:
+web:
+build: .
+command: python /code/manage.py runserver 0.0.0.0:8000
+volumes:
+- .:/code
+ports:
+- 8000:8000
+depends_on:
+- db
+db:
+ºººº
+image: postgres:11
+volumes:
+- postgres_data:/var/lib/postgresql/data/
+volumes:
+postgres_data:
+ººº</p>
+<p>Podemos construir nuestra imagen y hacer funcionar los contenedores con una sola orden.
+ººº
+$ docker-compose up -d --build
+ººº</p>
+<blockquote>
+<p>Si ves un error aquí como Bindfor 0.0.0.0:8000 failed: port is already allocated then you didn't fully stop the Docker container from Chapter 2. Intenta ejecutar docker-compose en el directorio donde lo ejecutaste anteriormente, probablemente postgresql.  Luego intenta construir y ejecutar nuestra nueva imagen y contenedor de nuevo. Si ese enfoque sigue fallando, puedes salir completamente de la aplicación de escritorio Docker y volver a abrirla.</p>
+</blockquote>
+<p>Vaya al navegador web ahora en http://127.0.0.1:8000/51 y haga clic en refrescar. Debería ser la misma página de bienvenida amistosa de Django, aunque ahora corriendo dentro de Docker.</p>
+<h2 id="postgresql">PostgreSQL</h2>
+<p>Aunque ya hemos instalado psycopg y tenemos PostgreSQL disponible en nuestro archivo docker-compose.yml, todavía debemos dirigir a Django para que cambie a él en lugar de la base de datos SQLite por defecto. Hazlo ahora. El código es el mismo que en el capítulo anterior.</p>
+<p>ººº</p>
+<h1 id="bookstore_projectsettingspy">bookstore_project/settings.py</h1>
+<p>DATABASES = {
+'default': {
+'ENGINE': 'django.db.backends.postgresql',
+'NAME': 'postgres',
+'USER': 'postgres',
+'PASSWORD': 'postgres',
+'HOST': 'db',
+'PORT': 5432
+}
+}
+ººº
+Actualiza el navegador de la página principal para confirmar que todo funciona bien...
+Rectícamente.</p>
+<h2 id="modelo-de-usuario-personalizado">Modelo de usuario personalizado</h2>
+<p>Es hora de implementar un modelo de usuario personalizado que la documentación oficial de Django "recomienda encarecidamente".52 ¿Por qué? Porque tendrás que hacer cambios en el modelo de usuario incorporado en algún momento de la vida de tu proyecto.
+Si no has comenzado con un modelo de usuario personalizado desde el primer comando de migración que ejecutas, entonces te espera un mundo de dolor porque User está estrechamente entrelazado con el resto de Django internamente. Es un desafío cambiar a un modelo de usuario personalizado a mitad del proyecto.
+52 https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#using-a-custom-user-model-when-
+inicio de un proyecto
+Un punto de confusión para muchas personas es que los modelos de usuario personalizados sólo se añadieron en Django 1.5. Hasta ese momento el enfoque recomendado era añadir un One-ToOneField53, a menudo llamado modelo de perfil, al usuario. A menudo verás esta configuración en proyectos más antiguos.
+Pero hoy en día usar un modelo de usuario personalizado es el enfoque más común. Sin embargo, como ocurre con muchas cosas relacionadas con Django, hay opciones de implementación: extender AbstractUser54 que mantiene los campos y permisos de usuario predeterminados o extender Ab- stractBaseUser55 que es aún más granular y flexible, pero requiere más trabajo.</p>
+<p>Nos quedaremos con el AbstractUser más simple en este libro ya que AbstractBaseUser puede ser añadido más tarde si es necesario.</p>
+<p>Hay cuatro pasos para añadir un modelo de usuario personalizado a nuestro proyecto:
+1. Crear un modelo de Usuario Personalizado
+2. Actualizar ajustes.py
+3. Personalizar el UserCreationForm y el UserChangeForm
+4. Añadir el modelo de usuario personalizado a admin.py
+El primer paso es crear un modelo de usuario personalizado que vivirá dentro de su propia aplicación. Me gusta ponerle nombre a esta aplicación. Podríamos hacer esto localmente dentro de nuestro entorno virtual, lo que significa que iríamos al shell de pipenv y luego ejecutaríamos python manage.py startapp users. Sin embargo, para mayor consistencia, ejecutaremos la mayoría de nuestros comandos dentro del mismo Docker.</p>
+<p>ººº
+$ docker-compose exec web python manage.py startapp users
+ººº</p>
+<p>Crear un nuevo modelo de CustomUser que amplía el AbstractUser. Esto significa que estamos haciendo esencialmente una copia donde CustomUser ahora ha heredado toda la funcionalidad de AbstractUser, pero podemos anular o añadir nueva funcionalidad según sea necesario. No estamos haciendo ningún cambio todavía, así que incluye la declaración de paso de Python que actúa como un marcador de posición para nuestro futuro código.</p>
+<p>ººº</p>
+<h1 id="usersmodelspy">users/models.py</h1>
+<p>from django.contrib.auth.models import AbstractUser
+from django.db import models
+class CustomUser(AbstractUser):
+pass
+ººº</p>
+<p>Ahora entra y actualiza nuestro archivo settings.py en la sección INSTALLED_APPS para informar a Django sobre nuestra nueva aplicación de usuarios. También queremos añadir una configuración AUTH_USER_MODEL en la parte inferior del archivo, lo que hará que nuestro proyecto utilice CustomUser en lugar del modelo de usuario por defecto.
+Code</p>
+<h1 id="bookstore_projectsettingspy_1">bookstore_project/settings.py</h1>
+<p>INSTALLED_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',</p>
+<h1 id="local">Local</h1>
+<p>'users.apps.UsersConfig', # new
+]
+...
+AUTH_USER_MODEL = 'users.CustomUser' # new
+57
+¿Por qué hacemos users.apps.UsersConfigurar aquí en lugar de sólo el enfoque de los usuarios más antiguos? Ambos funcionan pero la forma más larga es una mejor práctica ya que aprovecha las configuraciones adicionales que se pueden añadir en AppConfiga .
+ahttps://docs.djangoproject.com/en/2.2/ref/applications/#django.apps.AppConfig
+Es hora de crear un archivo de migraciones para los cambios. Añadiremos el nombre opcional de la aplicación usuarios al comando para que sólo se incluyan los cambios de esa aplicación.
+ººº
+$ docker-compose exec web python manage.py makemigrations users
+ººº
+Migrations for 'users':
+users/migrations/0001_initial.py
+- Create model CustomUser
+Then run migrate to initialize the database for the very first time.
+ººº
+$ docker-compose exec web python manage.py migrate
+ººº
+Formularios de usuario personalizados
+Un modelo de usuario puede ser creado y editado dentro del administrador de Django. Así que tendremos que actualizar también los formularios incorporados para que apunten a CustomUser en lugar de User.
+Crear un archivo users/forms.py.
+ººº
+$ touch users/forms.py
+ººº
+En tu editor de texto escribe el siguiente código para pasar a CustomUser.</p>
+<p>ººº# users/forms.py
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+class CustomUserCreationForm(UserCreationForm):
+class Meta:
+model = get_user_model()
+fields = ('email', 'username',)
+class CustomUserChangeForm(UserChangeForm):
+class Meta:
+model = get_user_model()
+fields = ('email', 'username',)
+ººº</p>
+<p>En la parte superior hemos importado el modelo CustomUser a través de get_user_model56 que mira a nuestro AUTH_USER_MODEL config en settings.py. Esto puede parecer un poco más circular que importar directamente CustomUser aquí, pero refuerza la idea de hacer una sola referencia al modelo de usuario personalizado en lugar de referirse directamente a él en todo nuestro proyecto.</p>
+<p>A continuación importamos UserCreationForm57 y UserChangeForm58 que serán ambos extendidos.</p>
+<p>Luego creamos dos nuevos formularios -CustomUserCreationForm y CustomUserChangeForm- que amplían los formularios de usuario base importados anteriormente y especifican el intercambio en nuestro modelo CustomUser y la visualización de los campos email y nombre de usuario. El campo de la contraseña está incluido implícitamente por defecto, por lo que no es necesario nombrarlo explícitamente aquí también.
+Administrador de Usuario Personalizado
+Finalmente tenemos que actualizar nuestro archivo users/admin.py. El admin es un lugar común para manipular los datos de los usuarios y hay un estrecho acoplamiento entre el usuario incorporado y el admin.
+Extenderemos el UserAdmin existente a CustomUserAdmin y le diremos a Django que utilice nuestros nuevos formularios, el modelo de usuario personalizado, y que ponga en la lista sólo el correo electrónico y el nombre de usuario de un usuario. Si quisiéramos, podríamos añadir más de los campos de usuario existentes59 a list_display como is_staff.</p>
+<p>ººº</p>
+<h1 id="usersadminpy">users/admin.py</h1>
+<p>from django.contrib import admin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import UserAdmin
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+CustomUser = get_user_model()
+class CustomUserAdmin(UserAdmin):
+add_form = CustomUserCreationForm
+59 https://docs.djangoproject.com/en/2.2/ref/contrib/auth/
+Chapter 3: Bookstore Project
+ 61
+form = CustomUserChangeForm
+model = CustomUser
+list_display = ['email', 'username',]
+admin.site.register(CustomUser, CustomUserAdmin)
+ººº</p>
+<p>Uf. Un poco de código por adelantado, pero esto ahorra un montón de dolores de cabeza más tarde.
+Superusuario
+Una buena manera de confirmar que nuestro modelo de usuario personalizado está funcionando correctamente es crear una cuenta de superusuario para que podamos acceder al administrador. Este comando accederá a CustomUserCreationForm bajo el capó.
+Command Line
+$ docker-compose exec web python manage.py createsuperuser
+ººº
+He usado el nombre de usuario wsv, la dirección de correo electrónico will@wsvincent.com, y la contraseña testpass123. Puedes usar tus propias variaciones preferidas aquí.
+Ahora ve a http://127.0.0.1:8000/admin60 y confirma que puedes entrar. Deberías ver tu nombre de superusuario en la esquina superior derecha de la página de entrada al sistema.
+60 http://127.0.0.1:8000/admin
+Capítulo 3: Proyecto de librería
+ 62
+Página de inicio del administrador de Django 
+También puedes hacer clic en la sección de usuarios para ver el correo electrónico y el nombre de usuario de tu cuenta de superusuario.
+Página de usuarios de Django
+Pruebas
+Ya que hemos añadido nuevas funciones a nuestro proyecto, deberíamos probarlo. Tanto si eres un desarrollador en solitario como si trabajas en equipo, las pruebas son importantes. En palabras del cofundador de Django, Jacob Kaplan-Moss, "El código sin pruebas se rompe tal y como está diseñado".
+Hay dos tipos principales de pruebas:
+- Las pruebas unitarias son pequeñas, rápidas y aisladas a una pieza específica de funcionalidad
+- Las pruebas de integración son grandes, lentas y se utilizan para probar una aplicación entera o un
+el flujo de usuarios como el pago que cubre múltiples pantallas
+Deberías escribir muchas pruebas de unidad y un pequeño número de pruebas de integración.
+El lenguaje de programación Python contiene su propio marco de pruebas unitarias61 y el marco de pruebas automatizadas de Django62 lo amplía con múltiples adiciones en un contexto web. No hay excusa para no escribir muchas pruebas; te ahorrarán tiempo.
+Es importante señalar que no todo necesita ser probado. Por ejemplo, cualquier característica incorporada de Django ya contiene pruebas en el código fuente. Si utilizáramos el modelo de usuario por defecto en nuestro proyecto no necesitaríamos probarlo. Pero ya que hemos creado un modelo de Usuario Personalizado deberíamos.
+Pruebas unitarias
+Para escribir pruebas unitarias en Django usamos TestCase63 que es, en sí mismo, una extensión del TestCase64 de Python. La aplicación de nuestros usuarios ya contiene un archivo tests.py que es auto-
+61 https://docs.python.org/3.7/library/unittest.html
+62 https://docs.djangoproject.com/en/2.2/topics/testing/
+63 https://docs.djangoproject.com/en/2.2/topics/testing/tools/#django.test.TestCase
+64 https://docs.python.org/3/library/unittest.html#unittest.TestCase
+Capítulo 3: Proyecto de librería
+ 64
+maticamente añadido cuando se usa el comando startapp. Actualmente está en blanco. Arreglemos
+eso!
+Cada método debe ser precedido por una prueba para ser ejecutado por el conjunto de pruebas de Django.
+También es una buena idea ser demasiado descriptivo con los nombres de las pruebas de la unidad ya que los proyectos maduros tienen cientos, si no miles de pruebas!
+Código</p>
+<h1 id="userstestspy">users/tests.py</h1>
+<p>from django.contrib.auth import get_user_model
+from django.test import TestCase
+class CustomUserTests(TestCase):
+def test_create_user(self):
+User = get_user_model()
+user = User.objects.create_user(
+username='will',
+email='will@email.com',
+password='testpass123'
+)
+self.assertEqual(user.username, 'will')
+self.assertEqual(user.email, 'will@email.com')
+self.assertTrue(user.is_active)
+self.assertFalse(user.is_staff)
+self.assertFalse(user.is_superuser)
+def test_create_superuser(self):
+User = get_user_model()
+admin_user = User.objects.create_superuser(
+username='superadmin',
+email='superadmin@email.com',
+password='testpass123'
+)
+self.assertEqual(admin_user.username, 'superadmin')
+self.assertEqual(admin_user.email, 'superadmin@email.com')
+self.assertTrue(admin_user.is_active)
+self.assertTrue(admin_user.is_staff)
+self.assertTrue(admin_user.is_superuser)</p>
+<p>En la parte superior hemos importado tanto get_user_model como TestCase antes de crear una clase CustomUserTests. Dentro de ella hay dos pruebas separadas. test_create_user confirma que se puede crear un nuevo usuario. Primero establecemos nuestro modelo de usuario a la variable User y luego creamos uno a través del método manager create_user65 que hace el trabajo real de crear un nuevo usuario con los permisos adecuados.
+Para test_create_superuser seguimos un patrón similar pero referenciamos create_superuser66 en lugar de create_user. La diferencia entre los dos usuarios es que un superusuario debe tener ambos is_staff y is_superuser puesto a True.
+Para ejecutar nuestros tests en Docker pondremos el prefijo docker-compose exec web al comando tradicional python manage.py test.</p>
+<p>user
+66 https://docs.djangoproject.com/en/2.2/ref/contrib/auth/#django.contrib.auth.models.UserManager.create_</p>
+<p>superuser
+Chapter 3: Bookstore Project
+Command Line
+$ docker-compose exec web python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..</p>
+<hr />
+<p>Ran 2 tests in 0.268s
+OK
+Destroying test database for alias 'default'...
+All the tests pass so we can proceed.
+66</p>
+<p>Git
+Hemos logrado bastante en este capítulo, así que es un buen punto para hacer una pausa y confirmar nuestro trabajo inicializando un nuevo repositorio Git, añadiendo cambios, e incluyendo un mensaje de confirmación.
+Command Line
+$ git init
+$ git status
+$ git add .
+$ git commit -m 'ch3'
+Puedes compararlo con el código fuente oficial de este capítulo de Github67 .
+67 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch3-books
+Capítulo 3: Proyecto de librería
+ 67
+Conclusión
+Nuestro proyecto de la librería está ahora funcionando con Docker y PostgreSQL y hemos configurado un modelo de usuario personalizado. Lo siguiente será una aplicación de páginas para nuestras páginas estáticas.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>23 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "23";
+    var mkdocs_page_input_path = "23.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>23</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter 7: Advanced User Registration
+At this point we have the standard Django user registration implemented. But often
+that’s just the starting point on professional projects. What about customizing things
+a bit? For example, Django’s default username/email/password pattern is somewhat
+dated these days. It’s far more common to simply require email/password for sign up
+and log in. And really every part of the authentication flow–the forms, emails, pages–
+can be customized if so desired.
+Another major factor in many projects is the need for social authentication, that is
+handling sign up and log in via a third-party service like Google, Facebook, and so on.
+We could implement our own solutions here from scratch but there are some definite
+risks: user registration is a complex area with many moving parts and one area where
+we really do not want to make a security mistake.
+For this reason, many professional Django developers rely on the popular third-
+party django-allauth133 . Adding any third party package should come with a degree
+of caution since you are adding another dependency to your technical stack. It’s
+important to make sure any package is both up-to-date and well tested. Fortunately
+django-allauth is both.
+At the cost of a little bit of magic it addresses all of these concerns and makes
+customization much, much easier.
+133 https://github.com/pennersr/django-allauth
+Chapter 7: Advanced User Registration
+ 138
+django-allauth
+Start by installing django-allauth. Because we’re using Pipenv we want to avoid
+conflicts with the Pipfile.lock so we’ll install it within Docker first, then stop Docker,
+and rebuild our image with the --build flag which prevents the default image caching
+and ensures that our entire image is built from scratch.
+Command Line
+$ docker-compose exec web pipenv install django-allauth==0.40.0
+$ docker-compose down
+$ docker-compose up -d --build
+Our website will still function the same as before since we haven’t explicitly told
+Django about this new django-allauth package. To do that we need to update the
+INSTALLED_APPS config within our settings.py file adding Django’s built-in, but op-
+tional, sites framework134 , as well as allauth and its account feature allauth.account.
+Django’s sites framework is a powerful feature that allows one Django project to
+control multiple sites. Given we only have one site in our project, we’ll set the SITE_ID
+to 1. If we added a second site it would have an ID of 2, a third site would have an ID
+of 3, and so on.
+134 https://docs.djangoproject.com/en/2.2/ref/contrib/sites/
+Chapter 7: Advanced User Registration
+Code</p>
+<h1 id="bookstore_projectsettingspy">bookstore_project/settings.py</h1>
+<p>INSTALLED_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+'django.contrib.sites', # new</p>
+<h1 id="third-party">Third-party</h1>
+<p>'crispy_forms',
+'allauth', # new
+'allauth.account', # new
+]</p>
+<h1 id="local">Local</h1>
+<p>'users.apps.UsersConfig',
+'pages.apps.PagesConfig',</p>
+<h1 id="django-allauth-config">django-allauth config</h1>
+<p>SITE_ID = 1 # new
+139
+AUTHENTICATION_BACKENDS
+The settings.py file created by Django for any new project contains a number of
+explicit settings–those that we see in the file already–as well as a longer additional
+Chapter 7: Advanced User Registration
+ 140
+list of implicit settings that exist but aren’t visible. This can be confusing at first. The
+complete list of settings configurations is available here135 .
+An example is the AUTHENTICATION_BACKENDS136 setting. Under the hood Django
+sets this to 'django.contrib.auth.backends.ModelBackend' which is used when Django
+attempts to authenticate a user.
+We could add the following line to settings.py and the current behavior would remain
+unchanged:
+Code
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+)
+However for django-allauth we need to add its specific authentication options, too,
+which will allow us to switch over to using login via e-mail in a moment. So at the
+bottom of your settings.py file add the following section:
+Code</p>
+<h1 id="bookstore_projectsettingspy_1">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_1">django-allauth config</h1>
+<p>SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+'allauth.account.auth_backends.AuthenticationBackend', # new
+)
+135 https://docs.djangoproject.com/en/2.2/ref/settings/
+136 https://docs.djangoproject.com/en/2.2/ref/settings/#authentication-backends
+Chapter 7: Advanced User Registration
+ 141
+EMAIL_BACKEND
+Another configuration implicitly set is EMAIL_BACKEND137 . By default Django will
+look for a configured SMTP server138 to send emails.
+django-allauth will send such an email upon a successful user registration, which
+we can and will customize later, but since we don’t yet have a SMTP server properly
+configured, it will result in an error.
+The solution, for now, is to have Django output any emails to the command line
+console instead. Thus we can override the default, implicit config by using console139
+instead of smtp. Add this at the bottom of the settings.py file.
+Code</p>
+<h1 id="bookstore_projectsettingspy_2">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_2">django-allauth config</h1>
+<p>SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # new
+137 https://docs.djangoproject.com/en/2.2/ref/settings/#email-backend
+138 https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
+139 https://docs.djangoproject.com/en/2.2/topics/email/#console-backend
+Chapter 7: Advanced User Registration
+ 142
+ACCOUNT_LOGOUT_REDIRECT
+There’s one more subtle change to make to our configurations at this time. If you look
+at the configurations page140 again you’ll see there is a setting for ACCOUNT_LOGOUT_-
+REDIRECT that defaults to the path of the homepage at /.
+In our current settings.py file we have the following two lines for redirects which
+point to the homepage via its URL name of 'home'.
+Code</p>
+<h1 id="bookstore_projectsettingspy_3">bookstore_project/settings.py</h1>
+<p>LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+The issue is that django-allauth’s ACCOUNT_LOGOUT_REDIRECT actually overrides the
+built-in LOGOUT_REDIRECT_URL, however, since they both point to the homepage this
+change may not be apparent. To future-proof our application since maybe we don’t
+want to always redirect to the homepage on logout, we should be explicit here with
+the logout redirect.
+We can also move the two redirect lines under our django-allauth config section.
+This is what the entire django-allauth config section should look like at this time.
+140 https://django-allauth.readthedocs.io/en/latest/configuration.html
+Chapter 7: Advanced User Registration
+Code</p>
+<h1 id="bookstore_projectsettingspy_4">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_3">django-allauth config</h1>
+<p>LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT = 'home' # new
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+Given that we have made many changes to our bookstore_project/settings.pylet’s now run migrate to update our database.
+Command Line
+$ docker-compose exec web python manage.py migrate
+Operations to perform:
+Apply all migrations: account, admin, auth, contenttypes, sess
+ions, sites, users
+Running migrations:
+Applying account.0001_initial... OK
+Applying account.0002_email_max_length... OK
+Applying sites.0001_initial... OK
+Applying sites.0002_alter_domain_unique... OK
+143
+file
+Chapter 7: Advanced User Registration
+ 144
+URLs
+We also need to swap out the built-in auth app URLs for django-allauth’s own allauth
+app. We’ll still use the same accounts/ URL path, however, since we’ll be using django
+allauth’s templates and routes for sign up we can delete the URL path for our users
+app, too.
+Code</p>
+<h1 id="bookstore_projecturlspy">bookstore_project/urls.py</h1>
+<p>from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [</p>
+<h1 id="django-admin">Django admin</h1>
+<p>path('admin/', admin.site.urls),</p>
+<h1 id="user-management">User management</h1>
+<p>path('accounts/', include('allauth.urls')), # new</p>
+<h1 id="local-apps">Local apps</h1>
+<p>path('', include('pages.urls')),
+]
+At this point we could further delete users/urls.py and users/views.py which were
+both created solely for our hand-written sign up page and are no longer being used.
+Chapter 7: Advanced User Registration
+ 145
+Templates
+Django’s auth app looks for templates within a templates/registration directory,
+but django-allauth prefers they be located within a templates/account directory. So
+we will create a new templates/account directory and then copy over our existing
+login.html and signup.html templates into it.
+Command Line
+$ mkdir templates/account
+$ mv templates/registration/login.html templates/account/login.html
+$ mv templates/signup.html templates/account/signup.html
+It’s easy to add an s onto account here by accident, but don’t or you’ll get an error. The
+correct directory is templates/account/.
+We can delete the templates/registration directory at this point since it is no longer
+needed.
+Command Line
+$ rm -r templates/registration
+rm means remove and r means do it recursively, which is necessary whenever you are
+dealing with a directory. If you’d like further information on this command you can
+type man rm to read the manual.
+The last step is to update the URL links within both templates/<em>base.html and
+templates/home.html to use django-allauth’s URL names rather than Django’s. We do
+this by adding an account</em> prefix so Django’s 'logout' will now be 'account_logout',
+'login' will be 'account_login', and signup will be account_signup.
+Chapter 7: Advanced User Registration
+ 146
+Code
+<!-- templates/_base.html -->
+...
+<nav class="my-2 my-md-0 mr-md-3">
+<a class="p-2 text-dark" href="{% url 'about' %}">About</a>
+{% if user.is_authenticated %}
+<a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
+{% else %}
+<a class="p-2 text-dark" href="{% url 'account_login' %}">Log In</a>
+<a class="btn btn-outline-primary"
+href="{% url 'account_signup' %}">Sign Up</a>
+{% endif %}
+</nav>
+...
+Code
+<!-- templates/home.html -->
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<h1>Homepage</h1>
+<img class="bookcover" src="{% static 'images/djangoforprofessionals.jpg' %}">
+{% if user.is_authenticated %}
+<p>Hi {{ user.email }}!</p>
+<p><a href="{% url 'account_logout' %}">Log Out</a></p>
+{% else %}
+Chapter 7: Advanced User Registration
+ 147
+<p>You are not logged in</p>
+<p><a href="{% url 'account_login' %}">Log In</a> |
+<a href="{% url 'account_signup' %}">Sign Up</a></p>
+{% endif %}
+{% endblock content %}
+And we’re done!
+Log In
+If you refresh the homepage at http://127.0.0.1:8000141 and then click on the “Log in”
+link you’ll see an updated page.
+Log In Page
+Note the new “Remember Me” box option. This is the first of many configurations142
+that django-allauth provides. The default None asks the user if they want their session
+141 http://127.0.0.1:8000
+142 https://django-allauth.readthedocs.io/en/latest/configuration.html
+Chapter 7: Advanced User Registration
+ 148
+to be remembered so they don’t have to log in again. It can also be set to False to not
+remember or True to always remember. We’ll choose True which is how a traditional
+Django log in page would work.
+Under our # django-allauth config section of the bookstore_project/settings.py file
+add a new line for this.
+Code</p>
+<h1 id="bookstore_projectsettingspy_5">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_4">django-allauth config</h1>
+<p>...
+ACCOUNT_SESSION_REMEMBER = True # new
+Refresh the “Log In” page and the box is gone!
+Log In Page No Box
+If you try out the log in form with your superuser account it will redirect back to the
+homepage with a welcome message. Click on the “Log Out” link.
+Chapter 7: Advanced User Registration
+ 149
+Log Out Page
+Rather than directly log us out django-allauth has an intermediary “Log Out” page
+which we can customize to match the rest of our project.
+Log Out
+Update the default Log Out template by creating a templates/account/logout.html file
+to override it.
+Command Line
+$ touch templates/account/logout.html
+Like our other templates it will extend _base.html and include Bootstrap styling on
+the submitted button.
+Chapter 7: Advanced User Registration
+Code
+<!-- templates/account/logout.html -->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Log Out{% endblock %}
+{% block content %}
+<div class="container">
+<h1>Log Out</h1>
+<p>Are you sure you want to log out?</p>
+<form method="post" action="{% url 'account_logout' %}">
+{% csrf_token %}
+{{ form|crispy }}
+<button class="btn btn-danger" type="submit">Log Out</button>
+</form>
+</div>
+{% endblock content %}
+Go ahead and refresh the page.
+150
+Chapter 7: Advanced User Registration
+ 151
+Custom Log Out Page
+Sign Up
+At the top of our website, in the nav bar, click on link for “Sign Up” which has Bootstrap
+and django-crispy-forms styling.
+Chapter 7: Advanced User Registration
+ 152
+Sign Up Page
+An optional customization we can make via django-allauth is to only ask for a
+password once. Since we’ll configure password change and reset options later, there’s
+less of a risk that a user who types in the password incorrectly will be locked out of
+their account.
+This change is, if you look at the django-allauth configuration options143 , is a one-liner.
+143 https://django-allauth.readthedocs.io/en/latest/configuration.html
+Chapter 7: Advanced User Registration
+Code</p>
+<h1 id="bookstore_projectsettingspy_6">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_5">django-allauth config</h1>
+<p>...
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False # new
+153
+Refresh the page and the form will update itself to remove the additional password
+line.
+Sign Up with Single Password
+Now create a new user to confirm everything works. We can call the user testuser1,
+use testuser1@email.com as email, and testpass123 as the password.
+Upon submit it will redirect you to the homepage.
+Chapter 7: Advanced User Registration
+ 154
+testuser Homepage
+Remember how we configured email to output to the console? django-allauth auto-
+matically sends an email upon registration which we can view by typing docker-compose
+logs.
+Command Line
+$ docker-compose logs
+...
+web_1
+ | Content-Type: text/plain; charset="utf-8"
+web_1
+ | MIME-Version: 1.0
+web_1
+ | Content-Transfer-Encoding: 7bit
+web_1
+ | Subject: [example.com] Please Confirm Your E-mail Address
+web_1
+ | From: webmaster@localhost
+web_1
+ | To: testuser@email.com
+web_1
+ | Date: Sat, 13 Jul 2019 14:04:15 -0000
+Chapter 7: Advanced User Registration
+ 155
+web_1
+ | Message-ID: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#49;&#53;&#53;&#50;&#54;&#54;&#49;&#57;&#53;&#55;&#55;&#49;&#46;&#49;&#53;&#46;&#49;&#55;&#48;&#57;&#53;&#54;&#52;&#51;&#55;&#48;&#49;&#53;&#53;&#51;&#53;&#54;&#52;&#51;&#57;&#51;&#64;&#99;&#100;&#97;&#98;&#56;&#55;&#55;&#99;&#52;&#97;&#102;&#51;">&#49;&#53;&#53;&#50;&#54;&#54;&#49;&#57;&#53;&#55;&#55;&#49;&#46;&#49;&#53;&#46;&#49;&#55;&#48;&#57;&#53;&#54;&#52;&#51;&#55;&#48;&#49;&#53;&#53;&#51;&#53;&#54;&#52;&#51;&#57;&#51;&#64;&#99;&#100;&#97;&#98;&#56;&#55;&#55;&#99;&#52;&#97;&#102;&#51;</a>
+web_1
+ |
+web_1
+ | Hello from example.com!
+web_1
+ |
+web_1
+ | You're receiving this e-mail because user testuser has given yours as
+an e-mail address to connect their account.
+web_1
+ |
+web_1
+ | To confirm this is correct, go to http://127.0.0.1:8000/accounts/
+confirm-emailMQ:1h4oIn:GYETeK5dRClGjcgA8NbuOoyvafA/
+web_1
+ |
+web_1
+ | Thank you from example.com!
+web_1
+ | example.com
+web_1
+ | -----------------------------------------------------------------------
+...
+There it is. Later on we’ll customize this message and configure a proper email service
+to send it to actual users.
+Admin
+Log in to the admin with your superuser account at http://127.0.0.1:8000/admin/144
+and we can see it, too, has changed now that django-allauth is involved.
+144 http://127.0.0.1:8000/admin/
+Chapter 7: Advanced User Registration
+ 156
+Admin Homepage
+There are two new sections: Accounts and Sites courtesy of our recent work. If you
+click on the Users section we see our traditional view that shows the three current
+user accounts.
+Chapter 7: Advanced User Registration
+ 157
+Admin Users
+Go back to the homepage and click on the section for Sites to see what the Django
+sites framework provides. We’ll update both the Domain Name and the Display Name
+in a later chapter on configuring email.
+Chapter 7: Advanced User Registration
+ 158
+Admin Sites
+Email Only Login
+It’s time to really use django-allauth’s extensive list of configurations145 by switching
+over to using just email for login, not username. This requires a few changes. First we’ll
+make a username not required, but set email instead to required. Then we’ll require
+email to be unique and the authentication method of choice.
+145 https://django-allauth.readthedocs.io/en/latest/configuration.html
+Chapter 7: Advanced User Registration
+Code</p>
+<h1 id="bookstore_projectsettingspy_7">bookstore_project/settings.py</h1>
+<h1 id="django-allauth-config_6">django-allauth config</h1>
+<p>...
+ACCOUNT_USERNAME_REQUIRED = False # new
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # new
+ACCOUNT_EMAIL_REQUIRED = True # new
+ACCOUNT_UNIQUE_EMAIL = True # new
+159
+Navigate back to the homepage and click on “Log Out” since you’ll be logged in with
+your superuser account. Then click on the navbar link for “Sign Up” and create an
+account for testuser2@email.com with testpass123 as the password.
+Sign Up Email Only
+After being redirected to the homepage upon success, now go into the admin at
+http://127.0.0.1:8000/admin/146 to inspect what actually happened. Log in with your
+superuser account and navigate to the Users section.
+146 http://127.0.0.1:8000/admin/
+Chapter 7: Advanced User Registration
+ 160
+Admin Users
+We can see that django-allauth automatically populated a username for us based on
+the email part before the @. This is because our underlying CustomUser model still has
+a username field. We didn’t delete it.
+While this approach may seem a little hackish, but in fact it works just fine. Fully
+removing the username from the custom user model requires the use of Abstract-
+BaseUser147 , which is an additional, optional step some developers take. It requires
+far more coding and understanding so it is not recommended unless you really know
+your way around Django’s authentication system!
+There is, however, an edge case here that we should confirm which is: what happens if
+we have testuser2@email.com and then a sign up for testuser2@example.com? Wouldn’t
+that result in a username of testuser2 for both which would cause a conflict? Let’s
+147 https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#django.contrib.auth.models.
+AbstractBaseUser
+Chapter 7: Advanced User Registration
+ 161
+try it out!
+Log out of the admin, go to the Sign Up Page again and create an account for
+testuser2@example.com.
+Sign Up Form
+Now log back into the admin and go to our Users section.
+Chapter 7: Advanced User Registration
+ 162
+Admin Users
+django-allauth automtically adds a two-digit string to the username. In this case
+it is 49 so testuser2 becomes testuser249. This two-digit string will be randomly
+generated for us.
+Tests
+Time for tests. Like any good third-party package django-allauth comes with its own
+tests so we don’t need to re-test its core functionality, just confirm that our project
+works as expected.
+If you run our current test suite there are 3 errors related to SignupPageTests since
+we’re using django-allauth now for this rather than our own views, forms, and urls.
+Chapter 7: Advanced User Registration
+Command Line
+$ docker-compose exec web python manage.py test
+...
+Ran 15 tests in 0.363s
+163
+FAILED (errors=3)
+Let’s update the tests. The first issue is that signup is no longer the correct URL name,
+instead we’re using account_signup which is the name django-allauth provides. How
+did I know that? I looked at the source code148 and found the URL name.
+Another change is the location of the signup.html template which is now located at
+account/signup.html.
+We’re also not using CustomUserCreationForm anymore, but instead, that provided
+by django-allauth so we can remove that test. Remove as well the imports for
+CustomUserCreationForm and SignupPageView at the top of the file.
+Code</p>
+<h1 id="userstestspy">users/tests.py</h1>
+<p>from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import reverse, resolve
+class CustomUserTests(TestCase):
+...
+148 https://github.com/pennersr/django-allauth/blob/master/allauth/account/urls.py
+Chapter 7: Advanced User Registration
+class SignupTests(TestCase): # new
+username = 'newuser'
+email = 'newuser@email.com'
+def setUp(self):
+url = reverse('account_signup')
+self.response = self.client.get(url)
+def test_signup_template(self):
+self.assertEqual(self.response.status_code, 200)
+self.assertTemplateUsed(self.response, 'account/signup.html')
+self.assertContains(self.response, 'Sign Up')
+self.assertNotContains(
+self.response, 'Hi there! I should not be on the page.')
+def test_signup_form(self):
+new_user = get_user_model().objects.create_user(
+self.username, self.email)
+self.assertEqual(get_user_model().objects.all().count(), 1)
+self.assertEqual(get_user_model().objects.all()
+[0].username, self.username)
+self.assertEqual(get_user_model().objects.all()
+[0].email, self.email)
+Run the tests again.
+164
+Chapter 7: Advanced User Registration
+Command Line
+$ docker-compose exec web python manage.py test
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+..............</p>
+<hr />
+<p>Ran 14 tests in 0.410s
+165
+OK
+Destroying test database for alias 'default'...
+Social
+If you want to add social authentication it’s just a few settings. I have a complete
+tutorial online149 for integrating Github. The process is similar for Google, Facebook,
+and all the rest django-allauth supports. Here is the complete list of providers150 .
+Git
+As always commit the code changes with Git.
+149 https://wsvincent.com/django-allauth-tutorial/
+150 https://django-allauth.readthedocs.io/en/latest/providers.html
+Chapter 7: Advanced User Registration
+ 166
+Command Line
+$ git status
+$ git add .
+$ git commit -m 'ch7'
+And if there are any issues, compare with the official source code on Github151.
+Conclusion
+We now have a user registration flow that works and can be quickly extended into
+social authentication if needed. In the next chapter we’ll add environment variables
+to our project for greater security and flexibility.
+151 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch7-advanced-user-registration</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

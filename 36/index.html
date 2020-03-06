@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>36 - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "36";
+    var mkdocs_page_input_path = "36.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>36</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p>Chapter 18: Deployment
+So far we have been working entirely in a local development environment on our com-
+puter. But now it is time to deploy our project so that it is accessible to the public. In
+truth the topic of deployment is worth an entire book on its own. Compared to other
+web frameworks Django is very hands-off and agnostic on the topic. There are no
+one-click deploys for most hosting platforms and while this requires more developer
+work it also allows, in typical Django fashion, for a high degree of customization.
+In the previous chapter we configured a completely separate docker-compose-prod.yml
+file and updated bookstore_project/settings.py to be production-ready. In this
+chapter we’ll review how to choose a hosting provider, add a production-ready web
+server, and properly configure static/media files before deploying our Bookstore site!
+PaaS vs IaaS
+The first question is whether to use a Platform-as-a-Service (PaaS) or Infrastructure-
+as-a-Service (IaaS). A PaaS is an opinionated hosting option that handles much of
+the initial configuration and scaling needed for a website. Popular examples include
+Heroku344, PythonAnywhere345, and Dokku346 among many others. While a PaaS costs
+more money upfront than an IaaS it saves an incredible amount of developer time,
+handles security updates automatically, and can be quickly scaled.
+An IaaS by contrast provides total flexibility is typically cheaper, but it requires a high
+degree of knowledge and effort to properly set up. Prominent IaaS options include
+344 https://www.heroku.com/
+345 https://www.pythonanywhere.com/details/django_hosting
+346 http://dokku.viewdocs.io/dokku/
+Chapter 18: Deployment
+ 338
+DigitalOcean347, Linode348 , Amazon EC2349 , and Google Compute Engine350 among
+many others.
+So which one to use? Django developers tend to fall in one of two camps: either they
+already have a deployment pipeline configured with their IaaS of choice or they use a
+PaaS. Since the former is far more complex and varies widely in its configuration, we
+will use a PaaS in this book, specifically Heroku.
+The choice of Heroku is somewhat arbitrary, but it is a mature technology that comes
+with a truly free tier sufficient for deploying our Bookstore project.
+WhiteNoise
+For local development Django relies on the staticfiles app351 to automatically gather
+and serve static files from across the entire project. This is convenient, but quite
+inefficient and likely insecure, too.
+For production the collectstatic352 must be run to compile all static files into a
+single directory specified by STATIC_ROOT353 . They can then be served either on
+the same server, a separate server, or a dedicated cloud service/CDN by updating
+STATICFILES_STORAGE354 .
+While it is tempting to jump right to a dedicated CDN beware premature optimization:
+the default option of serving from your server’s filesystem scales to a quite large size.
+If you decide to go this route the django-storages355 project is a popular approach.
+347 https://www.digitalocean.com/
+348 https://www.linode.com/
+349 https://aws.amazon.com/ec2/
+350 https://cloud.google.com/compute/
+351 https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#module-django.contrib.staticfiles
+352 https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#collectstatic
+353 https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-STATIC_ROOT
+354 https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-STATICFILES_STORAGE
+355 https://github.com/jschneier/django-storages
+Chapter 18: Deployment
+ 339
+In our project we will rely on serving files from our server with the aid of the
+WhiteNoise356 project which works extremely well on Heroku and is both faster and
+more configurable than Django defaults.
+The first step is to install whitenoise within Docker and stop the running containers.
+Command Line
+$ docker-compose exec web pipenv install whitenoise==4.1.4
+$ docker-compose down
+We won’t rebuild the image just yet because we also have to make changes to our
+settings. Since we’re using Docker it’s possible to switch to WhiteNoise locally as
+well as in production. While it’s possible to do this by passing in a --nostatic flag
+to the runserver command, this becomes tiring in practice. A better approach is
+to add whitenoise.runserver_nostatic before django.contrib.stataticfiles in the
+INSTALLED_APPS config which will do the same thing. We’ll also add it to our MIDDLEWARE
+right below SecurityMiddleware.
+Code</p>
+<h1 id="bookstore_projectsettingspy">bookstore_project/settings.py</h1>
+<p>INSTALLED_APPS = [
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'whitenoise.runserver_nostatic', # new
+'django.contrib.staticfiles',
+'django.contrib.sites',
+356 https://github.com/evansd/whitenoise
+Chapter 18: Deployment
+ 340
+...
+]
+MIDDLEWARE = [
+'django.middleware.cache.UpdateCacheMiddleware',
+'django.middleware.security.SecurityMiddleware',
+'whitenoise.middleware.WhiteNoiseMiddleware', # new
+...
+]
+With all our changes made we can now start up our project again in local development
+mode.
+Command Line
+$ docker-compose up -d --build
+WhiteNoise has additional options to serve compressed content and far-future
+cache headers on content that won’t change. But for now, go ahead and run the
+collectstatic command one more time.
+Command Line
+$ docker-compose exec web python manage.py collectstatic
+There will be a warning about overwriting existing files. That’s fine. Type “yes” and
+then hit the “Return” key to continue.
+Chapter 18: Deployment
+ 341
+Gunicorn
+When we ran the startproject command way back in Chapter 3 a wsgi.py file was
+created with a default WSGI (Web Server Gateway Interface)357 configuration. This is
+a specification for how a web app (like our Bookstore project) communicates with a
+web server.
+For production it is common to swap this out for either Gunicorn358 or uWSGI359 . Both
+offer a performance boost, but Gunicorn is more focused and simpler to implement
+so it will be our choice.
+The first step is to install it within our project and stopping our containers.
+Command Line
+$ docker-compose exec web pipenv install gunicorn==19.9.0
+$ docker-compose down
+Because we are using Docker our local environment can mimic production quite
+easily so we’ll update both docker-compose.yml and docker-compose-prod.yml to use
+Gunicorn instead of the local server.
+docker-compose.yml</p>
+<h1 id="command-python-codemanagepy-runserver-00008000">command: python /code/manage.py runserver 0.0.0.0:8000</h1>
+<p>command: gunicorn bookstore_project.wsgi -b 0.0.0.0:8000 # new
+357 https://wsgi.readthedocs.io/en/latest/
+358 https://gunicorn.org/
+359 https://uwsgi-docs.readthedocs.io/en/latest/
+Chapter 18: Deployment
+ 342
+docker-compose-prod.yml</p>
+<h1 id="command-python-codemanagepy-runserver-00008000_1">command: python /code/manage.py runserver 0.0.0.0:8000</h1>
+<p>command: gunicorn bookstore_project.wsgi -b 0.0.0.0:8000 # new
+Now start up the containers again building a new image with the Gunicorn package
+and our updated environment variables.
+Command Line
+$ docker-compose up -d --build
+dj-database-url
+We will ultimately spin up a dedicated PostgreSQL database within Heroku for our de-
+ployment. The way database information is supplied to Heroku is via an environment
+variable named DATABASE_URL. We can use the dj-database-url360 package to parse
+the DATABASE_URL environment variable and automatically convert it to the proper
+configuration format.
+For the last time in this book, install the package within Docker and then stop the
+containers.
+Command Line
+$ docker-compose exec web pipenv install dj-database-url==0.5.0
+$ docker-compose down
+Then add three lines to the bottom of the bookstore_project/settings.py file.
+360 https://github.com/kennethreitz/dj-database-url
+Chapter 18: Deployment
+Code</p>
+<h1 id="bookstore_projectsettingspy_1">bookstore_project/settings.py</h1>
+<h1 id="heroku">Heroku</h1>
+<p>import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+343
+And then build our new image, start the containers, and load the updated settings
+into our project.
+Command Line
+$ docker-compose up -d --build
+We’re done with local changes and can now fully switch over to deploying with
+Heroku.
+Heroku
+Head over to the Heroku361 website and sign up for a free account. After you confirm
+your email Heroku will redirect you to the dashboard section of the site.
+361 https://www.heroku.com/
+Chapter 18: Deployment
+ 344
+Heroku Dashboard
+Next make sure to install Heroku’s Command Line Interface (CLI) so we can deploy
+from the command line. There are detailed instructions here362 .
+The final step is to log in with your Heroku credentials via the command line by typing
+heroku login. Use the email and password for Heroku you just set.
+Command Line
+$ heroku login
+All set! If you have any issues you can type heroku help on the command line or visit
+the Heroku site for additional information.
+Deploying with Docker
+Now we are presented with a choice: deploy the traditional way on Heroku or with
+Docker containers. The latter is a new approach Heroku and other hosting providers
+362 https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+Chapter 18: Deployment
+ 345
+have only recently added. However, just as Docker has taken over local development,
+it is starting to take over deployments as well. And once you’ve configured containers
+for deployment it is far easy to switch between potential hosting providers rather
+than if you configure their specific way. So we will deploy with Docker containers.
+Even then we have, yet again, a choice to make as there are two different container
+options available363 : using a container registry to deploy pre-built images or adding a
+heroku.yml file. We will use the latter approach as it will allow additional commands
+and more closely mimics the traditional Heroku approach of adding a Procfile for
+configuration.
+heroku.yml
+Traditional non-Docker Heroku relies on a custom Procfile for configuring a site for
+deployment. For containers Heroku relies on a similar approach of a custom file but
+called heroku.yml364 in the root directory. It is similar to docker-compose.yml which is
+used for building local Docker containers.
+Let’s create our heroku.yml file now.
+Command Line
+$ touch heroku.yml
+There are four top-level sections365 available for configuration: setup, build, release,
+and run.
+The main function of setup is to specify which add-ons are needed. These are hosted
+solutions Heroku provides, typically for a fee. The big one is our database which
+363 https://devcenter.heroku.com/categories/deploying-with-docker
+364 https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+365 https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#heroku-yml-overview
+Chapter 18: Deployment
+ 346
+will rely on the free heroku-postgresql366 tier. Heroku takes care of provisioning it,
+security updates, and we can easily upgrade the database size and uptime as needed.
+The build section is how we specify the Dockerfile should be, well, built. This relies
+on our current Dockerfile in the root directory.
+The release phase is used to run tasks before each new release is deployed. For
+example, we can make sure collectstatic is run on every deploy automatically.
+Finally there is the run phase where we specify which processes actually run the
+application. Notably, the use of Gunicorn as the web server.
+heroku.yml
+setup:
+addons:
+- plan: heroku-postgresql
+build:
+docker:
+web: Dockerfile
+release:
+image: web
+command:
+- python manage.py collectstatic --noinput
+run:
+web: gunicorn bookstore_project.wsgi
+Make sure to add the new deployment updates to Git and commit them. In the next
+section we’ll push all our local code to Heroku itself.
+366 https://elements.heroku.com/addons/heroku-postgresql
+Chapter 18: Deployment
+Command Line
+$ git status
+$ git add .
+$ git commit -m 'ch18'
+347
+Heroku Deployment
+Now create a new app on Heroku for our Bookstore project. If you type heroku create
+then Heroku will assign a random name. Since names are global in Heroku, it’s unlikely
+that common ones like “blog” or “webapp” will be available. The name can always be
+changed later within Heroku to an available global namespace.
+Command Line
+$ heroku create
+Creating app... done, � damp-dawn-44130
+https://damp-dawn-44130.herokuapp.com/ |
+https://git.heroku.com/damp-dawn-44130.git
+In this case Heroku assigned my app the name damp-dawn-44130. If you refresh the
+Heroku dashboard on the website you will now see the newly created app.
+Heroku New App
+Chapter 18: Deployment
+Click on the new app, damp-dawn-44130 in my case, to open the “Overview” page.
+348
+Heroku Overview Page
+Then click on the “Settings” option at the top as we want to set our production
+environment variables within Heroku.
+Chapter 18: Deployment
+ 349
+Heroku App Settings
+Click on “Reveal Config Vars”. Then add environment variables for ENVIRONMENT to
+“production,” the SECRET_KEY, and DEBUG equal to “0” from the docker-compose-prod.yml
+file.
+Chapter 18: Deployment
+ 350
+Heroku Config Vars
+It’s also possible to add config variables from the command line to Heroku. Doing so
+via the Dashboard is easier to see, which is why it is demonstrated either way. Both
+approaches work.
+Now set the stack367 to use our Docker containers, not Heroku’s default buildpack.
+Include your app name here at the end of the command after heroku stack:set
+container -a.
+367 https://devcenter.heroku.com/articles/stack
+Chapter 18: Deployment
+Command Line
+$ heroku stack:set container -a damp-dawn-44130
+Stack set. Next release on � damp-dawn-44130 will use container.
+Run git push heroku master to create a new release on � damp-dawn-44130.
+351
+To confirm this change executed correctly, refresh the Heroku dashboard page and
+note that under the “Info” section, for “Stack” it now features “container.” That’s what
+we want.
+Heroku Stack
+Before pushing our code to Heroku specify the hosted PostgreSQL database we want.
+In our case, the free hobby-dev tier works well; it can always be updated in the future.
+Chapter 18: Deployment
+Command Line
+$ heroku addons:create heroku-postgresql:hobby-dev -a damp-dawn-44130
+Creating heroku-postgresql:hobby-dev on � damp-dawn-44130... free
+Database has been created and is available
+! This database is empty. If upgrading, you can transfer
+! data from another database with pg:copy
+Created postgresql-opaque-38157 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation
+352
+The dj-database-url setting we set previously will automatically find and use this
+DATABASE_URL for us.
+We’re ready! Create a Heroku remote368 , which means a version of our code that will
+live on a Heroku-hosted server. Make sure to include -a and the name of your app.
+Then “push” the code to Heroku which will result in building our Docker image and
+running the containers.
+Command Line
+$ heroku git:remote -a damp-dawn-44130
+$ git push heroku master
+The initial push might take a while to complete. You can see active progress by clicking
+on the “Activity” tab on the Heroku dashboard.
+Our Bookstore project should now be available online. Remember that while the code
+mirrors our own local code, the production site has its own database that has no
+information in it. To run commands on it add heroku run to standard commands. For
+example, we should migrate our initial database and then create a superuser account.
+368 https://devcenter.heroku.com/articles/git#creating-a-heroku-remote
+Chapter 18: Deployment
+Command Line
+$ heroku run python manage.py migrate
+$ heroku run python manage.py createsuperuser
+353
+There are two ways to open the newly-deployed application. From the command line
+you can type heroku open -a and the name of your app. Or you can click on the “Open
+app” button in the upper right corner of the Heroku dashboard.
+Command Line
+$ heroku open -a damp-dawn-44130
+Heroku Redirects
+But...ack! What’s this? A redirect error. Welcome to the joys of deployment where
+issues like this will crop up all the time.
+Chapter 18: Deployment
+ 354
+SECURE_PROXY_SSL_HEADER
+Some sleuthing uncovers that the issue is related to our SECURE_SSL_REDIRECT369
+setting. Heroku uses proxies and so we must find the proper header and update
+SECURE_PROXY_SSL_HEADER370 accordingly.
+Since we do trust Heroku we can add Django’s default suggestion. So update the
+“production” section of bookstore_project/settings.py with the following line.
+Code</p>
+<h1 id="bookstore_projectsettingspy_2">bookstore_project/settings.py</h1>
+<h1 id="production">production</h1>
+<p>if ENVIRONMENT == 'production':
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # new
+While we’re at it, we can also update ALLOWED_HOSTS with the exact URL name of
+our Heroku deployment. Mine is damp-dawn-44130.herokuapp.com/ so the updated
+configuration looks as follows:
+369 https://docs.djangoproject.com/en/2.2/ref/settings/#secure-ssl-redirect
+370 https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-SECURE_PROXY_SSL_HEADER
+Chapter 18: Deployment
+ 355
+Code</p>
+<h1 id="bookstore_projectsettingspy_3">bookstore_project/settings.py</h1>
+<p>ALLOWED_HOSTS = ['damp-dawn-44130.herokuapp.com', 'localhost', '127.0.0.1']
+Use your own unique Heroku subdomain here!
+Finally, commit these changes to Git and then push the updated code to Heroku.
+Command Line
+$ git status
+$ git add .
+$ git commit -m 'secure_proxy_ssl_header and allowed_hosts update'
+$ git push heroku master
+After the build has completed refresh the webpage for your site. There it is!
+Heroku Live Site
+Heroku Logs
+It is inevitable that you will have errors in your deployment at some point. When you
+do, run heroku logs --tail to see error and info logs and debug what’s going on.
+Chapter 18: Deployment
+ 356
+Hopefully this deployment process was smooth. But in practice, even with an estab-
+lished Platform-as-a-Service like Heroku, it is highly likely that issues will occur. If
+you see an error page, type heroku logs --tail, which displays info and error logs, to
+diagnose the issue.
+Stripe Live Payments
+Our orders page is still running with Stripe in test mode. How do we update this
+to use live keys and make actual payments? First, make sure to fully activate your
+account on the Stripe website by filling in additional personal and banking infor-
+mation about yourself. Second, add the live publishable and secret keys to your
+docker-compose-prod.yml file–docker-compose.yml is for local development only.
+docker-compose-prod.yml
+version: '3.7'
+services:
+web:
+build: .
+command: gunicorn bookstore_project.wsgi -b 0.0.0.0:8000
+environment:
+- ENVIRONMENT=production
+- SECRET_KEY=p_o3vp1rg5)t^lxm9-43%0)s-=1qpeq%o7gfq+e4#*!t+_ev82
+- DEBUG=0
+- STRIPE_LIVE_PUBLISHABLE_KEY=<pk_live_your_publishable_key_here>
+- STRIPE_LIVE_SECRET_KEY=<sk_live_your_secret_key_here>
+ports:
+- 8000:8000
+depends_on:
+Chapter 18: Deployment
+- db
+db:
+image: postgres:11
+357
+And third, add these two new environment variables to bookstore_project/settings.py
+under the existing entries for Stripe test values.
+Code</p>
+<h1 id="bookstore_projectsettingspy_4">bookstore_project/settings.py</h1>
+<p>STRIPE_LIVE_PUBLISHABLE_KEY=os.environ.get('STRIPE_LIVE_PUBLISHABLE_KEY')
+STRIPE_LIVE_SECRET_KEY=os.environ.get('STRIPE_LIVE_SECRET_KEY')
+To confirm these production settings work as expected make sure to stop any running
+local Docker containers, then restart with docker-compose-prod.yml and try it out.
+Command Line
+$ docker-compose down
+$ docker-compose -f docker-compose-prod.yml up -d --build
+Be aware that this is a real payment! While it is going to your own banking account
+Stripe will still deduct its standard 2.9% + 30 cents per transaction so test this
+sparingly.
+Heroku Add-ons
+Heroku comes with a large list of add-on services371 that, for a fee, can be quickly
+added to any site. For example, to enable caching with Memcache, Memcachier372 is
+an option to consider.
+371 https://elements.heroku.com/addons/
+372 https://elements.heroku.com/addons/memcachier
+Chapter 18: Deployment
+ 358
+Daily backups373 are an additional, but essential, feature of any production database.
+And if you’re using a custom domain for your site, ensuring SSL is vital for any website,
+especially one handling payments. You will need to be on a paid tier on Heroku374 to
+enable this functionality.
+PonyCheckup
+A popular way to test Django deployments is with Pony Checkup375 by Sasha Romijn,
+a long-standing member of the Django Security team.
+373 https://devcenter.heroku.com/articles/heroku-postgres-backups#scheduling-backups
+374 https://devcenter.heroku.com/articles/understanding-ssl-on-heroku
+375 https://www.ponycheckup.com/
+Chapter 18: Deployment
+ 359
+Pony Checkup
+If you have any errors, please check the official source code on Github376 .
+376 https://github.com/wsvincent/djangoforprofessionals/tree/master/ch18-deployment
+Chapter 18: Deployment
+ 360
+Conclusion
+Even with all the advantages of a modern Platform-as-a-Service like Heroku, de-
+ployment remains a complicated and often frustrating task for many developers.
+Personally, I want my web apps to “just work”. But many engineers come to enjoy the
+challenges of working on performance, security, and scaling. After all, it is far easier to
+measure improvements in this realm: did page load times decrease? Did site uptime
+improve? Is security up-to-date? Working on these problems can often feel far more
+rewarding than debating which new feature to add to the site itself.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
