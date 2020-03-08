@@ -185,10 +185,8 @@
               
                 <h1 id="10-autenticacion-de-usuarios">10. Autenticación de usuarios</h1>
 <h2 id="101-plantillas">10.1. Plantillas</h2>
-<ul>
-<li>Por defecto, el cargador de plantillas de Django busca plantillas en una estructura anidada dentro de cada aplicación. Así que una plantilla <code>home.html</code> en usuarios tendría que estar ubicada en <code>users/templates/users/home.html</code>.</li>
-<li>Pero un enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que eso es lo que se usará.</li>
-</ul>
+<p>Por defecto, el cargador de plantillas de Django las busca en una estructura anidada dentro de cada aplicación. Así que una plantilla <code>home.html</code> de <code>users</code> tendría que estar ubicada en <code>users/templates/users/home.html</code>.</p>
+<p>Pero el enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que se usará.</p>
 <pre><code class="bash">(news) $ mkdir templates
 (news) $ mkdir templates/registration
 </code></pre>
@@ -203,11 +201,11 @@
 ]
 </code></pre>
 
-<ul>
-<li>Si se piensa en lo que sucede cuando se inicia o cierra sesión en un sitio, se es redirigido inmediatamente a una página subsiguiente. Por tanto, habrá que decirle a Django dónde enviar a los usuarios en cada caso. Las configuraciones <code>LOGIN_REDIRECT_URL</code> y <code>LOGOUT_REDIRECT_URL</code> hacen eso. Se configurará ambos para redirigirlos a la página de inicio, que tendrá el nombre de URL <code>home</code>.</li>
-<li>Recordar que cuando se crean las rutas URL se tiene la opción de añadir un nombre a cada una. Así que cuando se construya la URL de la página de inicio habrá que asegurarse de llamarla <code>home</code>.</li>
-<li>Añadir estas dos líneas en la parte inferior del archivo settings.py.</li>
-</ul>
+<p>Tras iniciar o cerrar sesión en un sitio se es redirigido inmediatamente a una página subsiguiente. Por tanto, habrá que decirle a Django dónde enviar al usuario en cada caso. Las configuraciones <code>LOGIN_REDIRECT_URL</code> y <code>LOGOUT_REDIRECT_URL</code> hacen eso. Se configurará ambos para redirigirlos a la página de inicio, que tendrá el nombre de URL <code>home</code>.</p>
+<blockquote>
+<p>Recordar que cuando se crean las rutas URL se tiene la opción de añadir un nombre a cada una. Así que cuando se construya la URL de la página de inicio habrá que asegurarse de llamarla <code>home</code>.</p>
+</blockquote>
+<p>Añadir estas dos líneas en la parte inferior del archivo settings.py.</p>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
 <pre><code class="python">LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
@@ -220,22 +218,20 @@ LOGOUT_REDIRECT_URL = 'home'
 (news) $ touch templates/signup.html
 </code></pre>
 
-<ul>
-<li>Este es el código HTML para cada archivo a utilizar. <code>base.html</code> será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como <code>{% block contente %}</code> se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.</li>
-</ul>
+<p>Este es el código HTML para cada archivo a utilizar. <code>base.html</code> será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como <code>{% block content %}</code> se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.</p>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;Newspaper App&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;main&gt;
-      {% block content %}
-      {% endblock %}
-    &lt;/main&gt;
-  &lt;/body&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Newspaper App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main&gt;
+    {% block content %}
+    {% endblock %}
+  &lt;/main&gt;
+&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 
@@ -287,33 +283,27 @@ LOGOUT_REDIRECT_URL = 'home'
 </code></pre>
 
 <h2 id="102-urls">10.2. URLs</h2>
-<ul>
-<li>En el archivo <code>urls.py</code>, a nivel de proyecto, se quiere que la plantilla <code>home.html</code> aparezca como página de inicio. Pero no se quiere construir una app <code>pages</code> dedicada todavía, así que se puede usar el atajo de importar <code>TemplateView</code> y establecer el <code>template_name</code> justo en el patrón url.</li>
-<li>A continuación se quiere "incluir" tanto la app <code>users</code> como la app <code>auth</code> incorporada. La razón es que la app <code>auth</code> incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el registro hay que crear una vista y una url propias. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>users/</code> para que las URLs eventuales sean <code>/users/login</code>, <code>/users/logout</code> y <code>/users/signup</code>.</li>
-</ul>
+<p>En el archivo <code>urls.py</code>, a nivel de proyecto, se quiere que la plantilla <code>home.html</code> aparezca como página de inicio. Pero no se quiere construir una app <code>pages</code> dedicada todavía, así que se puede usar el atajo de importar <code>TemplateView</code> y establecer el <code>template_name</code> justo en el patrón url.</p>
+<p>A continuación se quiere "incluir" tanto la app <code>users</code> como la app <code>auth</code> incorporada. La razón es que la app <code>auth</code> incorporada ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el <strong>registro hay que crear una vista y una url propias</strong>. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>users/</code> para que las URLs eventuales sean <code>/users/login</code>, <code>/users/logout</code> y <code>/users/signup</code>.</p>
 <p>FICHERO: <code>newspaper_project/urls.py</code></p>
 <pre><code class="python">from django.contrib import admin
-from django.urls import path, include
-from django.views.generic.base import TemplateView
+from django.urls import path, include                     # new
+from django.views.generic.base import TemplateView        # new
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),                                             # new
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
+    path('users/', include('users.urls')),                # new
+    path('users/', include('django.contrib.auth.urls')),  # new
 ]
 </code></pre>
 
-<ul>
-<li>Ahora se crea un archivo <code>urls.py</code> en la app <code>users</code>.</li>
-</ul>
+<p>Ahora se crea un archivo <code>urls.py</code> en la app <code>users</code>.</p>
 <pre><code class="bash">(news) $ touch users/urls.py
 </code></pre>
 
-<ul>
-<li>Actualizar a los <code>users/urls.py</code> con el siguiente código:</li>
-</ul>
+<p>Actualizar <code>users/urls.py</code> con el siguiente código:</p>
 <p>FICHERO: <code>users/urls.py</code></p>
 <pre><code class="python">from django.urls import path
 from . import views
@@ -322,9 +312,7 @@ urlpatterns = [
 ]
 </code></pre>
 
-<ul>
-<li>El último paso es el archivo <code>views.py</code> que contendrá la lógica del formulario de inscripción. Se usará el <code>CreateView</code> genérico de Django diciéndole que use <code>CustomUserCreationForm</code>, para redirigirse a <code>login</code> una vez que el usuario se registre con éxito, y que la plantilla se llama <code>signup.html</code>.</li>
-</ul>
+<p>El último paso es el archivo <code>views.py</code> que contendrá la lógica del formulario de inscripción. Se usará el <code>CreateView</code> genérico de Django diciéndole que use <code>CustomUserCreationForm</code>, para redirigirse a <code>login</code> una vez que el usuario se registre con éxito, y que la plantilla se llama <code>signup.html</code>.</p>
 <p>FICHERO: <code>users/views.py</code></p>
 <pre><code class="python">from django.urls import reverse_lazy
 from django.views import generic
@@ -337,19 +325,13 @@ class SignUp(generic.CreateView):
     template_name = 'signup.html'
 </code></pre>
 
-<ul>
-<li>Arrancar el servidor con python <code>manage.py runserver</code> e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario <code>testuser</code>.</li>
-</ul>
+<p>Arrancar el servidor con python <code>manage.py runserver</code> e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario <code>testuser</code>.</p>
 <h2 id="103-admin">10.3. Admin</h2>
-<ul>
-<li>Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta de superusuario.</li>
-<li>Todo está funcionando pero no hay un campo <code>email</code> para el usuario <code>testuser</code>.<ul>
-<li>En  la página de registro users/signup/ se puede ver que sólo se pide un nombre de usuario y una contraseña, ¡no un correo electrónico!</li>
-<li>Así es como funciona la configuración predeterminada de Django pero se puede cambiar fácilmente en <code>users/forms.py</code>.</li>
-</ul>
-</li>
-<li>En principio tiene este aspecto:</li>
-</ul>
+<p>Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta que no sea de superusuario.</p>
+<p>Todo está funcionando pero <strong>no</strong> hay un campo <code>email</code> para el usuario <code>testuser</code>.</p>
+<p>En  la página de registro <code>users/signup/</code> se puede ver que sólo se pide un nombre de usuario y una contraseña, ¡no un correo electrónico!</p>
+<p>Así es como funciona la configuración predeterminada de Django pero se puede cambiar fácilmente en <code>users/forms.py</code>.</p>
+<p>En principio tiene este aspecto:</p>
 <p>FICHERO: <code>users/forms.py</code></p>
 <pre><code class="python">from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -370,9 +352,7 @@ class CustomUserChangeForm(UserChangeForm):
         fields = UserChangeForm.Meta.fields
 </code></pre>
 
-<ul>
-<li>Como campos se usan <code>Meta.fields</code> que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como <code>('username', 'email',)</code> . ¡No se necesita incluir el campo <code>password</code> porque es obligatorio! Pero todos los demás campos pueden ser configurados como se quiera.</li>
-</ul>
+<p>Como campos se usan <code>Meta.fields</code> que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como <code>('username', 'email',)</code> . ¡No se necesita incluir el campo <code>password</code> porque es <strong>obligatorio</strong>! Pero todos los demás campos pueden ser configurados como se quiera.</p>
 <p>FICHERO: <code>users/forms.py</code></p>
 <pre><code class="python">...
 class CustomUserCreationForm(UserCreationForm):

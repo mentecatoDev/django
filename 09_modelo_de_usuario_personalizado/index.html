@@ -276,8 +276,8 @@ class CustomUserChangeForm(UserChangeForm):
 <li>Esto nos dice que la configuración predeterminada para los campos en <code>UserCreationForm</code> son sólo el <code>username</code>,  <code>email</code> y <code>password</code> aunque hay muchos más campos disponibles.</li>
 <li>Por tanto, entender los formularios y los modelos correctamente lleva algún tiempo.</li>
 </ul>
-<p>El paso final es actualizar el archivo <code>admin.py</code> ya que <em>Admin</em> está estrechamente unido al modelo de Usuario por defecto. Se extenderá la clase existente <code>UserAdmin</code> para usar el nuevo modelo de <code>CustomUser</code> y los dos nuevos formularios.
-  FICHERO: <code>users/admin.py</code></p>
+<p>El paso final es actualizar el archivo <code>admin.py</code> ya que <em>Admin</em> está estrechamente unido al modelo de usuario por defecto. Se extenderá la clase existente <code>UserAdmin</code> para usar el nuevo modelo de <code>CustomUser</code> y los dos nuevos formularios.</p>
+<p>FICHERO: <code>users/admin.py</code></p>
 <pre><code class="python">from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
@@ -290,28 +290,29 @@ class CustomUserAdmin(UserAdmin):
     list_display = ['email', 'username', 'age']
     model = CustomUser
 
+
 admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
 
 <ul>
-<li>Obsérvese que <code>CustomUserAdmin</code> también tiene un ajuste de <code>list_display</code> de manera que sólo muestra los campos de <code>email</code> , <code>username</code> y <code>age</code> aunque de hecho hay muchos más en el modelo de <code>CustomUser</code></li>
-<li>Ejecutar <code>makemigrations</code> y <code>migrate</code> por primera vez para crear una nueva base de datos que utilice el modelo de usuario personalizado.</li>
+<li>Obsérvese que <code>CustomUserAdmin</code> también tiene un ajuste de <code>list_display</code> de manera que sólo muestra los campos <code>email</code> , <code>username</code> y <code>age</code> aunque de hecho hay muchos más en el modelo de <code>CustomUser</code></li>
 </ul>
+<p>Ejecutar <code>makemigrations</code> y <code>migrate</code> por primera vez para crear una nueva base de datos que utilice el modelo de usuario personalizado.</p>
 <pre><code class="bash">(news) $ python manage.py makemigrations
 (news) $ python manage.py migrate
 </code></pre>
 
 <h2 id="94-superusuario">9.4. Superusuario</h2>
-<p>Vamos a crear una cuenta de superusuario para confirmar que todo funciona como se espera. En la línea de comandos, escriba el siguiente comando y pase a través de las indicaciones.</p>
+<p>Vamos a crear una cuenta de superusuario para confirmar que todo funciona como se espera. En la línea de comandos, escribir el siguiente comando y cumplir con las indicaciones.</p>
 <pre><code class="bash">(news) $ python manage.py createsuperuser
 </code></pre>
 
+<p>El hecho de que esto funcione es la primera prueba de que el modelo de usuario personalizado funciona como se esperaba.</p>
 <ul>
-<li>El hecho de que esto funcione es la primera prueba de que el modelo de usuario personalizado funciona como se esperaba.</li>
 <li>Navegar a http://127.0.0.1:8000/admin, logear y probar.</li>
 </ul>
 <h2 id="95-conclusion">9.5. Conclusión</h2>
-<p>Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación <em>Periódico</em>.</p>
+<p>Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación <em>Newspaper</em>.</p>
               
             </div>
           </div>
