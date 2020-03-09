@@ -124,9 +124,9 @@
         
             <li><a class="toctree-l3" href="#121-sendgrid">12.1. SendGrid</a></li>
         
-            <li><a class="toctree-l3" href="#correos-electronicos-personalizados">Correos electrónicos personalizados</a></li>
+            <li><a class="toctree-l3" href="#122-correos-electronicos-personalizados">12.2. Correos electrónicos personalizados</a></li>
         
-            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+            <li><a class="toctree-l3" href="#123-conclusion">12.3. Conclusión</a></li>
         
         </ul>
     
@@ -182,25 +182,20 @@
             <div class="section">
               
                 <h1 id="12-correo-electronico">12. Correo electrónico</h1>
-<ul>
-<li>Ahora se quiere que los correos electrónicos se envíen realmente a los usuarios, no sólo a la consola de línea de comandos.</li>
-<li>Se precisa de una <em>SendGrid</em> y actualizar los archivos <code>settings.py</code>. Django se encargará del resto.</li>
-</ul>
+<p>Ahora se quiere que los correos electrónicos se envíen realmente a los usuarios, no sólo a la consola de línea de comandos.</p>
+<p>Se precisa de una <em>SendGrid</em> y actualizar los archivos <code>settings.py</code>. Django se encargará del resto.</p>
 <h2 id="121-sendgrid">12.1. SendGrid</h2>
+<p><em>SendGrid</em> es un servicio popular para el envío de e-mails transaccionales. A Django no le importa el servicio que se elija; se puede usar <em>MailGun</em> o cualquier otro servicio con la misma facilidad.</p>
 <ul>
-<li><em>SendGrid</em> es un servicio popular para el envío de e-mails transaccionales, así que lo usaremos.<ul>
-<li>A Django no le importa el servicio que se elija; se puede usar <em>MailGun</em> o cualquier otro servicio con la misma facilidad.</li>
-</ul>
-</li>
 <li>En la página de inicio de <em>SendGrid</em>, haga clic en el gran botón azul para "See Plans and Pricing".</li>
 <li>En la siguiente página, desplarse ligeramente hacia abajo y buscar en el lado izquierdo el botón "Try for Free". <em>SendGrid</em> proporciona un nivel gratuito que se puede utilizar, aunque lo hace un poco difícil de encontrar.</li>
 <li>Registrarse para obtener su cuenta gratuita en la siguiente página.</li>
 <li>Asegurarse de que la cuenta de correo electrónico que se utiliza para <em>SendGrid</em> no sea la misma cuenta de correo electrónico que tiene para la cuenta de superusuario en el proyecto de Newspaper o pueden suceder errores extraños.</li>
-<li>Luego de confirmar su nueva cuenta a través de un correo electrónico, se pedirá que ingrese y se lo llevará a la página del panel de control de <em>SendGrid</em>.</li>
+<li>Luego de confirmar la nueva cuenta a través de un correo electrónico, se pedirá que se ingrese y nos llevará a la página del panel de control de <em>SendGrid</em>.</li>
 <li>Ahora podemos configurar el código Django en el archivo <code>settings.py</code>. Primero se actualizará el backend de correo electrónico para usar SMTP.</li>
 </ul>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+<pre><code class="python">EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 </code></pre>
 
 <ul>
@@ -219,13 +214,13 @@ EMAIL_USE_TLS = True
 la contraseña de EMAIL_HOST_PASSWORD.</li>
 <li>Eso es todo.</li>
 </ul>
-<h2 id="correos-electronicos-personalizados">Correos electrónicos personalizados</h2>
+<h2 id="122-correos-electronicos-personalizados">12.2. Correos electrónicos personalizados</h2>
 <ul>
-<li>Utiliza la barra de búsqueda de Github e introduce algunas palabras del texto del correo electrónico. Si se escribe "You're receiving this email because" se terminará en una página muy concreta de Github.</li>
-<li>El primer resultado es el que queremos. Muestra que el código se encuentra en <code>django/contrib/admin/templates/registration/password_reset_email.html</code>. Eso significa que en la app <code>contrib</code> el archivo que queremos se llama <code>password_reset_email.html</code>.</li>
+<li>Utilizar la barra de búsqueda de Github e introducir algunas palabras del texto del correo electrónico. Si se escribe "You're receiving this email because" se terminará en una página muy concreta de Github.</li>
+<li>El primer resultado es el que se desea. Muestra que el código se encuentra en <code>django/contrib/admin/templates/registration/password_reset_email.html</code>. Eso significa que en la app <code>contrib</code> el archivo que queremos se llama <code>password_reset_email.html</code>.</li>
 </ul>
 <p>Aquí está el texto por defecto del código fuente de Django.</p>
-<pre><code class="html">{% load i18n %}{% autoescape off %}
+<pre><code class="text">{% load i18n %}{% autoescape off %}
 {% blocktrans %}You're receiving this email because you requested a password reset for your user account at {{ site_name }}.{% endblocktrans %}
 
 {% trans &quot;Please go to the following page and choose a new password:&quot; %}
@@ -242,8 +237,7 @@ la contraseña de EMAIL_HOST_PASSWORD.</li>
 </code></pre>
 
 <ul>
-<li>Para cambiarlo, se necesita crear un nuevo archivo <code>password_reset_email.html</code> en la
-carpeta <code>registration</code>.</li>
+<li>Para cambiarlo, se necesita crear un nuevo archivo <code>password_reset_email.html</code> en la carpeta <code>registration</code>.</li>
 </ul>
 <pre><code class="bash">(news) $ touch templates/registration/password_reset_email.html
 </code></pre>
@@ -252,7 +246,7 @@ carpeta <code>registration</code>.</li>
 <li>Usar el siguiente código que ajusta lo que Django proporcionó por defecto.</li>
 </ul>
 <p>FICHERO: <code>templates/registration/password_reset_email.html</code></p>
-<pre><code class="html">{% load i18n %}{% autoescape off %}
+<pre><code class="text">{% load i18n %}{% autoescape off %}
 {% trans &quot;Hi&quot; %} {{ user.get_username }},
 
 {% trans &quot;We've received a request to reset your password. If you didn't make this request, you can safely ignore this email. Otherwise, click the button below to reset your password.&quot; %}
@@ -277,10 +271,8 @@ carpeta <code>registration</code>.</li>
 <pre><code class="text">Please reset your password
 </code></pre>
 
-<h2 id="conclusion">Conclusión</h2>
-<ul>
-<li>Se ha terminado de implementar un flujo de autenticación de usuario completo. Los usuarios pueden ingresar una nueva cuenta, iniciar sesión, cerrar sesión, cambiar contraseña y restablecerla.</li>
-</ul>
+<h2 id="123-conclusion">12.3. Conclusión</h2>
+<p>Se ha terminado de implementar un flujo de autenticación de usuario completo. Los usuarios pueden ingresar una nueva cuenta, iniciar sesión, cerrar sesión, cambiar contraseña y restablecerla.</p>
               
             </div>
           </div>

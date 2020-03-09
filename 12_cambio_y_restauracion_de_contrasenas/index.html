@@ -113,7 +113,7 @@
     <a class="current" href="./">12. Cambio y Restauración de Contraseñas</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#12-cambio-y-restauracion-de-contrasenas">12. Cambio y restauración de contraseñas</a></li>
+    <li class="toctree-l2"><a href="#12-cambio-y-restauracion-de-contrasenas">12. Cambio y Restauración de Contraseñas</a></li>
     
         <ul>
         
@@ -121,11 +121,11 @@
         
             <li><a class="toctree-l3" href="#122-personalizar-el-cambio-de-contrasena">12.2. Personalizar el cambio de contraseña</a></li>
         
-            <li><a class="toctree-l3" href="#restablecer-la-contrasena">Restablecer la contraseña</a></li>
+            <li><a class="toctree-l3" href="#123-restablecer-la-contrasena">12.3. Restablecer la contraseña</a></li>
         
-            <li><a class="toctree-l3" href="#12-plantillas-personalizadas">12.. Plantillas personalizadas</a></li>
+            <li><a class="toctree-l3" href="#124-plantillas-personalizadas">12.4. Plantillas personalizadas</a></li>
         
-            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
+            <li><a class="toctree-l3" href="#125-conclusion">12.5. Conclusión</a></li>
         
         </ul>
     
@@ -185,32 +185,29 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="12-cambio-y-restauracion-de-contrasenas">12. Cambio y restauración de contraseñas</h1>
-<ul>
-<li>Así como Django viene con vistas y urls incorporadas para el inicio y el cierre de sesión, también viene con vistas/urls para el cambio y el restablecimiento de la contraseña.</li>
-</ul>
+                <h1 id="12-cambio-y-restauracion-de-contrasenas">12. Cambio y Restauración de Contraseñas</h1>
+<p>Así como Django viene con vistas y urls incorporadas para el inicio y el cierre de sesión, también viene con vistas/urls para el cambio y el restablecimiento de la contraseña.</p>
 <h2 id="121-cambio-de-contrasena">12.1. Cambio de contraseña</h2>
+<p>Django proporciona una implementación predeterminada que ya funciona para este cometido.</p>
+<p>Para probarlo:</p>
 <ul>
-<li>Django proporciona una implementación predeterminada que ya funciona para este cometido. </li>
-<li>Para probarlo, hacer clic en el botón "Login" para asegurar que se ha iniciado sesión.</li>
+<li>Hacer clic en el botón "Login" para asegurar que se ha iniciado sesión.</li>
 <li>Luego navegar a la página "Password change" en http://127.0.0.1:8000/users/password_change/</li>
 <li>Introducir la antigua contraseña y luego una nueva. Luego hacer clic en el botón "Change My Password".</li>
-<li>Será redirigido a la página "Password change successful" ubicada en:
+<li>Se será redirigido a la página "Password change successful" ubicada en:
 http://127.0.0.1:8000/users/password_change/done/.</li>
 </ul>
 <h2 id="122-personalizar-el-cambio-de-contrasena">12.2. Personalizar el cambio de contraseña</h2>
-<ul>
-<li>Se van a personalizar estas dos páginas de cambio de contraseña para que coincidan con el aspecto y la sensación del sitio del periódico.</li>
-<li>Dado que Django ya ha creado las vistas y las URL, sólo hay que añadir nuevas plantillas.</li>
-<li>Crear dos nuevos archivos de plantillas en la carpeta de registro.</li>
-</ul>
-<pre><code>(noticias) $ plantillas táctiles/registro/cambio de contraseña_formulario.html
-(noticias) $ plantillas de toque/registro/cambio de contraseña_hecho.html
+<p>Se van a personalizar estas dos páginas de cambio de contraseña para que coincidan con el aspecto y la sensación del sitio del periódico.</p>
+<p>Dado que Django ya ha creado las vistas y las URL, sólo hay que añadir nuevas plantillas.</p>
+<p>Crear dos nuevos archivos de plantillas en la carpeta de registro.</p>
+<pre><code class="bash">(news) $ touch templates/registration/password_change_form.html
+(news) $ touch templates/registration/password_change_done.html
 </code></pre>
 
 <p>Actualiza password_change_form.html con el siguiente código.</p>
-<p>FICHERO: <code>plantillas/registro/password_change.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<p>FICHERO: <code>templates/registration/password_change.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block tile %}Password Change{% endblock %}
 
@@ -225,10 +222,8 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 {% endblock %}
 </code></pre>
 
-<ul>
-<li>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que se usan títulos "bloques" en el archivo <code>base.html</code> se pueden anular aquí. El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad. Usando <code>form.as_p</code> estamos simplemente mostrando en párrafos el contenido del formulario de restablecimiento de contraseña por defecto. Y finalmente incluimos un botón de envío que usa el estilo <code>btn btn-success</code> de Bootstrap para que sea verde.</li>
-<li>Lo siguiente es la plantilla <code>password_change_done</code>.</li>
-</ul>
+<p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que se usan títulos "blocks" en el archivo <code>base.html</code> se pueden anular aquí. El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad. Usando <code>form.as_p</code> estamos simplemente mostrando en párrafos el contenido del formulario de restablecimiento de contraseña por defecto. Y finalmente incluimos un botón de envío que usa el estilo <code>btn btn-success</code> de Bootstrap para que sea verde.</p>
+<p>Lo siguiente es la plantilla <code>password_change_done</code>.</p>
 <p>FICHERO: <code>templates/registration/password_change_done.html</code></p>
 <pre><code class="html">{% extends 'base.html' %}
 
@@ -240,25 +235,18 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 {% endblock content %}
 </code></pre>
 
-<ul>
-<li>También se extiende <code>base.html</code> y se incluye un nuevo título. Sin embargo, no hay ningún formulario en la página, sólo texto nuevo.</li>
-<li>La nueva página está en http://127.0.0.1:8000/users/password_change/done/.</li>
-</ul>
-<h2 id="restablecer-la-contrasena">Restablecer la contraseña</h2>
-<ul>
-<li>La única configuración que se requiere es decirle a Django cómo enviar los correos electrónicos. Después de todo, un usuario sólo puede restablecer una contraseña si se tiene acceso al correo electrónico vinculado a la cuenta. En la producción se usará el servicio de correo electrónico <code>SendGrid</code> para enviar realmente los correos electrónicos, pero para fines de prueba se puede confiar en la configuración del backend de la consola de Django que envía el texto del correo electrónico a la consola de línea de comandos en su lugar.</li>
-<li>En la parte inferior del archivo <code>settings.py</code> hacer el siguiente cambio de una línea.</li>
-</ul>
+<p>También se extiende <code>base.html</code> y se incluye un nuevo título. Sin embargo, no hay ningún formulario en la página, sólo texto nuevo.</p>
+<p>La nueva página está en http://127.0.0.1:8000/users/password_change/done/.</p>
+<h2 id="123-restablecer-la-contrasena">12.3. Restablecer la contraseña</h2>
+<p>La única configuración que se requiere es decirle a Django cómo enviar los correos electrónicos. Después de todo, un usuario sólo puede restablecer una contraseña si se tiene acceso al correo electrónico vinculado a la cuenta. En la producción se usará el servicio de correo electrónico <code>SendGrid</code> para enviar realmente los correos electrónicos, pero para fines de prueba se puede confiar en la configuración del backend de la consola de Django que envía el texto del correo electrónico a la consola de línea de comandos en su lugar.</p>
+<p>En la parte inferior del archivo <code>settings.py</code> hacer el siguiente cambio de una línea.</p>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+<pre><code class="python">EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 </code></pre>
 
-<ul>
-<li>Listo. Django se encargará del resto. Probarlo desde  http://127.0.0.1:8000/users/password_reset/.</li>
-<li>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, será redirigido a la página de restablecimiento de contraseña en:
-http://127.0.0.1:8000/users/password_reset/done/.</li>
-<li>Que dice que revise nuestro correo electrónico. Ya que le hemos dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por la consola.</li>
-</ul>
+<p>Listo. Django se encargará del resto. Probarlo desde http://127.0.0.1:8000/users/password_reset/.</p>
+<p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en: http://127.0.0.1:8000/users/password_reset/done/.</p>
+<p>Que dice que se revise el correo electrónico. Ya que le hemos dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por la consola.</p>
 <pre><code class="text">Content-Type: text/plain; charset=&quot;utf-8&quot;
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -282,36 +270,27 @@ Thanks for using our site!
 The 127.0.0.1:8000 team
 </code></pre>
 
+<p>El texto del correo electrónico debe ser idéntico excepto por tres líneas:
+- El "To:" en la sexta línea contiene la dirección de correo electrónico del usuario
+- El enlace URL contiene una señal segura que Django genera aleatoriamente y puede ser usada sólo una vez
+- Django nos recuerda amablemente nuestro nombre de usuario</p>
 <ul>
-<li>El texto del correo electrónico debe ser idéntico excepto por tres líneas:<ul>
-<li>el "Para" en la sexta línea contiene la dirección de correo electrónico del usuario</li>
-<li>el enlace URL contiene una señal segura que Django genera aleatoriamente y puede ser usada sólo una vez</li>
-<li>Django nos recuerda amablemente nuestro nombre de usuario</li>
+<li>El enlace proporcionado: http://127.0.0.1:8000/users/reset/MQ/4up-678712c114db2ead7780/, conduce a la "change password page".</li>
+<li>Introducir una nueva contraseña y hacer clic en el botón "Change my password". El paso final es ser redirigido a la página de "Password reset complete". Restablecimiento completo de la contraseña predeterminada.</li>
 </ul>
-</li>
-<li>El enlace proporcionado: http://127.0.0.1:8000/users/reset/MQ/4up-678712c114db2ead7780/,
-nos redirigirá a la "change password page".</li>
-<li>Introducir una nueva contraseña y hacer clic en el botón "Change my password". El
-paso final es que ser redirigido a la página de "Password reset complete".
-Restablecimiento completo de la contraseña predeterminada</li>
-<li>Comprobar  que todo ha funcionado, hacer clic en el enlace "Log in" y usar la nueva contraseña.</li>
-</ul>
-<h2 id="12-plantillas-personalizadas">12.. Plantillas personalizadas</h2>
-<ul>
-<li>Sólo hay que crear nuevas plantillas para personalizar el el aspecto y la sensación del restablecimiento de la contraseña.</li>
-<li>Crear cuatro nuevos archivos de plantilla.</li>
-</ul>
-<pre><code>(noticias) $ plantillas táctiles/registro/contraseña_reset_form.html
-(noticias) $ plantillas de toque/registro/contraseña_reset_done.html
-(noticias) $ plantillas de toque/registro/confirmación_contraseña.html
-(noticias) $ plantillas táctiles/registro/contraseña_reinicio_completo.html
+<p>Comprobar que todo ha funcionado, hacer clic en el enlace "Login" y usar la nueva contraseña.</p>
+<h2 id="124-plantillas-personalizadas">12.4. Plantillas personalizadas</h2>
+<p>Sólo hay que crear nuevas plantillas para personalizar el aspecto y la sensación del restablecimiento de la contraseña.</p>
+<p>Crear cuatro nuevos archivos de plantilla:</p>
+<pre><code class="bash">(news) $ touch templates/registration/password_reset_form.html
+(news) $ touch templates/registration/password_reset_done.html
+(news) $ touch templates/registration/password_reset_confirm.html
+(news) $ touch templates/registration/password_reset_complete.html
 </code></pre>
 
-<ul>
-<li>Se empieza con el formulario de restablecimiento de contraseña que es <code>password_reset_form.html</code>.</li>
-</ul>
-<p>FICHERO: <code>plantillas/registro/contraseña_reset_form.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<p>Se empieza con el formulario de restablecimiento de contraseña que es <code>password_reset_form.html</code>.</p>
+<p>FICHERO: <code>templates/registration/password_reset_form.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block title %}Forgot Your Password?{% endblock %}
 
@@ -326,8 +305,8 @@ Restablecimiento completo de la contraseña predeterminada</li>
 {% endblock %}
 </code></pre>
 
+<p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que usamos títulos "block" en el <code>base.html</code> se pueden anular aquí.</p>
 <ul>
-<li>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que usamos títulos "block" en el <code>base.html</code> se puede anular aquí.</li>
 <li>El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad.</li>
 <li>Al usar <code>form.as_p</code> simplemente se está mostrando en párrafos el contenido del formulario de restablecimiento de la contraseña predeterminada.</li>
 <li>
@@ -339,7 +318,7 @@ Restablecimiento completo de la contraseña predeterminada</li>
 </li>
 </ul>
 <p>FICHERO: <code>templates/registration/password_reset_done.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block title %}Email Sent{% endblock %}
 
@@ -349,12 +328,10 @@ Restablecimiento completo de la contraseña predeterminada</li>
 {% endblock %}
 </code></pre>
 
-<ul>
-<li>Confirmar los cambios en http://127.0.0.1:8000/users/password_reset/done/</li>
-<li>A continuación, la página de confirmación del restablecimiento de la contraseña.
-FICHERO: <code>templates/registration/password_reset_confirm.html</code></li>
-</ul>
-<pre><code>{% extends 'base.html' %}
+<p>Confirmar los cambios en http://127.0.0.1:8000/users/password_reset/done/</p>
+<p>A continuación, la página de confirmación del restablecimiento de la contraseña.</p>
+<p>FICHERO: <code>templates/registration/password_reset_confirm.html</code></p>
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block title %}Enter new password{% endblock %}
 
@@ -368,12 +345,10 @@ FICHERO: <code>templates/registration/password_reset_confirm.html</code></li>
 {% endblock %}
 </code></pre>
 
-<ul>
-<li>Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.</li>
-<li>Finalmente aquí está el código completo para reestablecer la password.</li>
-</ul>
+<p>Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.</p>
+<p>Finalmente aquí está el código completo para reestablecer el password.</p>
 <p>FICHERO: <code>templates/registration/password_reset_complete.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="html">{% extends 'base.html' %}
 
 {% block title %}Password reset complete{% endblock %}
 
@@ -383,7 +358,7 @@ FICHERO: <code>templates/registration/password_reset_confirm.html</code></li>
 {% endblock %}
 </code></pre>
 
-<h2 id="conclusion">Conclusión</h2>
+<h2 id="125-conclusion">12.5. Conclusión</h2>
 <p>En el próximo capítulo conectaremos nuestra aplicación para periódicos con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente nuestros correos electrónicos automatizados a los usuarios, en lugar de emitirlos en nuestra consola de línea de comandos.</p>
               
             </div>
