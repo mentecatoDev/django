@@ -1,18 +1,20 @@
 # 11. Bootstrap
 
-- El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.
-- Afortunadamente está **Bootstrap**, el marco de trabajo más popular para construir proyectos *responsivos* y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
-- Cuando centrarse en la funcionalidad de un proyecto y no en el diseño es lo importante, Bootstrap es una gran elección.
+El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.
+
+Afortunadamente está **Bootstrap**, el marco de trabajo más popular para construir proyectos *responsivos* y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
+
+Cuando centrarse en la funcionalidad de un proyecto y no en el diseño es lo importante, Bootstrap es una gran elección.
 
 ## 11.1. Pages app
 
-- Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo `urls.py`. Aunque este enfoque funciona, es una triquiñuela y ciertamente no se escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar podemos y debemos crear una aplicación de páginas dedicadas para todas las páginas estáticas. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando `startapp` para crear la aplicación `pages`.
+Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo `urls.py`. Aunque este enfoque funciona, es una triquiñuela y ciertamente escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar se puede y debe crear una aplicación de páginas dedicadas para todas las **páginas estáticas**. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando `startapp` para crear la aplicación `pages`.
 
 ```bash
 (news) $ python manage.py startapp pages
 ```
 
-- Actualizar inmediatamente el archivo `settings.py`.
+ Recordar actualizar inmediatamente el archivo `settings.py`.
 
 FICHERO: `newspaper_project/settings.py`
 ```python
@@ -23,11 +25,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'pages', # new
+    'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',                             # new
 ]
 ```
-- Ahora se puede actualizar el archivo `urls.py` a nivel de proyecto. Eliminar el `import` de `TemplateView`. También se actualizará la ruta `''` para incluir las páginas de la aplicación.
+Ahora se puede actualizar el archivo `urls.py` a nivel de proyecto. Eliminar el `import` de `TemplateView`. También se actualizará la ruta `''` para incluir las páginas de la aplicación.
 
 FICHERO: `newspaper_project/urls.py`
 ```python
@@ -35,20 +37,20 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('pages.urls')),
+    path('', include('pages.urls')),                      # new
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
 ]
 ```
 
-- Es hora de añadir la página web, lo cual significa hacer el baile estándar de *urls/views/templates* de Django.
+Es hora de añadir la página web, lo cual significa hacer el baile estándar de *urls/views/templates* de Django.
 
 ```bash
 (news) $ touch pages/urls.py
 ```
 
-- Luego importar las vistas aún no creadas, establecer las rutas y asegurarse de nombrar cada url, también.
+Luego importar las vistas aún no creadas, establecer las rutas y asegurarse de nombrar cada url, también.
 
 FICHERO: `pages/urls.py`
 ```python
@@ -61,7 +63,7 @@ urlpatterns = [
 ]
 ```
 
-- El código de `views.py` debería resultar familiar a estas alturas. Se usa la vista genérica basada en clases `TemplateView` de Django, lo que significa que sólo habrá que especificar el `template_name` para usarlo.
+El código de `views.py` debería resultar familiar a estas alturas. Se usa la vista genérica basada en clases `TemplateView` de Django, lo que significa que sólo habrá que especificar el `template_name` para usarlo.
 
 FICHERO: `pages/views.py`
 ```python
@@ -72,19 +74,22 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 ```
 
-- Ya existe una plantilla `home.html`. Confirmar que sigue funcionando como se esperaba con nuestra la nueva url y vista.
+Ya existe una plantilla `home.html`. Confirmar que sigue funcionando como se esperaba con la nueva url y vista.
 
 ## 11.2. Pruebas
 
-- Hay dos momentos ideales para añadir pruebas
-    - Antes de escribir cualquier código (test-driven-development)
-    - Inmediatamente después de que hayas añadido una nueva funcionalidad y lo tengas claro en tu mente.
-- Actualmente nuestro proyecto tiene cuatro páginas:
-    - home
-    - signup
-    - login
-    - logout
-- Sólo se necesita probar las dos primeras. El login y logut son parte de Django y ya tienen cobertura de pruebas.
+Hay dos momentos ideales para añadir pruebas
+- Antes de escribir cualquier código (test-driven-development)
+- Inmediatamente después de que se haya añadido una nueva funcionalidad y lo aún esté claro en mente.
+
+Actualmente el proyecto tiene cuatro páginas:
+
+- `home`
+- `signup`
+- `login`
+- `logout`
+
+Sólo se necesita probar las dos primeras. `login` y `logut` son parte de Django y ya tienen cobertura de pruebas.
 
 FICHERO: `pages/tests.py`
 ```python
@@ -135,11 +140,11 @@ class SignupPageTests(TestCase):
         self.assertEqual(get_user_model().objects.all()
                          [0].email, self.email)
 ```
-- En la línea superior se usa `get_user_model()` para referirnos al modelo de usuario personalizado.
+- En la línea superior se usa `get_user_model()` para referirse al modelo de usuario personalizado.
 - Luego para ambas páginas se prueban tres cosas:
-  - la página existe y devuelve un código de estado HTTP 200
-  - la página utiliza el nombre de la url correcta en la vista
-  - se está utilizando la plantilla adecuada
+  - Si la página existe y devuelve un código de estado HTTP 200
+  - Si la página utiliza el nombre de la url correcta en la vista
+  - Si se está utilizando la plantilla adecuada
 - La página de registro también tiene un formulario, así que se debería probar eso también.
 - En el formulario `test_signup_form` se está verificando que cuando un nombre de usuario y una dirección de correo electrónico son POSTeados (enviados a la base de datos), coinciden con lo que se almacena en el modelo `CustomUser`.
 
@@ -149,15 +154,18 @@ class SignupPageTests(TestCase):
 ```
 
 ## 11.3. Bootstrap
-- Hay dos maneras de añadir Bootstrap a un proyecto:
-    - Se pueden descargar todos los archivos y servirlos localmente
-    - Confiar en una Red de Entrega de Contenido (CDN)
-- El segundo enfoque es más sencillo de implementar siempre que se tenga una conexión a Internet consistente, así que eso es lo que se usará aquí.
-- Bootstrap viene con una plantilla inicial que incluye los archivos básicos necesarios. En particular, hay cuatro que se incorporarán:
-    - `Bootstrap.css`
-    - `jQuery.js`
-    - `Popper.js`
-    - `Bootstrap.js`
+Hay dos maneras de añadir *Bootstrap* a un proyecto:
+- Se pueden descargar todos los archivos y servirlos localmente
+- Confiar en una Red de Entrega de Contenido (CDN)
+
+El segundo enfoque es más sencillo de implementar siempre que se tenga una conexión a Internet consistente, así que eso es lo que se usará aquí.
+
+*Bootstrap* viene con una plantilla inicial que incluye los archivos básicos necesarios. En particular, hay cuatro que se incorporarán:
+
+- `Bootstrap.css`
+- `jQuery.js`
+- `Popper.js`
+- `Bootstrap.js`
 
 FICHERO: `templates/base.html`
 ```html
@@ -184,12 +192,13 @@ FICHERO: `templates/base.html`
   </body>
 </html>
 ```
-- Se añade ahora:
-    - Una barra de navegación en la parte superior de la página que contiene los enlaces para:
-        - la página de inicio
-        - inicio de sesión
-        - cierre de sesión
-        - registro.
+Se añade ahora:
+- Una barra de navegación en la parte superior de la página que contiene los enlaces para:
+    - la página de inicio
+    - inicio de sesión
+    - cierre de sesión
+    - registro.
+
 - En particular, se pueden usar las etiquetas `if/else` en el motor de plantillas de Django para añadir algo de lógica básica. Se quiere mostrar un botón de "login" y "signup" a los usuarios que han cerrado la sesión, pero un botón de "logout" y "cambiar contraseña" a los usuarios que han iniciado la sesión.
 
 FICHERO: `templates/base.html`
@@ -247,7 +256,7 @@ FICHERO: `templates/base.html`
 </html>
 ```
 
-- Lo único que se ve mal es el botón de "Login". Se puede usar Bootstrap para añadir un estilo agradable, como hacerlo verde y atractivo.
+Lo único a mejorar es el botón de "Login". Se puede usar Bootstrap para añadir un estilo agradable, como hacerlo verde y atractivo.
 
 
 FICHERO: `templates/registration/login.html`
@@ -259,14 +268,18 @@ FICHERO: `templates/registration/login.html`
 
 ## 11.4. Formulario de inscripción
 
-- ¿De dónde vino ese texto? Cuando algo se siente "mágico" en Django, seguro que no lo es.
+¿De dónde vino ese texto? Cuando algo se siente "mágico" en Django, seguro que no lo es.
+
 El método más rápido para averiguar lo que ocurre bajo el capó de Django es simplemente ir al código fuente de Django en Github, usar la barra de búsqueda e intentar encontrar el trozo de texto específico.
-- Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página `django/contrib/auth/models.py` que se encuentra aquí en la línea 301. El texto viene como parte de la app `auth`, en el campo de nombre de usuario de `AbstractUser`.
-- Ahora hat tres opciones:
-  - anular el `help_text` existente
-  - ocultar el `help_text`
-  - reestilar el `help_text`
-- Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros `django-crispy-forms`. Trabajar con formularios es un reto y `django-crispy-forms` hace más fácil escribir código *ÁRIDO*.
+
+Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página `django/contrib/auth/models.py` que se encuentra ahí en la línea 301. El texto viene como parte de la app `auth`, en el campo de nombre de usuario de `AbstractUser`.
+
+Ahora hay tres opciones:
+- anular el `help_text` existente
+- ocultar el `help_text`
+- reestilar el `help_text`
+
+Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros `django-crispy-forms`. Trabajar con formularios es un reto y `django-crispy-forms` hace más fácil escribir código *ÁRIDO*.
 
 ```bash
 (news) $ pipenv install django-crispy-forms
@@ -289,18 +302,18 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # Local
-    'users',
-    'pages',
+    'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',
 ]
 ```
-- Ya que se está usando `Bootstrap4` también se debería añadir esa configuración al archivo `settings.py`. Esto va en la parte inferior del archivo.
+Ya que se está usando `Bootstrap4` también se debería añadir esa configuración al archivo `settings.py`. Esto va en la parte inferior del archivo.
 
 FICHERO: `newspaper_project/settings.py`
-```
-CRISPY_TEMPLATE_PACK = 'bootstrap '
+```python
+CRISPY_TEMPLATE_PACK = 'bootstrap'
 ```
 
-- Ahora en la plantilla de `signup.html` se puede usar rápidamente formularios crujientes (*crispy forms*). Primero se cargan las etiquetas `crispy_forms_tags` en la parte superior y luego se intercambia `{{ form.as_p }}` por `{{ form|crispy }}`.
+Ahora en la plantilla de `signup.html` se puede usar rápidamente formularios crujientes (*crispy forms*). Primero se cargan las etiquetas `crispy_forms_tags` en la parte superior y luego se intercambia `{{ form.as_p }}` por `{{ form|crispy }}`.
 
 FICHERO: `templates/signup.html`
 ```html
@@ -320,7 +333,7 @@ FICHERO: `templates/signup.html`
 {% endblock %}
 ```
 
-- Mucho mejor. Aunque, ¿qué tal si nuestro botón de "Registrarse" fuera un poco más atractivo?¿Quizás hacerlo verde? Bootstrap tiene todo tipo de opciones de estilo de botones donde elegir. Se usará el "exitoso" fondo verde con texto blanco.
+Mucho mejor. Aunque, ¿qué tal si el botón de "Registrarse" fuera un poco más atractivo?¿Quizás hacerlo verde? Bootstrap tiene todo tipo de opciones de estilo de botones donde elegir. Se usará el "exitoso" fondo verde con texto blanco.
 
 FICHERO: `templates/signup.html`
 ```html
@@ -330,4 +343,4 @@ FICHERO: `templates/signup.html`
 ```
 
 ## 11.5. Próximos pasos
-- El último paso del flujo de autentificación de usuarios es configurar el cambio y el restablecimiento de la contraseña. Una vez más Django se ha encargado del trabajo pesado, así que solo se requiere una cantidad mínima de código adicional.
+El último paso del flujo de autentificación de usuarios es configurar el cambio y el restablecimiento de la contraseña. Una vez más Django se ha encargado del trabajo pesado, así que solo se requiere una cantidad mínima de código adicional.

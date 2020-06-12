@@ -25,6 +25,7 @@ $ pipenv shell
 ```
 
 FICHERO: `pages_project/settings.py` 
+
 ```python
 ...
     INSTALLED_APPS = [
@@ -43,6 +44,7 @@ FICHERO: `pages_project/settings.py`
 - Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  
 
 <center>Plantilla –> Vista –> Ruta</center>
+
 - **Ruta** (URL).- Controla la ruta inicial
 - **Vista** (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
 - **Plantilla** (Template).- Contiene el HTML.
@@ -50,7 +52,7 @@ FICHERO: `pages_project/settings.py`
 ### 4.3.1 Dónde colocar el directorio de plantillas
 
 - **Por defecto**, Django mira dentro de cada **app** en busca de plantillas.
-    - En la app `pages` se creará una estructura de directorios como la siguiente con la plantilla `home.html` colgando de ella:  
+  - En la app `pages` se creará una estructura de directorios como la siguiente con la plantilla `home.html` colgando de ella:  
 
 ```text
     └── pages
@@ -60,7 +62,7 @@ FICHERO: `pages_project/settings.py`
 ```
 
 - **La otra aproximación** es hacer un directorio de plantillas común a todas las apps. 
-    - Hay que cambiar `settings.py` para que busque, también en este directorio, las plantillas que se necesiten.
+  - Hay que cambiar `settings.py` para que busque, también en este directorio, las plantillas que se necesiten.
 
 ```
    (pages) $ mkdir templates
@@ -68,6 +70,7 @@ FICHERO: `pages_project/settings.py`
 ```
 
 FICHERO: `pages_project/settings.py` 
+
 ```python
        TEMPLATES = [
            {
@@ -81,6 +84,7 @@ FICHERO: `pages_project/settings.py`
 > La función `os.path.join` une el path base de la aplicación (`BASE_DIR`) con el nuevo directorio `templates` añadiendo `/` según sea conveniente
 
 FICHERO: `templates/home.html` 
+
 ```html
    <h1>Homepage</h1>
 ```
@@ -95,6 +99,7 @@ FICHERO: `templates/home.html`
 - En el ejemplo se usará la clase `TemplateView` incorporada para mostrar la plantilla.  
 
 FICHERO: `pages/views.py` 
+
 ```python
 from django.views.generic import TemplateView
 
@@ -104,12 +109,13 @@ class HomePageView(TemplateView):
 
 - Distíngase cómo se ha puesto en mayúsculas la vista, porque ahora es una clase, y cómo ésta es descendiente de la clase base `TemplateView`.
 
-#### 1.4.5 URLs
+## 4.5 URLs
 
-- El último paso es actualizar los `URLConfs`.
+- El último paso es actualizar las `URLConfs`.
 
- FICHERO: `pages_project/urls.py` 
-``` python
+FICHERO: `pages_project/urls.py` 
+
+```python
 from django.contrib import admin
 from django.urls import path, include # new
 
@@ -120,9 +126,9 @@ urlpatterns = [
 ```
 
 FICHERO: `pages/urls.py` 
-``` python
-from django.urls import path
 
+```python
+from django.urls import path
 from .views import HomePageView
 
 urlpatterns = [
@@ -137,28 +143,31 @@ urlpatterns = [
 
 - Crear un nuevo fichero de plantilla
 
-``` bash
+```bash
 (pages) $ touch templates/about.html
 ```
 
  FICHERO: `templates/about.html` 
+
 ```html
 <h1>About page</h1>
 ```
 
 - Crear una nueva vista para la página
-
- FICHERO: `pages/views.py` 
-```python
-from django.views.generic import TemplateView
+  
+  FICHERO: `pages/views.py` 
+  
+  ```python
+  from django.views.generic import TemplateView
+  ```
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
 class AboutPageView(TemplateView):
     template_name = 'about.html'
-```
 
+```
 - Conectar la vista con la ruta
 
  FICHERO: `pages/urls.py` 
@@ -171,28 +180,31 @@ class AboutPageView(TemplateView):
         path('', HomePageView.as_view(), name='home'),
     ]
 ```
+
 - Lanzar `http://localhost:8000/about`
 
 ## 4.7 Extendiendo Plantillas
 
 - El poder real de las plantillas es la posibilidad de ser extendidas.
 - En las mayoría de webs encontramos contenido que se repite en cada página:
-    - Hagamos una página canónica que será heredada por las demás
+  - Hagamos una página canónica que será heredada por las demás
 - Django tiene un [lenguaje mínimo de plantillas](https://docs.djangoproject.com/es/3.0/ref/templates/builtins/) para añadirles enlaces y lógica básica
 - Los tags de las plantillas tienen la forma
 
 <div align=center>
-	<pre>
-		{% cualquier_cosa %}
-	</pre>
+    <pre>
+        {% cualquier_cosa %}
+    </pre>
 </div>
 
 - Para añadir **enlaces** a nuestro proyecto podemos usar la etiqueta de plantilla `url` incorporada que toma un patrón de URL como argumento.
-- El tag  `url` utiliza los nombres opcionales de URL para crear enlaces automáticos por nosotros.
 
-     - Por ejemplo: `{% url 'home' %}`
+- El tag  `url` utiliza los nombres opcionales de URL para crear enlaces automáticos por nosotros.
+  
+  - Por ejemplo: `{% url 'home' %}`
 
 FICHERO: `templates/base.html`
+
 ```html
 <header>
   <a href="{% url 'home' %}">Home</a> | <a href="{% url 'about' %}">About</a>
@@ -203,37 +215,43 @@ FICHERO: `templates/base.html`
 ```
 
 - Al final se añade un tag `block` llamado `content`. Los bloques pueden ser reescritos por las vistas descencientes.
-- El lenguaje de plantillas de Django dispone de un método `extends` que puede usarse para actualizar `home.html` y `about.html` y así extender la plantilla `base.html`.
 
- FICHERO: `templates/home.html` 
-``` html
-{% extends 'base.html' %}
+- El lenguaje de plantillas de Django dispone de un método `extends` que puede usarse para actualizar `home.html` y `about.html` y así extender la plantilla `base.html`.
+  
+  FICHERO: `templates/home.html` 
+  
+  ```html
+  {% extends 'base.html' %}
+  ```
 
 {% block content %}
-	<h1>Homepage</h1>
+    <h1>Homepage</h1>
 {% endblock content %}
-```
 
+```
 FICHERO: `templates/about.html` 
 ```html
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>About page</h1>
+    <h1>About page</h1>
 {% endblock content %}
 ```
 
 ## 4.8 Tests
 
 - Importancia de los tests 
-    - *Jaco Kaplan-Moss*: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)
+  
+  - *Jaco Kaplan-Moss*: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)
+
 - Django nos brinda herramientas para escribir y correr tests.
-
- FICHERO: `pages/tests.py`
-``` python
-# pages/tests.py
-from django.test import SimpleTestCase
-
+  
+  FICHERO: `pages/tests.py`
+  
+  ```python
+  # pages/tests.py
+  from django.test import SimpleTestCase
+  ```
 
 class SimpleTests(SimpleTestCase):
     def test_home_page_status_code(self):
@@ -243,8 +261,8 @@ class SimpleTests(SimpleTestCase):
     def test_about_page_status_code(self):
         response = self.client.get('/about/')
         self.assertEqual(response.status_code, 200)
-```
 
+```
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
 - Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.
 - Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
@@ -270,19 +288,20 @@ OK
 ```
 
 ## 4.10 Local vs Producción
+
 - Código en producción
-    - Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.
+  - Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.
 - Hay muchos proveedores de servidores disponibles, pero usaremos *Heroku* porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.
 
 ## 4.11 Heroku
 
 - Se puede obtener una cuenta gratuita de Heroku en [su sitio web](https://www.heroku.com/).
 - Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.
-    - Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.
-    - Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.
+  - Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.
+  - Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.
 - [Instalar Heroku según el sitio web de Heroku](https://devcenter.heroku.com/articles/heroku-cli)
-    - [Arch Linux](https://devcenter.heroku.com/articles/heroku-cli#arch-linux)
-        - [Este paquete](https://aur.archlinux.org/packages/heroku-cli) está mantenido por la comunidad y no por Heroku.
+  - [Arch Linux](https://devcenter.heroku.com/articles/heroku-cli#arch-linux)
+    - [Este paquete](https://aur.archlinux.org/packages/heroku-cli) está mantenido por la comunidad y no por Heroku.
 
 ```bash
 $ yay -S heroku-cli
@@ -299,11 +318,11 @@ Logged in as will@wsvincent.com
 ## 4.11 Ficheros adicionales
 
 - Se necesitan hacer cuatro cambios al proyecto para desplegar en Heroku:
-
-    - actualizar el archivo `Pipfile.lock`
-    - hacer un nuevo archivo `Procfile`
-    - instalar `gunicorn` como servidor web
-    - hacer un cambio de una línea al archivo `settings.py`
+  
+  - actualizar el archivo `Pipfile.lock`
+  - hacer un nuevo archivo `Procfile`
+  - instalar `gunicorn` como servidor web
+  - hacer un cambio de una línea al archivo `settings.py`
 
 - Especificar la versión de Python que se está usando en `Pipfile`
 
@@ -323,6 +342,7 @@ python_version = "3.8"
 - A continuación crear un `Procfile` que es específico para Heroku.
 
 FICHERO: `Procfile`
+
 ```
 web: gunicorn pages_project.wsgi --log-file -
 ```
@@ -336,10 +356,12 @@ web: gunicorn pages_project.wsgi --log-file -
 El último paso es un cambio de una línea a `settings.py`.
 
 FICHERO: `pages_project/settings.py` 
+
 ```python
 # pages_project/settings.py
 ALLOWED_HOSTS = ['*']
 ```
+
 - El parámetro `ALLOWEDHOSTS` representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.
 
 - Sin embargo, se ha utilizado el comodín asterisco `*`, que significa que todos los dominios son aceptables para mantener las cosas simples.
@@ -414,4 +436,4 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 ![Captura de pantalla de la página 404 de Django.](./img_pages_app/404.png)
 
 - La utilidad de esta página va más allá del mensaje básico de error 404; nos dice también, **qué URLconf utilizó Django y todos los patrones de esa URLconf**. Con esa información, tendríamos que ser capaces de establecer porqué la URL solicitada lanzó un error 404.
-- Naturalmente, esta es **información importante sólo destinada al programador**. Si esto fuera un sitio en producción alojado en Internet, no quisiéramos mostrar esta información al público. Por esta razón, la página *"Page not found"* sólo se muestra si el proyecto en Django está en modo de depuración (*debug mode*). Se explicará cómo desactivar este modo más adelante. Por ahora, todos los proyectos están en modo de depuración cuando se crean, y si el proyecto no lo estuviese, se retornaría una respuesta diferente.
+- Naturalmente, esta es **información importante sólo destinada al programador**. Si esto fuera un sitio en producción alojado en Internet, no quisiéramos mostrar esta información al público. Por esta razón, la página *"Page not found"* sólo se muestra si el proyecto en Django está en modo de depuración (*debug mode*). Se explicará cómo desactivar este modo más adelante. Por ahora, todos los proyectos están en modo de depuración cuando se crean, y si el proyecto no lo estuviese, se retornaría una respuesta diferente.l

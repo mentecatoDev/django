@@ -1,37 +1,48 @@
 # 2 Configuración inicial
 
 - Objetivos 
-    - Configurar el entorno para programar en proyectos Django
-    - Uso de la línea de comandos para instalar: 
-        - Django 3.0
-        - Python 3.8
-    - Git
-    - Editor de texto
+  - Configurar el entorno para programar en proyectos Django
+  - Uso de la línea de comandos para instalar: 
+    - Django 3.0
+    - Python 3.8
+  - Git
+  - Editor de texto
 
 ## 2.1 La línea de comandos
 
 - Konsole, Tmux, zsh
 - cd, cd .., ls, pwd, mkdir, touch
 - Práctica: 
-    - Recorrer los directorios del sistema, hacer una lista de ellos
-    - Mostrar el directorio de trabajo
-    - Crear un nuevo directorio y crear un fichero `index.html` en él
-    - Listar el fichero: formato largo, ficheros ocultos
+  - Recorrer los directorios del sistema, hacer una lista de ellos
+  - Mostrar el directorio de trabajo
+  - Crear un nuevo directorio y crear un fichero `index.html` en él
+  - Listar el fichero: formato largo, ficheros ocultos
 - Dónde aprender 
-    - OpenWebinars
-    - [Command Line Crash Course](https://learnpythonthehardway.org/book/appendixa.html)
-    - [CodeAcademy's Course on the Command Line](https://www.codecademy.com/learn/learn-the-command-line)
+  - OpenWebinars
+  - [Command Line Crash Course](https://learnpythonthehardway.org/book/appendixa.html)
+  - [CodeAcademy's Course on the Command Line](https://www.codecademy.com/learn/learn-the-command-line)
 
 ## 2.2 Instalar Python 3
 
 - [Entornos Virtuales](https://mentecatodev.github.io/intermezzo/entornos_virtuales/)
+
 - [Instrucciones de instalación desde los ficheros fuentes](https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/)
+
 - Python Path
-    - **Python path** es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia `import` de Python.
-    - Por ejemplo, supongamos que el Python path tiene el valor `['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']`
-    - Si se ejecuta el código Python `from foo import bar`, Python en primer lugar se va a buscar el módulo `foo.py` en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual.") Si ese archivo no existe, Python va a buscar el módulo en `/usr/lib/python2.4/site-packages/foo.py`. Si ese archivo no existe, entonces se probará en `/home/username/djcode/foo.py`. Finalmente, si ese archivo no existe, Python lanzará un `ImportError`.
-    - Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir `import sys`, seguido de `print(sys.path)`.
-    - Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
+  
+  - **Python path** es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia `import` de Python.
+  
+  - Por ejemplo, supongamos que el Python path tiene el valor 
+    
+    ```python
+        ['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']
+    ```
+  
+  - Si se ejecuta el código Python `from foo import bar`, Python en primer lugar se va a buscar el módulo `foo.py` en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual."). Si ese archivo no existe, Python va a buscar el módulo en `/usr/lib/python2.4/site-packages/foo.py`. Si ese archivo no existe, entonces se probará en `/home/username/djcode/foo.py`. Finalmente, si ese archivo no existe, Python lanzará un `ImportError`.
+  
+  - Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir `import sys`, seguido de `print(sys.path)`.
+  
+  - Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
 
 ## 2.3 Entornos Virtuales
 
@@ -91,11 +102,9 @@ Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida de
 $ python manage.py runserver 0:8000
 ```
 
-`0` es un atajo para `0.0.0.0`. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.
+`0` es un atajo para `0.0.0.0`. Los documentos completos para el servidor de desarrollo se pueden encontrar en la [referencia del servidor de ejecución](https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver).
 
 > Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).
-
-Una descripción más detallada del servidor se puede encontrar [aquí](https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver).
 
 ## 2.5. Instalar Git
 

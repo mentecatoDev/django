@@ -116,9 +116,11 @@ LOGOUT_REDIRECT_URL = 'home'
 ```
 
 ## 8.4. Inscripción
-- Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, `UserCreationForm`, para facilitar las cosas. 
-  + Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.
-- Hay muchas maneras de organizar el código y la estructura de las urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, `accounts`, para la página de registro.
+Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, `UserCreationForm`, para facilitar las cosas. 
+
+> Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.
+
+Hay muchas maneras de organizar el código y la estructura de las urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, `accounts`, para la página de registro.
 
 ```bash
 (blog) $ python manage.py startapp accounts
