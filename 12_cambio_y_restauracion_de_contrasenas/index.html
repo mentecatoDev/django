@@ -186,7 +186,7 @@
             <div class="section">
               
                 <h1 id="12-cambio-y-restauracion-de-contrasenas">12. Cambio y Restauración de Contraseñas</h1>
-<p>Así como Django viene con vistas y urls incorporadas para el inicio y el cierre de sesión, también viene con vistas/urls para el cambio y el restablecimiento de la contraseña.</p>
+<p>Así como Django viene con vistas y urls incorporadas para el inicio y cierre de sesión, también viene con vistas/urls para el cambio y el restablecimiento de la contraseña.</p>
 <h2 id="121-cambio-de-contrasena">12.1. Cambio de contraseña</h2>
 <p>Django proporciona una implementación predeterminada que ya funciona para este cometido.</p>
 <p>Para probarlo:</p>
@@ -206,10 +206,10 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 </code></pre>
 
 <p>Actualiza password_change_form.html con el siguiente código.</p>
-<p>FICHERO: <code>templates/registration/password_change.html</code></p>
+<p>FICHERO: <code>templates/registration/password_change_form.html</code></p>
 <pre><code class="html">{% extends 'base.html' %}
 
-{% block tile %}Password Change{% endblock %}
+{% block title %}Password Change{% endblock %}
 
 {% block content %}
   &lt;h1&gt;Password change&lt;/h1&gt;
@@ -222,7 +222,7 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 {% endblock %}
 </code></pre>
 
-<p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que se usan títulos "blocks" en el archivo <code>base.html</code> se pueden anular aquí. El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad. Usando <code>form.as_p</code> estamos simplemente mostrando en párrafos el contenido del formulario de restablecimiento de contraseña por defecto. Y finalmente incluimos un botón de envío que usa el estilo <code>btn btn-success</code> de Bootstrap para que sea verde.</p>
+<p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que se usan títulos "blocks" en el archivo <code>base.html</code> se puede prescindir de ellos aquí. El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad. Usando <code>form.as_p</code> estamos simplemente mostrando en párrafos el contenido del formulario de restablecimiento de contraseña por defecto. Y finalmente incluimos un botón de envío que usa el estilo <code>btn btn-success</code> de Bootstrap para que sea verde.</p>
 <p>Lo siguiente es la plantilla <code>password_change_done</code>.</p>
 <p>FICHERO: <code>templates/registration/password_change_done.html</code></p>
 <pre><code class="html">{% extends 'base.html' %}
@@ -244,9 +244,8 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 <pre><code class="python">EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 </code></pre>
 
-<p>Listo. Django se encargará del resto. Probarlo desde http://127.0.0.1:8000/users/password_reset/.</p>
-<p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en: http://127.0.0.1:8000/users/password_reset/done/.</p>
-<p>Que dice que se revise el correo electrónico. Ya que le hemos dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por la consola.</p>
+<p>Listo. Django se encargará del resto. Probar desde http://127.0.0.1:8000/users/password_reset/.</p>
+<p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en http://127.0.0.1:8000/users/password_reset/done/ que informa de que se revise el correo electrónico. Ya que se le ha dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por consola:</p>
 <pre><code class="text">Content-Type: text/plain; charset=&quot;utf-8&quot;
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,10 +272,10 @@ The 127.0.0.1:8000 team
 <p>El texto del correo electrónico debe ser idéntico excepto por tres líneas:
 - El "To:" en la sexta línea contiene la dirección de correo electrónico del usuario
 - El enlace URL contiene una señal segura que Django genera aleatoriamente y puede ser usada sólo una vez
-- Django nos recuerda amablemente nuestro nombre de usuario</p>
+- Django recuerda amablemente el nombre de usuario</p>
 <ul>
 <li>El enlace proporcionado: http://127.0.0.1:8000/users/reset/MQ/4up-678712c114db2ead7780/, conduce a la "change password page".</li>
-<li>Introducir una nueva contraseña y hacer clic en el botón "Change my password". El paso final es ser redirigido a la página de "Password reset complete". Restablecimiento completo de la contraseña predeterminada.</li>
+<li>Introducir una nueva contraseña y hacer clic en el botón "Change my password". El paso final es ser redirigido a la página de "Password reset complete". </li>
 </ul>
 <p>Comprobar que todo ha funcionado, hacer clic en el enlace "Login" y usar la nueva contraseña.</p>
 <h2 id="124-plantillas-personalizadas">12.4. Plantillas personalizadas</h2>
@@ -359,7 +358,7 @@ The 127.0.0.1:8000 team
 </code></pre>
 
 <h2 id="125-conclusion">12.5. Conclusión</h2>
-<p>En el próximo capítulo conectaremos nuestra aplicación para periódicos con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente nuestros correos electrónicos automatizados a los usuarios, en lugar de emitirlos en nuestra consola de línea de comandos.</p>
+<p>En el próximo capítulo se conectará <em>Newspaper</em> con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente los correos electrónicos automatizados a los usuarios, en lugar de emitirlos en la consola de línea de comandos.</p>
               
             </div>
           </div>

@@ -201,14 +201,15 @@ $ pipenv shell
 .
 ├── Pipfile
 ├── Pipfile.lock
-├── helloworld_project
-│   ├── __init__.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-└── manage.py
+├── manage.py
+└── helloworld_project
+    ├── asgi.py
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
 
-1 directory, 7 files
+1 directory, 8 files
 </code></pre>
 
 <ul>
@@ -230,15 +231,16 @@ $ pipenv shell
 </ul>
 <pre><code>(helloworld) $ python manage.py startapp pages
 (helloworld) $ tree
-├── pages
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── migrations
-│   │   └── __init__.py
-│   ├── models.py
-│   ├── tests.py
-│   └── views.py
+...
+└── pages
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── migrations
+    │   └── __init__.py
+    ├── models.py
+    ├── tests.py
+    └── views.py
 </code></pre>
 
 <ul>
@@ -248,9 +250,9 @@ $ pipenv shell
 <li><code>migrations/</code>: Manteniene el seguimiento de cualquier cambio en el fichero <code>models.py</code> para que la <em>base de datos</em> y el fichero <code>models.py</code> estén sincronizados</li>
 <li><code>models.py</code>: Es donde se define el modelo de la base de datos que Django traduce en tablas dentro de la base de datos automáticamente.</li>
 <li><code>tests.py</code>: Es para los tests específicos de la <strong>app</strong></li>
-<li><code>views.py</code>: Es donde se gestiona la lógica petición/respuesta (<em>request/response</em>) de la <strong>app</strong></li>
-<li>Aunque la <strong>app</strong> existe, Django no sabe nada de ella hasta que explícitamente se la añadimos.</li>
-<li>Para incluir la app en el proyecto se necesita añadir una referencia a su clase de configuración en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> está en el archivo <code>pages/apps.py</code> , por eso su <em>path</em> con puntos es <code>'pages.apps.PagesConfig'</code>.</li>
+<li><code>views.py</code>: Es donde se gestiona la lógica petición/respuesta <em>(request/response)</em> de la <strong>app</strong></li>
+<li>Aunque la <strong>app</strong> existe, Django no sabe nada de ella hasta que se la añadimos explícitamente.</li>
+<li>Para incluir la app en el proyecto se necesita añadir una <strong>referencia a su clase de configuración</strong> en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> está en el archivo <code>pages/apps.py</code> , por eso su <em>path</em> con puntos es <code>'pages.apps.PagesConfig'</code>.</li>
 </ul>
 <blockquote>
 <p>DETALLE
@@ -261,7 +263,7 @@ Tener en cuenta que dentro de cada aplicación, Django crea un archivo, <code>ap
 <pre><code>...
     # helloworld_project/settings.py
     INSTALLED_APPS = [
-ç       'pages.apps.PagesConfig',
+        'pages.apps.PagesConfig', # new
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -277,12 +279,12 @@ Tener en cuenta que dentro de cada aplicación, Django crea un archivo, <code>ap
 </ul>
 <blockquote>
 <p>DETALLE: <code>settings.py</code>
-El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajustes, pero en este punto probablemente sólo se querrá cambiar la <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-TIME_ZONE">TIME_ZONE</a> — ésta debería ser igual a una cadena de la <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Lista de base de datos tz de time zones</a> (la columna TZ column de la tabla contiene los valores que quieres). Cambiar la <code>TIME_ZONE</code> al valor de entre estas cadenas que sea apropiado para el uso horario que se requiera, por ejemplo:</p>
+El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajustes, pero en este punto probablemente sólo se querrá cambiar la <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-TIME_ZONE">TIME_ZONE</a> — ésta debería ser igual a una cadena de la <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Lista de base de datos tz de time zones</a> (la columna <em>TZ column</em> de la tabla contiene los valores que se necesitan). Cambiar la <code>TIME_ZONE</code> al valor de entre estas cadenas que sea apropiado para el uso horario que se requiera, por ejemplo:</p>
 <p><code>TIME_ZONE = 'Europe/Madrid'</code></p>
-<p>Hay otros dos otros ajustes que no se cambiarán ahora, pero de los que se debería ser consciente:</p>
+<p>Hay otros dos ajustes que no se cambiarán ahora, pero de los que se debería ser consciente:</p>
 <ul>
 <li><code>SECRET_KEY</code>. Ésta es una clave secreta que se usa como parte de la estrategia de seguridad del sitio web de Django. Si no se va a proteger este código durante el desarrollo, se necesitará usar un código diferente (quizás leyendo de una variable de entorno o un fichero)  cuando se ponga en producción. </li>
-<li><code>DEBUG</code>. Ésto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a <code>false</code> en producción, ya que la información de depuración es útil a los atacantes. </li>
+<li><code>DEBUG</code>. Esto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a <code>false</code> en producción, ya que la información de depuración es útil a los atacantes. </li>
 </ul>
 <p>En la configuración de <code>INSTALLED_APPS</code>, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, <code>INSTALLED_APPS</code> contiene las siguientes aplicaciones, todas ellas incluidas en Django:</p>
 <p><code>django.contrib.admin</code> : El sitio de administración.
@@ -302,17 +304,15 @@ El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajus
 </li>
 <li>
 <p>URLConf utiliza una expresión regular para mapear las peticiones a la función apropiada de la vista que devuelve los datos correctos. </p>
-<ul>
+</li>
 <li>
 <p>La vista saca el texto <code>Hello, World</code> mientras que la url se asegurará de que cuando el usuario visita la página sea redireccionado a la vista correcta.</p>
 </li>
 <li>
-<p>Cuando se escribe una URL, lo primero que ocurre dentro del proyecto <em>Django</em> es que se encuentra un patrón que coincide con la página de inicio (<em>homepage</em>). El <code>urlpattern</code> especifica una <strong>vista</strong>, que determinará el contenido de la página (normalmente desde una base de datos), y una <strong>plantilla</strong> (<em>template</em>) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.
-<div class=text-center>
- URL -&gt; View -&gt; Model (típicamente) -&gt; Template 
+<p>Cuando se escribe una URL, lo primero que ocurre dentro del proyecto <em>Django</em> es que se encuentra un patrón que coincide con la página de inicio (<em>homepage</em>). El <code>urlpattern</code> especifica una <strong>vista</strong>, que determinará el contenido de la página (normalmente desde una base de datos), y una <strong>plantilla</strong> (<em>template</em>) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.</p>
+<p><div class=text-center>
+URL -&gt; View -&gt; Model (típicamente) -&gt; Template 
 </div></p>
-</li>
-</ul>
 </li>
 </ul>
 <blockquote>
@@ -323,86 +323,99 @@ Una URLconf es como una tabla de contenido para un sitio web hecho con Django. B
 <li>Se empieza actualizando el fichero <code>views.py</code></li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code>    from django.shortcuts import render
-ç   from django.http import HttpResponse
+<pre><code>    # from django.shortcuts import render
+    from django.http import HttpResponse     # new
+
 
     # Create your views here.
-ç   def homePageView(request):
-ç       return HttpResponse(&quot;Hello, World!&quot;)
+    def homePageView(request):               # new
+        return HttpResponse(&quot;Hello World!&quot;)  # new
 </code></pre>
 
 <ul>
-<li>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello, World!”</code> . <ul>
+<li>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello World!”</code> . </li>
 <li>Más específicamente se ha importado el método <code>HttpResponse</code> para poder devolver un objeto respuesta al usuario.</li>
 </ul>
+<blockquote>
+<p>DETALLE</p>
+<ul>
+<li>
+<p>Primero, se importa la clase <code>HttpResponse</code>, que vive en el módulo <code>django.http</code>. Se necesita importar esta clase porque se usa más tarde en el código.</p>
+</li>
+<li>
+<p>A continuación, se define una función llamada <code>homePageView</code>- la función de la vista.</p>
 </li>
 </ul>
-<blockquote>
-<p>DETALLE
-- Primero, se importa la clase <code>HttpResponse</code>, que vive en el módulo <code>django.http</code>. Se necesita importar esta clase porque se usa más tarde en el código.</p>
-<ul>
-<li>A continuación, se define una función llamada <code>homePageView</code>- la función de la vista.</li>
-</ul>
 <p>Cada función <code>view</code> toma al menos un parámetro, llamado <code>request</code> por convención. Se trata de un objeto que contiene información sobre la solicitud web actual que ha activado esta vista, y es una instancia de la clase <code>django.http.HttpRequest</code>.
-  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Se le llama <code>homePageView</code> aquí, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una simple línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
+  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Se le llama <code>homePageView</code> aquí, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
   La principal lección aquí es ésta: <strong>una vista es sólo una función Python que toma una <code>HttpRequest</code> como primer parámetro y devuelve una instancia de <code>HttpResponse</code></strong>. Para que una función Python sea una vista Django, debe hacer estas dos cosas. (Hay excepciones, pero se verán más tarde).</p>
 </blockquote>
 <ul>
 <li>Ahora a configurar <em>urls</em>. Crear un nuevo archivo <code>urls.py</code> dentro del directorio <code>pages</code>.</li>
 </ul>
-<pre><code>(helloworld) $ touch pages/urls.py
+<pre><code class="bash">(helloworld) $ touch pages/urls.py
 </code></pre>
 
 <ul>
 <li>Añadir el código</li>
 </ul>
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">ç # pages/urls.py
-ç from django.urls import path
+<pre><code class="python"># pages/urls.py
+from django.urls import path
+from .views import homePageView
 
-ç from .views import homePageView
-
-ç urlpatterns = [
-ç     path('', homePageView, name='home')
-ç ]
-</code></pre>
-
-<ul>
-<li>Importamos <code>path</code></li>
-<li><code>.views</code> utiliza "." para indicar el directorio actual</li>
-<li>El patrón <code>urlpattern</code> tiene tres partes:<ul>
-<li>Un expresión regular Python para la cadena vacía ''</li>
-<li>Especifica la vista que se llamará: <code>homePageView</code></li>
-<li>Añade un nombre de URL opcional <code>home</code></li>
-</ul>
-</li>
-<li>Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces utilizar la vista llamada <code>homePageView</code></li>
-<li>El último paso es configurar el fichero <code>urls.py</code> a nivel de proyecto donde se recogen todas las <strong>apps</strong> dentro de un proyecto Django, dado que <strong>cada una precisa de su propia ruta</strong>.<blockquote>
-<p>DETALLE
-Notemos que se pasa la función de vista <code>homePageView</code> como un objeto sin llamar a la función. Esto es una característica de Python (y otros lenguajes dinámicos): las funciones son objetos de primera clase, lo cual significa que se puede pasar como cualquier otra variable. ¡Qué bueno!, ¿no?</p>
-</blockquote>
-</li>
-</ul>
-<p>FICHERO: <code>helloworld_project/urls.py</code> </p>
-<pre><code class="python">    from django.contrib import admin
-ç   from django.urls import path, include
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-ç       path('', include('pages.urls')),
+urlpatterns = [
+    path('', homePageView, name='home')
 ]
 </code></pre>
 
 <ul>
-<li>Puede confundir un poco que no se necesite importar la app <code>pages</code> pero ya se hace referencia en <code>urlpatterns</code> como <code>pages.urls</code>.<ul>
-<li>La razón de hacerlo así es que el método <code>django.urls.include()</code> ya recibe un módulo, o <strong>app</strong>, como primer argumento. Así que, sin usar <code>include</code>, habría que importar la <strong>app</strong> <code>pages</code> pero, como sí que se usa, no se necesita a nivel de proyecto.</li>
-</ul>
+<li>
+<p>Importamos <code>path</code></p>
+</li>
+<li>
+<p><code>.views</code> utiliza "." para indicar el directorio actual</p>
+</li>
+<li>
+<p>El patrón <code>urlpattern</code> tiene tres partes:</p>
+</li>
+<li>
+<p>Una expresión regular Python para la cadena vacía ''</p>
+</li>
+<li>Especifica la vista que se llamará: <code>homePageView</code></li>
+<li>
+<p>Añade un nombre de URL opcional <code>home</code></p>
+</li>
+<li>
+<p>Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces utilizar la vista llamada <code>homePageView</code></p>
+</li>
+<li>
+<p>El último paso es configurar el fichero <code>urls.py</code> a nivel de proyecto donde se recogen todas las <strong>apps</strong> dentro de un proyecto Django, dado que <strong>cada una precisa de su propia ruta</strong>.</p>
 </li>
 </ul>
 <blockquote>
+<p>DETALLE
+Notemos que se pasa la función de vista <code>homePageView</code> como un objeto sin llamar a la función. Esto es una característica de Python (y otros lenguajes dinámicos): las funciones son objetos de primera clase, lo cual significa que se puede pasar como cualquier otra variable. ¡Qué bueno!, ¿no?</p>
+</blockquote>
+<p>FICHERO: <code>helloworld_project/urls.py</code> </p>
+<pre><code class="python">from django.contrib import admin
+from django.urls import path, include # new
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('pages.urls')),  # new
+]
+</code></pre>
+
+<ul>
+<li>Puede confundir un poco que no se necesite importar la app <code>pages</code> pero ya se hace referencia en <code>urlpatterns</code> como <code>pages.urls</code>.</li>
+<li>La razón de hacerlo así es que el método <code>django.urls.include()</code> ya recibe un módulo, o <strong>app</strong>, como primer argumento. Así que, sin usar <code>include</code>, habría que importar la <strong>app</strong> <code>pages</code> pero, como sí que se usa, no se necesita a nivel de proyecto.</li>
+</ul>
+<blockquote>
 <p>DETALLE: <strong>URLconfs y el acoplamiento débil</strong></p>
-<p>Ahora es el momento de resaltar una parte clave de filosofía detrás de las URLconf y detrás de Django en general: el <strong>principio de acoplamiento débil</strong> (loose coupling). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (loosely coupled) los cambios realizados sobre una de dichas piezas va a tener poco o ningún efecto sobre la otra.</p>
+<p>Ahora es el momento de resaltar una parte clave de la filosofía detrás de las URLconf y detrás de Django en general: el <strong>principio de acoplamiento débil</strong> (loose coupling). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (loosely coupled) los cambios realizados sobre una de dichas piezas va a tener poco o ningún efecto sobre la otra.</p>
 <p>Las URLconfs de Django son un claro ejemplo de este principio en la práctica. En una aplicación Web de Django, la definición de la URL y la función de vista que se llamará están débilmente acopladas; de esta manera, la decisión de cuál debe ser la URL para una función, y la implementación de la función misma, residen en dos lugares separados. Esto permite el desarrollo de una pieza sin afectar a la otra.</p>
-<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python CherryPy (http://www.cherrypy.org/) la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo conveniente en el corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
+<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python <a href="http://www.cherrypy.org/">CherryPy</a> la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo convenient a corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
 <p>Por ejemplo, consideremos una función de vista que nos muestra la fecha y la hora actual. Si se quiere cambiar la URL de la aplicación — digamos, mover desde algo como <code>/time</code> a <code>/currenttime/</code> — se puede hacer un rápido cambio en la URLconf, sin tener que preocuparse acerca de la implementación subyacente de la función. Similarmente, si se quiere cambiar la función de la vista — alterando la lógica de alguna manera — se puede hacer sin afectar la URL a la que está asociada la función de vista. Además, si se quiere exponer la funcionalidad de fecha actual en varias URL se podría hacer editando el URLconf con cuidado, sin tener que tocar una sola línea de código de la vista.
 Eso es el acoplamiento débil en acción: una <strong>filosofía de desarrollo</strong>.</p>
 </blockquote>
@@ -414,37 +427,41 @@ Eso es el acoplamiento débil en acción: una <strong>filosofía de desarrollo</
 <h3 id="2-informar-de-la-nueva-app">2.- INFORMAR DE LA NUEVA APP</h3>
 <p>FICHERO: <code>settings.py</code> </p>
 <pre><code class="python">...
-    INSTALLED_APPS = [
-ç       'pages.apps.PagesConfig',
+INSTALLED_APPS = [
 ...
+    'pages.apps.PagesConfig',
 </code></pre>
 
 <h3 id="3-crear-la-vista">3.- CREAR LA VISTA</h3>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code class="python">    from django.shortcuts import render
-ç   from django.http import HttpResponse
+<pre><code class="python"># from django.shortcuts import render
+from django.http import HttpResponse
 
-    # Create your views here.
-ç   def homePageView(request):
-ç       return HttpResponse(&quot;Hello, World!&quot;)
+
+# Create your views here.
+def homePageView(request):
+    return HttpResponse(&quot;Hello World!&quot;)
 </code></pre>
 
 <h3 id="4-crear-el-fichero-de-rutas-de-la-app">4.- CREAR EL FICHERO DE RUTAS DE LA APP</h3>
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">ç from django.urls import path
-ç from .views import homePageView
-ç urlpatterns = [
-ç     path('', homePageView, name='home')
-ç ]
+<pre><code class="python"># pages/urls.py
+from django.urls import path
+from .views import homePageView
+
+urlpatterns = [
+    path('', homePageView, name='home')
+]
 </code></pre>
 
 <h3 id="5-incluir-el-fichero-de-rutas-de-la-app-en-el-principal">5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL</h3>
 <p>FICHERO: <code>helloworld_project/urls.py</code> </p>
-<pre><code class="python">    from django.contrib import admin
-ç   from django.urls import path, include
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-ç       path('', include('pages.urls')),
+<pre><code class="python">from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('pages.urls')),
 ]
 </code></pre>
 
@@ -452,11 +469,13 @@ Eso es el acoplamiento débil en acción: una <strong>filosofía de desarrollo</
 <ul>
 <li>
 <p>Se deben señalar varias cosas en lo que hemos visto. Este es el detalle de lo que sucede cuando se ejecuta el servidor de desarrollo de Django y se hace una petición a una página Web.</p>
-<ul>
-<li>El comando python <code>manage.py runserver</code> importa un archivo llamado <code>settings.py</code> desde el mismo directorio. Este archivo contiene todo tipo de configuraciones opcionales para esa instancia de Django en particular, pero una de las configuraciones más importantes es <code>ROOT_URLCONF</code>. La variable <code>ROOT_URLCONF</code> le dice a Django qué módulo de Python debería usar para la URLconf de este sitio Web.  <code>settings.py</code> que es generado automáticamente tiene un <code>ROOT_URLCONF</code> que apunta al <code>urls.py</code> generado automáticamente.</li>
+</li>
+<li>
+<p>El comando python <code>manage.py runserver</code> importa un archivo llamado <code>settings.py</code> desde el mismo directorio. Este archivo contiene todo tipo de configuraciones opcionales para esa instancia de Django en particular, pero una de las configuraciones más importantes es <code>ROOT_URLCONF</code>. La variable <code>ROOT_URLCONF</code> le dice a Django qué módulo de Python debería usar para la URLconf de este sitio Web.  <code>settings.py</code> que es generado automáticamente tiene un <code>ROOT_URLCONF</code> que apunta al <code>urls.py</code> generado automáticamente.</p>
+</li>
 <li>Cuando llega una petición Django carga la URLconf apuntada por la variable <code>ROOT_URLCONF</code>. Luego comprueba cada uno de los patrones de URL en la URLconf en orden, comparando la URL solicitada con un patrón a la vez, hasta que encuentra uno que coincida. Cuando lo encuentra, llama a la función de vista asociada con ese patrón, pasando un objeto <code>HttpRequest</code> como primer parámetro de la función.</li>
-<li>La función de vista es responsable de retornar un objeto <code>HttpResponse</code>.</li>
-</ul>
+<li>
+<p>La función de vista es responsable de retornar un objeto <code>HttpResponse</code>.</p>
 </li>
 <li>
 <p>Una vez se conoce lo básico sobre cómo hacer páginas Web con Django. Es muy sencillo, realmente sólo hay que escribir funciones de vista y relacionarlas con URLs mediante URLconfs. Se podría pensar que es lento enlazar URL's con funciones.</p>

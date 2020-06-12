@@ -85,6 +85,8 @@
         
             <li><a class="toctree-l3" href="#44-vistas-basadas-en-clases-class-based-views">4.4 Vistas basadas en clases (Class-Based Views)</a></li>
         
+            <li><a class="toctree-l3" href="#45-urls">4.5 URLs</a></li>
+        
             <li><a class="toctree-l3" href="#46-anadir-una-pagina-acerca-de">4.6 Añadir una página "Acerca de..."</a></li>
         
             <li><a class="toctree-l3" href="#47-extendiendo-plantillas">4.7 Extendiendo Plantillas</a></li>
@@ -242,16 +244,16 @@ $ pipenv shell
 <ul>
 <li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
 </ul>
-<p><center>Plantilla –&gt; Vista –&gt; Ruta</center>
-- <strong>Ruta</strong> (URL).- Controla la ruta inicial
-- <strong>Vista</strong> (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.
-- <strong>Plantilla</strong> (Template).- Contiene el HTML.</p>
+<p><center>Plantilla –&gt; Vista –&gt; Ruta</center></p>
+<ul>
+<li><strong>Ruta</strong> (URL).- Controla la ruta inicial</li>
+<li><strong>Vista</strong> (View).- Contiene la lógica (el qué). En páginas relacionadas con BD es lo que hace la mayor parte del trabajo en cuanto a decidir qué datos estarán disponibles para la plantilla.</li>
+<li><strong>Plantilla</strong> (Template).- Contiene el HTML.</li>
+</ul>
 <h3 id="431-donde-colocar-el-directorio-de-plantillas">4.3.1 Dónde colocar el directorio de plantillas</h3>
 <ul>
-<li><strong>Por defecto</strong>, Django mira dentro de cada <strong>app</strong> en busca de plantillas.<ul>
+<li><strong>Por defecto</strong>, Django mira dentro de cada <strong>app</strong> en busca de plantillas.</li>
 <li>En la app <code>pages</code> se creará una estructura de directorios como la siguiente con la plantilla <code>home.html</code> colgando de ella:  </li>
-</ul>
-</li>
 </ul>
 <pre><code class="text">    └── pages
         ├── templates
@@ -260,10 +262,8 @@ $ pipenv shell
 </code></pre>
 
 <ul>
-<li><strong>La otra aproximación</strong> es hacer un directorio de plantillas común a todas las apps. <ul>
+<li><strong>La otra aproximación</strong> es hacer un directorio de plantillas común a todas las apps. </li>
 <li>Hay que cambiar <code>settings.py</code> para que busque, también en este directorio, las plantillas que se necesiten.</li>
-</ul>
-</li>
 </ul>
 <pre><code>   (pages) $ mkdir templates
    (pages) $ touch templates/home.html
@@ -306,9 +306,9 @@ class HomePageView(TemplateView):
 <ul>
 <li>Distíngase cómo se ha puesto en mayúsculas la vista, porque ahora es una clase, y cómo ésta es descendiente de la clase base <code>TemplateView</code>.</li>
 </ul>
-<h4 id="145-urls">1.4.5 URLs</h4>
+<h2 id="45-urls">4.5 URLs</h2>
 <ul>
-<li>El último paso es actualizar los <code>URLConfs</code>.</li>
+<li>El último paso es actualizar las <code>URLConfs</code>.</li>
 </ul>
 <p>FICHERO: <code>pages_project/urls.py</code> </p>
 <pre><code class="python">from django.contrib import admin
@@ -322,7 +322,6 @@ urlpatterns = [
 
 <p>FICHERO: <code>pages/urls.py</code> </p>
 <pre><code class="python">from django.urls import path
-
 from .views import HomePageView
 
 urlpatterns = [
@@ -349,20 +348,17 @@ urlpatterns = [
 <li>Crear una nueva vista para la página</li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code class="python">from django.views.generic import TemplateView
+<p><code>python
+  from django.views.generic import TemplateView</code></p>
+<p>class HomePageView(TemplateView):
+    template_name = 'home.html'</p>
+<p>class AboutPageView(TemplateView):
+    template_name = 'about.html'</p>
+<pre><code>- Conectar la vista con la ruta
 
-class HomePageView(TemplateView):
-    template_name = 'home.html'
-
-class AboutPageView(TemplateView):
-    template_name = 'about.html'
-</code></pre>
-
-<ul>
-<li>Conectar la vista con la ruta</li>
-</ul>
-<p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">    from django.urls import path
+ FICHERO: `pages/urls.py` 
+```python
+    from django.urls import path
     from .views import HomePageView, AboutPageView # new
 
     urlpatterns = [
@@ -377,10 +373,8 @@ class AboutPageView(TemplateView):
 <h2 id="47-extendiendo-plantillas">4.7 Extendiendo Plantillas</h2>
 <ul>
 <li>El poder real de las plantillas es la posibilidad de ser extendidas.</li>
-<li>En las mayoría de webs encontramos contenido que se repite en cada página:<ul>
+<li>En las mayoría de webs encontramos contenido que se repite en cada página:</li>
 <li>Hagamos una página canónica que será heredada por las demás</li>
-</ul>
-</li>
 <li>Django tiene un <a href="https://docs.djangoproject.com/es/3.0/ref/templates/builtins/">lenguaje mínimo de plantillas</a> para añadirles enlaces y lógica básica</li>
 <li>Los tags de las plantillas tienen la forma</li>
 </ul>
@@ -391,12 +385,14 @@ class AboutPageView(TemplateView):
 </div>
 
 <ul>
-<li>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar la etiqueta de plantilla <code>url</code> incorporada que toma un patrón de URL como argumento.</li>
+<li>
+<p>Para añadir <strong>enlaces</strong> a nuestro proyecto podemos usar la etiqueta de plantilla <code>url</code> incorporada que toma un patrón de URL como argumento.</p>
+</li>
 <li>
 <p>El tag  <code>url</code> utiliza los nombres opcionales de URL para crear enlaces automáticos por nosotros.</p>
-<ul>
-<li>Por ejemplo: <code>{% url 'home' %}</code></li>
-</ul>
+</li>
+<li>
+<p>Por ejemplo: <code>{% url 'home' %}</code></p>
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
@@ -409,19 +405,22 @@ class AboutPageView(TemplateView):
 </code></pre>
 
 <ul>
-<li>Al final se añade un tag <code>block</code> llamado <code>content</code>. Los bloques pueden ser reescritos por las vistas descencientes.</li>
-<li>El lenguaje de plantillas de Django dispone de un método <code>extends</code> que puede usarse para actualizar <code>home.html</code> y <code>about.html</code> y así extender la plantilla <code>base.html</code>.</li>
+<li>
+<p>Al final se añade un tag <code>block</code> llamado <code>content</code>. Los bloques pueden ser reescritos por las vistas descencientes.</p>
+</li>
+<li>
+<p>El lenguaje de plantillas de Django dispone de un método <code>extends</code> que puede usarse para actualizar <code>home.html</code> y <code>about.html</code> y así extender la plantilla <code>base.html</code>.</p>
+</li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code> </p>
-<pre><code class="html">{% extends 'base.html' %}
-
-{% block content %}
-    &lt;h1&gt;Homepage&lt;/h1&gt;
-{% endblock content %}
-</code></pre>
-
-<p>FICHERO: <code>templates/about.html</code> </p>
-<pre><code class="html">{% extends 'base.html' %}
+<p><code>html
+  {% extends 'base.html' %}</code></p>
+<p>{% block content %}
+    <h1>Homepage</h1>
+{% endblock content %}</p>
+<pre><code>FICHERO: `templates/about.html` 
+```html
+{% extends 'base.html' %}
 
 {% block content %}
     &lt;h1&gt;About page&lt;/h1&gt;
@@ -430,34 +429,35 @@ class AboutPageView(TemplateView):
 
 <h2 id="48-tests">4.8 Tests</h2>
 <ul>
-<li>Importancia de los tests <ul>
-<li><em>Jaco Kaplan-Moss</em>: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)</li>
-</ul>
+<li>
+<p>Importancia de los tests </p>
 </li>
-<li>Django nos brinda herramientas para escribir y correr tests.</li>
+<li>
+<p><em>Jaco Kaplan-Moss</em>: "Code without tests is broken as designed." (El código sin pruebas se rompe según se diseñó)</p>
+</li>
+<li>
+<p>Django nos brinda herramientas para escribir y correr tests.</p>
+</li>
 </ul>
 <p>FICHERO: <code>pages/tests.py</code></p>
-<pre><code class="python"># pages/tests.py
-from django.test import SimpleTestCase
-
-
-class SimpleTests(SimpleTestCase):
+<p><code>python
+  # pages/tests.py
+  from django.test import SimpleTestCase</code></p>
+<p>class SimpleTests(SimpleTestCase):
     def test_home_page_status_code(self):
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
-
-    def test_about_page_status_code(self):
-        response = self.client.get('/about/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)</p>
+<pre><code>def test_about_page_status_code(self):
+    response = self.client.get('/about/')
+    self.assertEqual(response.status_code, 200)
 </code></pre>
+<pre><code>- Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
+- Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.
+- Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
+- Para ejecutar los tests:
 
-<ul>
-<li>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </li>
-<li>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</li>
-<li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
-<li>Para ejecutar los tests:</li>
-</ul>
-<pre><code class="bash">(pages) $ python manage.py test
+``` bash
+(pages) $ python manage.py test
 System check identified no issues (0 silenced).
 ..
 ---------------------------------------------------------------
@@ -475,25 +475,19 @@ OK
 
 <h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
 <ul>
-<li>Código en producción<ul>
+<li>Código en producción</li>
 <li>Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.</li>
-</ul>
-</li>
 <li>Hay muchos proveedores de servidores disponibles, pero usaremos <em>Heroku</em> porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.</li>
 </ul>
 <h2 id="411-heroku">4.11 Heroku</h2>
 <ul>
 <li>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</li>
-<li>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.<ul>
+<li>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.</li>
 <li>Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.</li>
 <li>Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.</li>
-</ul>
-</li>
-<li><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a><ul>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a></li>
 <li><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a><ul>
 <li><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -511,12 +505,14 @@ Logged in as will@wsvincent.com
 <ul>
 <li>
 <p>Se necesitan hacer cuatro cambios al proyecto para desplegar en Heroku:</p>
-<ul>
-<li>actualizar el archivo <code>Pipfile.lock</code></li>
+</li>
+<li>
+<p>actualizar el archivo <code>Pipfile.lock</code></p>
+</li>
 <li>hacer un nuevo archivo <code>Procfile</code></li>
 <li>instalar <code>gunicorn</code> como servidor web</li>
-<li>hacer un cambio de una línea al archivo <code>settings.py</code></li>
-</ul>
+<li>
+<p>hacer un cambio de una línea al archivo <code>settings.py</code></p>
 </li>
 <li>
 <p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
@@ -627,7 +623,7 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 <p><img alt="Captura de pantalla de la página 404 de Django." src="../img_pages_app/404.png" /></p>
 <ul>
 <li>La utilidad de esta página va más allá del mensaje básico de error 404; nos dice también, <strong>qué URLconf utilizó Django y todos los patrones de esa URLconf</strong>. Con esa información, tendríamos que ser capaces de establecer porqué la URL solicitada lanzó un error 404.</li>
-<li>Naturalmente, esta es <strong>información importante sólo destinada al programador</strong>. Si esto fuera un sitio en producción alojado en Internet, no quisiéramos mostrar esta información al público. Por esta razón, la página <em>"Page not found"</em> sólo se muestra si el proyecto en Django está en modo de depuración (<em>debug mode</em>). Se explicará cómo desactivar este modo más adelante. Por ahora, todos los proyectos están en modo de depuración cuando se crean, y si el proyecto no lo estuviese, se retornaría una respuesta diferente.</li>
+<li>Naturalmente, esta es <strong>información importante sólo destinada al programador</strong>. Si esto fuera un sitio en producción alojado en Internet, no quisiéramos mostrar esta información al público. Por esta razón, la página <em>"Page not found"</em> sólo se muestra si el proyecto en Django está en modo de depuración (<em>debug mode</em>). Se explicará cómo desactivar este modo más adelante. Por ahora, todos los proyectos están en modo de depuración cuando se crean, y si el proyecto no lo estuviese, se retornaría una respuesta diferente.l</li>
 </ul>
               
             </div>

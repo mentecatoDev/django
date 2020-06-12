@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>La API de SendGrid - Django</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "La API de SendGrid";
+    var mkdocs_page_input_path = "la_api_de_sendgrid.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../por_que_django/">¿Por qué Django?</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../01_introduccion/">1. Introducción</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../04_pages_app/">4. Pages app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../05_message_board_app/">5. Message Board app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../06_blog_app/">6. Blog app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../07_formularios/">7. Formularios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../13_email/">13. Email</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../16_comentarios/">16. Comentarios</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>La API de SendGrid</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="la-api-de-sendgrid">La API de SendGrid</h1>
+<p>Existen varias formas empezar con la API de SendGrid:</p>
+<h2 id="1-prerrequisitos-para-enviar-el-primer-email-con-la-api-de-sendgrid">1. Prerrequisitos para enviar el primer email con la API de SendGrid</h2>
+<p>Estas instrucciones describen cómo enviar un correo electrónico usando llamadas cURL. Esta es una de las muchas maneras de enviar un correo electrónico con la API de SendGrid - también existen bibliotecas <a href="https://github.com/sendgrid/sendgrid-php">PHP</a>, <a href="https://github.com/sendgrid/sendgrid-python">Python</a>, <a href="https://github.com/sendgrid/sendgrid-nodejs">Node.js</a>, <a href="https://github.com/sendgrid/sendgrid-java">Java</a>, <a href="https://github.com/sendgrid/sendgrid-csharp">C#</a>, <a href="https://github.com/sendgrid/sendgrid-go">Go</a>, y <a href="https://github.com/sendgrid/sendgrid-ruby">Ruby</a>.</p>
+<p>Antes de empezar a usar la API, hay que hacer lo siguiente:</p>
+<ol>
+<li>Crear una <a href="https://sendgrid.com/pricing/">cuenta</a> de SendGrid.</li>
+<li>Crear una <a href="https://app.sendgrid.com/settings/api_keys">Clave API</a>.</li>
+<li>Asegúrarse de tener <a href="https://curl.haxx.se/">curl</a> instalado en la máquina.</li>
+</ol>
+<h2 id="2-como-enviar-un-correo-electronico-con-la-api">2. Cómo enviar un correo electrónico con la API</h2>
+<h3 id="21-crear-la-llamada-a-la-api">2.1. Crear la llamada a la API</h3>
+<p>La llamada a la API debe tener los siguientes componentes:</p>
+<ul>
+<li>Un <em>Host</em>. El host para las solicitudes de la API v3 de la Web siempre es <code>https://api.sendgrid.com/v3/</code></li>
+<li>Un <a href="https://sendgrid.api-docs.io/v3.0/how-to-use-the-sendgrid-v3-api/api-authentication#authorization-header">Authorization Header</a> (encabezado de autorización)</li>
+<li>Una <a href="https://app.sendgrid.com/settings/api_keys">API Key</a> dentro del encabezado de autorización</li>
+<li>Una petición. Cuando se envían datos a un recurso a través de POST o PUT, debe enviar toda la carga en JSON.</li>
+</ul>
+<blockquote>
+<p>Nota.- Límite del tamaño del mensaje: El tamaño total del mensaje no debe exceder los 20MB.  Esto incluye el mensaje en sí mismo, los encabezados y el tamaño combinado de los archivos adjuntos.</p>
+</blockquote>
+<h3 id="22-envio-del-correo-electronico-usando-la-api">2.2. Envío del correo electrónico usando la API</h3>
+<p><em>Para enviar un correo electrónico usando el SendGrid API:</em></p>
+<pre><code class="texto">curl --request POST \
+--url https://api.sendgrid.com/v3/mail/send \
+--header 'authorization: Bearer &lt;&lt;YOUR_API_KEY&gt;&gt;' \
+--header 'content-type: application/json' \
+--data '{&quot;personalizations&quot;:[{&quot;to&quot;:[{&quot;email&quot;:&quot;john.doe@example.com&quot;,&quot;name&quot;:&quot;John Doe&quot;}],&quot;subject&quot;:&quot;Hello, World!&quot;}],&quot;content&quot;: [{&quot;type&quot;: &quot;text/plain&quot;, &quot;value&quot;: &quot;Heya!&quot;}],&quot;from&quot;:{&quot;email&quot;:&quot;sam.smith@example.com&quot;,&quot;name&quot;:&quot;Sam Smith&quot;},&quot;reply_to&quot;:{&quot;email&quot;:&quot;sam.smith@example.com&quot;,&quot;name&quot;:&quot;Sam Smith&quot;}}'
+</code></pre>
+
+<ol>
+<li>Copiar el ejemplo de arriba de <em>curl</em></li>
+<li>Pegar la llamada <em>curl</em>  en un editor de texto.</li>
+<li>Copiar la API key y pegarla en el encabezado de la autorización.</li>
+<li>En la sección de datos, especificar los nombres y las direcciones de correo electrónico de "destino", "procedencia" y "respuesta" e introducir un asunto.</li>
+<li>Copiar el código y pegarlo en el terminal.</li>
+<li>Presionar <strong>Enter</strong>.</li>
+<li>Revisar la bandeja de entrada de la dirección que se especificó como "to" el correo electrónico para ver el mensaje</li>
+</ol>
+<p>Si aún no se ha configurado la <a href="https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/">autenticación del remitente</a> en la cuenta, es posible que se tenga que comprobar en la carpeta de correo basura el correo electrónico que acaba de enviar.</p>
+<h3 id="23-mensajes-de-respuesta-de-la-api">2.3. Mensajes de respuesta de la API</h3>
+<p>Todas las respuestas se devuelven en formato JSON. Se especifica enviando el encabezado <code>Content-Type</code>. La Web API v3 proporciona una selección de <a href="https://sendgrid.api-docs.io/v3.0/how-to-use-the-sendgrid-v3-api/api-responses#status-codes">códigos de respuesta</a>, <a href="https://sendgrid.api-docs.io/v3.0/how-to-use-the-sendgrid-v3-api/api-responses#content-type-header">content-type headers</a>, y opciones de  <a href="https://sendgrid.api-docs.io/v3.0/how-to-use-the-sendgrid-v3-api/api-responses#pagination">paginación</a> para ayudar a interpretar las respuestas a las solicitudes de API.</p>
+<h2 id="3-a-continuacion">3. A continuación...</h2>
+<p>Para más información sobre SendGrid y dónde se puede ir desde aquí, revisar las páginas:</p>
+<ul>
+<li>
+<p><a href="https://sendgrid.com/docs/api-reference/">Referencia API</a></p>
+</li>
+<li>
+<p><a href="https://sendgrid.com/docs/ui/account-and-settings/how-to-set-up-domain-authentication/">Autenticación del remitente</a></p>
+</li>
+<li>
+<p><a href="https://sendgrid.com/docs/for-developers/sending-email/automating-subusers/">Automatización de subusuarios</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sendgrid/sendgrid-python/blob/master/use_cases/django.md">Crear una app django para enviar email con SendGrid</a></p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

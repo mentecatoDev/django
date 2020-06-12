@@ -191,7 +191,7 @@
               
                 <h1 id="2-configuracion-inicial">2 Configuración inicial</h1>
 <ul>
-<li>Objetivos <ul>
+<li>Objetivos </li>
 <li>Configurar el entorno para programar en proyectos Django</li>
 <li>Uso de la línea de comandos para instalar: <ul>
 <li>Django 3.0</li>
@@ -201,37 +201,47 @@
 <li>Git</li>
 <li>Editor de texto</li>
 </ul>
-</li>
-</ul>
 <h2 id="21-la-linea-de-comandos">2.1 La línea de comandos</h2>
 <ul>
 <li>Konsole, Tmux, zsh</li>
 <li>cd, cd .., ls, pwd, mkdir, touch</li>
-<li>Práctica: <ul>
+<li>Práctica: </li>
 <li>Recorrer los directorios del sistema, hacer una lista de ellos</li>
 <li>Mostrar el directorio de trabajo</li>
 <li>Crear un nuevo directorio y crear un fichero <code>index.html</code> en él</li>
 <li>Listar el fichero: formato largo, ficheros ocultos</li>
-</ul>
-</li>
-<li>Dónde aprender <ul>
+<li>Dónde aprender </li>
 <li>OpenWebinars</li>
 <li><a href="https://learnpythonthehardway.org/book/appendixa.html">Command Line Crash Course</a></li>
 <li><a href="https://www.codecademy.com/learn/learn-the-command-line">CodeAcademy's Course on the Command Line</a></li>
 </ul>
-</li>
-</ul>
 <h2 id="22-instalar-python-3">2.2 Instalar Python 3</h2>
 <ul>
-<li><a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">Entornos Virtuales</a></li>
-<li><a href="https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/">Instrucciones de instalación desde los ficheros fuentes</a></li>
-<li>Python Path<ul>
-<li><strong>Python path</strong> es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia <code>import</code> de Python.</li>
-<li>Por ejemplo, supongamos que el Python path tiene el valor <code>['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']</code></li>
-<li>Si se ejecuta el código Python <code>from foo import bar</code>, Python en primer lugar se va a buscar el módulo <code>foo.py</code> en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual.") Si ese archivo no existe, Python va a buscar el módulo en <code>/usr/lib/python2.4/site-packages/foo.py</code>. Si ese archivo no existe, entonces se probará en <code>/home/username/djcode/foo.py</code>. Finalmente, si ese archivo no existe, Python lanzará un <code>ImportError</code>.</li>
-<li>Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir <code>import sys</code>, seguido de <code>print(sys.path)</code>.</li>
-<li>Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</li>
-</ul>
+<li>
+<p><a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">Entornos Virtuales</a></p>
+</li>
+<li>
+<p><a href="https://solarianprogrammer.com/2017/06/30/building-python-ubuntu-wsl-debian/">Instrucciones de instalación desde los ficheros fuentes</a></p>
+</li>
+<li>
+<p>Python Path</p>
+</li>
+<li>
+<p><strong>Python path</strong> es la lista de directorios del sistema en donde Python buscará cuando se use la sentencia <code>import</code> de Python.</p>
+</li>
+<li>
+<p>Por ejemplo, supongamos que el Python path tiene el valor </p>
+<p><code>python
+    ['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']</code></p>
+</li>
+<li>
+<p>Si se ejecuta el código Python <code>from foo import bar</code>, Python en primer lugar se va a buscar el módulo <code>foo.py</code> en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual."). Si ese archivo no existe, Python va a buscar el módulo en <code>/usr/lib/python2.4/site-packages/foo.py</code>. Si ese archivo no existe, entonces se probará en <code>/home/username/djcode/foo.py</code>. Finalmente, si ese archivo no existe, Python lanzará un <code>ImportError</code>.</p>
+</li>
+<li>
+<p>Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir <code>import sys</code>, seguido de <code>print(sys.path)</code>.</p>
+</li>
+<li>
+<p>Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</p>
 </li>
 </ul>
 <h2 id="23-entornos-virtuales">2.3 Entornos Virtuales</h2>
@@ -285,11 +295,10 @@ $ pipenv shell
 <pre><code class="bash">$ python manage.py runserver 0:8000
 </code></pre>
 
-<p><code>0</code> es un atajo para <code>0.0.0.0</code>. Los documentos completos para el servidor de desarrollo se pueden encontrar en la referencia del servidor de ejecución.</p>
+<p><code>0</code> es un atajo para <code>0.0.0.0</code>. Los documentos completos para el servidor de desarrollo se pueden encontrar en la <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">referencia del servidor de ejecución</a>.</p>
 <blockquote>
 <p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
 </blockquote>
-<p>Una descripción más detallada del servidor se puede encontrar <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">aquí</a>.</p>
 <h2 id="25-instalar-git">2.5. Instalar Git</h2>
 <pre><code class="bash">$ sudo apt install git
 $ git config --global user.name &quot;&lt;Nombre&gt;&quot;
