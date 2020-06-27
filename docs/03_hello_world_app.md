@@ -11,7 +11,6 @@ $ cd helloworld
 $ pipenv install django
 $ pipenv shell
 (helloworld) $ django-admin startproject helloworld_project .
-(helloworld) $ sudo apt install tree
 (helloworld) $ tree
 .
 ├── Pipfile
@@ -30,7 +29,7 @@ $ pipenv shell
 - `settings.py`: Controla la configuración del proyecto
 - `urls.py`: Indica a Django qué páginas construir en respuesta a una petición de URL
 - `wsgi.py`: (*Web Server Gateway Interface*) Punto de entrada para servidores web compatibles con WSGI para servir el proyecto. Este archivo solo se usa en la fase de despliegue.
-- `asgi.py`: (*Asynchronous Server Gateway Interface*) Punto de entrada para servidores web compatibles con ASGI para servir el proyecto (nuevo en la versión 3.0). Este archivo solo se usa en la fase de despliegue.
+- `asgi.py`: (*Asynchronous Server Gateway Interface*) Punto de entrada para servidores web compatibles con ASGI para servir el proyecto (nuevo en las versiones 3.x). Este archivo solo se usa en la fase de despliegue.
 - `manage.py`: Ejecuta varios comandos Django, como correr el servidor web local o crear una nueva **app**
 
 ```bash
