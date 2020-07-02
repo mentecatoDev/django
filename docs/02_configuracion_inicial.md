@@ -43,7 +43,7 @@
   - Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir:
 ```python
 >>> from sys import path
->>> print(path)`
+>>> print(path)
 ```
   - Generalmente no hay que preocuparse de asigarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
 
@@ -99,7 +99,7 @@ Si se desea cambiar el puerto del servidor, hay que pasarlo como un argumento de
 $ python manage.py runserver 8080
 ```
 
-Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red), usar:
+Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (*lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red*), usar:
 
 ```bash
 $ python manage.py runserver 0:8000

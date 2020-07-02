@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>01_introduccion.html</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8"/>
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"  />
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"  /><meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'><style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style><script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script><script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>
+</head>
+
+<body>
+
+<h1>1 Introducción</h1>
+
+<h2>1.1. Introducción a Django</h2>
+
+<p>El gran software de código abierto casi siempre se construye porque uno o más desarrolladores inteligentes tenían un problema que resolver y no había ninguna solución viable o rentable disponible. Django no es una excepción. <strong>Adrian</strong> y <strong>Jacob</strong> hace tiempo que se retiraron del proyecto, pero los fundamentos de lo que los llevó a crear Django siguen vivos. Es esta sólida base de experiencia en el mundo real la que ha hecho a Django tan exitoso como es.
+En reconocimiento a su contribución, es mejor que les dejemos presentar a Django con sus propias palabras (editado y reformateado a partir del libro original).</p>
+
+<h3>1.1.1. Por <strong>Adrian Holovaty</strong> y <strong>Jacob Kaplan-Moss</strong>  (Diciembre 2009)</h3>
+
+<p><em>En los primeros días, los desarrolladores web escribían cada página a mano. Actualizar un sitio web significaba editar el HTML; un rediseño implicaba rehacer cada una de las páginas, una a una. A medida que los sitios web crecían y se volvían más ambiciosos, se hizo rápidamente evidente que ese enfoque era tedioso, lento y, en última instancia, insostenible.</em></p>
+
+<p><em>Un grupo de hackers emprendedores del Centro Nacional de Aplicaciones de Supercomputación (la NCSA, donde se desarrolló Mosaic, el primer navegador web gráfico) resolvió este problema dejando que el servidor web utilizara programas externos que pudieran generar HTML de forma dinámica. Llamaron a este protocolo la Interfaz de Entrada Común (CGI Common Gateway Interface), y cambió la web para siempre. Ahora es difícil imaginar lo que debe haber sido una revelación CGI: en lugar de tratar las páginas HTML como simples archivos en el disco, CGI permite pensar en las páginas como recursos generados dinámicamente bajo pedido.</em></p>
+
+<p><em>El desarrollo de CGI marcó el comienzo de la primera generación de sitios web dinámicos. Sin embargo, CGI tiene sus problemas: Los scripts CGI necesitan contener mucho código repetitivo, dificultan la reutilización de código, y pueden ser difíciles de escribir y entender para los desarrolladores novatos.</em></p>
+
+<p><em>PHP solucionó muchos de estos problemas, y asaltó el mundo -ahora es la herramienta más popular usada para crear sitios web dinámicos, y docenas de lenguajes similares (ASP, JSP, etc.) siguieron de cerca el diseño de PHP. La mayor innovación de PHP es su facilidad de uso: El código PHP es simplemente incrustado en HTML plano; la curva de aprendizaje para alguien que ya conoce HTML es extremadamente superficial.</em></p>
+
+<p><em>Pero PHP tiene sus propios problemas; su gran facilidad de uso fomenta un código descuidado, repetitivo y mal concebido. Peor aún, PHP hace poco para proteger a los programadores de las vulnerabilidades de seguridad, por lo que muchos desarrolladores de PHP se encontraron aprendiendo sobre seguridad sólo una vez que ya era demasiado tarde.</em></p>
+
+<p><em>Estas y otras frustraciones similares condujeron directamente al desarrollo de la actual cosecha de frameworks de tercera generación. Con esta nueva explosión del desarrollo web viene otro incremento ambicioso; se espera que los desarrolladores web hagan más y más cada día.</em></p>
+
+<p><em>Django fue inventado para satisfacer estas nuevas ambiciones.</em></p>
+
+<h2>1.2. La historia de Django</h2>
+
+<p>Django creció orgánicamente a partir de aplicaciones del mundo real escritas por un equipo de desarrollo web en Lawrence, Kansas, USA. Nació en el <strong>otoño de 2003</strong>, cuando los programadores web del periódico Lawrence Journal-World, <strong>Adrian Holovaty</strong> y <strong>Simon Willison</strong>, comenzaron a usar Python para construir aplicaciones.</p>
+
+<p>El equipo de World Online, responsable de la producción y mantenimiento de varios sitios de noticias locales, prosperó en un entorno de desarrollo dictado por los plazos del periodismo. Para los sitios -incluyendo LJWorld.com, Lawrence.com y KUsports.com- los periodistas (y la dirección) exigieron que se añadieran características y se construyeran aplicaciones enteras en tiempo record, a menudo con sólo un día o una hora de antelación. Así, Simon y Adrian desarrollaron un framework de desarrollo web que ahorraba tiempo por necesidad, era la única manera en que podían construir aplicaciones mantenibles bajo estos plazos tan extremos.</p>
+
+<p>En el verano de 2005, después de haber desarrollado este framework hasta el punto en el que alimentaba eficientemente la mayoría de los sitios de World Online, el equipo, que ahora incluía a <strong>Jacob Kaplan-Moss</strong>, decidió lanzar el framework como <strong>software de código abierto</strong>. Lo lanzaron en <strong>julio de 2005</strong> y lo llamaron <strong>Django</strong>, en honor al guitarrista de jazz <a href="https://es.wikipedia.org/wiki/Django_Reinhardt"><strong>Django Reinhardt</strong></a> (un gitano sinti belga creador del Gipsy Jazz).</p>
+
+<p>A pesar de que Django ahora es un proyecto de código abierto con colaboradores en todo el mundo, los desarrolladores originales de World Online todavía aportan una guía centralizada para el crecimiento del framework, y World Online colabora con otros aspectos importantes tales como tiempo de trabajo, materiales de marketing, y hosting/ancho de banda para el <a href="http://www.djangoproject.com/">Web site del framework</a>.</p>
+
+<p>Esta historia es relevante porque ayuda a explicar dos cosas clave:</p>
+
+<ul>
+<li><p>La primera es <strong>el &ldquo;punto fuerte&rdquo; de Django</strong>. Debido a que <strong>Django nació en un entorno de noticias</strong>, ofrece varias características (como su sitio de administración) que son particularmente adecuadas para sitios de &ldquo;contenido&rdquo; como amazon.com, craigslist.org y washingtonpost.com que ofrecen información dinámica y basada en bases de datos. No hay que desanimarse por eso, aunque Django es particularmente bueno para desarrollar ese tipo de sitios, eso no impide que sea una herramienta efectiva para construir cualquier tipo de sitio web dinámico. (Hay una diferencia entre ser particularmente eficaz en algo y ser ineficaz en otras cosas).</p></li>
+<li><p>La segunda cuestión a tener en cuenta es cómo <strong>los orígenes de Django han dado forma a la cultura de su comunidad de código abierto</strong>. Debido a que Django fue extraído del código del mundo real, en lugar de ser un ejercicio académico o un producto comercial, está <strong>muy enfocado en resolver los problemas de desarrollo web</strong> que los propios desarrolladores de Django han afrontado -y continúan afrontando. Como resultado, Django mismo se mejora activamente casi a diario. Los encargados de mantenerlo tienen un gran interés en asegurarse de que Django ahorre tiempo a los desarrolladores, produzca aplicaciones fáciles de mantener y que funcionen bien bajo carga.</p></li>
+</ul>
+
+
+<p>Django permite construir sitios profundos, dinámicos e interesantes en un tiempo extremadamente corto. Django está diseñado para <strong>permitir concentrarse en las partes divertidas e interesantes</strong> del trabajo mientras <strong>alivia el dolor de las partes repetitivas</strong>. Al hacerlo, proporciona abstracciones de alto nivel de los patrones comunes de desarrollo web, atajos para tareas de programación frecuentes y convenciones claras sobre cómo resolver problemas. Al mismo tiempo, Django trata de mantenerse al margen, dejando trabajar fuera del ámbito del <em>framework</em> según sea necesario.</p>
+
+<p>Django hace que el desarrollo web sea mejor. Está diseñado para moverse rápidamente por muchos proyectos Django, y luego, en última instancia, enseñar todo lo que se necesita saber para diseñar, desarrollar e implementar con éxito un sitio del que sentirse orgulloso.</p>
+
+<h2>1.3. Panorama General</h2>
+
+<p><strong>Empezar con Django es difícil</strong> porque es un proyecto muy grande, pero entender cómo se unen todas las partes a un alto nivel, permite dominar Django mucho más rápido.</p>
+
+<p>En el nivel más alto, <strong>Django es un marco de trabajo Modelo-Vista-Controlador -o MVC</strong>.</p>
+
+<p>MVC es un patrón de diseño de software que tiene como objetivo separar una aplicación web en tres partes interconectadas:</p>
+
+<ol>
+<li><p>El <strong>modelo</strong>, que proporciona la interfaz con la base de datos que contiene los datos de la aplicación</p></li>
+<li><p>La <strong>vista</strong>, que decide qué información presentar al usuario y recoge información del usuario</p></li>
+<li><p>El <strong>controlador</strong>, que gestiona la lógica de negocio de la aplicación y actúa como un intermediario de información entre el modelo y la vista.</p></li>
+</ol>
+
+
+<p>Django utiliza una terminología ligeramente diferente en su aplicación del MVC. En Django:</p>
+
+<ol>
+<li><p>El <strong>modelo</strong> es funcionalmente el mismo. El mapeo de objetos relacionales de Django (ORM - <em>Object Relational Mapping</em>) proporciona la interfaz para la base de datos de la aplicación.</p></li>
+<li><p>La <strong>plantilla</strong> proporciona la lógica de visualización y es la interfaz entre el usuario y la aplicación Django.</p></li>
+<li><p>La <strong>vista</strong> gestiona el grueso de las aplicaciones de proceso de datos, la lógica de las aplicaciones y la mensajería.</p></li>
+</ol>
+
+
+<p><img src="./img_introduccion/MTV-Pattern.png" title="" alt="Django Tutorials - Django MTV Design Pattern" data-align="center"></p>
+
+<p>El patrón de diseño de MVC se ha utilizado tanto para aplicaciones de escritorio como para aplicaciones web durante muchos años, por lo que hay un gran número de variaciones en este tema, de las que Django no es una excepción. Si se desea profundizar un poco más en el patrón de diseño de MVC, sólo se debe advertir que <strong>la gente puede ser muy apasionada sobre lo que es una interpretación</strong> diferente de la misma cosa. Tomando prestada una cita del equipo de desarrollo de Django:</p>
+
+<blockquote><p>&ldquo;Al final del día, por supuesto, todo se reduce a hacer las cosas. Y, sin importar el nombre que se les dé, Django las hace de la manera más lógica para nosotros.&rdquo;</p></blockquote>
+
+<h3>1.3.1. Modelos Django</h3>
+
+<p>Los <strong>modelos de Django</strong> proporcionan un <strong>mapeo a objetos relacionales</strong> (ORM <em>Object-Relational Mapper</em>) <strong>de la base de datos</strong> subyacente. ORM es una poderosa técnica de programación que facilita el trabajo con datos y bases de datos relacionales.</p>
+
+<p><strong>La mayoría de las bases de datos</strong> comunes se programan con alguna forma del Lenguaje de Consulta Estructurado (<strong>SQL Structured Query Language</strong>), sin embargo cada base de datos implementa el SQL a su manera. El SQL puede ser bastante complejo y difícil de aprender. <strong>Una herramienta ORM, por otro lado, proporciona un mapeo simple entre un <em>objeto</em> (la &lsquo;O&rsquo; en ORM) y la base de datos</strong> subyacente, sin que el programador necesite conocer la estructura de la base de datos, o requiera un SQL complejo para manipular y recuperar los datos.</p>
+
+<p><img src="./img_introduccion/Django-Models.png" alt="Django Tutorials - Django ORM" /></p>
+
+<p>En Django, <strong>el modelo es el objeto que se asigna a la base de datos</strong>. Cuando se <strong>crea</strong> un modelo, Django <strong>crea una tabla correspondiente</strong> en la base de datos, sin tener que escribir una sola línea de SQL. Django <strong>antepone al nombre de la tabla el nombre de la aplicación</strong> Django.</p>
+
+<p><img src="./img_introduccion/model_table_1.png" alt="Django Tutorials - Model Table" /></p>
+
+<p><strong>El modelo también vincula la información relacionada en la base de datos</strong>. En la figura, se crea un segundo modelo para hacer un seguimiento de los cursos en los que está inscrito un usuario. Repetir toda la información de los usuarios en la tabla <code>yourapp_Course</code> iría en contra de los buenos principios de diseño, por lo que en su lugar se crea una <em>relación</em> (la &lsquo;R&rsquo; en ORM) entre la tabla <code>yourapp_Course</code> y la tabla <code>yourapp_UserProfile</code>.</p>
+
+<p><img src="./img_introduccion/model_table_2.png" alt="Django Tutorials - Model Relationships" /></p>
+
+<p>Esta relación se crea enlazando los modelos con una <em>clave foránea</em>, es decir, el campo <code>user_id</code> en la tabla <code>yourapp_Course</code> es un campo clave que está enlazado con el campo <code>id</code> en la tabla foránea <code>yourapp_UserProfile</code>.</p>
+
+<p>Esto es solo una simplificación, pero es una visión general útil de cómo el ORM de Django utiliza los datos del modelo para crear tablas de bases de datos. Las cosas se aclaran una vez que se tiene la oportunidad de construir modelos reales.</p>
+
+<h3>1.3.2. Bases de datos soportadas</h3>
+
+<p>Django soporta oficialmente cuatro bases de datos:</p>
+
+<ul>
+<li><p>PostgreSQL</p></li>
+<li><p>MySQL</p></li>
+<li><p>SQLite</p></li>
+<li><p>Oracle</p></li>
+</ul>
+
+
+<p>Hay varias aplicaciones de terceros para conectarse a otras bases de datos, si es necesario conectarse a una base de datos con soporte no oficial.</p>
+
+<p><strong>La preferencia de la mayoría de los desarrolladores de Django es PostgreSQL</strong>. MySQL también es un backend de base de datos bastante común para Django. Instalar y configurar una base de datos no es una tarea para un principiante; afortunadamente, Django instala y configura SQLite de forma automática.</p>
+
+<h4>1.3.2.1. ¿Qué base de datos es mejor?</h4>
+
+<p><strong>Primero lo fácil</strong>: SQLite es para el desarrollo y pruebas tempranas. No debe ser usado en producción. Nunca.</p>
+
+<p><strong>La siguiente respuesta es más fácil</strong>: Oracle es para grandes corporaciones con grandes bolsillos. Es poco probable que se tenga que decidir si se utiliza Oracle a menos que se sea una gran empresa, y entonces puede que esa sea la <em>única</em> elección posible.</p>
+
+<p><strong>En cuanto a PostgreSQL y MySQL</strong>: Hay razones definitivas por las que PostgreSQL es una mejor base de datos que MySQL. Sin embargo, para cuando se tenga suficiente experiencia para entender por qué, se estará en posición de juzgar más apropiadamente. La mayoría de las veces la elección la habrá hecho el cliente, el empleador o el anfitrión de la web.</p>
+
+<p>El programador inteligente evita este tipo de argumentos: <strong>Si se puede, utilizar PostgreSQL, de lo contrario MySQL también está bien</strong>.</p>
+
+<h3>1.3.3. Plantillas Django</h3>
+
+<p><strong>Una plantilla Django es un archivo de texto diseñado para separar los datos de una aplicación de la forma en que se presenta</strong>. En la mayoría de los casos, las plantillas Django son archivos de <em>Lenguaje de Marcas de Hipertexto</em> (HTML) para presentar los datos de la aplicación en un navegador web, sin embargo, las plantillas Django no se limitan al HTML, sino que pueden utilizarse para presentar varios formatos de texto diferentes.</p>
+
+<p>El diseño de las plantillas de Django se basa en varios principios básicos, sin embargo, tres son fundamentales:</p>
+
+<ol>
+<li>Un sistema de plantillas debe <strong>separar la lógica</strong> del programa <strong>del diseño</strong> de la web.</li>
+<li>Las plantillas deben <strong>desalentar la redundancia</strong>: no te repitas (DRY <em>Don&rsquo;t Repeat Yourself</em>).</li>
+<li>El sistema de plantillas debe ser <strong>seguro</strong> y estar <strong>a salvo de la ejecución de código</strong> en él.</li>
+</ol>
+
+
+<h3>1.3.4. Separar la lógica del diseño</h3>
+
+<p>El <strong>diseño</strong> y la <strong>programación</strong> web son <strong>dos disciplinas muy diferentes</strong>. En todos los proyectos, excepto en los más pequeños, el diseño y la programación no la hace el mismo equipo; en muchos casos, ni siquiera la misma compañía.</p>
+
+<p>Cuando los creadores de Django consideraron por primera vez el diseño del sistema de plantillas de Django, quedó claro que los <strong>programadores</strong> y <strong>diseñadores</strong> de sitios web de Django deberían ser capaces de <strong>trabajar de forma independiente</strong>. El resultado es un <strong>lenguaje de scripting</strong> de texto plano que utiliza <strong><em>tags</em></strong> para proporcionar una lógica de presentación para decidir qué contenido mostrar en la plantilla.</p>
+
+<p>Esto es más fácil de entender con un simple ejemplo:</p>
+
+<p>```html</p>
+
+<h1>Información de su pedido</h1>
+
+
+<p>Apreciado Sr. {{ person_name }},</p>
+
+
+<p>```</p>
+
+<p>Este podría ser el primer par de líneas de una página de confirmación de pedido, que se muestra en un sitio web después de que el usuario haya hecho una compra. Nótese que la mayoría de este código es HTML simple. <strong>La pequeña parte escrita entre llaves es una <em>etiqueta de variable</em> de Django</strong>. Cuando esta plantilla se muestre en el navegador, la plantilla sustituirá la variable <code>person_name</code> por el nombre que se le pase a la vista.</p>
+
+<p>Como se trata de texto plano y HTML, <strong>un diseñador no necesita saber nada sobre Django para poder crear una plantilla Django</strong>. Todo lo que el diseñador tiene que hacer es añadir un marcador de posición (etiqueta de comentario HTML, por ejemplo), para que el programador lo sustituya por una etiqueta Django al codificar el sitio web.</p>
+
+<p>La otra gran ventaja de este enfoque es que, dado que la mayor parte de la plantilla es HTML simple, como programador, <strong>se puede crear un sitio web de buena apariencia sin un diseñador</strong>: se puede descargar una plantilla HTML de Internet y agregar etiquetas de plantilla Django. Esto también funciona con las plantillas <em>Bootstrap</em> y los sitios pesados en la parte de <em>front-end</em> con JavaScript.</p>
+
+<h3>1.3.5. Don&rsquo;t Repeat Yourself (DRY)</h3>
+
+<p>DRY (Don&rsquo;t Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es <strong>uno de los principios fundamentales de Django</strong>. El principio DRY es particularmente evidente en cómo Django utiliza la <strong><em>herencia de modelos</em></strong>. Para entender mejor cómo la herencia de plantillas nos ayuda a minimizar la repetición y el código redundante, vamos a examinar primero un diseño típico de una página web.</p>
+
+<p><img src="./img_introduccion/template_full.png" alt="Django Tutorials - Webpage Template" /></p>
+
+<p>Este diseño de página tiene <strong>una navegación superior, una imagen de cabecera, un menú lateral izquierdo, el contenido principal de la página y un pie de página</strong>. Si sólo se quisiera crear unas pocas páginas web, se podría copiar la página principal y simplemente <strong>cambiar el contenido</strong> y guardar cada página diferente como un archivo HTML.</p>
+
+<p>El problema es que no sólo estamos repitiendo mucho código, sino que el mantenimiento de un sitio grande podría salirse rápidamente de control. ¡Se tendría que hacer el cambio en cada una de las páginas del sitio!.</p>
+
+<p>Este problema se soluciona creando <strong>una plantilla principal con el contenido común</strong> a todo el sitio web para luego crear plantillas secundarias que heredan estas características comunes y a las que, más tarde, se les agregará cualquier contenido que sea específico.</p>
+
+<p><img src="./img_introduccion/template_both.png" alt="img" /></p>
+
+<p>Se habrá notado que se incluyó la navegación de la barra lateral del hijo. Es común que ciertas páginas de un sitio tengan una navegación limitada, así que no todas las páginas necesitarán la navegación lateral.</p>
+
+<p>Django también admite la herencia múltiple, por lo que, siguiendo con el ejemplo anterior, se podría tener una plantilla hija que agregue sólo la navegación lateral al padre, y luego tener una tercera plantilla que herede de la hija y agregue el contenido.</p>
+
+<p>El único límite a la herencia de plantillas de Django es el práctico: <strong>si se tienen plantillas que heredan más de dos o tres niveles de profundidad, se debería reevaluar el diseño del sitio</strong>.</p>
+
+<h3>1.3.6. Seguridad en las Plantillas</h3>
+
+<p>La filosofía de Django es que Internet ya es lo suficientemente insegura como para introducir más problemas de seguridad al permitir la ejecución de código dentro de las plantillas de las páginas web. La solución de Django a las vulnerabilidades de seguridad de las plantillas es simple: <strong>la ejecución de código está prohibida en las plantillas</strong>.</p>
+
+<p>Las etiquetas de las plantillas de Django proporcionan sólo lógica de visualización, esto incluye:</p>
+
+<ul>
+<li><strong>Mostrar variables</strong>: puede ser un texto simple como el nombre de un usuario, o datos más complejos como texto con formato HTML.</li>
+<li><strong>Elegir el contenido que se va a mostrar</strong>: basándose en comprobaciones lógicas, por ejemplo, si un usuario está conectado, entonces mostrar el menú de usuario o el contenido de ese usuario.</li>
+<li><strong>Iterar sobre las listas de datos</strong>: lo más frecuente es que se utilice para insertar información de la base de datos en las listas de HTML.</li>
+<li><strong>Formateo de los datos</strong>: por ejemplo, formato de fecha, manipulación de texto y otros filtros que actúan sobre los datos.</li>
+</ul>
+
+
+<p>Cosas que <strong>no</strong> se pueden hacer en una plantilla Django:</p>
+
+<ul>
+<li><strong>Ejecutar código Python</strong></li>
+<li><strong>Asignar un valor a una variable</strong></li>
+<li><strong>Realizar la lógica avanzada</strong></li>
+</ul>
+
+
+<p>Las plantillas de Django también añaden <strong>características de seguridad adicionales</strong> como el <strong>escape automático de todas las cadenas</strong>, <strong>Cross-Site Scripting</strong> y la protección <strong>Cross-Site Request Forgery</strong>. Estos dos últimos temas van más allá de un texto inicial, pero es útil comprender que <strong>las plantillas de Django son seguras de forma predeterminada</strong>, por lo que no hay que preocuparse de introducir problemas de seguridad en el sitio web de forma accidental.</p>
+
+<h3>1.3.7. Vistas de Django</h3>
+
+<p>Las vistas de Django son los <em>brokers</em> de información de una aplicación de Django. <strong>Una vista obtiene los datos de la base de datos</strong> (o de una fuente o servicio de datos externos) <strong>y los entrega a una plantilla</strong>.</p>
+
+<ul>
+<li>En el caso de una <strong>aplicación web</strong>, la vista entrega el contenido de la página web y las plantillas</li>
+<li>En el caso de una <strong>API RESTful</strong>, este contenido podría estar formateado adecuadamente en datos JSON.</li>
+</ul>
+
+
+<p>La vista <strong>toma decisiones</strong> sobre los datos que se entregan a la plantilla, ya sea actuando sobre la entrada del usuario o en respuesta a otra lógica de negocio y procesos internos.</p>
+
+<p><strong>Cada vista de Django realiza una función específica y tiene una plantilla asociada</strong>. Las vistas están representadas por una <strong>función</strong> Python, o un <strong>método</strong> de una clase Python. En los inicios de Django, sólo existían vistas basadas en funciones, sin embargo, a medida que Django ha ido creciendo a lo largo de los años, los desarrolladores de Django añadieron a Django vistas basadas en clases.</p>
+
+<p>Las <strong>vistas basadas en clases</strong> añaden <strong>extensibilidad</strong> a las vistas de Django, así como vistas incorporadas que hacen que la creación de vistas comunes (como la visualización de una lista de artículos) sea más fácil de implementar. No preocuparse demasiado por las diferencias entre las vistas basadas en funciones y las basadas en clases por ahora.</p>
+
+<p>Para aliviar la carga de los programadores, muchas tareas de visualización comunes tienen vistas incorporadas en Django. Hay <strong>cuatro vistas incorporadas</strong> basadas en <strong>funciones</strong> para mostrar las páginas de error:</p>
+
+<ul>
+<li>La vista <strong>404</strong> (page not found)</li>
+<li>La vista <strong>500</strong> (server error)</li>
+<li>La vista <strong>403</strong> (HTTP Forbidden)</li>
+<li>La vista <strong>400</strong> (bad request)</li>
+</ul>
+
+
+<p>También hay <strong>varias vistas basadas en clases</strong> para simplificar las <strong>tareas comunes de visualización</strong>. Entre ellas se incluyen:</p>
+
+<ul>
+<li><code>ListView</code> para mostrar una lista de objetos de datos (por ejemplo, lista de todos los artículos)</li>
+<li><code>DetailView</code> para mostrar un solo objeto (por ejemplo, un artículo individual)</li>
+<li><code>RedirectView</code> redirige a otra URL</li>
+<li><code>FormView</code> para mostrar un formulario</li>
+</ul>
+
+
+<p>También se proporcionan <strong>vistas de fechas genéricas</strong> adicionales basadas en clases para mostrar colecciones de objetos de día, semana, mes y año, como entradas de blog y artículos.</p>
+
+<h3>1.3.8. URLconf - Colocando todo junto</h3>
+
+<p>Un sitio web no es de mucha utilidad si no se puede navegar por él: <strong>hay que decirle a la vista qué mostrar en el navegador, en base a lo que el usuario ha solicitado</strong>.</p>
+
+<p>La navegación en un sitio web Django es la misma que en cualquier otro sitio web: <strong>las páginas y otros contenidos se acceden a través de la URL</strong>. Cuando un usuario hace clic en un enlace de un sitio web, se envía una solicitud de esa URL a Django.</p>
+
+<p><img src="./img_introduccion/browser2django.png" alt="img" /></p>
+
+<p>Una vez que Django recibe la URL solicitada, debe decidir qué vista se ocupará de la solicitud. El programador decide qué vista servirá en qué URL creando una <strong>Configuración de URL</strong> (URLconf para abreviar) en un archivo de Python llamado <code>urls.py</code>. Cuando Django encuentra una URL en <code>urls.py</code> que coincide con la URL solicitada, llama a la vista asociada a esa URL.</p>
+
+<p><img src="./img_introduccion/urls2view.png" alt="Django Tutorials - URLs to View" /></p>
+
+<p>La vista seleccionada entonces renderiza el contenido a una plantilla, según la lógica de negocio de la vista y envía el contenido renderizado de vuelta al navegador para su visualización.</p>
+
+<p><img src="./img_introduccion/views2browser.png" alt="Django Tutorials - Views to Browser" /></p>
+
+<p>Por supuesto, esto es una simplificación: <strong>Django puede recoger datos mucho más complejos del navegador que una URL</strong>, y las vistas no sólo representan páginas web. También hay <strong>otra capa colchón</strong> en Django que se sitúa entre la solicitud del navegador y la respuesta de la vista (a la que Django llama, de forma bastante inteligente, &ldquo;<strong>middleware</strong>&rdquo;) que permite hacer toneladas de cosas geniales con los datos.</p>
+
+<p>La <strong>clave</strong> aquí es que, independientemente de lo complejo que sea un sitio web, este <strong>simple proceso</strong> subyace en toda la comunicación entre Django, el navegador y el usuario final.</p>
+
+<p>Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de Django y de cómo Django se comunica con el navegador para mostrar el contenido de un sitio.</p>
+
+<p><strong>No preocuparse si se está todavía un poco confundido con todo esto. A medida que se va profundizando y se empieza a desarrollar aplicaciones reales de Django, se hace mucho más fácil comprender cómo funciona todo.</strong></p>
+
+<h2>1.4. El plan</h2>
+
+<ul>
+<li>Aprendizaje basado en proyectos
+
+<ul>
+<li>5 Proyectos progresivos</li>
+</ul>
+</li>
+<li>Libre y Open Source</li>
+<li>Lo que hace que Django sea impresionante es su filosofía de &ldquo;viene en la caja&rdquo; ó &ldquo;pilas incluidas&rdquo; (<em>&ldquo;comes with the box&rdquo;</em> ó <em>&ldquo;batteries-included&rdquo;</em>). Permite una rápida implementación porque las partes más importantes ya están allí.</li>
+<li>Robusto
+
+<ul>
+<li>Instagram, Pinterest (Flask; más personalizable y adecuado para  API&rsquo;s), Bitbucket, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite</li>
+</ul>
+</li>
+<li>Se usará <code>pipenv</code></li>
+</ul>
+
+
+<h3>1.4.1. Por qué Django <em>&ldquo;comes with the box&rdquo;</em> ó <em>&ldquo;batteries-included&rdquo;</em></h3>
+
+<ul>
+<li>La mayoría de los sites usan las mismas funcionalidades básicas
+
+<ul>
+<li>Autenticación de usuarios</li>
+<li>Conexión a bases de datos</li>
+<li>Rutas</li>
+<li>Contenidos de una página</li>
+<li>Gestión de la seguridad</li>
+<li>Interfaz de administración</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Hay que centrarse en <strong>nuevas</strong> funcionalidades: no reinventar la rueda.</li>
+<li>Django abraza el &ldquo;batteries-included&rdquo; frente a la aproximación &ldquo;microframework&rdquo; (Flask).
+
+<ul>
+<li>Menos flexible pero también menos tendente al error (Django) frente a más personalizable y simple (Flask).</li>
+</ul>
+</li>
+<li>Es un entorno muy maduro (2005).</li>
+<li>Aprendamos de las mejores prácticas.</li>
+</ul>
+
+
+<h3>1.4.2. Por qué unos apuntes</h3>
+
+<ul>
+<li>Django está bien <a href="https://docs.djangoproject.com/es/3.0/">documentado</a> pero es difícil de abordar para el principiante</li>
+<li>Incluso el <a href="https://docs.djangoproject.com/es/3.0/intro/tutorial01/">tutorial básico</a> es notablemente arduo</li>
+<li>El problema viene de que está orientado a la <strong>profundidad</strong> y no a la <strong>facilidad de uso</strong></li>
+<li>Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS</li>
+</ul>
+
+
+<h3>1.4.3 Estructura</h3>
+
+<p>1.Introducción</p>
+
+<p>2.Configuración inicial</p>
+
+<ul>
+<li>Django 3.0</li>
+<li>Python 3.8</li>
+<li>Pipenv
+
+<ul>
+<li>Emacs/Vim/Visual Studio Codium/Pycharm</li>
+</ul>
+</li>
+<li>Terminal</li>
+</ul>
+
+
+<p>3.Aplicación &ldquo;Hello World&rdquo;</p>
+
+<ul>
+<li>Configuración de un proyecto Django</li>
+<li>Git/GitLab/BitBucker</li>
+</ul>
+
+
+<p>4.Aplicación &ldquo;Pages&rdquo;</p>
+
+<ul>
+<li>Don&rsquo;t Repeat Yourserlf (DRY)</li>
+<li>Platform as a service (PaaS): Heroku</li>
+</ul>
+
+
+<p>5.Aplicación &ldquo;Message Board&rdquo;</p>
+
+<ul>
+<li>Bases de datos: ORM</li>
+<li>Test</li>
+<li>GitHub</li>
+<li>Heroku</li>
+</ul>
+
+
+<p>6-8.Aplicación &ldquo;Blog&rdquo;</p>
+
+<ul>
+<li>CRUD (Create-Read-Update-Delete)</li>
+<li>log in, log out, sign up</li>
+</ul>
+
+
+<p>9.Aplicación &ldquo;Newspaper&rdquo;</p>
+
+<ul>
+<li>Concepto de &ldquo;Modelos de usuario personalizados&rdquo;</li>
+</ul>
+
+
+<p>10.Autenticación de usuarios</p>
+
+<p>11.Bootstrap</p>
+
+<p>12-13.Reseteo y cambio de contraseñas vía email</p>
+
+<p>14-15.Artículos y comentarios para &ldquo;Newspaper&rdquo;</p>
+
+<ol>
+<li>&ldquo;Hasta el infinito y más allá&rdquo;</li>
+</ol>
+
+
+</body>
+</html>

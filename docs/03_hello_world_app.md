@@ -4,7 +4,8 @@
 
 ## 3.1 Configuración inicial
 
-```
+
+```bash
 $ cd ~/Escritorio
 $ mkdir helloworld
 $ cd helloworld
@@ -44,7 +45,7 @@ $ pipenv shell
 - Cada **app** resuelve una funcionalidad concreta
 - Crear la **app** `pages`
 
-```
+```bash
 (helloworld) $ python manage.py startapp pages
 (helloworld) $ tree
 ...

@@ -2,7 +2,8 @@
 
 ## 1.1. Introducción a Django
 
-El gran software de código abierto casi siempre se construye porque uno o más desarrolladores inteligentes tenían un problema que resolver y no había ninguna solución viable o rentable disponible. Django no es una excepción. **Adrian** y **Jacob** hace tiempo que se retiraron del proyecto, pero los fundamentos de lo que los llevó a crear Django siguen vivos. Es esta sólida base de experiencia en el mundo real la que ha hecho a Django tan exitoso como lo es. En reconocimiento a su contribución, es mejor que les dejemos presentar a Django con sus propias palabras (editado y reformateado a partir del libro original).
+El gran software de código abierto casi siempre se construye porque uno o más desarrolladores inteligentes tenían un problema que resolver y no había ninguna solución viable o rentable disponible. Django no es una excepción. **Adrian** y **Jacob** hace tiempo que se retiraron del proyecto, pero los fundamentos de lo que los llevó a crear Django siguen vivos. Es esta sólida base de experiencia en el mundo real la que ha hecho a Django tan exitoso como es.
+En reconocimiento a su contribución, es mejor que les dejemos presentar a Django con sus propias palabras (editado y reformateado a partir del libro original).
 
 ### 1.1.1. Por **Adrian Holovaty** y **Jacob Kaplan-Moss**  (Diciembre 2009)
 
@@ -12,11 +13,11 @@ El gran software de código abierto casi siempre se construye porque uno o más 
 
 *El desarrollo de CGI marcó el comienzo de la primera generación de sitios web dinámicos. Sin embargo, CGI tiene sus problemas: Los scripts CGI necesitan contener mucho código repetitivo, dificultan la reutilización de código, y pueden ser difíciles de escribir y entender para los desarrolladores novatos.*
 
-*PHP solucionó muchos de estos problemas, y asaltó el mundo -ahora es la herramienta más popular usada para crear sitios web dinámicos, y docenas de lenguajes similares (ASP, JSP, etc.) siguieron de cerca el diseño de PHP. La mayor innovación de PHP es su facilidad de uso: El código PHP es simplemente incrustado en HTML plano; la curva de aprendizaje para alguien que ya conoce el HTML es extremadamente superficial.*
+*PHP solucionó muchos de estos problemas, y asaltó el mundo -ahora es la herramienta más popular usada para crear sitios web dinámicos, y docenas de lenguajes similares (ASP, JSP, etc.) siguieron de cerca el diseño de PHP. La mayor innovación de PHP es su facilidad de uso: El código PHP es simplemente incrustado en HTML plano; la curva de aprendizaje para alguien que ya conoce HTML es extremadamente superficial.*
 
 *Pero PHP tiene sus propios problemas; su gran facilidad de uso fomenta un código descuidado, repetitivo y mal concebido. Peor aún, PHP hace poco para proteger a los programadores de las vulnerabilidades de seguridad, por lo que muchos desarrolladores de PHP se encontraron aprendiendo sobre seguridad sólo una vez que ya era demasiado tarde.*
 
-*Estas y otras frustraciones similares condujeron directamente al desarrollo de la actual cosecha de marcos de desarrollo web de tercera generación. Con esta nueva explosión de desarrollo web viene otro aumento de la ambición; se espera que los desarrolladores web hagan más y más cada día.*
+*Estas y otras frustraciones similares condujeron directamente al desarrollo de la actual cosecha de frameworks de tercera generación. Con esta nueva explosión del desarrollo web viene otro incremento ambicioso; se espera que los desarrolladores web hagan más y más cada día.*
 
 *Django fue inventado para satisfacer estas nuevas ambiciones.*
 
@@ -24,16 +25,17 @@ El gran software de código abierto casi siempre se construye porque uno o más 
 
 Django creció orgánicamente a partir de aplicaciones del mundo real escritas por un equipo de desarrollo web en Lawrence, Kansas, USA. Nació en el **otoño de 2003**, cuando los programadores web del periódico Lawrence Journal-World, **Adrian Holovaty** y **Simon Willison**, comenzaron a usar Python para construir aplicaciones.
 
-El equipo de World Online, responsable de la producción y mantenimiento de varios sitios de noticias locales, prosperó en un entorno de desarrollo dictado por los plazos del periodismo. Para los sitios -incluyendo LJWorld.com, Lawrence.com y KUsports.com- los periodistas (y la dirección) exigieron que se añadieran características y se construyeran aplicaciones enteras en un horario intensamente rápido, a menudo con sólo un día u hora de aviso. Así, Simon y Adrian desarrollaron un marco de desarrollo web que ahorraba tiempo por necesidad, era la única manera en que podían construir aplicaciones mantenibles bajo estos plazos extremos.
+El equipo de World Online, responsable de la producción y mantenimiento de varios sitios de noticias locales, prosperó en un entorno de desarrollo dictado por los plazos del periodismo. Para los sitios -incluyendo LJWorld.com, Lawrence.com y KUsports.com- los periodistas (y la dirección) exigieron que se añadieran características y se construyeran aplicaciones enteras en tiempo record, a menudo con sólo un día o una hora de antelación. Así, Simon y Adrian desarrollaron un framework de desarrollo web que ahorraba tiempo por necesidad, era la única manera en que podían construir aplicaciones mantenibles bajo estos plazos tan extremos.
 
-En el verano de 2005, después de haber desarrollado este marco de trabajo hasta un punto en el que alimentaba eficientemente la mayoría de los sitios de World Online, el equipo, que ahora incluía a **Jacob Kaplan-Moss**, decidió lanzar el marco de trabajo como **software de código abierto**. Lo lanzaron en **julio de 2005** y lo llamaron **Django**, en honor al guitarrista de jazz [**Django Reinhardt**](https://es.wikipedia.org/wiki/Django_Reinhardt) (un gitano sinti belga creador del Gipsy Jazz).
+En el verano de 2005, después de haber desarrollado este framework hasta el punto en el que alimentaba eficientemente la mayoría de los sitios de World Online, el equipo, que ahora incluía a **Jacob Kaplan-Moss**, decidió lanzar el framework como **software de código abierto**. Lo lanzaron en **julio de 2005** y lo llamaron **Django**, en honor al guitarrista de jazz [**Django Reinhardt**](https://es.wikipedia.org/wiki/Django_Reinhardt) (un gitano sinti belga creador del Gipsy Jazz).
 
-A pesar de que Django ahora es un proyecto de código abierto con colaboradores por todo el mundo, los desarrolladores originales de World Online todavía aportan una guía centralizada para el crecimiento del framework, y World Online colabora con otros aspectos importantes tales como tiempo de trabajo, materiales de marketing, y hosting/ancho de banda para el [Web site del framework](http://www.djangoproject.com/).
+A pesar de que Django ahora es un proyecto de código abierto con colaboradores en todo el mundo, los desarrolladores originales de World Online todavía aportan una guía centralizada para el crecimiento del framework, y World Online colabora con otros aspectos importantes tales como tiempo de trabajo, materiales de marketing, y hosting/ancho de banda para el [Web site del framework](http://www.djangoproject.com/).
 
 Esta historia es relevante porque ayuda a explicar dos cosas clave:
 
-- La primera es **el "punto dulce" de Django**. Debido a que **Django nació en un entorno de noticias**, ofrece varias características (como su sitio de administración) que son particularmente adecuadas para sitios de "contenido" como Amazon.com, craigslist.org y washingtonpost.com que ofrecen información dinámica y basada en bases de datos. No hay que desanimarse por eso, aunque Django es particularmente bueno para desarrollar ese tipo de sitios, eso no impide que sea una herramienta efectiva para construir cualquier tipo de sitio web dinámico. (Hay una diferencia entre ser particularmente eficaz en algo y ser ineficaz en otras cosas).
-- La segunda cuestión a tener en cuenta es cómo **los orígenes de Django han dado forma a la cultura de su comunidad de código abierto**. Debido a que Django fue extraído del código del mundo real, en lugar de ser un ejercicio académico o un producto comercial, está **muy enfocado en resolver los problemas de desarrollo web** que los propios desarrolladores de Django han afrontado -y continúan afrontando-. Como resultado, Django mismo se mejora activamente casi a diario. Los encargados de mantener el marco de trabajo tienen un gran interés en asegurarse de que Django ahorre tiempo a los desarrolladores, produzca aplicaciones fáciles de mantener y funcione bien bajo carga.
+- La primera es **el "punto fuerte" de Django**. Debido a que **Django nació en un entorno de noticias**, ofrece varias características (como su sitio de administración) que son particularmente adecuadas para sitios de "contenido" como amazon.com, craigslist.org y washingtonpost.com que ofrecen información dinámica y basada en bases de datos. No hay que desanimarse por eso, aunque Django es particularmente bueno para desarrollar ese tipo de sitios, eso no impide que sea una herramienta efectiva para construir cualquier tipo de sitio web dinámico. (Hay una diferencia entre ser particularmente eficaz en algo y ser ineficaz en otras cosas).
+
+- La segunda cuestión a tener en cuenta es cómo **los orígenes de Django han dado forma a la cultura de su comunidad de código abierto**. Debido a que Django fue extraído del código del mundo real, en lugar de ser un ejercicio académico o un producto comercial, está **muy enfocado en resolver los problemas de desarrollo web** que los propios desarrolladores de Django han afrontado -y continúan afrontando. Como resultado, Django mismo se mejora activamente casi a diario. Los encargados de mantenerlo tienen un gran interés en asegurarse de que Django ahorre tiempo a los desarrolladores, produzca aplicaciones fáciles de mantener y que funcionen bien bajo carga.
 
 Django permite construir sitios profundos, dinámicos e interesantes en un tiempo extremadamente corto. Django está diseñado para **permitir concentrarse en las partes divertidas e interesantes** del trabajo mientras **alivia el dolor de las partes repetitivas**. Al hacerlo, proporciona abstracciones de alto nivel de los patrones comunes de desarrollo web, atajos para tareas de programación frecuentes y convenciones claras sobre cómo resolver problemas. Al mismo tiempo, Django trata de mantenerse al margen, dejando trabajar fuera del ámbito del *framework* según sea necesario.
 
@@ -55,11 +57,11 @@ MVC es un patrón de diseño de software que tiene como objetivo separar una apl
 
 Django utiliza una terminología ligeramente diferente en su aplicación del MVC. En Django:
 
-4. El **modelo** es funcionalmente el mismo. El mapeo de objetos relacionales de Django (ORM - *Object Relational Mapping*) proporciona la interfaz para la base de datos de la aplicación.
+1. El **modelo** es funcionalmente el mismo. El mapeo de objetos relacionales de Django (ORM - *Object Relational Mapping*) proporciona la interfaz para la base de datos de la aplicación.
 
-5. La **plantilla** proporciona la lógica de visualización y es la interfaz entre el usuario y la aplicación Django.
+2. La **plantilla** proporciona la lógica de visualización y es la interfaz entre el usuario y la aplicación Django.
 
-6. La **vista** gestiona el grueso de las aplicaciones de proceso de datos, la lógica de las aplicaciones y la mensajería.
+3. La **vista** gestiona el grueso de las aplicaciones de proceso de datos, la lógica de las aplicaciones y la mensajería.
 
 <img src="./img_introduccion/MTV-Pattern.png" title="" alt="Django Tutorials - Django MTV Design Pattern" data-align="center">
 
@@ -131,6 +133,7 @@ Cuando los creadores de Django consideraron por primera vez el diseño del siste
 
 Esto es más fácil de entender con un simple ejemplo:
 
+
 ```html
 <h1>Información de su pedido</h1>
 <p>Apreciado Sr. {{ person_name }},</p>
@@ -144,7 +147,9 @@ La otra gran ventaja de este enfoque es que, dado que la mayor parte de la plant
 
 ### 1.3.5. Don't Repeat Yourself (DRY)
 
-DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es **uno de los principios fundamentales de Django**. El principio DRY es particularmente evidente en cómo Django utiliza la ***herencia de modelos***. Para entender mejor cómo la herencia de plantillas nos ayuda a minimizar la repetición y el código redundante, vamos a examinar primero un diseño típico de una página web.
+DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es **uno de los principios fundamentales de Django**. El principio DRY es particularmente evidente en cómo Django utiliza la ***herencia de modelos***.
+
+Para entender mejor cómo la herencia de plantillas nos ayuda a minimizar la repetición y el código redundante, vamos a examinar primero un diseño típico de una página web.
 
 ![Django Tutorials - Webpage Template](./img_introduccion/template_full.png)
 
@@ -232,7 +237,7 @@ La **clave** aquí es que, independientemente de lo complejo que sea un sitio we
 
 Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de Django y de cómo Django se comunica con el navegador para mostrar el contenido de un sitio.
 
-**No preocuparse si se está todavía un poco confundido con todo esto. A medida que se va profundizando y se empieza a desarrollar aplicaciones reales de Django, se hace mucho más fácil comprender cómo funciona todo.**
+**No es preocupante si se está todavía un poco confundido con todo esto. A medida que se profundiza y se empieza a desarrollar aplicaciones reales de Django, se hace mucho más fácil comprender cómo funciona todo.**
 
 ## 1.4. El plan
 
@@ -276,7 +281,7 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 - Django 3.0
 - Python 3.8
 - Pipenv
-- Emacs/Vim/Visual Studio Codium/Pycharm
+  - Emacs/Vim/VS Codium/Pycharm
 - Terminal
 
 3.Aplicación "Hello World"

@@ -16,25 +16,25 @@ Cuando se trata de comparar Django con otros *frameworks* web,  la única compar
 
 O para decirlo de otra manera, *¿quieres **código estable y mantenible** que puedas entregar en un plazo determinado? ¿O quieres una caja de magia arcana y una plantilla que haga que los profesores de la universidad te quieran y los que la mantienen te odien al mismo tiempo?*
 
-Django tiene sus asperezas, pero su **enfoque práctico** para hacer las cosas es lo que realmente lo destaca de la multitud. Django tiene muchos partidarios y unos cuantos detractores, así que no dudar en **sacar conclusiones propias**.
+Django tiene sus asperezas, pero su **enfoque práctico** para hacer las cosas es lo que realmente lo destaca de la multitud. Django tiene muchos partidarios y unos cuantos detractores, así que no dudes en **sacar conclusiones propias**.
 
 ## Las 10 razones de Django
 
 ### 1. Python
 
-Se puede decir que Python es el lenguaje de programación **más fácil de aprender**.
+Se puede decir que Python es uno de los lenguajes de programación **más fácil de aprender**.
 
-Con su uso de construcciones de lenguaje natural (por ejemplo, disposición y sangría parecida a la de un párrafo) y una sintaxis fácil de aprender, Python hace que la comprensión de la estructura y el flujo de los programas sea significativamente más fácil de aprender que otros lenguajes populares.
+Con su uso de construcciones de lenguaje natural (por ejemplo, la disposición y la sangría parecida a la de un párrafo) y una sintaxis fácil de aprender, Python hace que la comprensión de la estructura y el flujo de los programas sea significativamente más fácil de aprender que en otros lenguajes populares.
 
 Esto se pone de manifiesto en el hecho de que la mayor proporción de cursos de programación introductorios en universidades e institutos de enseñanza superior eligen Python como lenguaje.
 
-**Python es versátil**. Ejecuta sitios web y se utiliza en muchas aplicaciones de escritorio populares en PC y Mac. También se puede encontrar en aplicaciones móviles e incorporado en muchos dispositivos. Python también es un lenguaje de programación popular para otras aplicaciones.
+**Python es versátil**. Ejecuta sitios web y se utiliza en muchas aplicaciones de escritorio populares en PC y Mac. También se puede encontrar en aplicaciones móviles e incorporado en muchos dispositivos. Python también es un lenguaje de programación popular en otras aplicaciones.
 
 Aprender Python casi seguro que será útil, sin importar la carrera que se elija.
 
-**Python es popular**. Google, una de las empresas más grandes del mundo, utiliza Python en muchas de sus aplicaciones. También es usado ampliamente por programadores profesionales.
+**Python es popular**. Google, una de las empresas más grandes del mundo, utiliza Python en muchas de sus aplicaciones. También se usa ampliamente por programadores profesionales.
 
-Algunos datos interesantes de la encuesta de desarrolladores de Stack Overflow de 2017:
+Algunos datos interesantes de la encuesta de desarrolladores de Stack Overflow desde 2017:
 
 - Python es el segundo en crecimiento en los últimos cinco años, después de node.js. PHP, Java y Ruby han disminuido en popularidad.
 - Python es ya más común que PHP.
@@ -177,7 +177,7 @@ Las versiones LTS se lanzan con un **período de soporte garantizado** (normalme
 
 El proceso de lanzamiento de Django asegura que las versiones oficiales sean tan estables como sea posible. Tras una fase de desarrollo, cada versión entra en una fase Alfa en la que se aplica una congelación de características.
 
-La nueva versión pasa entonces por las fases Beta y Candidata a la Liberación (RC Release Candidate), donde se trabajan los errores de la versión. Si no se encuentran errores importantes durante un período después de la versión candidata, se lanzará la versión final (FR Feature Release).
+La nueva versión pasa entonces por las fases Beta y Candidata a la Liberación (**RC Release Candidate**), donde se trabajan los errores de la versión. Si no se encuentran errores importantes durante un período después de la versión candidata, se lanzará la versión final (**FR Feature Release**).
 
 Después de que la versión final ha sido liberada, sólo se aplican correcciones de errores y parches de seguridad. Estos parches, como en las versiones LTS, son 100% compatibles con la *feature release*.
 
@@ -185,7 +185,7 @@ Después de que la versión final ha sido liberada, sólo se aplican correccione
 
 Incluso en las primeras versiones, los desarrolladores de Django se aseguraron de que la **documentación** fuera **completa** y que los **tutoriales** fueran fáciles de seguir.
 
-La documentación debería ser la **razón número uno de esta lista** porque fue la calidad de la documentación lo que en muchos casos prevalece en la elección de Django sobre otras opciones.
+La documentación debería ser la **razón número uno de esta lista** porque es la calidad de la documentación lo que en muchos casos prevalece en la elección de Django sobre otras opciones.
 
 Django también cuenta con un fuerte apoyo de los miembros de la comunidad que producen **materiales de aprendizaje** gratuitos, libros, cursos pagados y gratuitos y muchos consejos, trucos y asistencia en sus sitios web.
 
@@ -195,5 +195,5 @@ Hay muchos grupos. Algunos de los más relevantes son:
 + Danny y Audrey en [Feldroy](https://www.feldroy.com/)
 + [Django Girls](https://djangogirls.org/)
 
-Por supuesto, también se van a descubrir cosas sobre Django que parecerán frustrantes pero, dado que todos los lenguajes de programación y *frameworks* construidos sobre ellos tienen sus idiosincrasias, seguro que se descubrirá que cuando se trata de construir rápidamente sitios web seguros y escalables, los beneficios de Django superan con creces a sus desafíos.
+Por supuesto, también se van a descubrir cosas sobre Django que *parecerán frustrantes* pero, dado que todos los lenguajes de programación y *frameworks* construidos sobre ellos tienen sus idiosincrasias, seguro que se descubrirá que cuando se trata de construir rápidamente sitios web seguros y escalables, los beneficios de Django superan con creces a los desafíos.
 
