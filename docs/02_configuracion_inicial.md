@@ -3,8 +3,8 @@
 - Objetivos 
   - Configurar el entorno para programar en proyectos Django
   - Uso de la línea de comandos para instalar: 
-    - Django 3.0
-    - Python 3.8
+    - Django 3.1
+    - Python 3.9
   - Git
   - Editor de texto
 
@@ -57,8 +57,8 @@
 $ cd ~/Escritorio
 $ mkdir django
 $ cd django
-$ pipenv install django
 $ pipenv shell
+$ pipenv install django
 ```
 
 - Crear nuevo proyecto `test`. No olvidar el "." al final.

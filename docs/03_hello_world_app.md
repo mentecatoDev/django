@@ -1,9 +1,8 @@
 # 3 Hello World app
 
-- Objetivo: Crear la típica aplicación "Hello World"
+En esta sección se marca como **objetivo** para comenzar las pruebas con django crear la típica aplicación "Hello World"
 
 ## 3.1 Configuración inicial
-
 
 ```bash
 $ cd ~/Escritorio
@@ -68,7 +67,7 @@ $ pipenv shell
   - `tests.py`: Es para los tests específicos de la **app**
   - `views.py`: Es donde se gestiona la lógica petición/respuesta *(request/response)* de la **app**
 - Aunque la **app** existe, Django no sabe nada de ella hasta que se la añadimos explícitamente.
-- Para incluir la app en el proyecto se necesita añadir una **referencia a su clase de configuración** en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` está en el archivo `pages/apps.py` , por eso su *path* con puntos es `'pages.apps.PagesConfig'`.
+- Para incluir la app en el proyecto se necesita añadir una **referencia a su clase de configuración** en la lista [`INSTALLED_APPS`](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS). La clase `PagesConfig` está en el archivo `pages/apps.py` , es por eso por lo que su *path* expresado con puntos de separación enter directorios es `'pages.apps.PagesConfig'`.
 
 > DETALLE
 > Tener en cuenta que dentro de cada aplicación, Django crea un archivo, `apps.py`, que contiene una clase de configuración con el nombre de la aplicación. En este caso, la clase se llama `PagesConfig`. Para registrar nuestra aplicación con Django, se necesita apuntar a la clase `PagesConfig`.
@@ -76,7 +75,7 @@ $ pipenv shell
 
  FICHERO: `settings.py` 
 
-```
+```python
 ...
     # helloworld_project/settings.py
     INSTALLED_APPS = [
@@ -91,53 +90,52 @@ $ pipenv shell
 ...
 ```
 
-- *Ojo, el **orden** importa; si varias aplicaciones intentan acceder al mismo recurso, la **app** que aparece primero tiene preferencia.*
+*Ojo, el **orden** importa; si varias aplicaciones intentan acceder al mismo recurso, la **app** que aparece primero tiene preferencia.*
 
 > DETALLE: `settings.py`
-> El fichero **settings.py** se usa para configurar muchos otros ajustes, pero en este punto probablemente sólo se querrá cambiar la [TIME_ZONE](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-TIME_ZONE) — ésta debería ser igual a una cadena de la [Lista de base de datos tz de time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (la columna *TZ column* de la tabla contiene los valores que se necesitan). Cambiar la `TIME_ZONE` al valor de entre estas cadenas que sea apropiado para el uso horario que se requiera, por ejemplo:
+> El fichero **settings.py** se usa para configurar muchos otros ajustes, pero en este punto probablemente sólo se querrá cambiar la [TIME_ZONE](https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-TIME_ZONE) —ésta debería ser igual a una cadena de la [lista de base de datos tz de time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (la columna *TZ column* de la tabla contiene los valores que se necesitan). Cambiar la `TIME_ZONE` al valor de entre estas cadenas que sea apropiado para el uso horario que se requiera, por ejemplo:
 > 
 > ```
 > TIME_ZONE = 'Europe/Madrid'
 > ```
-> 
+
 > Hay otros dos ajustes que no se cambiarán ahora, pero de los que se debería ser consciente:
 > 
 > - `SECRET_KEY`. Ésta es una clave secreta que se usa como parte de la estrategia de seguridad del sitio web de Django. Si no se va a proteger este código durante el desarrollo, se necesitará usar un código diferente (quizás leyendo de una variable de entorno o un fichero)  cuando se ponga en producción. 
 > - `DEBUG`. Esto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a `false` en producción, ya que la información de depuración es útil a los atacantes. 
-> 
-> En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, `INSTALLED_APPS` contiene las siguientes aplicaciones, todas ellas incluidas en Django:
-> 
-> `django.contrib.admin` : El sitio de administración.
-> `django.contrib.auth` : Un sistema de autenticación.
-> `django.contrib.contenttypes` : Un marco de trabajo para los tipos de contenido.
-> `django.contrib.sessions` : Un marco de trabajo de sesiones.
-> `django.contrib.messages` : Un marco de mensajes.
-> `django.contrib.staticfiles`: Un marco de trabajo para la gestión de archivos estáticos.
-> 
-> Estas aplicaciones se incluyen de forma predeterminada como una conveniencia para el caso común. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesitan crear las tablas de la base de datos antes de poder utilizarlas. Para ello, hemos de hacer una **migración** con el siguiente comando:
-> 
-> ```
-> python manage.py migrate
-> ```
-> 
-> El comando de migración mira la configuración de `INSTALLED_APPS` y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos del archivo `settings.py` y las migraciones de bases de datos enviadas con cada aplicación. Se cubrirá más adelante.
+
+En la configuración de `INSTALLED_APPS`, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, `INSTALLED_APPS` contiene las siguientes aplicaciones, todas ellas incluidas en Django:
+
+- `django.contrib.admin` : El sitio de administración.
+- `django.contrib.auth` : Un sistema de autenticación.
+- `django.contrib.contenttypes` : Un marco de trabajo para los tipos de contenido.
+- `django.contrib.sessions` : Un marco de trabajo de sesiones.
+- `django.contrib.messages` : Un marco de mensajes.
+- `django.contrib.staticfiles`: Un marco de trabajo para la gestión de archivos estáticos.
+
+Estas aplicaciones se incluyen de forma predeterminada porque son convenientes para la mayoría de los casos. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesitan crear las tablas de la base de datos antes de poder utilizarlas. Para ello, hemos de hacer una **migración** con el siguiente comando:
+
+```bash
+$ python manage.py migrate
+```
+
+El comando de migración mira la configuración de `INSTALLED_APPS` y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos del archivo `settings.py` y las migraciones de bases de datos enviadas con cada aplicación. **Se cubrirá más adelante**.
 
 ## 3.3 Vistas (Views) y configurariones de URL's (URLConfs)
 
-- En *Django*, las vistas determinan qué contenido se muestra mientras que *URLConfs* indica dónde va ese contendio.
+En *Django*, las vistas determinan qué contenido se muestra mientras que *URLConfs* indica dónde va ese contendio.
 
-- URLConf utiliza una expresión regular para mapear las peticiones a la función apropiada de la vista que devuelve los datos correctos. 
-  
-  - La vista saca el texto `Hello, World` mientras que la url se asegurará de que cuando el usuario visita la página sea redireccionado a la vista correcta.
-  
-  - Cuando se escribe una URL, lo primero que ocurre dentro del proyecto *Django* es que se encuentra un patrón que coincide con la página de inicio (*homepage*). El `urlpattern` especifica una **vista**, que determinará el contenido de la página (normalmente desde una base de datos), y una **plantilla** (*template*) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.
-    
-    <div class=text-center>
-    URL -> View -> Model (típicamente) -> Template 
-    </div>
+URLConf utiliza una **expresión regular** para mapear las peticiones a la función apropiada de la vista que devuelve los datos correctos. 
+
+La vista saca el texto `Hello, World` mientras que la url se asegurará de que cuando el usuario visita la página sea **redireccionado** a la vista correcta.
+
+Cuando se escribe una URL, lo primero que ocurre dentro del proyecto *Django* es que se encuentra un patrón que coincide con la página de inicio (*homepage*). El `urlpattern` especifica una **vista**, que determinará el contenido de la página (normalmente desde una base de datos), y una **plantilla** (*template*) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.
+
+URL -> View -> Model (típicamente) -> Template 
+
 
 > DETALLE:
-> Una URLconf es como una tabla de contenido para un sitio web hecho con Django. Básicamente, es un mapeo entre los patrones URL y las funciones de vista que deben ser llamadas por esos patrones URL. Es como decirle a Django, "Para esta URL, llama a este código, y para esta URL, llama a este otro código". Recordar que estas funciones de vista deben estar en el Python path. 
+> Una URLconf es como una tabla de contenido para un sitio web hecho con Django. Básicamente, es un mapeo entre los patrones URL y las funciones de vista que deben ser llamadas por esos patrones URL. Es como decirle a Django, "Para esta URL, llama a este código, y para esta URL, llama a este otro código". Recordar que estas funciones de vista deben estar en el Python Path. 
 
 - Se empieza actualizando el fichero `views.py`
   
@@ -229,7 +227,7 @@ urlpatterns = [
 > Por ejemplo, consideremos una función de vista que nos muestra la fecha y la hora actual. Si se quiere cambiar la URL de la aplicación — digamos, mover desde algo como `/time` a `/currenttime/` — se puede hacer un rápido cambio en la URLconf, sin tener que preocuparse acerca de la implementación subyacente de la función. Similarmente, si se quiere cambiar la función de la vista — alterando la lógica de alguna manera — se puede hacer sin afectar la URL a la que está asociada la función de vista. Además, si se quiere exponer la funcionalidad de fecha actual en varias URL se podría hacer editando el URLconf con cuidado, sin tener que tocar una sola línea de código de la vista.
 > Eso es el acoplamiento débil en acción: una **filosofía de desarrollo**.
 
-## 3.4 Resumen
+## 3.4 Resumiendo
 
 ### 1.- CREAR APP
 

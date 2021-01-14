@@ -10,11 +10,9 @@ La programación, como la mayoría de las actividades creativas, tiene a mucha g
 
 Es por esta razón que se debe desconfiar de las comparaciones entre este software y aquel.
 
-El resultado final es que **todos los lenguajes de programación y las herramientas y *frameworks* construidos sobre ellos tienen puntos buenos y malos**.
+El resultado final es que **todos los lenguajes de programación, y las herramientas y *frameworks* construidos sobre ellos, tienen puntos buenos y malos**. Cuando se trata de comparar Django con otros *frameworks* web,  la única comparación que vale la pena considerar es el **pragmatismo** vs. la perfección.
 
-Cuando se trata de comparar Django con otros *frameworks* web,  la única comparación que vale la pena considerar es el **pragmatismo** vs. la perfección.
-
-O para decirlo de otra manera, *¿quieres **código estable y mantenible** que puedas entregar en un plazo determinado? ¿O quieres una caja de magia arcana y una plantilla que haga que los profesores de la universidad te quieran y los que la mantienen te odien al mismo tiempo?*
+O para decirlo de otra manera, *¿quieres **código estable y mantenible** que puedas entregar en un plazo determinado? ¿O prefieres una caja de magia arcana y una plantilla que haga que los profesores de la universidad te quieran y los que la mantienen te odien al mismo tiempo?*
 
 Django tiene sus asperezas, pero su **enfoque práctico** para hacer las cosas es lo que realmente lo destaca de la multitud. Django tiene muchos partidarios y unos cuantos detractores, así que no dudes en **sacar conclusiones propias**.
 
@@ -24,7 +22,7 @@ Django tiene sus asperezas, pero su **enfoque práctico** para hacer las cosas e
 
 Se puede decir que Python es uno de los lenguajes de programación **más fácil de aprender**.
 
-Con su uso de construcciones de lenguaje natural (por ejemplo, la disposición y la sangría parecida a la de un párrafo) y una sintaxis fácil de aprender, Python hace que la comprensión de la estructura y el flujo de los programas sea significativamente más fácil de aprender que en otros lenguajes populares.
+Con su uso de *construcciones de lenguaje natural* (por ejemplo, la disposición y la sangría parecida a la de un párrafo) y una sintaxis fácil de aprender, Python hace que la comprensión de la estructura y el flujo de los programas sea significativamente más fácil de aprender que en otros lenguajes populares.
 
 Esto se pone de manifiesto en el hecho de que la mayor proporción de cursos de programación introductorios en universidades e institutos de enseñanza superior eligen Python como lenguaje.
 
@@ -48,7 +46,7 @@ Django hereda su filosofía de "pilas incluidas" de Python.
 
 Esto se interpreta a menudo como que Django incluye muchas cosas extra que probablemente no se necesiten, sin embargo, la mejor analogía es que, en lugar de tener que abrir el lenguaje para insertar energía propia (pilas), sólo hay que pulsar un interruptor y Django hace el resto.
 
-En términos prácticos esto significa que Django implementa algunos procesos comunes, pero complejos, proporcionando herramientas y *wrappers* simples para ocultar la complejidad sin comprometer la potencia.
+En términos prácticos esto significa que Django **implementa algunos procesos comunes**, pero complejos, proporcionando herramientas y *wrappers* simples para ocultar la complejidad sin comprometer la potencia.
 
 Las "baterías" de Django que se pueden encontrar en los *contrib packages* son:
 
@@ -82,7 +80,7 @@ Los *contrib packages* pueden ser un poco complejos, sin embargo, **Django propo
 
 ### 3. No se interpone en el camino
 
-Cuando se crea una aplicación Django, Django no agrega ningún tipo de función innecesarias. No hay importaciones obligatorias, no se requieren bibliotecas de terceros ni archivos de configuración XML.
+Cuando se crea una aplicación Django, el framework no agrega ningún tipo de función innecesaria. No hay importaciones obligatorias, no se requieren bibliotecas de terceros ni archivos de configuración XML.
 
 Esto puede ser un poco aterrador cuando se crea un proyecto Django por primera vez, ya que las herramientas automáticas de Django (`startproject` y `startapp`) **sólo crean un archivo de configuración básico**, **unas cuantas carpetas** y **algunos archivos de inicio casi vacíos**.
 
@@ -127,19 +125,19 @@ También es **compatible** con las principales aplicaciones y servicios de corre
 
 Una buena forma de saber si un marco de trabajo en la web es robusto y fiable es averiguar **cuánto tiempo ha estado en funcionamiento**, si está **creciendo** y qué **sitios de alto perfil** lo están utilizando.
 
-Django fue de fuentes abiertas por primera vez en 2005, después de haber funcionado durante varios años en el entorno de alta demanda de una **organización de noticias**.
+Django es **open source** desde 2005, después de haber funcionado durante varios años en el entorno de alta demanda de una **organización de noticias**.
 
 Después de crecer desde el 2005, Django ahora no sólo corre en empresas de publicación de noticias como el **Washington Post**, sino que también dirige todas o parte de las principales empresas globales como **Pinterest**, **Instagram**, **Disqus**, **Bitbucket**, **EventBrite**,  **Zapier**, **Knight Foundation**, **MacArthur Foundation**, **Mozilla**,  **National Geographic**, **Open Knowledge Foundation** u **Open Stack**.
 
-Django continúa creciendo en popularidad. [Djangosites](https://www.djangosites.org/) enumera más de 5460 sitios que usan Django, y eso sólo son los registrados en la web.
+Django continúa creciendo en popularidad. [Djangosites](https://www.djangosites.org/) enumera más de 5490 sitios que usan Django, y eso sólo son los registrados en la web.
 
-Sería imposible adivinar cuántas páginas sirve Django cada día en comparación con otras tecnologías de Internet, pero eso es en gran medida irrelevante: **Django ha demostrado su valía en los últimos años gestionando algunos de los sitios de mayor tráfico de Internet**, y sigue aumentando su base de usuarios en la actualidad.
+Sería imposible adivinar cuántas páginas sirve Django cada día en comparación con otras tecnologías de Internet, pero eso es, en gran medida, irrelevante: **Django ha demostrado su valía en los últimos años gestionando algunos de los sitios de mayor tráfico de Internet**, y sigue aumentando su base de usuarios en la actualidad.
 
 ### 7. Paquetes, paquetes y más paquetes!
 
 Casi todo lo que se quiera hacer con Django ya se ha hecho antes.
 
-Mucha gente de la gran comunidad internacional de desarrolladores de Django lo devuelven liberando sus proyectos como paquetes de código abierto.
+Mucha gente de la gran comunidad internacional de desarrolladores de Django devuelven sus proyectos liberados como paquetes de código abierto.
 
 El mayor repositorio de estos proyectos se puede encontrar en el sitio [Django Packages](https://djangopackages.org/). A día de hoy, Django Packages enumera más de 4253 aplicaciones, sitios y herramientas reutilizables de Django para usar en proyectos propios. Un rápido recorrido por los paquetes más populares incluye:
 
@@ -196,4 +194,3 @@ Hay muchos grupos. Algunos de los más relevantes son:
 + [Django Girls](https://djangogirls.org/)
 
 Por supuesto, también se van a descubrir cosas sobre Django que *parecerán frustrantes* pero, dado que todos los lenguajes de programación y *frameworks* construidos sobre ellos tienen sus idiosincrasias, seguro que se descubrirá que cuando se trata de construir rápidamente sitios web seguros y escalables, los beneficios de Django superan con creces a los desafíos.
-

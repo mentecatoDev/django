@@ -9,13 +9,13 @@ En reconocimiento a su contribución, es mejor que les dejemos presentar a Djang
 
 *En los primeros días, los desarrolladores web escribían cada página a mano. Actualizar un sitio web significaba editar el HTML; un rediseño implicaba rehacer cada una de las páginas, una a una. A medida que los sitios web crecían y se volvían más ambiciosos, se hizo rápidamente evidente que ese enfoque era tedioso, lento y, en última instancia, insostenible.*
 
-*Un grupo de hackers emprendedores del Centro Nacional de Aplicaciones de Supercomputación (la NCSA, donde se desarrolló Mosaic, el primer navegador web gráfico) resolvió este problema dejando que el servidor web utilizara programas externos que pudieran generar HTML de forma dinámica. Llamaron a este protocolo la Interfaz de Entrada Común (CGI Common Gateway Interface), y cambió la web para siempre. Ahora es difícil imaginar lo que debe haber sido una revelación CGI: en lugar de tratar las páginas HTML como simples archivos en el disco, CGI permite pensar en las páginas como recursos generados dinámicamente bajo pedido.*
+*Un grupo de hackers emprendedores del Centro Nacional de Aplicaciones de Supercomputación (la NCSA, donde se desarrolló Mosaic, el primer navegador web gráfico) resolvió este problema dejando que el servidor web utilizara programas externos que pudieran generar HTML de forma dinámica. Llamaron a este protocolo la Interfaz de Entrada Común (CGI Common Gateway Interface), y cambió la web para siempre. Ahora es difícil imaginar lo que debió haber sido la revolución CGI: en lugar de tratar las páginas HTML como simples archivos en disco, CGI permite pensar en las páginas como recursos generados dinámicamente bajo pedido.*
 
-*El desarrollo de CGI marcó el comienzo de la primera generación de sitios web dinámicos. Sin embargo, CGI tiene sus problemas: Los scripts CGI necesitan contener mucho código repetitivo, dificultan la reutilización de código, y pueden ser difíciles de escribir y entender para los desarrolladores novatos.*
+*El desarrollo de CGI marcó el comienzo de la primera generación de sitios web dinámicos. Sin embargo, CGI tiene sus problemas: Los scripts CGI necesitan contener mucho código repetitivo, dificultan la reutilización del código, y pueden ser difíciles de escribir y entender para desarrolladores novatos.*
 
-*PHP solucionó muchos de estos problemas, y asaltó el mundo -ahora es la herramienta más popular usada para crear sitios web dinámicos, y docenas de lenguajes similares (ASP, JSP, etc.) siguieron de cerca el diseño de PHP. La mayor innovación de PHP es su facilidad de uso: El código PHP es simplemente incrustado en HTML plano; la curva de aprendizaje para alguien que ya conoce HTML es extremadamente superficial.*
+*PHP solucionó muchos de estos problemas, y asaltó el mundo -ahora es la herramienta más popular usada para crear sitios web dinámicos, y docenas de lenguajes similares (ASP, JSP, etc.) siguieron de cerca el diseño de PHP. La mayor innovación de PHP fue su facilidad de uso: El código PHP es simplemente incrustado en HTML plano; la curva de aprendizaje para alguien que ya conoce HTML es extremadamente suave.*
 
-*Pero PHP tiene sus propios problemas; su gran facilidad de uso fomenta un código descuidado, repetitivo y mal concebido. Peor aún, PHP hace poco para proteger a los programadores de las vulnerabilidades de seguridad, por lo que muchos desarrolladores de PHP se encontraron aprendiendo sobre seguridad sólo una vez que ya era demasiado tarde.*
+*Pero PHP tiene sus propios problemas; su gran facilidad de uso fomenta un código descuidado, repetitivo y mal concebido. Peor aún, PHP hace poco para proteger a los programadores de las vulnerabilidades de seguridad, por lo que muchos desarrolladores de PHP se encontraron aprendiendo sobre seguridad una vez que ya era demasiado tarde.*
 
 *Estas y otras frustraciones similares condujeron directamente al desarrollo de la actual cosecha de frameworks de tercera generación. Con esta nueva explosión del desarrollo web viene otro incremento ambicioso; se espera que los desarrolladores web hagan más y más cada día.*
 
@@ -25,7 +25,7 @@ En reconocimiento a su contribución, es mejor que les dejemos presentar a Djang
 
 Django creció orgánicamente a partir de aplicaciones del mundo real escritas por un equipo de desarrollo web en Lawrence, Kansas, USA. Nació en el **otoño de 2003**, cuando los programadores web del periódico Lawrence Journal-World, **Adrian Holovaty** y **Simon Willison**, comenzaron a usar Python para construir aplicaciones.
 
-El equipo de World Online, responsable de la producción y mantenimiento de varios sitios de noticias locales, prosperó en un entorno de desarrollo dictado por los plazos del periodismo. Para los sitios -incluyendo LJWorld.com, Lawrence.com y KUsports.com- los periodistas (y la dirección) exigieron que se añadieran características y se construyeran aplicaciones enteras en tiempo record, a menudo con sólo un día o una hora de antelación. Así, Simon y Adrian desarrollaron un framework de desarrollo web que ahorraba tiempo por necesidad, era la única manera en que podían construir aplicaciones mantenibles bajo estos plazos tan extremos.
+El equipo de World Online, responsable de la producción y mantenimiento de varios sitios de noticias locales, prosperó en un entorno de desarrollo dictado por los plazos del periodismo. Para los sitios -incluyendo LJWorld.com, Lawrence.com y KUsports.com- los periodistas (y la dirección) exigieron que se añadieran características y se construyeran aplicaciones enteras en tiempo record, a menudo con sólo un día o una hora de antelación. Así, Simon y Adrian desarrollaron un framework de desarrollo web que ahorraba tiempo por necesidad, era la única manera en que podían construir aplicaciones mantenibles bajo estos plazos tan reducidos.
 
 En el verano de 2005, después de haber desarrollado este framework hasta el punto en el que alimentaba eficientemente la mayoría de los sitios de World Online, el equipo, que ahora incluía a **Jacob Kaplan-Moss**, decidió lanzar el framework como **software de código abierto**. Lo lanzaron en **julio de 2005** y lo llamaron **Django**, en honor al guitarrista de jazz [**Django Reinhardt**](https://es.wikipedia.org/wiki/Django_Reinhardt) (un gitano sinti belga creador del Gipsy Jazz).
 
@@ -45,7 +45,7 @@ Django hace que el desarrollo web sea mejor. Está diseñado para moverse rápid
 
 **Empezar con Django es difícil** porque es un proyecto muy grande, pero entender cómo se unen todas las partes a un alto nivel, permite dominar Django mucho más rápido.
 
-En el nivel más alto, **Django es un marco de trabajo Modelo-Vista-Controlador -o MVC**.
+En el nivel más alto, **Django es un marco de trabajo Modelo-Vista-Controlador ó MVC**.
 
 MVC es un patrón de diseño de software que tiene como objetivo separar una aplicación web en tres partes interconectadas:
 
@@ -278,8 +278,8 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 
 2.Configuración inicial 
 
-- Django 3.0
-- Python 3.8
+- Django 3.1
+- Python 3.9
 - Pipenv
   - Emacs/Vim/VS Codium/Pycharm
 - Terminal
