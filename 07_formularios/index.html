@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>7. Formularios - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,117 +47,88 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">7. Formularios</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#7-formularios">7. Formularios</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#71-formularios">7.1 Formularios</a></li>
-        
-            <li><a class="toctree-l3" href="#72-actualizar-formularios">7.2 Actualizar Formularios</a></li>
-        
-            <li><a class="toctree-l3" href="#73-borrar-la-vista">7.3 Borrar la vista</a></li>
-        
-            <li><a class="toctree-l3" href="#74-tests">7.4 Tests</a></li>
-        
-            <li><a class="toctree-l3" href="#75-conclusion">7.5 Conclusión</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">7. Formularios</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#71-formularios">7.1 Formularios</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#72-actualizar-formularios">7.2 Actualizar Formularios</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#73-borrar-la-vista">7.3 Borrar la vista</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#74-tests">7.4 Tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#75-conclusion">7.5 Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -180,6 +153,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -207,7 +181,7 @@
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">{% load static %}
+<pre><code class="language-html">{% load static %}
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Django blog&lt;/title&gt;
@@ -230,9 +204,8 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <p>FICHERO: <code>blog/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 
@@ -242,13 +215,12 @@ urlpatterns = [
     path('post/new/', views.BlogCreateView.as_view(), name='post_new'),
 ]
 </code></pre>
-
 <ul>
 <li>La url empezará con <code>post/new/</code>, la vista se llama <code>BlogCreateView</code>, y la url se llamará <code>post_new</code>.</li>
 <li>Crear la vista importando una nueva clase genérica llamada <code>CreateView</code> y luego heredarla para crear una nueva vista llamada <code>BlogCreateView</code>.</li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from . models import Post
 
@@ -268,14 +240,12 @@ class BlogCreateView(CreateView):
     template_name = 'post_new.html'
     fields = '__all__'
 </code></pre>
-
 <ul>
 <li>Dentro de <code>BlogCreateView</code> se especifica el modelo de base de datos <code>Post</code>, el nombre de la plantilla <code>post_new.html</code>, y todos los campos con <code>'__all__'</code> ya que sólo hay dos: <code>title</code> y <code>author</code>.</li>
 <li>El último paso es crear la plantilla, que llamaremos <code>post_new.html</code>.</li>
 </ul>
 <pre><code>(blog) $ touch templates/post_new.html
 </code></pre>
-
 <p>FICHERO: <code>templates/post_new.html</code></p>
 <pre><code>{% extends 'base.html' %}
 
@@ -287,7 +257,6 @@ class BlogCreateView(CreateView):
     &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <ul>
 <li>En la línea superior se hereda la plantilla base.</li>
 <li>Se usan etiquetas HTML <code>&lt;form&gt;</code> con el método POST ya que se está enviando datos. Si se reciben datos de un formulario, por ejemplo en un cuadro de búsqueda, se utilizaría GET.</li>
@@ -309,7 +278,7 @@ class BlogCreateView(CreateView):
 <li>En resumen, se debería añadir un método <code>get_absolute_url()</code> y <code>__str__()</code> a cada modelo que se escriba.</li>
 </ul>
 <p>FICHERO: <code>blog/models.py</code></p>
-<pre><code class="python">    from django.db import models
+<pre><code class="language-python">    from django.db import models
     from django.urls import reverse # new
 
 
@@ -327,13 +296,11 @@ class BlogCreateView(CreateView):
         def get_absolute_url(self):
             return reverse('post_detail', args=[str(self.id)])
 </code></pre>
-
 <ul>
 <li><code>reverse</code> es una función muy útil que Django proporciona para referir a un objeto por el nombre de plantilla URL, en este caso <code>post_detail</code>.</li>
 </ul>
-<pre><code class="python">path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
+<pre><code class="language-python">path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
 </code></pre>
-
 <ul>
 <li>Eso significa que para que esta ruta funcione debemos pasar también como argumento la <code>pk</code> o clave primaria del objeto. A pesar de que <code>pk</code> e <code>id</code> son intercambiables en Django, la documentación de Django recomienda usar <code>self.id</code> con <code>get_absolute_url</code>.</li>
 <li>Así le decimos a Django que la última ubicación de una entrada de un Post es su vista <code>post_detail</code> que es <code>posts/&lt;int:pk&gt;/</code> por lo que la ruta para la primera entrada que hemos hecho estará en <code>posts/1</code>.</li>
@@ -349,7 +316,7 @@ class BlogCreateView(CreateView):
 <p>Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema anterior, se estará usando el contexto <code>anything_you_want</code> que habrá que eliminar para volver a usar los habituales <code>object</code>y <code>post</code>.</p>
 </blockquote>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -360,13 +327,12 @@ class BlogCreateView(CreateView):
   &lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Se ha  añadido un enlace usando <code>&lt;a href&gt;...&lt;/a&gt;</code> y la etiqueta del motor de plantillas de Django <code>{% url... %}</code>. Dentro de ella se ha especificado el nombre del objetivo de la url, que se llamará <code>post_edit</code>, y también se ha pasado el parámetro necesario, que es la clave principal del post <code>post.pk</code>.</li>
 <li>A continuación se crea la plantilla para la página de edición llamada <code>post_edit.html</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/post_edit.html</code></p>
-<pre><code class="python">{% extends 'base.html' %}
+<pre><code class="language-python">{% extends 'base.html' %}
 
 {% block content %}
   &lt;h1&gt;Edit post&lt;/h1&gt;
@@ -376,13 +342,12 @@ class BlogCreateView(CreateView):
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <ul>
 <li>De nuevo se usan las etiquetas HTML <code>&lt;form&gt;&lt;/form&gt;</code>, el <code>csrf_token</code> de Django por seguridad, el <code>form.as_p</code> para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón <em>submit</em>.</li>
 <li>Ahora a nuestra vista. Necesitamos importar <code>UpdateView</code> en la segunda línea superior y luego heredarla en nuestra nueva vista <code>BlogUpdateView</code>.
 FICHERO: <code>blog/views.py</code></li>
 </ul>
-<pre><code class="python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from . models import Post
 
@@ -408,13 +373,12 @@ class BlogUpdateView(UpdateView):
     fields = ['title', 'body']
     template_name = 'post_edit.html'
 </code></pre>
-
 <ul>
 <li>Nótese que en <code>BlogUpdateView</code> se listan explícitamente los campos que se quieren usar <code>['title', 'body']</code> en lugar de usar <code>'__all__'</code>. Esto se debe a que se asume que el autor del post no cambia; sólo se quiere que el título y el texto sean editables.</li>
 <li>El último paso es actualizar el archivo <code>urls.py</code> de la siguiente manera:</li>
 </ul>
 <p>FICHERO: <code>blog/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 
@@ -425,7 +389,6 @@ urlpatterns = [
     path('post/&lt;int:pk&gt;/edit/',views.BlogUpdateView.as_view(), name='post_edit'),
 ]
 </code></pre>
-
 <ul>
 <li>En la parte superior se agrega la vista <code>BlogUpdateView</code> a la lista de vistas importadas, luego se creará un nuevo patrón de url para <code>/post/pk/edit</code> y se le dará el nombre <code>post_edit</code>.</li>
 <li>Ahora, si se hace click en una entrada del blog, se verá el nuevo botón <em>Editar</em>.</li>
@@ -446,7 +409,7 @@ urlpatterns = [
 <li>Se comenzará por agregar un enlace para eliminar los post del blog en la página de blog individual, <code>post_detail.html</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code class="python">{% extends 'base.html' %}
+<pre><code class="language-python">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -458,12 +421,11 @@ urlpatterns = [
   &lt;p&gt;&lt;a href=&quot;{% url 'post_delete' post.pk %}&quot;&gt;+ Delete Blog Post&lt;/a&gt;&lt;/p&gt;
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>A continuación, se crea un nuevo archivo para la plantilla de la página de borrado.</li>
 </ul>
 <p>FICHERO: <code>templates/post_delete.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;h1&gt;Delete post&lt;/h1&gt;
@@ -473,14 +435,13 @@ urlpatterns = [
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <blockquote>
 <p>Nota</p>
 <p>Se usa <code>post.title</code> para mostrar el título de la entrada en el blog. También se podría usar <code>object.title</code> ya que <code>DetailView</code> lo proporciona.
 - Ahora se actualiza el archivo <code>views.py</code>, importando <code>DeleteView</code> y <code>reverse_lazy</code> en la parte superior, y luego creamos una nueva vista que hereda de <code>DeleteView</code>.</p>
 </blockquote>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from . models import Post
@@ -513,7 +474,6 @@ class BlogDeleteView(DeleteView): # new
     template_name = 'post_delete.html'
     success_url = reverse_lazy('home')
 </code></pre>
-
 <ul>
 <li>
 <p>Se usa <code>reverse_lazy</code> en vez de sólo <code>reverse</code> para que no ejecute la redirección URL hasta que la vista haya terminado de borrar la entrada del blog.</p>
@@ -523,7 +483,7 @@ class BlogDeleteView(DeleteView): # new
 </li>
 </ul>
 <p>FICHERO: <code>blog/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 urlpatterns = [
     path('', views.BlogListView.as_view(), name='home'),
@@ -537,7 +497,6 @@ urlpatterns = [
          views.BlogDeleteView.as_view(), name='post_delete'),
 ]
 </code></pre>
-
 <h2 id="74-tests">7.4 Tests</h2>
 <ul>
 <li>Se ha añadido un método <code>get_absolute_url</code> al modelo y nuevas vistas para crear, actualizar y editar entradas. Eso significa que se necesitan cuatro nuevas pruebas:</li>
@@ -547,7 +506,7 @@ urlpatterns = [
 <li>def test_post_delete_view</li>
 </ul>
 <p>FICHERO: <code>blog/tests.py</code></p>
-<pre><code class="python">from django.contrib.auth import get_user_model
+<pre><code class="language-python">from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from .models import Post
@@ -614,7 +573,6 @@ class BlogTests(TestCase):
         response = self.client.get(reverse('post_delete', args='1'))
         self.assertEqual(response.status_code, 200)
 </code></pre>
-
 <ul>
 <li>Se espera que la url de la prueba esté en <code>post/1/</code> ya que sólo hay un post y el <code>1</code> es la clave primaria que Django añade automáticamente. Para testar la creación de la vista se crea una nueva respuesta y luego se asegura que se pase la respuesta (código de estado 200) y contenga nuestro el título y texto del cuerpo.</li>
 <li>Para actualizar la vista, se accede al primer post que tiene un <code>pk</code> de <code>1</code> que se pasa como único argumento y confirmamos que resulta en una redirección 302.</li>
@@ -647,7 +605,7 @@ class BlogTests(TestCase):
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -657,7 +615,7 @@ class BlogTests(TestCase):
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -671,6 +629,11 @@ class BlogTests(TestCase):
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

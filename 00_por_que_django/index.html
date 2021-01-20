@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>¿Por qué Django? - Django</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u00bfPor qu\u00e9 Django?";
+    var mkdocs_page_input_path = "00_por_que_django.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">¿Por qué Django?</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#las-10-razones-de-django">Las 10 razones de Django</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-python">1. Python</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-pilas-incluidas">2. Pilas incluidas</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-no-se-interpone-en-el-camino">3. No se interpone en el camino</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-administracion-incorporada">4. Administración incorporada</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-escalable">5. Escalable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-probado-en-el-campo-de-batalla">6. Probado en el campo de batalla</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-paquetes-paquetes-y-mas-paquetes">7. Paquetes, paquetes y más paquetes!</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-desarrollado-activamente">8. Desarrollado activamente</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-lanzamientos-estables">9. Lanzamientos estables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10-documentacion-de-primera-clase">10. Documentación de primera clase</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>¿Por qué Django?</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="por-que-django">¿Por qué Django?</h1>
+<p>Esta es la primera pregunta que los no iniciados casi siempre se hacen cuando se les presenta Django:</p>
+<ul>
+<li>
+<p>"¿Por qué debo aprender Django?"</p>
+</li>
+<li>
+<p>"¿Qué tiene Django que lo hace mejor que el <em>framework</em> X o el lenguaje Y para construir aplicaciones web?"</p>
+</li>
+</ul>
+<p>La programación, como la mayoría de las actividades creativas, tiene a mucha gente dedicada que lleva sus pasiones al extremo.</p>
+<p>Es por esta razón que se debe desconfiar de las comparaciones entre este software y aquel.</p>
+<p>El resultado final es que <strong>todos los lenguajes de programación, y las herramientas y <em>frameworks</em> construidos sobre ellos, tienen puntos buenos y malos</strong>. Cuando se trata de comparar Django con otros <em>frameworks</em> web,  la única comparación que vale la pena considerar es el <strong>pragmatismo</strong> vs. la perfección.</p>
+<p>O para decirlo de otra manera, <em>¿quieres </em><em>código estable y mantenible</em><em> que puedas entregar en un plazo determinado? ¿O prefieres una caja de magia arcana y una plantilla que haga que los profesores de la universidad te quieran y los que la mantienen te odien al mismo tiempo?</em></p>
+<p>Django tiene sus asperezas, pero su <strong>enfoque práctico</strong> para hacer las cosas es lo que realmente lo destaca de la multitud. Django tiene muchos partidarios y unos cuantos detractores, así que no dudes en <strong>sacar conclusiones propias</strong>.</p>
+<h2 id="las-10-razones-de-django">Las 10 razones de Django</h2>
+<h3 id="1-python">1. Python</h3>
+<p>Se puede decir que Python es uno de los lenguajes de programación <strong>más fácil de aprender</strong>.</p>
+<p>Con su uso de <em>construcciones de lenguaje natural</em> (por ejemplo, la disposición y la sangría parecida a la de un párrafo) y una sintaxis fácil de aprender, Python hace que la comprensión de la estructura y el flujo de los programas sea significativamente más fácil de aprender que en otros lenguajes populares.</p>
+<p>Esto se pone de manifiesto en el hecho de que la mayor proporción de cursos de programación introductorios en universidades e institutos de enseñanza superior eligen Python como lenguaje.</p>
+<p><strong>Python es versátil</strong>. Ejecuta sitios web y se utiliza en muchas aplicaciones de escritorio populares en PC y Mac. También se puede encontrar en aplicaciones móviles e incorporado en muchos dispositivos. Python también es un lenguaje de programación popular en otras aplicaciones.</p>
+<p>Aprender Python casi seguro que será útil, sin importar la carrera que se elija.</p>
+<p><strong>Python es popular</strong>. Google, una de las empresas más grandes del mundo, utiliza Python en muchas de sus aplicaciones. También se usa ampliamente por programadores profesionales.</p>
+<p>Algunos datos interesantes de la encuesta de desarrolladores de Stack Overflow desde 2017:</p>
+<ul>
+<li>Python es el segundo en crecimiento en los últimos cinco años, después de node.js. PHP, Java y Ruby han disminuido en popularidad.</li>
+<li>Python es ya más común que PHP.</li>
+<li>Python es el lenguaje más buscado entre todos los desarrolladores, saltando cuatro lugares desde 2016 y superando a JavaScript en el primer lugar.</li>
+<li>Los trabajos en Python son pagados mejor que los tradicionales de Microsoft (C#, C++, VBA y .NET).</li>
+<li>En 2020, y según <a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-wanted">StackOverflow</a>, si observamos las tecnologías que los desarrolladores reportan que no usan pero que quieren aprender, Python ocupa el primer lugar por cuarto año consecutivo.</li>
+</ul>
+<h3 id="2-pilas-incluidas">2. Pilas incluidas</h3>
+<p>Django hereda su filosofía de "pilas incluidas" de Python.</p>
+<p>Esto se interpreta a menudo como que Django incluye muchas cosas extra que probablemente no se necesiten, sin embargo, la mejor analogía es que, en lugar de tener que abrir el lenguaje para insertar energía propia (pilas), sólo hay que pulsar un interruptor y Django hace el resto.</p>
+<p>En términos prácticos esto significa que Django <strong>implementa algunos procesos comunes</strong>, pero complejos, proporcionando herramientas y <em>wrappers</em> simples para ocultar la complejidad sin comprometer la potencia.</p>
+<p>Las "baterías" de Django que se pueden encontrar en los <em>contrib packages</em> son:</p>
+<p><code>admin</code>.- La aplicación de administración de Django</p>
+<p><code>auth</code>.- El marco de autenticación de Django</p>
+<p><code>contenttypes</code>.- Un marco para enganchar con los modelos Django</p>
+<p><code>flatpages</code>.-  Un marco para la gestión de las páginas de casos especiales, como las políticas del sitio y los términos y condiciones de uso</p>
+<p><code>gis</code>.- Añade capacidades geoespaciales a Django</p>
+<p><code>humanize</code>.- Añade filtros de plantilla para mejorar la legibilidad de los datos</p>
+<p><code>messages</code>.- Un marco para la gestión de los mensajes basados en sesiones y cookies</p>
+<p><code>postgres</code>.- Características específicas de la base de datos postgreSQL</p>
+<p><code>redirects</code>.- Gestión de redirecciones</p>
+<p><code>sessions</code>.- Un marco para la gestión de sesiones anónimas</p>
+<p><code>sites</code>.- Permite operar varios sitios web desde una sola instalación</p>
+<p><code>sitemaps</code>.- Implementa archivos <em>sitemap XML</em></p>
+<p><code>syndication</code>.- Un marco para generar <em>feeds</em> para la sindicación</p>
+<p>Los <em>contrib packages</em> pueden ser un poco complejos, sin embargo, <strong>Django proporciona una sólida lista de poderosos módulos incorporados</strong> para que no haya que crearlos.</p>
+<h3 id="3-no-se-interpone-en-el-camino">3. No se interpone en el camino</h3>
+<p>Cuando se crea una aplicación Django, el framework no agrega ningún tipo de función innecesaria. No hay importaciones obligatorias, no se requieren bibliotecas de terceros ni archivos de configuración XML.</p>
+<p>Esto puede ser un poco aterrador cuando se crea un proyecto Django por primera vez, ya que las herramientas automáticas de Django (<code>startproject</code> y <code>startapp</code>) <strong>sólo crean un archivo de configuración básico</strong>, <strong>unas cuantas carpetas</strong> y <strong>algunos archivos de inicio casi vacíos</strong>.</p>
+<p>Aunque esto pueda parecer algo malo, en realidad es un gran beneficio ya que Django proporciona una base sólida sobre la que se puede construir de <strong>la forma que se quiera</strong>.</p>
+<p>El resultado es una mayor <strong>confianza en el código</strong> ya que se sabe que lo que sea que esté en la aplicación, se ha puesto ahí.</p>
+<h3 id="4-administracion-incorporada">4. Administración incorporada</h3>
+<p>Desde el principio, Django proporciona una <strong>interfaz de administración</strong> (<code>admin</code>) para trabajar con los <strong>modelos</strong> y gestionar los <strong>usuarios</strong>, los <strong>permisos</strong> de usuario y los <strong>grupos</strong>.</p>
+<p>La <strong>interfaz del modelo</strong> reemplaza inmediatamente la necesidad de un programa de administración de base de datos separado para todas las funciones de la base de datos, excepto las avanzadas.</p>
+<p>Con cambios muy simples en la configuración de la administración, se puede <strong>organizar los campos</strong> del modelo, <strong>mostrar</strong> y <strong>ocultar</strong> campos, <strong>clasificar</strong>, <strong>filtrar</strong> y <strong>organizar</strong> los datos para maximizar la eficiencia.</p>
+<p>El administrador también tiene una <strong>función opcional de documentación de modelos</strong> que proporciona una documentación automática de los mismos.</p>
+<p>La <strong>administración de usuarios</strong> siempre es importante en un sitio Web moderno y Django proporciona todo lo que se espera: añadir y modificar usuarios, cambiar contraseñas, crear grupos de usuarios, asignar permisos y comunicarse con los usuarios.</p>
+<p>Al igual que el resto de Django, el administrador también es <strong>personalizable</strong> y <strong>ampliable</strong>.</p>
+<p>Por ejemplo, se pueden anular las plantillas de visualización del administrador y añadir nuevas funciones para tareas como la exportación de los datos del modelo a un archivo delimitado por comas (CSV).</p>
+<h3 id="5-escalable">5. Escalable</h3>
+<p>Django se basa en el <strong>patrón</strong> de diseño <strong>Modelo-Vista-Controlador</strong> (MVC). Esto significa que la base de datos, el código de programa (back-end) y el código de visualización (front-end) están <strong>separados</strong>.</p>
+<p>Django lleva esta separación un paso más allá al <strong>separar el código de los medios estáticos</strong> -imágenes, archivos, CSS y JavaScript- que conforman el sitio.</p>
+<p>Estas filosofías de diseño permiten:</p>
+<ul>
+<li>Ejecutar <strong>servidores separados</strong> para la base de datos, las aplicaciones y los medios</li>
+<li>Tener fácilmente los <strong>medios</strong> servidos desde una <strong>Red de Entrega de Contenido</strong> (CDN)</li>
+<li><strong>Cachear</strong> el contenido en múltiples niveles y alcances</li>
+<li>Para sitios realmente grandes, se puede emplear la <strong>agrupación</strong> y el <strong>equilibrio de carga</strong> para distribuir el sitio web entre varios servidores</li>
+</ul>
+<p>Django es <strong>compatible</strong> con una serie de proveedores externos populares para servidores web, administración del rendimiento, almacenamiento en caché, agrupación en clústeres y balanceo.</p>
+<p>También es <strong>compatible</strong> con las principales aplicaciones y servicios de correo electrónico y mensajería como OAuth y ReST.</p>
+<h3 id="6-probado-en-el-campo-de-batalla">6. Probado en el campo de batalla</h3>
+<p>Una buena forma de saber si un marco de trabajo en la web es robusto y fiable es averiguar <strong>cuánto tiempo ha estado en funcionamiento</strong>, si está <strong>creciendo</strong> y qué <strong>sitios de alto perfil</strong> lo están utilizando.</p>
+<p>Django es <strong>open source</strong> desde 2005, después de haber funcionado durante varios años en el entorno de alta demanda de una <strong>organización de noticias</strong>.</p>
+<p>Después de crecer desde el 2005, Django ahora no sólo corre en empresas de publicación de noticias como el <strong>Washington Post</strong>, sino que también dirige todas o parte de las principales empresas globales como <strong>Pinterest</strong>, <strong>Instagram</strong>, <strong>Disqus</strong>, <strong>Bitbucket</strong>, <strong>EventBrite</strong>,  <strong>Zapier</strong>, <strong>Knight Foundation</strong>, <strong>MacArthur Foundation</strong>, <strong>Mozilla</strong>,  <strong>National Geographic</strong>, <strong>Open Knowledge Foundation</strong> u <strong>Open Stack</strong>.</p>
+<p>Django continúa creciendo en popularidad. <a href="https://www.djangosites.org/">Djangosites</a> enumera más de 5490 sitios que usan Django, y eso sólo son los registrados en la web.</p>
+<p>Sería imposible adivinar cuántas páginas sirve Django cada día en comparación con otras tecnologías de Internet, pero eso es, en gran medida, irrelevante: <strong>Django ha demostrado su valía en los últimos años gestionando algunos de los sitios de mayor tráfico de Internet</strong>, y sigue aumentando su base de usuarios en la actualidad.</p>
+<h3 id="7-paquetes-paquetes-y-mas-paquetes">7. Paquetes, paquetes y más paquetes!</h3>
+<p>Casi todo lo que se quiera hacer con Django ya se ha hecho antes.</p>
+<p>Mucha gente de la gran comunidad internacional de desarrolladores de Django devuelven sus proyectos liberados como paquetes de código abierto.</p>
+<p>El mayor repositorio de estos proyectos se puede encontrar en el sitio <a href="https://djangopackages.org/">Django Packages</a>. A día de hoy, Django Packages enumera más de 4253 aplicaciones, sitios y herramientas reutilizables de Django para usar en proyectos propios. Un rápido recorrido por los paquetes más populares incluye:</p>
+<ul>
+<li><strong>Wagtail, Mezzanine y django CMS</strong>.- Sistemas de gestión de contenidos</li>
+<li><strong>Cookiecutter</strong>.- Configuración rápida y sencilla del proyecto Django y de las estructuras de las aplicaciones para aplicaciones más avanzadas</li>
+<li><strong>Django ReST Framework</strong>.-Implementa una API de ReST en Django</li>
+<li><strong>Django allauth</strong>.-Apps de autenticación de Facebook, GitHub, Google y Twitter</li>
+<li><strong>Debug toolbar</strong>.- Barra de herramientas de depuración que muestra la información de depuración a medida que el proyecto se ejecuta.</li>
+<li><strong>Django Celery</strong>.- Proporciona la integración con Celery para Django</li>
+<li><strong>Oscar, Django Shop y Cartridge</strong>.- eCommerce frameworks para Django (Cartridge es una extensión para Mezzanine CMS)</li>
+</ul>
+<p>Con miles de paquetes más como estos, <strong>es muy probable que se encuentre un paquete que se adapte</strong> a unas necesidades específicas, sin tener que reinventar la rueda.</p>
+<h3 id="8-desarrollado-activamente">8. Desarrollado activamente</h3>
+<p>Uno de los mayores riesgos del código abierto es si hay suficiente interés en el proyecto para que atraiga el apoyo de los desarrolladores a largo plazo.</p>
+<p><strong>No existe tal riesgo con Django</strong>; no sólo el proyecto tiene más de 15 años de antigüedad, sino que tiene un largo historial de liberaciones constantes y <strong>sigue contando con el apoyo de una comunidad activa</strong> y un gran equipo básico de contribuyentes voluntarios que mantienen y mejoran la base del código todos los días.</p>
+<p>Django tuvo su <strong>primera versión</strong> de producción en <strong>2008</strong> (versión 1.0) y ha tenido tres versiones de soporte a largo plazo (LTS): 1.4, 1.8, 1.11 y 2.2. La versión 2.2 LTS (la actual) tiene soporte completo hasta el segundo cuatrimestre de 2022 y una nueva versión en puertas (la 3.2 LTS) disponible desde el segundo cuatrimestre de 2021.</p>
+<p>El equipo de desarrollo de Django mantiene una <a href="https://www.djangoproject.com/download/#supported-versions">hoja de ruta de desarrollo</a> en el sitio web del Proyecto Django y tiene un sólido historial de cumplimiento de los hitos de su hoja de ruta.</p>
+<p>El Proyecto Django también cuenta con el apoyo de una fundación independiente, la <strong>Django Software Foundation</strong>, que es una organización sin ánimo de lucro registrada en los Estados Unidos.</p>
+<h3 id="9-lanzamientos-estables">9. Lanzamientos estables</h3>
+<p>Los proyectos de software de código abierto son, en muchos casos, desarrollados <strong>más activamente</strong> y <strong>más seguros</strong> que el software propietario de la competencia.</p>
+<p>El inconveniente del desarrollo en constante evolución de un proyecto de software de código abierto es la falta de una base de código estable en la que basar el desarrollo comercial.</p>
+<p>Django aborda este problema con <strong>versiones de apoyo a largo plazo</strong> (LTS) del software y un proceso de lanzamiento definido.</p>
+<p>Las versiones LTS se lanzan con un <strong>período de soporte garantizado</strong> (normalmente de tres años). En este periodo se garantiza que la base del código permanecerá estable; con parches para errores, seguridad y pérdida de datos 100% compatibles con la versión de la característica.</p>
+<p>El proceso de lanzamiento de Django asegura que las versiones oficiales sean tan estables como sea posible. Tras una fase de desarrollo, cada versión entra en una fase Alfa en la que se aplica una congelación de características.</p>
+<p>La nueva versión pasa entonces por las fases Beta y Candidata a la Liberación (<strong>RC Release Candidate</strong>), donde se trabajan los errores de la versión. Si no se encuentran errores importantes durante un período después de la versión candidata, se lanzará la versión final (<strong>FR Feature Release</strong>).</p>
+<p>Después de que la versión final ha sido liberada, sólo se aplican correcciones de errores y parches de seguridad. Estos parches, como en las versiones LTS, son 100% compatibles con la <em>feature release</em>.</p>
+<h3 id="10-documentacion-de-primera-clase">10. Documentación de primera clase</h3>
+<p>Incluso en las primeras versiones, los desarrolladores de Django se aseguraron de que la <strong>documentación</strong> fuera <strong>completa</strong> y que los <strong>tutoriales</strong> fueran fáciles de seguir.</p>
+<p>La documentación debería ser la <strong>razón número uno de esta lista</strong> porque es la calidad de la documentación lo que en muchos casos prevalece en la elección de Django sobre otras opciones.</p>
+<p>Django también cuenta con un fuerte apoyo de los miembros de la comunidad que producen <strong>materiales de aprendizaje</strong> gratuitos, libros, cursos pagados y gratuitos y muchos consejos, trucos y asistencia en sus sitios web.</p>
+<p>Hay muchos grupos. Algunos de los más relevantes son:</p>
+<ul>
+<li><a href="https://www.tangowithdjango.com/">Tango con Django</a></li>
+<li>Danny y Audrey en <a href="https://www.feldroy.com/">Feldroy</a></li>
+<li><a href="https://djangogirls.org/">Django Girls</a></li>
+</ul>
+<p>Por supuesto, también se van a descubrir cosas sobre Django que <em>parecerán frustrantes</em> pero, dado que todos los lenguajes de programación y <em>frameworks</em> construidos sobre ellos tienen sus idiosincrasias, seguro que se descubrirá que cuando se trata de construir rápidamente sitios web seguros y escalables, los beneficios de Django superan con creces a los desafíos.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../01_introduccion/" class="btn btn-neutral float-right" title="1. Introducción">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="../01_introduccion/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

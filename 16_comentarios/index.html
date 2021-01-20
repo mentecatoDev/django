@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>16. Comentarios - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,115 +47,86 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">16. Comentarios</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#16-comentarios">16. Comentarios</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#161-modelo">16.1. Modelo</a></li>
-        
-            <li><a class="toctree-l3" href="#164-admin">16.4 Admin</a></li>
-        
-            <li><a class="toctree-l3" href="#165-plantilla">16.5. Plantilla</a></li>
-        
-            <li><a class="toctree-l3" href="#conclusion">Conclusión</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">16. Comentarios</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#161-modelo">16.1. Modelo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#164-admin">16.4 Admin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#165-plantilla">16.5. Plantilla</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -178,6 +151,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -213,7 +187,6 @@ class Comment(models.Model):
     def get_absolute_url(self):
         return reverse('article_list')
 </code></pre>
-
 <ul>
 <li>El modelo <code>Comment</code> tiene un método <code>__str__</code> y un método <code>get_absolute_url</code> que regresa a la página principal <code>articles/</code>.</li>
 <li>Ya que se han actualizado los modelos, es hora de hacer un nuevo archivo de migración y luego aplicarlo.<ul>
@@ -222,29 +195,27 @@ class Comment(models.Model):
 </ul>
 </li>
 </ul>
-<pre><code class="bash">(news) $ python manage.py makemigrations articles
+<pre><code class="language-bash">(news) $ python manage.py makemigrations articles
 (news) $ python manage.py migrate
 </code></pre>
-
 <h2 id="164-admin">16.4 Admin</h2>
 <ul>
 <li>Después de crear un nuevo modelo es bueno jugar con él en la aplicación de administración antes de mostrarlo en el sitio web real. Añadir el <code>Comment</code> al archivo <code>admin.py</code> para que sea visible.</li>
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from . import models
 
 admin.site.register(models.Article)
 admin.site.register(models.Comment)
 </code></pre>
-
 <ul>
 <li>En este punto se podríamos añadir un campo de administración adicional para ver el comentario y el artículo en la página de administración de Django. ¿Pero no sería mejor ver todos los modelos de <code>Comment</code> relacionados con un solo modelo <code>Post</code>? Resulta que sí, con una función de administración de Django llamada <strong>inlines</strong> que muestra las relaciones de claves externas de una manera más visual y agradable.</li>
 <li>Hay dos vistas <strong>inlines</strong> principales: <code>TabularInline</code> y <code>StackedInline</code>. La única diferencia entre las dos es el modelo para mostrar la información. En una <code>TabularInline</code> todos los campos del modelo aparecen en una línea mientras que en una <code>StackedInline</code> cada campo tiene su propia línea.</li>
 <li>Se implementarán las dos para decidir cuál se prefiere</li>
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from . import models
 
 
@@ -261,13 +232,12 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(models.Article, ArticleAdmin)
 admin.site.register(models.Comment)
 </code></pre>
-
 <ul>
 <li>Se pueden ver y modificar todos los artículos y comentarios relacionados en un solo lugar.</li>
 <li>En caso de usar  <code>TabularInline</code> se muestra más información en menos espacio. Para cambiar a él sólo hay que cambiar <code>CommentInline</code> de <code>admin.StackedInline</code> a <code>admin.TabularInline</code>.</li>
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from . import models
 
 
@@ -284,7 +254,6 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(models.Article, ArticleAdmin)
 admin.site.register(models.Comment)
 </code></pre>
-
 <ul>
 <li>Ver lo cambios en la página de administración de Django: todos los campos de cada modelo se muestran en la misma línea.</li>
 </ul>
@@ -305,21 +274,19 @@ class Comment(models.Model):
         related_name='comments' # new
 )
 </code></pre>
-
 <ul>
 <li>Como se acaba de hacer un cambio en el modelo de base de datos, se necesita crear un archivo de migraciones y actualizar la base de datos.</li>
 </ul>
-<pre><code class="bash">(news) $ python manage.py makemigrations articles
+<pre><code class="language-bash">(news) $ python manage.py makemigrations articles
 (news) $ python manage.py migrate
 (news) $ python manage.py runserver
 </code></pre>
-
 <ul>
 <li>Entender las consultas lleva algún tiempo, así que no preocuparse si la idea de las relaciones inversas es confusa. Y una vez que se dominen estos casos básicos, se puede explorar cómo filtrar  consultas con gran detalle para que devuelvan exactamente la información que se desea.</li>
 <li>En el archivo <code>article_list.html</code> se pueden añadir los comentarios a <code>card-footer</code>. Notar que se han movido los enlaces de edición y borrado a <code>card-body</code>. Para acceder a cada comentario se llama a <code>article.comments.all</code> lo que significa que primero se mira el modelo <code>article</code>, luego <code>comment</code> que es el nombre relacionado a todo el modelo <code>Comment</code>, y se selecciona <code>all included</code>. ¡Puede llevar un poco de tiempo acostumbrarse a esta sintaxis para referenciar datos de claves foráneas en una plantilla!</li>
 </ul>
 <p>FICHERO: <code>template/article_list.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Articles{% endblock %}
 
@@ -348,7 +315,6 @@ class Comment(models.Model):
   {% endfor %}
 {% endblock content %}
 </code></pre>
-
 <h2 id="conclusion">Conclusión</h2>
 <ul>
 <li>Con más tiempo habría que centrarse en los formularios para que un usuario pueda escribir un nuevo artículo directamente en la página de artículos, así como añadir también comentarios. Pero el principal objetivo de este capítulo es demostrar cómo funcionan las relaciones de clave foránea en Django.</li>
@@ -380,7 +346,7 @@ class Comment(models.Model):
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -390,7 +356,7 @@ class Comment(models.Model):
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -402,6 +368,11 @@ class Comment(models.Model):
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

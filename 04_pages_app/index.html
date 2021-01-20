@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>4. Pages app - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,135 +47,122 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">4. Pages app</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#4-pages-app">4 Pages app</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">4. Pages app</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#41-objetivos">4.1 Objetivos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#42-configuracion-inicial">4.2 Configuración inicial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#43-plantillas-templates">4.3 Plantillas (Templates)</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#41-objetivos">4.1 Objetivos</a></li>
-        
-            <li><a class="toctree-l3" href="#42-configuracion-inicial">4.2 Configuración inicial</a></li>
-        
-            <li><a class="toctree-l3" href="#43-plantillas-templates">4.3 Plantillas (Templates)</a></li>
-        
-            <li><a class="toctree-l3" href="#44-vistas-basadas-en-clases-class-based-views">4.4 Vistas basadas en clases (Class-Based Views)</a></li>
-        
-            <li><a class="toctree-l3" href="#45-urls">4.5 URLs</a></li>
-        
-            <li><a class="toctree-l3" href="#46-anadir-una-pagina-acerca-de">4.6 Añadir una página "Acerca de..."</a></li>
-        
-            <li><a class="toctree-l3" href="#47-extendiendo-plantillas">4.7 Extendiendo Plantillas</a></li>
-        
-            <li><a class="toctree-l3" href="#48-tests">4.8 Tests</a></li>
-        
-            <li><a class="toctree-l3" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a></li>
-        
-            <li><a class="toctree-l3" href="#410-local-vs-produccion">4.10 Local vs Producción</a></li>
-        
-            <li><a class="toctree-l3" href="#411-heroku">4.11 Heroku</a></li>
-        
-            <li><a class="toctree-l3" href="#411-ficheros-adicionales">4.11 Ficheros adicionales</a></li>
-        
-            <li><a class="toctree-l3" href="#412-despliegue">4.12 Despliegue</a></li>
-        
-            <li><a class="toctree-l3" href="#413-errores-404">4.13 Errores 404</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#431-donde-colocar-el-directorio-de-plantillas">4.3.1 Dónde colocar el directorio de plantillas</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#44-vistas-basadas-en-clases-class-based-views">4.4 Vistas basadas en clases (Class-Based Views)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#45-urls">4.5 URLs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#46-anadir-una-pagina-acerca-de">4.6 Añadir una página "Acerca de..."</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#47-extendiendo-plantillas">4.7 Extendiendo Plantillas</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#48-tests">4.8 Tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#410-local-vs-produccion">4.10 Local vs Producción</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#411-heroku">4.11 Heroku</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#411-ficheros-adicionales">4.11 Ficheros adicionales</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#412-despliegue">4.12 Despliegue</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#crear-una-nueva-aplicacion-de-heroku-desde-la-linea-de-comandos-con-heroku-create">Crear una nueva aplicación de Heroku, desde la línea de comandos con heroku create</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#anadir-un-hook-para-heroku-dentro-de-git">Añadir un “hook” para Heroku dentro de git</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configurar-la-aplicacion-para-ignorar-los-archivos-estaticos">Configurar la aplicación para ignorar los archivos estáticos</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#iniciar-el-servidor-de-heroku-para-que-la-aplicacion-este-activa">Iniciar el servidor de Heroku para que la aplicación esté activa</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#visitar-la-aplicacion-en-la-url-proporcionada-por-heroku">Visitar la aplicación en la URL proporcionada por Heroku</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#413-errores-404">4.13 Errores 404</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -198,6 +187,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -217,7 +207,7 @@
 <li>Crear una nueva app <code>pages</code></li>
 <li>Actualizar <code>settings.py</code></li>
 </ul>
-<pre><code class="bash">$ cd ~/Desktop
+<pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir pages
 $ cd pages
 $ pipenv install --python 3.8
@@ -226,20 +216,17 @@ $ pipenv shell
 (pages) $ django-admin startproject pages_project .
 (pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startproject pages
 </code></pre>
-
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code class="python">...
+<pre><code class="language-python">...
     INSTALLED_APPS = [
         'pages.apps.PagesConfig', # new
 ...
 </code></pre>
-
 <ul>
 <li>Arrancar servidor</li>
 </ul>
-<pre><code class="bash">(pages) $ python manage.py runserver
+<pre><code class="language-bash">(pages) $ python manage.py runserver
 </code></pre>
-
 <h2 id="43-plantillas-templates">4.3 Plantillas (Templates)</h2>
 <ul>
 <li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
@@ -255,12 +242,11 @@ $ pipenv shell
 <li><strong>Por defecto</strong>, Django mira dentro de cada <strong>app</strong> en busca de plantillas.</li>
 <li>En la app <code>pages</code> se creará una estructura de directorios como la siguiente con la plantilla <code>home.html</code> colgando de ella:  </li>
 </ul>
-<pre><code class="text">    └── pages
+<pre><code class="language-text">    └── pages
         ├── templates
             ├── pages
                 ├── home.html      
 </code></pre>
-
 <ul>
 <li><strong>La otra aproximación</strong> es hacer un directorio de plantillas común a todas las apps. </li>
 <li>Hay que cambiar <code>settings.py</code> para que busque, también en este directorio, las plantillas que se necesiten.</li>
@@ -268,9 +254,8 @@ $ pipenv shell
 <pre><code>   (pages) $ mkdir templates
    (pages) $ touch templates/home.html
 </code></pre>
-
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code class="python">       TEMPLATES = [
+<pre><code class="language-python">       TEMPLATES = [
            {
                ...
                'DIRS': [os.path.join(BASE_DIR, 'templates')],
@@ -278,14 +263,12 @@ $ pipenv shell
            },
        ]
 </code></pre>
-
 <blockquote>
 <p>La función <code>os.path.join</code> une el path base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente</p>
 </blockquote>
 <p>FICHERO: <code>templates/home.html</code> </p>
-<pre><code class="html">   &lt;h1&gt;Homepage&lt;/h1&gt;
+<pre><code class="language-html">   &lt;h1&gt;Homepage&lt;/h1&gt;
 </code></pre>
-
 <ul>
 <li>Ahora es el turno de la <strong>ruta</strong> y la <strong>vista</strong></li>
 </ul>
@@ -297,12 +280,11 @@ $ pipenv shell
 <li>En el ejemplo se usará la clase <code>TemplateView</code> incorporada para mostrar la plantilla.  </li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code class="python">from django.views.generic import TemplateView
+<pre><code class="language-python">from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 </code></pre>
-
 <ul>
 <li>Distíngase cómo se ha puesto en mayúsculas la vista, porque ahora es una clase, y cómo ésta es descendiente de la clase base <code>TemplateView</code>.</li>
 </ul>
@@ -311,7 +293,7 @@ class HomePageView(TemplateView):
 <li>El último paso es actualizar las <code>URLConfs</code>.</li>
 </ul>
 <p>FICHERO: <code>pages_project/urls.py</code> </p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include # new
 
 urlpatterns = [
@@ -319,16 +301,14 @@ urlpatterns = [
     path('', include('pages.urls')), # new
 ]
 </code></pre>
-
 <p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from .views import HomePageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
 ]
 </code></pre>
-
 <ul>
 <li>Este patrón es casi idéntico al que se hizo anteriormente, con una sola diferencia; cuando se usan vistas basadas en clases, siempre se añade <code>as_view()</code> al final de su nombre.</li>
 <li>Iniciar el servidor para ver la nueva página de inicio.</li>
@@ -337,13 +317,11 @@ urlpatterns = [
 <ul>
 <li>Crear un nuevo fichero de plantilla</li>
 </ul>
-<pre><code class="bash">(pages) $ touch templates/about.html
+<pre><code class="language-bash">(pages) $ touch templates/about.html
 </code></pre>
-
 <p>FICHERO: <code>templates/about.html</code> </p>
-<pre><code class="html">&lt;h1&gt;About page&lt;/h1&gt;
+<pre><code class="language-html">&lt;h1&gt;About page&lt;/h1&gt;
 </code></pre>
-
 <ul>
 <li>Crear una nueva vista para la página</li>
 </ul>
@@ -366,7 +344,6 @@ urlpatterns = [
         path('', HomePageView.as_view(), name='home'),
     ]
 </code></pre>
-
 <ul>
 <li>Lanzar <code>http://localhost:8000/about</code></li>
 </ul>
@@ -396,14 +373,13 @@ urlpatterns = [
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">&lt;header&gt;
+<pre><code class="language-html">&lt;header&gt;
   &lt;a href=&quot;{% url 'home' %}&quot;&gt;Home&lt;/a&gt; | &lt;a href=&quot;{% url 'about' %}&quot;&gt;About&lt;/a&gt;
 &lt;/header&gt;
 
 {% block content %}
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>
 <p>Al final se añade un tag <code>block</code> llamado <code>content</code>. Los bloques pueden ser reescritos por las vistas descencientes.</p>
@@ -426,7 +402,6 @@ urlpatterns = [
     &lt;h1&gt;About page&lt;/h1&gt;
 {% endblock content %}
 </code></pre>
-
 <h2 id="48-tests">4.8 Tests</h2>
 <ul>
 <li>
@@ -465,14 +440,12 @@ Ran 2 tests in 0.014s
 
 OK
 </code></pre>
-
 <h2 id="49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</h2>
-<pre><code class="bash">(pages) $ git init
+<pre><code class="language-bash">(pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m 'Commit inicial'
 </code></pre>
-
 <h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
 <ul>
 <li>Código en producción</li>
@@ -491,16 +464,14 @@ OK
 </ul>
 </li>
 </ul>
-<pre><code class="bash">$ yay -S heroku-cli
+<pre><code class="language-bash">$ yay -S heroku-cli
 </code></pre>
-
-<pre><code class="bash">(pages) $ heroku login
+<pre><code class="language-bash">(pages) $ heroku login
 Enter your Heroku credentials:
 Email: will@wsvincent.com
 Password: *********************************
 Logged in as will@wsvincent.com
 </code></pre>
-
 <h2 id="411-ficheros-adicionales">4.11 Ficheros adicionales</h2>
 <ul>
 <li>
@@ -518,17 +489,15 @@ Logged in as will@wsvincent.com
 <p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
 </li>
 </ul>
-<pre><code class="pipfile"># Pipfile
+<pre><code class="language-pipfile"># Pipfile
 [requires]
 python_version = &quot;3.8&quot;
 </code></pre>
-
 <ul>
 <li>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</li>
 </ul>
 <pre><code>(pages) $ pipenv lock
 </code></pre>
-
 <ul>
 <li>Heroku busca en <code>Pipfile.lock</code> información sobre el entorno virtual.</li>
 <li>A continuación crear un <code>Procfile</code> que es específico para Heroku.</li>
@@ -536,19 +505,16 @@ python_version = &quot;3.8&quot;
 <p>FICHERO: <code>Procfile</code></p>
 <pre><code>web: gunicorn pages_project.wsgi --log-file -
 </code></pre>
-
 <ul>
 <li>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</li>
 </ul>
-<pre><code class="bash">(pages) $ pipenv install gunicorn
+<pre><code class="language-bash">(pages) $ pipenv install gunicorn
 </code></pre>
-
 <p>El último paso es un cambio de una línea a <code>settings.py</code>.</p>
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code class="python"># pages_project/settings.py
+<pre><code class="language-python"># pages_project/settings.py
 ALLOWED_HOSTS = ['*']
 </code></pre>
-
 <ul>
 <li>
 <p>El parámetro <code>ALLOWEDHOSTS</code> representa los nombres de host/dominio que nuestro sitio Django puede servir. Esta es una medida de seguridad para evitar los ataques de cabecera de host HTTP, que son posibles incluso bajo muchas configuraciones de servidores web aparentemente seguras.</p>
@@ -563,12 +529,11 @@ ALLOWED_HOSTS = ['*']
 <p>Usar <code>git status</code> para comprobar nuestros cambios, añadir los nuevos archivos, y luego confirmarlos:</p>
 </li>
 </ul>
-<pre><code class="bash">(pages) $ git status
+<pre><code class="language-bash">(pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m &quot;Actualiza para el despliegue en Heroku&quot;
 (pages) $ git push -u origin master
 </code></pre>
-
 <h2 id="412-despliegue">4.12 Despliegue</h2>
 <ul>
 <li>Crear una nueva aplicación en Heroku y enviar el código</li>
@@ -578,18 +543,16 @@ ALLOWED_HOSTS = ['*']
 <li>Visitar la aplicación en la URL proporcionada por Heroku</li>
 </ul>
 <h3 id="crear-una-nueva-aplicacion-de-heroku-desde-la-linea-de-comandos-con-heroku-create">Crear una nueva aplicación de Heroku, desde la línea de comandos con heroku create</h3>
-<pre><code class="bash">(pages) $ heroku create
+<pre><code class="language-bash">(pages) $ heroku create
 Creating app... done, 
 https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasis-40349.git
 </code></pre>
-
 <h3 id="anadir-un-hook-para-heroku-dentro-de-git">Añadir un “hook” para Heroku dentro de git</h3>
 <ul>
 <li>Git almacenará tanto la configuración para enviar el código a GitHub como a Heroku.</li>
 </ul>
-<pre><code class="bash">(pages) $ heroku git:remote -a cryptic-oasis-40349
+<pre><code class="language-bash">(pages) $ heroku git:remote -a cryptic-oasis-40349
 </code></pre>
-
 <h3 id="configurar-la-aplicacion-para-ignorar-los-archivos-estaticos">Configurar la aplicación para ignorar los archivos estáticos</h3>
 <ul>
 <li>Hay que decirle a Heroku que ignore los archivos estáticos como CSS y JavaScript que Django por defecto intenta optimizar para nosotros (se verá más adelante).</li>
@@ -597,20 +560,17 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 </ul>
 <pre><code>(pages) $ heroku config:set DISABLE_COLLECTSTATIC=1
 </code></pre>
-
 <ul>
 <li>Ahora ya podemos enviar nuestro código a Heroku.</li>
 </ul>
 <pre><code>(pages) $ git push heroku master
 </code></pre>
-
 <h3 id="iniciar-el-servidor-de-heroku-para-que-la-aplicacion-este-activa">Iniciar el servidor de Heroku para que la aplicación esté activa</h3>
 <ul>
 <li>Se puede utilizar el nivel más bajo, <code>web=1</code>, que también resulta ser gratuito.</li>
 </ul>
 <pre><code>(pages) $ heroku ps:scale web=1
 </code></pre>
-
 <h3 id="visitar-la-aplicacion-en-la-url-proporcionada-por-heroku">Visitar la aplicación en la URL proporcionada por Heroku</h3>
 <ul>
 <li>Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.</li>
@@ -647,7 +607,7 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -657,7 +617,7 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -671,6 +631,11 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

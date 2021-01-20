@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>2. Configuración Inicial - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,121 +47,96 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">2. Configuración Inicial</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#2-configuracion-inicial">2 Configuración inicial</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">2. Configuración Inicial</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-la-linea-de-comandos">2.1 La línea de comandos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-instalar-python-3">2.2 Instalar Python 3</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#23-entornos-virtuales">2.3 Entornos Virtuales</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#24-instalacion-de-django">2.4 Instalación de Django</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#21-la-linea-de-comandos">2.1 La línea de comandos</a></li>
-        
-            <li><a class="toctree-l3" href="#22-instalar-python-3">2.2 Instalar Python 3</a></li>
-        
-            <li><a class="toctree-l3" href="#23-entornos-virtuales">2.3 Entornos Virtuales</a></li>
-        
-            <li><a class="toctree-l3" href="#24-instalacion-de-django">2.4 Instalación de Django</a></li>
-        
-            <li><a class="toctree-l3" href="#25-instalar-git">2.5. Instalar Git</a></li>
-        
-            <li><a class="toctree-l3" href="#26-editores-de-texto">2.6. Editores de texto</a></li>
-        
-            <li><a class="toctree-l3" href="#27-conclusion">2.7. Conclusión</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1. Cambiando la IP de escucha y el puerto</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#25-instalar-git">2.5. Instalar Git</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#26-editores-de-texto">2.6. Editores de texto</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#27-borrar-el-proyecto">2.7. Borrar el proyecto</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -184,6 +161,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -194,8 +172,8 @@
 <li>Objetivos </li>
 <li>Configurar el entorno para programar en proyectos Django</li>
 <li>Uso de la línea de comandos para instalar: <ul>
-<li>Django 3.0</li>
-<li>Python 3.8</li>
+<li>Django 3.1</li>
+<li>Python 3.9</li>
 </ul>
 </li>
 <li>Git</li>
@@ -231,41 +209,44 @@
 </li>
 <li>
 <p>Por ejemplo, supongamos que el Python path tiene el valor </p>
-<p><code>python
-    ['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']</code></p>
+</li>
+</ul>
+<pre><code class="language-python">['', '/usr/lib/python2.4/site-packages', '/home/username/djcode/']
+</code></pre>
+<ul>
+<li>
+<p>Si se ejecuta el código Python <code>from foo import bar</code>, Python, en primer lugar, se va a buscar el módulo <code>foo.py</code> en el directorio actual (la primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual"). Si ese archivo no existe, Python va a buscar el módulo en <code>/usr/lib/python2.4/site-packages/foo.py</code>. Si ese archivo no existe, entonces se probará en <code>/home/username/djcode/foo.py</code>. Finalmente, si ese archivo no existe, Python lanzará un <code>ImportError</code>.</p>
 </li>
 <li>
-<p>Si se ejecuta el código Python <code>from foo import bar</code>, Python en primer lugar se va a buscar el módulo <code>foo.py</code> en el directorio actual. (La primera entrada en el Python path, una cadena de caracteres vacía, significa "el directorio actual."). Si ese archivo no existe, Python va a buscar el módulo en <code>/usr/lib/python2.4/site-packages/foo.py</code>. Si ese archivo no existe, entonces se probará en <code>/home/username/djcode/foo.py</code>. Finalmente, si ese archivo no existe, Python lanzará un <code>ImportError</code>.</p>
+<p>Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir:</p>
 </li>
-<li>
-<p>Si se quiere ver el valor del Python path, abrir un intérprete interactivo de Python y escribir <code>import sys</code>, seguido de <code>print(sys.path)</code>.</p>
-</li>
-<li>
-<p>Generalmente no hay que preocuparse de asigarle valores al "Python path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</p>
-</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; from sys import path
+&gt;&gt;&gt; print(path)
+</code></pre>
+<ul>
+<li>Generalmente no hay que preocuparse de asigarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</li>
 </ul>
 <h2 id="23-entornos-virtuales">2.3 Entornos Virtuales</h2>
 <ul>
 <li>Ver: <a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">Entornos Virtuales</a></li>
 </ul>
 <h2 id="24-instalacion-de-django">2.4 Instalación de Django</h2>
-<pre><code class="bash">$ cd ~/Escritorio
+<pre><code class="language-bash">$ cd ~/Escritorio
 $ mkdir django
 $ cd django
-$ pipenv install django
 $ pipenv shell
+$ pipenv install django
 </code></pre>
-
 <ul>
 <li>Crear nuevo proyecto <code>test</code>. No olvidar el "." al final.</li>
 </ul>
-<pre><code class="bash">$ django-admin startproject test_project .
+<pre><code class="language-bash">$ django-admin startproject test_project .
 </code></pre>
-
 <ul>
-<li>Si no se usa el "." aparecerá la siguiente estructura</li>
+<li>Si no se usa el "." aparecerá la siguiente estructura de directorios que es molesta por, como se puede ver, lo redundante del directorio <code>test_project</code>:</li>
 </ul>
-<pre><code>└──test_project
+<pre><code class="language-bash">└──test_project
    ├── manage.py
    └── test_project
        ├── __init__.py
@@ -273,45 +254,48 @@ $ pipenv shell
        ├── urls.py
        └── wsgi.py
 </code></pre>
-
 <ul>
 <li>Arrancando el servidor</li>
 </ul>
-<pre><code>$ python manage.py runserver
+<pre><code class="language-bash">$ python manage.py runserver
 </code></pre>
-
 <ul>
-<li>Escribir en el navegador la url <code>http://127.0.0.1:8000/</code> o <code>http://localhost:8000</code></li>
+<li>Escribir en el navegador la url <code>http://127.0.0.1:8000/</code> ó <code>http://localhost:8000</code></li>
 <li><code>&lt;Ctrl&gt;-c</code> para parar</li>
 <li><code>exit</code> para salir del entorno virtual</li>
 </ul>
 <h3 id="251-cambiando-la-ip-de-escucha-y-el-puerto">2.5.1. Cambiando la IP de escucha y el puerto</h3>
-<p>De manera predeterminada, el comando <code>runserver</code> inicia el servidor de desarrollo en la IP interna en el puerto 8000.</p>
+<p>De manera predeterminada, el comando <code>runserver</code> inicia el servidor de desarrollo en el puerto 8000 de la IP local.</p>
 <p>Si se desea cambiar el puerto del servidor, hay que pasarlo como un argumento de línea de comandos. Por ejemplo, este comando inicia el servidor en el puerto 8080:</p>
-<pre><code class="bash">$ python manage.py runserver 8080
+<pre><code class="language-bash">$ python manage.py runserver 8080
 </code></pre>
-
-<p>Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red), usar:</p>
-<pre><code class="bash">$ python manage.py runserver 0:8000
+<p>Si se desea cambiar la IP del servidor, ejecutar el comando con la IP seguida del puerto. Por ejemplo, para escuchar todas las IP públicas disponibles (<em>lo cual es útil si se está ejecutando Vagrant o se desea mostrar la web en otras computadoras en la red</em>), usar:</p>
+<pre><code class="language-bash">$ python manage.py runserver 0:8000
 </code></pre>
-
 <p><code>0</code> es un atajo para <code>0.0.0.0</code>. Los documentos completos para el servidor de desarrollo se pueden encontrar en la <a href="https://docs.djangoproject.com/en/3.0/ref/django-admin/#runserver">referencia del servidor de ejecución</a>.</p>
 <blockquote>
-<p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo. Los números de puerto bajos están reservados para el superusuario (root).</p>
+<p>Si se ejecuta este script como un usuario sin privilegios (recomendado), es posible que no se tenga acceso para iniciar en un puerto con un número bajo (puerto 80). Los números de puerto bajos están reservados para el superusuario (root).</p>
 </blockquote>
 <h2 id="25-instalar-git">2.5. Instalar Git</h2>
-<pre><code class="bash">$ sudo apt install git
+<pre><code class="language-bash">$ sudo apt install git
 $ git config --global user.name &quot;&lt;Nombre&gt;&quot;
 $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 </code></pre>
-
 <h2 id="26-editores-de-texto">2.6. Editores de texto</h2>
 <ul>
-<li>Emacs ó Vim</li>
-<li>Code-OSS ó Visual Studio Codium</li>
+<li>Emacs</li>
+<li>Vim ó Neovim</li>
+<li>Code-OSS ó VSCodium</li>
 <li>PyCharm</li>
 </ul>
-<h2 id="27-conclusion">2.7. Conclusión</h2>
+<h2 id="27-borrar-el-proyecto">2.7. Borrar el proyecto</h2>
+<p>El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio <code>~/.local/share/virtualenvs/&lt;directorio-código&gt;</code>. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando <code>pipenv --rm</code> para hacerlo desde el directorio del proyecto.</p>
+<pre><code class="language-bash">$ pipenv --rm
+</code></pre>
+<p>Una vez elminado el entorno virtual podemos proceder a borrar el proyecto, desde su directorio padre, usando el málefico comando: </p>
+<pre><code class="language-bash">$ rm -rf &lt;directorio del proyecto&gt;
+</code></pre>
+<p>Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizarndo wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.</p>
               
             </div>
           </div>
@@ -334,7 +318,7 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -344,7 +328,7 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -358,6 +342,11 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

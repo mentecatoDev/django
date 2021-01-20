@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>13. Email - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,152 +47,84 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">13. Email</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#13-correo-electronico">13. Correo electrónico</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#131-sendgrid">13.1. SendGrid</a></li>
-        
-            <li><a class="toctree-l3" href="#132-correos-electronicos-personalizados">13.2. Correos electrónicos personalizados</a></li>
-        
-            <li><a class="toctree-l3" href="#133-conclusion">13.3. Conclusión</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#documentacion-django">Documentación Django</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#envio-de-emails">Envío de emails</a></li>
-        
-            <li><a class="toctree-l3" href="#ejemplo-rapido">Ejemplo rápido</a></li>
-        
-            <li><a class="toctree-l3" href="#send_mail">send_mail()</a></li>
-        
-            <li><a class="toctree-l3" href="#send_mass_mail">send_mass_mail()</a></li>
-        
-            <li><a class="toctree-l3" href="#send_mass_mail-vs-send_mail">send_mass_mail() vs. send_mail()</a></li>
-        
-            <li><a class="toctree-l3" href="#mail_admins">mail_admins()</a></li>
-        
-            <li><a class="toctree-l3" href="#mail_managers">mail_managers()</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#manually-open-the-connection">Manually open the connection</a></li>
-    
-
-    <li class="toctree-l2"><a href="#construct-an-email-message-that-uses-the-connection">Construct an email message that uses the connection</a></li>
-    
-
-    <li class="toctree-l2"><a href="#construct-two-more-messages">Construct two more messages</a></li>
-    
-
-    <li class="toctree-l2"><a href="#send-the-two-emails-in-a-single-call-">Send the two emails in a single call -</a></li>
-    
-
-    <li class="toctree-l2"><a href="#the-connection-was-already-open-so-send_messages-doesnt-close-it">The connection was already open so send_messages() doesn't close it.</a></li>
-    
-
-    <li class="toctree-l2"><a href="#we-need-to-manually-close-the-connection">We need to manually close the connection.</a></li>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">13. Email</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#131-sendgrid">13.1. SendGrid</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#132-correos-electronicos-personalizados">13.2. Correos electrónicos personalizados</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#133-conclusion">13.3. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -215,6 +149,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -233,20 +168,18 @@
 <li>Ahora podemos configurar el código Django en el archivo <code>settings.py</code>. Primero se actualizará el backend de correo electrónico para usar SMTP.</li>
 </ul>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="python">EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+<pre><code class="language-python">EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 </code></pre>
-
 <ul>
 <li>Luego, justo debajo, agregar las siguientes cinco líneas de configuración de correo electrónico. Tener en cuenta que lo ideal sería almacenar información segura como la contraseña en variables de entorno, pero no estamos aquí para mantener las cosas simples.</li>
 </ul>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="python">EMAIL_HOST = 'smtp.sendgrid.net'
+<pre><code class="language-python">EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'sendgrid_username'
 EMAIL_HOST_PASSWORD = 'sendgrid_password'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 </code></pre>
-
 <ul>
 <li>Asegúrarse de usar el nombre de usuario SendGrid para EMAIL_HOST_USER y
 la contraseña de EMAIL_HOST_PASSWORD.</li>
@@ -258,7 +191,7 @@ la contraseña de EMAIL_HOST_PASSWORD.</li>
 <li>El primer resultado es el que se desea. Muestra que el código se encuentra en <code>django/contrib/admin/templates/registration/password_reset_email.html</code>. Eso significa que en la app <code>contrib</code> el archivo que queremos se llama <code>password_reset_email.html</code>.</li>
 </ul>
 <p>Aquí está el texto por defecto del código fuente de Django.</p>
-<pre><code class="text">{% load i18n %}{% autoescape off %}
+<pre><code class="language-text">{% load i18n %}{% autoescape off %}
 {% blocktrans %}You're receiving this email because you requested a password reset for your user account at {{ site_name }}.{% endblocktrans %}
 
 {% trans &quot;Please go to the following page and choose a new password:&quot; %}
@@ -273,18 +206,16 @@ la contraseña de EMAIL_HOST_PASSWORD.</li>
 
 {% endautoescape %}
 </code></pre>
-
 <ul>
 <li>Para cambiarlo, se necesita crear un nuevo archivo <code>password_reset_email.html</code> en la carpeta <code>registration</code>.</li>
 </ul>
-<pre><code class="bash">(news) $ touch templates/registration/password_reset_email.html
+<pre><code class="language-bash">(news) $ touch templates/registration/password_reset_email.html
 </code></pre>
-
 <ul>
 <li>Usar el siguiente código que ajusta lo que Django proporcionó por defecto.</li>
 </ul>
 <p>FICHERO: <code>templates/registration/password_reset_email.html</code></p>
-<pre><code class="text">{% load i18n %}{% autoescape off %}
+<pre><code class="language-text">{% load i18n %}{% autoescape off %}
 {% trans &quot;Hi&quot; %} {{ user.get_username }},
 
 {% trans &quot;We've received a request to reset your password. If you didn't make this request, you can safely ignore this email. Otherwise, click the button below to reset your password.&quot; %}
@@ -294,21 +225,18 @@ la contraseña de EMAIL_HOST_PASSWORD.</li>
 {% endblock %}
 {% endautoescape %}
 </code></pre>
-
 <ul>
 <li>Arriba se carga la etiqueta de la plantilla i18n lo que significa que este texto puede ser traducido a varios idiomas. Django tiene un sólido soporte de internacionalización aunque cubrirlo está fuera de nuestro alcance, por ahora.</li>
 <li>Se saluda al usuario por su nombre gracias a <code>user.get_username</code>. Luego se usa el bloque <code>reset_link</code> incorporado para incluir el enlace URL personalizado.</li>
 <li>También se actualiza el título del asunto del correo electrónico. Para ello, se crea un nuevo archivo <code>templates/registration/password_reset_subject.txt</code>.</li>
 </ul>
-<pre><code class="bash">(news) $ touch templates/registration/password_reset_subject.txt
+<pre><code class="language-bash">(news) $ touch templates/registration/password_reset_subject.txt
 </code></pre>
-
 <ul>
 <li>Luego agregar la siguiente línea de código al archivo <code>password_reset_subject.txt</code>.</li>
 </ul>
-<pre><code class="text">Please reset your password
+<pre><code class="language-text">Please reset your password
 </code></pre>
-
 <h2 id="133-conclusion">13.3. Conclusión</h2>
 <p>Se ha terminado de implementar un flujo de autenticación de usuario completo. Los usuarios pueden ingresar una nueva cuenta, iniciar sesión, cerrar sesión, cambiar contraseña y restablecerla.</p>
 <h1 id="documentacion-django">Documentación Django</h1>
@@ -327,16 +255,14 @@ send_mail(
     fail_silently=False,
 )
 </code></pre>
-
 <p>El correo se envía usando el host SMTP y el puerto especificado en los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST"><code>EMAIL_HOST</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_PORT"><code>EMAIL_PORT</code></a>. Los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_USER"><code>EMAIL_HOST_USER</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_PASSWORD"><code>EMAIL_HOST_PASSWORD</code></a>, si están configurados, se utilizan para autenticarse en el servidor SMTP, y los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_TLS"><code>EMAIL_USE_TLS</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_SSL"><code>EMAIL_USE_SSL</code></a> controlan si se utiliza una conexión segura.</p>
 <blockquote>
 <p>Nota
 El conjunto de caracteres del correo electrónico enviado con <code>django.core.mail</code> se ajustará al valor ajustado en <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-DEFAULT_CHARSET"><code>DEFAULT_CHARSET</code></a>.</p>
 </blockquote>
 <h2 id="send_mail"><a href="https://docs.djangoproject.com/es/3.0/topics/email/#send-mail"><code>send_mail()</code></a></h2>
-<pre><code class="python">send_mail`(subject, message, from_email, recipient_list, fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=None
+<pre><code class="language-python">send_mail`(subject, message, from_email, recipient_list, fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=None
 </code></pre>
-
 <p>En la mayoría de los casos, se puede enviar un correo electrónico usando <code>django.core.mail.send_mail()</code>.</p>
 <p>Se requieren los parámetros "subject", "message", "from_email" y "recipient_list".</p>
 <ul>
@@ -352,9 +278,8 @@ El conjunto de caracteres del correo electrónico enviado con <code>django.core.
 </ul>
 <p>El valor de retorno será el número de mensajes entregados con éxito (que puede ser <code>0</code> o <code>1</code> ya que sólo se puede enviar un mensaje).</p>
 <h2 id="send_mass_mail">send_mass_mail()</h2>
-<pre><code class="python">send_mass_mail(datatuple, fail_silently=False, auth_user=None, auth_password=None, connection=None)
+<pre><code class="language-python">send_mass_mail(datatuple, fail_silently=False, auth_user=None, auth_password=None, connection=None)
 </code></pre>
-
 <p><code>django.core.mail.send_mass_mail()</code> está pensado para manejar el envío masivo de correo electrónico.</p>
 <p><code>datatuple</code> es una tupla en la que cada elemento está en este formato:
 ```￼
@@ -370,18 +295,15 @@ mensaje1 = ('Subject here', 'Here is the message', 'from@example.com', ['first@e
 message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['second@test.com'])
 send_mass_mail((mensaje1, mensaje2), fail_silently=False)
 </code></pre>
-
 <p>El valor de retorno será el número de mensajes entregados con éxito.</p>
 <h2 id="send_mass_mail-vs-send_mail"><code>send_mass_mail()</code> vs. <code>send_mail()</code></h2>
 <p>La principal diferencia entre <code>send_mass_mail()</code> y <code>send_mail()</code> es que <code>send_mail()</code> abre una conexión al servidor de correo cada vez que se ejecuta, mientras que send_mass_mail() utiliza una única conexión para todos sus mensajes. Esto hace que <code>send_mass_mail()</code> sea ligeramente más eficiente.</p>
-<pre><code class="python">mail_admins()
+<pre><code class="language-python">mail_admins()
 mail_admins(subject, message, fail_silently=Falso, connection=None, html_message=None)
 </code></pre>
-
 <h2 id="mail_admins"><code>mail_admins()</code></h2>
 <pre><code>mail_admins`(*subject*, *message*, *fail_silently=False*, *connection=None*, *html_message=None*)
 </code></pre>
-
 <p><code>django.core.mail.mail_admins()</code> es un atajo para enviar un correo electrónico a los administradores del sitio, como se define en la configuración de ADMINS.</p>
 <p><code>mail_admins()</code> antepone al asunto el valor del ajuste <code>EMAIL_SUBJECT_PREFIX</code>, que es <code>[Django]</code>  por defecto.</p>
 <p>El encabezado "From:" del correo electrónico será el valor del ajuste <code>SERVER_EMAIL</code>.</p>
@@ -390,18 +312,16 @@ mail_admins(subject, message, fail_silently=Falso, connection=None, html_message
 <h2 id="mail_managers">mail_managers()</h2>
 <pre><code>mail_managers(subject, message, fail_silently=Falso, connection=None, html_message=None)
 </code></pre>
-
 <p><code>django.core.mail.mail_managers()</code> es igual que <code>mail_admins()</code>, excepto que envía un correo electrónico a los administradores del sitio, como se define en la configuración <code>MANAGERS</code>.</p>
 <h3 id="ejemplos">Ejemplos</h3>
 <p>Esto envía un solo correo electrónico a john@example.com y jane@example.com, y ambos aparecen en el "Para:'':</p>
-<pre><code class="python">send_mail(
+<pre><code class="language-python">send_mail(
     &quot;Sujeto&quot;,
     &quot;Mensaje&quot;,
     'from@example.com',
     ['john@example.com', 'jane@example.com'],
 )
 </code></pre>
-
 <p>Esto envía un mensaje a john@example.com y jane@example.com, y ambos reciben un correo electrónico separado:</p>
 <p>￼```python
 datatuple = (('Asunto', 'Mensaje', 'from@example.com', ['john@example.com']),
@@ -453,7 +373,6 @@ Esto es...`nd_mass_mail()`[¶](https://docs.djangoproject.com/es/3.0/topics/emai
 `datatuple` is a tuple in which each element is in this format:
 
 </code></pre>
-
 <p>(subject, message, from_email, recipient_list)</p>
 <pre><code>
 `fail_silently`, `auth_user` and `auth_password` have the same functions as in [`send_mail()`](https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail).
@@ -463,7 +382,6 @@ Each separate element of `datatuple` results in a separate email message. As in 
 For example, the following code would send two different messages to two different sets of recipients; however, only one connection to the mail server would be opened:
 
 </code></pre>
-
 <p>message1 = ('Subject here', 'Here is the message', 'from@example.com', ['first@example.com', 'other@example.com'])
 message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['second@test.com'])
 send_mass_mail((message1, message2), fail_silently=False)</p>
@@ -511,7 +429,6 @@ If `html_message` is provided, the resulting email will be a *multipart/alternat
 This sends a single email to [john@example.com](mailto:john%40example.com) and [jane@example.com](mailto:jane%40example.com), with them both appearing in the «To:»:
 
 </code></pre>
-
 <p>send_mail(
     'Subject',
     'Message.',
@@ -522,7 +439,6 @@ This sends a single email to [john@example.com](mailto:john%40example.com) and [
 This sends a message to [john@example.com](mailto:john%40example.com) and [jane@example.com](mailto:jane%40example.com), with them both receiving a separate email:
 
 </code></pre>
-
 <p>datatuple = (
     ('Subject', 'Message.', 'from@example.com', ['john@example.com']),
     ('Subject', 'Message.', 'from@example.com', ['jane@example.com']),
@@ -542,7 +458,6 @@ If a `message` contains headers at the start of the string, the headers will be 
 Here’s an example view that takes a `subject`, `message` and `from_email` from the request’s POST data, sends that to [admin@example.com](mailto:admin%40example.com) and redirects to «/contact/thanks/» when it’s done:
 
 </code></pre>
-
 <p>from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect</p>
 <p>def send_email(request):
@@ -600,7 +515,6 @@ The [`EmailMessage`](https://docs.djangoproject.com/es/3.0/topics/email/#django.
 For example:
 
 </code></pre>
-
 <p>from django.core.mail import EmailMessage</p>
 <p>email = EmailMessage(
     'Hello',
@@ -655,7 +569,6 @@ It can be useful to include multiple versions of the content in an email; the cl
 To send a text and HTML combination, you could write:
 
 </code></pre>
-
 <p>from django.core.mail import EmailMultiAlternatives</p>
 <p>subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
 text_content = 'This is an important message.'
@@ -667,7 +580,6 @@ msg.send()</p>
 By default, the MIME type of the `body` parameter in an [`EmailMessage`](https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage) is `&quot;text/plain&quot;`. It is good practice to leave this alone, because it guarantees that any recipient will be able to read the email, regardless of their mail client. However, if you are confident that your recipients can handle an alternative content type, you can use the `content_subtype` attribute on the [`EmailMessage`](https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage) class to change the main content type. The major type will always be `&quot;text&quot;`, but you can change the subtype. For example:
 
 </code></pre>
-
 <p>msg = EmailMessage(subject, html_content, from_email, [to])
 msg.content_subtype = "html"  # Main content is now text/html
 msg.send()</p>
@@ -687,7 +599,6 @@ The email backend class has the following methods:
 It can also be used as a context manager, which will automatically call `open()` and `close()` as needed:
 
 </code></pre>
-
 <p>from django.core import mail</p>
 <p>with mail.get_connection() as connection:
     mail.EmailMessage(
@@ -734,7 +645,6 @@ Instead of sending out real emails the console backend just writes the emails th
 To specify this backend, put the following in your settings:
 
 </code></pre>
-
 <p>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'</p>
 <pre><code>
 This backend is not intended for use in production – it is provided as a convenience that can be used during development.
@@ -748,7 +658,6 @@ The file backend writes emails to a file. A new file is created for each new ses
 To specify this backend, put the following in your settings:
 
 </code></pre>
-
 <p>EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location</p>
 <pre><code>
@@ -763,7 +672,6 @@ The `'locmem'` backend stores messages in a special attribute of the `django.cor
 To specify this backend, put the following in your settings:
 
 </code></pre>
-
 <p>EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'</p>
 <pre><code>
 This backend is not intended for use in production – it is provided as a convenience that can be used during development and testing.
@@ -775,7 +683,6 @@ This backend is not intended for use in production – it is provided as a conve
 As the name suggests the dummy backend does nothing with your messages. To specify this backend, put the following in your settings:
 
 </code></pre>
-
 <p>EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'</p>
 <pre><code>
 This backend is not intended for use in production – it is provided as a convenience that can be used during development.
@@ -801,7 +708,6 @@ Firstly, you can use the `send_messages()` method. `send_messages()` takes a lis
 For example, if you have a function called `get_notification_email()` that returns a list of [`EmailMessage`](https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage) objects representing some periodic email you wish to send out, you could send these emails using a single call to send_messages:
 
 </code></pre>
-
 <p>from django.core import mail
 connection = mail.get_connection()   # Use default email connection
 messages = get_notification_email()
@@ -812,7 +718,6 @@ In this example, the call to `send_messages()` opens a connection on the backend
 The second approach is to use the `open()` and `close()` methods on the email backend to manually control the connection. `send_messages()` will not manually open or close the connection if it is already open, so if you manually open the connection, you can control when it is closed. For example:
 
 </code></pre>
-
 <p>from django.core import mail
 connection = mail.get_connection()</p>
 <h1 id="manually-open-the-connection">Manually open the connection</h1>
@@ -858,7 +763,6 @@ The [file](https://docs.djangoproject.com/es/3.0/topics/email/#topic-email-file-
 Another approach is to use a «dumb» SMTP server that receives the emails locally and displays them to the terminal, but does not actually send anything. Python has a built-in way to accomplish this with a single command:
 
 </code></pre>
-
 <p>python -m smtpd -n -c DebuggingServer localhost:1025
 ```</p>
 <p>This command will start a minimal SMTP server listening on port 1025 of localhost. This server prints to standard output all email headers and the email body. You then only need to set the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST"><code>EMAIL_HOST</code></a> and <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_PORT"><code>EMAIL_PORT</code></a> accordingly. For a more detailed discussion of SMTP server options, see the Python documentation for the <a href="https://docs.python.org/3/library/smtpd.html#module-smtpd"><code>smtpd</code></a> module.</p>
@@ -885,7 +789,7 @@ Another approach is to use a «dumb» SMTP server that receives the emails local
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -895,7 +799,7 @@ Another approach is to use a «dumb» SMTP server that receives the emails local
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -909,6 +813,11 @@ Another approach is to use a «dumb» SMTP server that receives the emails local
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

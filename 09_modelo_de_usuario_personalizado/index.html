@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>9. Modelo de Usuario Personalizado - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,117 +47,88 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">9. Modelo de Usuario Personalizado</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#9-modelo-de-usuario-personalizado">9. Modelo de usuario personalizado</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#91-setup">9.1. Setup</a></li>
-        
-            <li><a class="toctree-l3" href="#92-modelo-de-usuario-personalizado">9.2 Modelo de usuario personalizado</a></li>
-        
-            <li><a class="toctree-l3" href="#93-formularios">9.3. Formularios</a></li>
-        
-            <li><a class="toctree-l3" href="#94-superusuario">9.4. Superusuario</a></li>
-        
-            <li><a class="toctree-l3" href="#95-conclusion">9.5. Conclusión</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">9. Modelo de Usuario Personalizado</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#91-setup">9.1. Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#92-modelo-de-usuario-personalizado">9.2 Modelo de usuario personalizado</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#93-formularios">9.3. Formularios</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#94-superusuario">9.4. Superusuario</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#95-conclusion">9.5. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -180,6 +153,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -190,7 +164,7 @@
 <p>Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo <code>AbstractBaseUser</code> cuando si sólo se utiliza <code>AbstractUser</code> las cosas son mucho más sencillas y aún así personalizables es mucho mejor práctica.</p>
 <p>Y ahora, <strong>hagamos un periódico</strong> (homenaje a las raíces de Django como un framework construido para editores y periodistas en el <a href="https://en.wikipedia.org/wiki/Lawrence_Journal-World">Lawrence Journal-World</a>).</p>
 <h2 id="91-setup">9.1. Setup</h2>
-<pre><code class="bash">$ cd ~/Desktop
+<pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir news
 $ cd news
 $ pipenv install django
@@ -199,7 +173,6 @@ $ pipenv shell
 (news) $ python manage.py startapp users
 (news) $ python manage.py runserver
 </code></pre>
-
 <p>Tener en cuenta que aún <strong>no se ha ejecutado la migración</strong> para configurar la base de datos.</p>
 <blockquote>
 <p>Nota</p>
@@ -214,7 +187,7 @@ $ pipenv shell
 <li>Actualizar el <code>admin</code></li>
 </ul>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="python">INSTALLED_APPS = [
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -227,16 +200,14 @@ $ pipenv shell
 # Authentication                                          # new
 AUTH_USER_MODEL = 'users.CustomUser'                      # new
 </code></pre>
-
 <p>FICHERO: <code>users/models.py</code></p>
-<pre><code class="python">from django.contrib.auth.models import AbstractUser
+<pre><code class="language-python">from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(default=0)
 </code></pre>
-
 <h2 id="93-formularios">9.3. Formularios</h2>
 <p>Hay <strong>dos formas</strong> de interactuar con el <strong>nuevo modelo</strong> de usuario personalizado</p>
 <ul>
@@ -244,11 +215,10 @@ class CustomUser(AbstractUser):
 <li>Dentro de la <strong>aplicación de administración</strong> que permite, como superusuarios, modificar los usuarios existentes.</li>
 </ul>
 <p>Así que hay que actualizar los dos formularios incorporados para esta funcionalidad: <code>UserCreationForm</code> y <code>UserChangeForm</code>.</p>
-<pre><code class="bash">(noticias) $ touch users/forms.py
+<pre><code class="language-bash">(noticias) $ touch users/forms.py
 </code></pre>
-
 <p>FICHERO: <code>users/forms.py</code></p>
-<pre><code class="python">from django import forms
+<pre><code class="language-python">from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 
@@ -266,7 +236,6 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = UserChangeForm.Meta.fields
 </code></pre>
-
 <p>Para ambos formularios se usa el modelo <code>CustomUser</code> con los campos por defecto de <code>Meta.fields</code>.</p>
 <p>El modelo de <code>CustomUser</code> contiene todos los campos del modelo de usuario por defecto y el campo <code>age</code> adicional que se ha definido.</p>
 <p>¿Pero cuáles son estos campos por defecto?</p>
@@ -278,7 +247,7 @@ class CustomUserChangeForm(UserChangeForm):
 </ul>
 <p>El paso final es actualizar el archivo <code>admin.py</code> ya que <em>Admin</em> está estrechamente unido al modelo de usuario por defecto. Se extenderá la clase existente <code>UserAdmin</code> para usar el nuevo modelo de <code>CustomUser</code> y los dos nuevos formularios.</p>
 <p>FICHERO: <code>users/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
@@ -293,20 +262,17 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
-
 <ul>
 <li>Obsérvese que <code>CustomUserAdmin</code> también tiene un ajuste de <code>list_display</code> de manera que sólo muestra los campos <code>email</code> , <code>username</code> y <code>age</code> aunque de hecho hay muchos más en el modelo de <code>CustomUser</code></li>
 </ul>
 <p>Ejecutar <code>makemigrations</code> y <code>migrate</code> por primera vez para crear una nueva base de datos que utilice el modelo de usuario personalizado.</p>
-<pre><code class="bash">(news) $ python manage.py makemigrations
+<pre><code class="language-bash">(news) $ python manage.py makemigrations
 (news) $ python manage.py migrate
 </code></pre>
-
 <h2 id="94-superusuario">9.4. Superusuario</h2>
 <p>Vamos a crear una cuenta de superusuario para confirmar que todo funciona como se espera. En la línea de comandos, escribir el siguiente comando y cumplir con las indicaciones.</p>
-<pre><code class="bash">(news) $ python manage.py createsuperuser
+<pre><code class="language-bash">(news) $ python manage.py createsuperuser
 </code></pre>
-
 <p>El hecho de que esto funcione es la primera prueba de que el modelo de usuario personalizado funciona como se esperaba.</p>
 <ul>
 <li>Navegar a http://127.0.0.1:8000/admin, logear y probar.</li>
@@ -335,7 +301,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -345,7 +311,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -359,6 +325,11 @@ admin.site.register(CustomUser, CustomUserAdmin)
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

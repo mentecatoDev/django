@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>6. Blog app - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,129 +47,104 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">6. Blog app</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#6-blog-app">6. Blog app</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">6. Blog app</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#61-configuracion-inicial">6.1. Configuración inicial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#62-modelos-de-bases-de-datos">6.2. Modelos de Bases de Datos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#63-admin">6.3. Admin</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#61-configuracion-inicial">6.1. Configuración inicial</a></li>
-        
-            <li><a class="toctree-l3" href="#62-modelos-de-bases-de-datos">6.2. Modelos de Bases de Datos</a></li>
-        
-            <li><a class="toctree-l3" href="#63-admin">6.3. Admin</a></li>
-        
-            <li><a class="toctree-l3" href="#64-urls">6.4 URLs</a></li>
-        
-            <li><a class="toctree-l3" href="#65-views">6.5. Views</a></li>
-        
-            <li><a class="toctree-l3" href="#66-templates">6.6. Templates</a></li>
-        
-            <li><a class="toctree-l3" href="#67-ficheros-estaticos">6.7. Ficheros estáticos</a></li>
-        
-            <li><a class="toctree-l3" href="#68-individual-blog-pages">6.8. Individual blog pages</a></li>
-        
-            <li><a class="toctree-l3" href="#69-tests">6.9. Tests</a></li>
-        
-            <li><a class="toctree-l3" href="#610-git">6.10. Git</a></li>
-        
-            <li><a class="toctree-l3" href="#611-conclusion">6.11. Conclusión</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#631-para-acceder-a-los-datos">6.3.1. Para acceder a los datos:</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#64-urls">6.4 URLs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#65-views">6.5. Views</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#66-templates">6.6. Templates</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#67-ficheros-estaticos">6.7. Ficheros estáticos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#68-individual-blog-pages">6.8. Individual blog pages</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#69-tests">6.9. Tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#610-git">6.10. Git</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#611-conclusion">6.11. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -192,6 +169,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -216,7 +194,7 @@
 </ul>
 </li>
 </ul>
-<pre><code class="bash">$ cd ~/Desktop 
+<pre><code class="language-bash">$ cd ~/Desktop 
 $ mkdir blog
 $ cd blog
 $ pipenv install django
@@ -226,9 +204,8 @@ $ pipenv shell
 (blog) $ python manage.py migrate
 (blog) $ python manage.py runserver
 </code></pre>
-
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">    # blog_project/settings.py
+<pre><code class="language-python">    # blog_project/settings.py
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -239,13 +216,12 @@ $ pipenv shell
         'blog.apps.BlogConfig',        # new
     ]
 </code></pre>
-
 <h2 id="62-modelos-de-bases-de-datos">6.2. Modelos de Bases de Datos</h2>
 <ul>
 <li>Se asume que cada <em>post</em> tiene un título, un autor y un cuerpo que se convertirán en un modelo de base de datos:</li>
 </ul>
 <p>FICHERO: <code>blog/models.py</code></p>
-<pre><code class="python">from django.db import models
+<pre><code class="language-python">from django.db import models
 
 
 class Post(models.Model):
@@ -259,7 +235,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 </code></pre>
-
 <ul>
 <li>Se importan los modelos de la clase y luego se crea una subclase del modelo llamada <code>Post</code>.</li>
 <li>Usando esta funcionalidad de subclase se tiene acceso automáticamente a todo lo que hay dentro de <code>django.db.models.Models</code> y se pueden añadir campos y métodos adicionales según se desee.</li>
@@ -272,24 +247,22 @@ class Post(models.Model):
 <li>Para todas las relaciones de uno a muchos, con <code>ForeignKey</code>, también debemos especificar una opción de <code>on_delete</code>.</li>
 <li>Ahora que se ha creado el nuevo modelo de base de datos, se necesita crear un nuevo registro de migración para él y migrar el cambio a la base de datos. Este proceso de dos pasos se puede completar con los siguientes comandos:</li>
 </ul>
-<pre><code class="bash">(blog) $ python manage.py makemigrations blog
+<pre><code class="language-bash">(blog) $ python manage.py makemigrations blog
 (blog) $ python manage.py migrate blog
 </code></pre>
-
 <p>Base de datos configurada.</p>
 <h2 id="63-admin">6.3. Admin</h2>
 <h3 id="631-para-acceder-a-los-datos">6.3.1. Para acceder a los datos:</h3>
 <ul>
 <li>Crear una cuenta de superusuario</li>
 </ul>
-<pre><code class="bash">(blog) $ python manage.py createsuperuser
+<pre><code class="language-bash">(blog) $ python manage.py createsuperuser
 Username (leave blank to use 'wsv'): wsv
 Email:
 Password:
 Password (again):
 Superuser created successfully.
 </code></pre>
-
 <ul>
 <li>Arrancar el servidor y abrir http://127.0.0.1:8000/admin/</li>
 <li>Logear con la nueva cuenta de superusuario</li>
@@ -297,14 +270,13 @@ Superuser created successfully.
 <li>Se olvidó actualizar <code>blog/admin.py</code></li>
 </ul>
 <p>FICHERO: <code>blog/admin.py</code></p>
-<pre><code class="python"># blog/admin.py
+<pre><code class="language-python"># blog/admin.py
 from django.contrib import admin
 from .models import Post
 
 
 admin.site.register(Post)
 </code></pre>
-
 <ul>
 <li>Refrescar ahora y añadir dos blog post para tener algunos datos de muestra con los que trabajar<ul>
 <li>Añadir un "autor" a cada entrada también, ya que por defecto todos los campos del modelo son obligatorios</li>
@@ -312,11 +284,10 @@ admin.site.register(Post)
 </li>
 </ul>
 <h2 id="64-urls">6.4 URLs</h2>
-<pre><code class="bash">(blog) $ touch blog/urls.py
+<pre><code class="language-bash">(blog) $ touch blog/urls.py
 </code></pre>
-
 <p>FICHERO:<code>blog/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 
@@ -324,9 +295,8 @@ urlpatterns = [
     path('', views.BlogListView.as_view(), name='home'),
 ]
 </code></pre>
-
 <p>FICHERO: <code>blog_project/urls.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include
 
 
@@ -335,10 +305,9 @@ urlpatterns = [
     path('', include('blog.urls')),
 ]
 </code></pre>
-
 <h2 id="65-views">6.5. Views</h2>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView
+<pre><code class="language-python">from django.views.generic import ListView
 from .models import Post
 
 
@@ -346,15 +315,13 @@ class BlogListView(ListView):
     model = Post
     template_name = 'home.html'
 </code></pre>
-
 <h2 id="66-templates">6.6. Templates</h2>
-<pre><code class="bash">(blog) $ mkdir templates
+<pre><code class="language-bash">(blog) $ mkdir templates
 (blog) $ touch templates/base.html
 (blog) $ touch templates/home.html
 </code></pre>
-
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">TEMPLATES = [
+<pre><code class="language-python">TEMPLATES = [
     {
         ...
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
@@ -362,9 +329,8 @@ class BlogListView(ListView):
     },
 ]
 </code></pre>
-
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">&lt;html&gt;
+<pre><code class="language-html">&lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Django blog&lt;/title&gt;
   &lt;/head&gt;
@@ -379,12 +345,11 @@ class BlogListView(ListView):
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-
 <ul>
 <li>El código entre <code>{% block content %}</code> y <code>{% endblock content %}</code> puede llenarse con otras plantillas.</li>
 </ul>
 <p>FICHERO:  <code>templates/home.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   {% for post in object_list %}
@@ -395,7 +360,6 @@ class BlogListView(ListView):
   {% endfor %}
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Observar que <code>object_list</code> proviene de <code>ListView</code> y contiene todos los objetos de la vista.</li>
 <li>Iniciar de nuevo el servidor Django: <code>python manage.py runserver</code></li>
@@ -406,30 +370,26 @@ class BlogListView(ListView):
 <li>Un poco de CSS, please</li>
 <li>En un proyecto Django listo para la producción, normalmente se almacenaría en una <a href="https://es.wikipedia.org/wiki/Red_de_distribuci%C3%B3n_de_contenidos">red de distribución de contenidos (CDN, <em>Content Delivery Network</em>)</a> para un mejor rendimiento, pero para este caso, el almacenamiento de los archivos en local está bien.</li>
 </ul>
-<pre><code class="bash">(blog) $ mkdir static
+<pre><code class="language-bash">(blog) $ mkdir static
 </code></pre>
-
 <ul>
 <li>Al igual que se hizo con la carpeta de plantillas, se necesita actualizar el archivo <code>settings.py</code> para decirle a Django dónde buscar estos archivos estáticos.</li>
 <li>Añadir en la parte inferior del archivo, debajo de la entrada para <code>STATIC_URL</code>.</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+<pre><code class="language-python">STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 </code></pre>
-
 <ul>
 <li>Crear una carpeta <code>css</code> dentro de <code>static</code> y crear el fichero <code>base.css</code></li>
 </ul>
-<pre><code class="bash">(blog) $ mkdir static/css
+<pre><code class="language-bash">(blog) $ mkdir static/css
 (blog) $ touch static/css/base.css
 </code></pre>
-
 <p>FICHERO: <code>static/css/base.css</code></p>
-<pre><code class="css">header h1 a {
+<pre><code class="language-css">header h1 a {
   color: red;
 }
 </code></pre>
-
 <ul>
 <li>Añadir el fichero estático a la plantilla añadiendo <code>{% load static %}</code> al pricipio de <code>base.html</code><ul>
 <li>Como las otras plantillas se heredan de <code>base.html</code> sólo hay que añadirlo una vez</li>
@@ -437,7 +397,7 @@ class BlogListView(ListView):
 </li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">{% load static %}
+<pre><code class="language-html">{% load static %}
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Django blog&lt;/title&gt;
@@ -445,13 +405,12 @@ class BlogListView(ListView):
   &lt;/head&gt;
 ...
 </code></pre>
-
 <ul>
 <li>Ahora se pueden añadir archivos estáticos y aparecerán automáticamente en todas las plantillas.</li>
 <li>¿Qué tal si se añade una fuente personalizada y algo más de CSS?</li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">{% load static %}
+<pre><code class="language-html">{% load static %}
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Django blog&lt;/title&gt;
@@ -460,12 +419,11 @@ class BlogListView(ListView):
   &lt;/head&gt;
 ...
 </code></pre>
-
 <ul>
 <li>Actualizar el archivo css</li>
 </ul>
 <p>FICHERO: <code>static/css/base.css</code></p>
-<pre><code class="css">body {
+<pre><code class="language-css">body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
 }
@@ -513,7 +471,6 @@ header h1 a {
   color: red;
 }
 </code></pre>
-
 <h2 id="68-individual-blog-pages">6.8. Individual blog pages</h2>
 <ul>
 <li>
@@ -527,7 +484,7 @@ header h1 a {
 </li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView
 from .models import Post
 
 
@@ -540,16 +497,14 @@ class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
 </code></pre>
-
 <ul>
 <li>Por defecto <code>DetailView</code> proporciona un objeto de contexto que podemos usar en la plantilla llamado <code>objeto</code> o el nombre en minúsculas de nuestro modelo, <code>post</code>.</li>
 <li>Además, <code>DetailView</code> espera que se le pase una clave primaria o un <em>slug</em> como identificador. Más sobre esto en breve.</li>
 </ul>
-<pre><code class="bash">(blog) $ touch templates/post_detail.html
+<pre><code class="language-bash">(blog) $ touch templates/post_detail.html
 </code></pre>
-
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -558,14 +513,13 @@ class BlogDetailView(DetailView):
   &lt;/div&gt;
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>En la parte superior se especifica que esta plantilla hereda de base.html.</li>
 <li>Luego se muestra el título y cuerpo del objeto de contexto, que <code>DetailView</code> hace accesible como <code>post</code>.</li>
 <li>La denominación de los objetos de contexto en vistas genéricas es extremadamente confusa cuando se ve Django por primera vez. Debido a que nuestro objeto de contexto de <code>DetailView</code> es o bien el nombre de modelo <code>post</code> o bien <code>object</code>, podríamos también actualizar nuestro modelo de la siguiente manera y funcionaría exactamente igual.</li>
 </ul>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -575,20 +529,18 @@ class BlogDetailView(DetailView):
 
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Si se encuentra confuso el uso de <code>post</code> o de <code>objeto</code>, también podemos establecer explícitamente el nombre del objeto del contexto en la vista. Así que si quisiéramos llamarlo <code>anything_you_want</code> y luego usarlo en la plantilla, el código tendría el siguiente aspecto y funcionaría igual.</li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="python">...
+<pre><code class="language-python">...
 class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'anything_you_want'
 </code></pre>
-
 <p>FICHERO: <code>templates/post_detail.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
@@ -598,13 +550,12 @@ class BlogDetailView(DetailView):
 
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>La "magia" en la denominación del objeto de contexto es un precio que se paga por la facilidad y la sencillez del uso de vistas genéricas. Son geniales si se sabe lo que se hace pero pueden ser difíciles de personalizar si se quiere un comportamiento diferente.</li>
 <li>Añadir una nueva URLConf para la vista</li>
 </ul>
 <p>FICHERO: <code>blog/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 
 from . import views
 
@@ -613,7 +564,6 @@ urlpatterns = [
     path('post/&lt;int:pk&gt;/', views.BlogDetailView.as_view(), name='post_detail'),
 ]
 </code></pre>
-
 <ul>
 <li>Todas las entradas del blog comenzarán con <code>post/</code>. Lo siguiente es la clave principal de la entrada que se representará como un entero <code>&lt;int:pk&gt;</code>.</li>
 <li>¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos <code>title</code>, <code>author</code> and <code>body</code> en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado <code>id</code>, que es la clave primaria. Se puede acceder a ella como <code>id</code> o <code>pk</code>.</li>
@@ -627,7 +577,7 @@ urlpatterns = [
 <li>Para facilitar el acceso, se debería actualizar el enlace en la página de inicio para poder acceder directamente a las entradas individuales del blog desde allí. Actualmente en <code>home.html</code> el enlace está vacío: <code>&lt;a href=""&gt;</code> . Actualizarlo a <code>&lt;a href="{% url 'post_detail' post.pk %}"&gt;</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   {% for post in object_list %}
@@ -638,7 +588,6 @@ urlpatterns = [
   {% endfor %}
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Se empieza diciendo a la plantilla de Django que se quiere hacer referencia a una <code>URLConf</code> usando el código <code>{% url ... %}</code><ul>
 <li>¿Qué URL?.- La que se llama <code>post_detail</code>, que es el nombre que se le dió a <code>BlogDetailView</code> en la <code>URLConf</code> hace un momento.</li>
@@ -650,7 +599,7 @@ urlpatterns = [
 </ul>
 <h2 id="69-tests">6.9. Tests</h2>
 <p>FICHERO: <code>blog/tests.py</code></p>
-<pre><code class="python">from django.contrib.auth import get_user_model
+<pre><code class="language-python">from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from .models import Post
@@ -693,7 +642,6 @@ class BlogTests(TestCase):
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
 </code></pre>
-
 <ul>
 <li>Hay muchas cosas nuevas en estas pruebas, así que se recorrerán lentamente.</li>
 <li>En la parte superior se importa <code>get_user_model</code> para referenciar al usuario activo.</li>
@@ -703,19 +651,17 @@ class BlogTests(TestCase):
 <li>Finalmente <code>test_post_detail_view</code> comprueba que la página de detalles funciona como se espera y que una página incorrecta devuelve un <em>404</em>.</li>
 <li>Siempre es bueno probar que algo existe y que algo incorrecto no existe en las pruebas.</li>
 </ul>
-<pre><code class="bash">(testy) $ python manage.py test
+<pre><code class="language-bash">(testy) $ python manage.py test
 </code></pre>
-
 <h2 id="610-git">6.10. Git</h2>
 <ul>
 <li>Ahora también es un buen momento para el primer <em>commit</em> de git. </li>
 </ul>
-<pre><code class="bash">(testy) $ git init
+<pre><code class="language-bash">(testy) $ git init
 (testy) $ git status
 (testy) $ git add -A
 (testy) $ git commit -m 'initial commit'
 </code></pre>
-
 <h2 id="611-conclusion">6.11. Conclusión</h2>
 <ul>
 <li>Se ha construido una aplicación básica de blog desde cero</li>
@@ -744,7 +690,7 @@ class BlogTests(TestCase):
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -754,7 +700,7 @@ class BlogTests(TestCase):
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -768,6 +714,11 @@ class BlogTests(TestCase):
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

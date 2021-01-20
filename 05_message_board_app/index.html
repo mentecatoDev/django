@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>5. Message Board app - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,127 +47,114 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">5. Message Board app</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#5-message-board-app">5. Message Board app</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">5. Message Board app</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#51-setup-inicial">5.1. Setup Inicial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#52-crear-un-modelo-de-base-de-datos">5.2. Crear un modelo de base de datos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#53-activando-modelos">5.3. Activando modelos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#54-django-admin">5.4. Django Admin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#55-viewstemplatesurls">5.5. Views/Templates/URLs</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#51-setup-inicial">5.1. Setup Inicial</a></li>
-        
-            <li><a class="toctree-l3" href="#52-crear-un-modelo-de-base-de-datos">5.2. Crear un modelo de base de datos</a></li>
-        
-            <li><a class="toctree-l3" href="#53-activando-modelos">5.3. Activando modelos</a></li>
-        
-            <li><a class="toctree-l3" href="#54-django-admin">5.4. Django Admin</a></li>
-        
-            <li><a class="toctree-l3" href="#55-viewstemplatesurls">5.5. Views/Templates/URLs</a></li>
-        
-            <li><a class="toctree-l3" href="#56-tests">5.6. Tests</a></li>
-        
-            <li><a class="toctree-l3" href="#57-github">5.7. GitHub</a></li>
-        
-            <li><a class="toctree-l3" href="#58-heroku-configuration">5.8. Heroku configuration</a></li>
-        
-            <li><a class="toctree-l3" href="#59-despliegue-en-heroku">5.9. Despliegue en Heroku</a></li>
-        
-            <li><a class="toctree-l3" href="#510-conclusion">5.10. Conclusión</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#551-vista">5.5.1. Vista</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#542-plantilla">5.4.2. Plantilla</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#56-tests">5.6. Tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#57-github">5.7. GitHub</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#58-heroku-configuration">5.8. Heroku configuration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#581-actualizar-pipfilelock">5.8.1. Actualizar Pipfile.lock</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#582-crear-procfile">5.8.2. Crear Procfile</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#583-instalar-gunicorn">5.8.3. Instalar gunicorn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#584-actualizar-settingspy">5.8.4. Actualizar settings.py</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#59-despliegue-en-heroku">5.9. Despliegue en Heroku</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#510-conclusion">5.10. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -190,6 +179,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -217,16 +207,15 @@
 <li>Crear una nueva aplicación <code>posts</code></li>
 <li>Actualizar <code>settings.py</code></li>
 </ul>
-<pre><code class="bash">$ mkdir mb
+<pre><code class="language-bash">$ mkdir mb
 $ cd mb
 $ pipenv install django
 $ pipenv shell
 (mb) $ django-admin startproject mb_project .
 (mb) $ python manage.py startapp posts
 </code></pre>
-
 <p>FICHERO: <code>mb_project/settings.py</code></p>
-<pre><code class="python">    # mb_project/settings.py
+<pre><code class="language-python">    # mb_project/settings.py
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -237,20 +226,17 @@ $ pipenv shell
         'posts.apps.PostsConfig', # new
     ]
 </code></pre>
-
 <ul>
 <li>A continuación, ejecutar el comando <code>migrate</code> para crear una base de datos inicial basada en la configuración por defecto de Django.</li>
 </ul>
 <pre><code>(mb) $ python manage.py migrate
 </code></pre>
-
 <ul>
 <li>Ahora en el directorio habrá un fichero <code>db.sqlite3</code> que representa a la base de datos SQLite.</li>
 </ul>
-<pre><code class="bash">(mb) $ ls
+<pre><code class="language-bash">(mb) $ ls
 db.sqlite3 mb_project manage.py
 </code></pre>
-
 <blockquote>
 <p><em>Nota</em>.- Técnicamente se crea un fichero <code>db.sqlite3</code> la primera vez que se ejecuta una migración (<code>migrate</code>) o se ejecuta el servidor (<code>runserver</code>). El uso de <code>runserver</code> configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en <code>INSTALLED_APPS</code>. En otras palabras, para asegurar que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar <code>migrate</code> (y también <code>makemigrations</code>) cada vez que se actualiza un modelo. Más en breve.</p>
 </blockquote>
@@ -259,16 +245,14 @@ db.sqlite3 mb_project manage.py
 </ul>
 <pre><code>(mb) $ python manage.py runserver
 </code></pre>
-
 <h2 id="52-crear-un-modelo-de-base-de-datos">5.2. Crear un modelo de base de datos</h2>
 <ul>
 <li>Crear un modelo de base de datos donde se pueda almacenar y mostrar los mensajes de los usuarios.</li>
 <li><strong>Django convertirá este modelo en una tabla de base de datos</strong>.</li>
 </ul>
 <p>FICHERO: <code>posts/models.py</code></p>
-<pre><code class="python">from django.db import models
+<pre><code class="language-python">from django.db import models
 </code></pre>
-
 <ul>
 <li>
 <p>Django importa un módulo <code>models</code> para ayudar a construir nuevos modelos de bases de datos, que "modelan" las características de los datos de la base de datos.</p>
@@ -278,12 +262,11 @@ db.sqlite3 mb_project manage.py
 </li>
 </ul>
 <p>FICHERO: <code>post/models.py</code></p>
-<pre><code class="python">from django.db import models
+<pre><code class="language-python">from django.db import models
 
 class Post(models.Model):     # new
     text = models.TextField() # new
 </code></pre>
-
 <ul>
 <li>Se ha creado un nuevo modelo de base de datos llamado <code>Post</code> que tiene el campo <code>text</code> de tipo <code>TextField()</code>.</li>
 </ul>
@@ -293,10 +276,9 @@ class Post(models.Model):     # new
 <li>Primero se crea un archivo de migración con el comando <code>makemigrations</code> que genera los comandos SQL para las aplicaciones preinstaladas en nuestra configuración de <code>INSTALLED_APPS</code>. Los archivos de migración no ejecutan esos comandos en el archivo de base de datos, sino que son una referencia de todos los cambios en los modelos. Este enfoque significa que tienen un registro de los cambios de los modelos a lo largo del tiempo.</li>
 <li>En segundo lugar, construimos la base de datos actual con <code>migrate</code> que ejecuta la función en el archivo de migraciones.</li>
 </ul>
-<pre><code class="bash">(mb) $ python manage.py makemigrations posts
+<pre><code class="language-bash">(mb) $ python manage.py makemigrations posts
 (mb) $ python manage.py migrate posts
 </code></pre>
-
 <ul>
 <li>
 <p>No es necesario incluir un nombre después de <code>makemigrations</code> o de <code>migrate</code> pero es un buen hábito para ser específico.</p>
@@ -313,14 +295,13 @@ class Post(models.Model):     # new
 </li>
 <li>Para utilizar el administrador de Django, primero necesitamos crear un superusuario que pueda iniciar sesión.</li>
 </ul>
-<pre><code class="bash">(mb) $ python manage.py createsuperuser
+<pre><code class="language-bash">(mb) $ python manage.py createsuperuser
 Username (leave blank to use 'wsv'): wsv
 Email:
 Password:
 Password (again):
 Superuser created successfully.
 </code></pre>
-
 <ul>
 <li>
 <p>Reiniciar el servidor Django con <code>python manage.py</code> y en el navegador ir
@@ -331,13 +312,12 @@ a http://127.0.0.1:8000/admin/.</p>
 </li>
 </ul>
 <p>FICHERO: <code>post/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 
 from posts.models import Post
 
 admin.site.register(Post)
 </code></pre>
-
 <ul>
 <li>Ahora crear el primer mensaje en el tablero de mensajes.</li>
 <li><em>Problema</em>: La nueva entrada se llama “Post object”, lo cual no es muy útil<ul>
@@ -346,7 +326,7 @@ admin.site.register(Post)
 </li>
 </ul>
 <p>FICHERO: <code>posts/models.py</code></p>
-<pre><code class="python"># posts/models.py
+<pre><code class="language-python"># posts/models.py
 from django.db import models
 
 
@@ -356,7 +336,6 @@ class Post(models.Model):
     def __str__(self):        # new
         return self.text[:50] # new
 </code></pre>
-
 <ul>
 <li>Es una buena práctica añadir métodos <code>__str__()</code> a todos los modelos para aumentar la legibilidad.</li>
 </ul>
@@ -369,7 +348,7 @@ class Post(models.Model):
 <li>Django viene equipado con el <code>ListView</code> genérico basado en clases.</li>
 </ul>
 <p>FICHERO: <code>posts/views.py</code></p>
-<pre><code class="python"># posts/views.py
+<pre><code class="language-python"># posts/views.py
 from django.views.generic import ListView
 from .models import Post
 
@@ -378,7 +357,6 @@ class HomePageView(ListView):
     model = Post
     template_name = 'home.html'
 </code></pre>
-
 <ul>
 <li>Importar <code>ListView</code></li>
 <li>Definir qué modelo se va a usar</li>
@@ -391,14 +369,13 @@ class HomePageView(ListView):
 <ul>
 <li>Crear un directorio en el nivel del proyecto que se llame <code>templates</code> y una plantilla <code>home.html</code> en él</li>
 </ul>
-<pre><code class="bash">(mb) $ mkdir templates
+<pre><code class="language-bash">(mb) $ mkdir templates
 (mb) $ touch templates/home.html
 </code></pre>
-
 <ul>
 <li>Actualizar el campo <code>DIRS</code> del archivo<code>settings.py</code> para que Django sepa cómo acceder a la carpeta <code>templates</code>.</li>
 </ul>
-<pre><code class="python"># settings.py
+<pre><code class="language-python"># settings.py
 TEMPLATES = [
     {
         ...
@@ -407,12 +384,11 @@ TEMPLATES = [
     },
 ]
 </code></pre>
-
 <ul>
 <li>En el archivo <code>home.html</code> se puede usar bucle <code>for</code> del lenguaje de plantillas de Django para listar todos los objetos en <code>object_list</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code></p>
-<pre><code class="html">&lt;!-- templates/home.html --&gt;
+<pre><code class="language-html">&lt;!-- templates/home.html --&gt;
 &lt;h1&gt;Message board homepage&lt;/h1&gt;
 &lt;ul&gt;
     {% for post in object_list %}
@@ -420,9 +396,8 @@ TEMPLATES = [
     {% endfor %}
 &lt;/ul&gt;
 </code></pre>
-
 <p>FICHERO: <code>mb_project/urls.py</code></p>
-<pre><code class="python">    # mb_project/urls.py
+<pre><code class="language-python">    # mb_project/urls.py
     from django.contrib import admin
 ç   from django.urls import path, include
 
@@ -432,16 +407,14 @@ TEMPLATES = [
 ç       path('', include('posts.urls')),
     ]
 </code></pre>
-
 <ul>
 <li>Crear el fichero <code>urls.py</code> a nivel de app</li>
 </ul>
 <pre><code>(mb) $ touch posts/urls.py
 </code></pre>
-
 <p>...con el siguiente contenido:
 FICHERO: <code>posts/urls.py</code></p>
-<pre><code class="python">ç   # posts/urls.py
+<pre><code class="language-python">ç   # posts/urls.py
 ç   from django.urls import path
 ç   from .views import HomePageView
 
@@ -450,7 +423,6 @@ FICHERO: <code>posts/urls.py</code></p>
 ç       path('', HomePageView.as_view(), name='home'),
 ç   ]
 </code></pre>
-
 <ul>
 <li>Reiniciar el servidor que ahora mostrará los post del tablón de mensajes</li>
 <li>Añádanse más posts ;-)</li>
@@ -460,7 +432,6 @@ FICHERO: <code>posts/urls.py</code></p>
 (mb) $ git add -A
 (mb) $ git commit -m 'Realiza el commit inicial'
 </code></pre>
-
 <h2 id="56-tests">5.6. Tests</h2>
 <ul>
 <li>Se necesita usar <code>TestCase</code> dado que ahora tenemos una base de datos y no solo una página estática.</li>
@@ -469,7 +440,7 @@ FICHERO: <code>posts/urls.py</code></p>
 <li>Es importante que todos los métodos de prueba comiencen con <code>test_</code> para que Django sepa cómo manejarlos</li>
 </ul>
 <p>FICHERO: <code>posts/test.py</code></p>
-<pre><code class="python">    # posts/tests.py
+<pre><code class="language-python">    # posts/tests.py
     from django.test import TestCase
 ç   from .models import Post
 
@@ -484,7 +455,6 @@ FICHERO: <code>posts/urls.py</code></p>
 ç           expected_object_name = f'{post.text}'
 ç           self.assertEqual(expected_object_name, 'just a test')
 </code></pre>
-
 <ol>
 <li>Importa el módulo <code>TestCase</code> que permite crear una base de datos de muestra</li>
 <li>Importa el modelo <code>Post</code></li>
@@ -504,7 +474,7 @@ para crear una nueva base de datos con una sola entrada: <code>'just a test'</co
 <li>En la última línea se usa <code>assertEqual</code> para comprobar que la entrada recién creada coincide con la dispuesta al principio</li>
 <li>Ejecutar la prueba con <code>python manage.py test</code></li>
 </ol>
-<pre><code class="bash">(mb) $ python manage.py test
+<pre><code class="language-bash">(mb) $ python manage.py test
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
 .
@@ -514,13 +484,12 @@ Ran 1 test in 0.001s
 OK
 Destroying test database for alias 'default'...
 </code></pre>
-
 <ul>
 <li>A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos.</li>
 <li>El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
 <li>Se necesita añadir un <code>import</code> más para <code>reverse</code> y una nueva clase <code>HomePageViewTest</code></li>
 </ul>
-<pre><code class="python">from django.test import TestCase
+<pre><code class="language-python">from django.test import TestCase
 from django.urls import reverse  #new
 from .models import Post
 
@@ -554,11 +523,10 @@ class HomePageViewTest(TestCase): # new
         self.assertEqual(resp.status_code, 200)         # new
         self.assertTemplateUsed(resp, 'home.html')      # new
 </code></pre>
-
 <ul>
 <li>Ejecutando el test:</li>
 </ul>
-<pre><code class="bash">(mb) $ python manage.py test
+<pre><code class="language-bash">(mb) $ python manage.py test
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
 .
@@ -568,7 +536,6 @@ Ran 4 tests in 0.036s
 OK
 Destroying test database for alias 'default'...
 </code></pre>
-
 <ul>
 <li>4 test: <code>test_text_content</code>, <code>test_view_url_exists_at_proper_location</code>, <code>test_view_url_by_name</code> y  <code>test_view_uses_correct_template</code>.</li>
 <li>
@@ -578,10 +545,9 @@ Destroying test database for alias 'default'...
 <p>Hora de hacer <em>commit</em> de los cambios.</p>
 </li>
 </ul>
-<pre><code class="bash">(mb) $ git add -A
+<pre><code class="language-bash">(mb) $ git add -A
 (mb) $ git commit -m 'added tests'
 </code></pre>
-
 <h2 id="57-github">5.7. GitHub</h2>
 <ul>
 <li>Subir el proyecto...</li>
@@ -601,44 +567,38 @@ Destroying test database for alias 'default'...
 <li>Especificar la versión de python que se está usando
 FICHERO: <code>Pipfile</code></li>
 </ul>
-<pre><code class="Pipfile"># Pipfile
+<pre><code class="language-Pipfile"># Pipfile
 [requires]
 python_version = &quot;3.8&quot;
 </code></pre>
-
 <p>Ejecutar <code>pipenv lock</code> para generar el <code>Pipfile.lock</code> adecuado.</p>
-<pre><code class="bash">(mb) $ pipenv lock
+<pre><code class="language-bash">(mb) $ pipenv lock
 </code></pre>
-
 <h3 id="582-crear-procfile">5.8.2. Crear <code>Procfile</code></h3>
 <ul>
 <li>Le dirá a Heroku <em>cómo</em> ejecutar el servidor remoto donde habita el código.</li>
 </ul>
-<pre><code class="bash">(mb) $ touch Procfile
+<pre><code class="language-bash">(mb) $ touch Procfile
 </code></pre>
-
 <h3 id="583-instalar-gunicorn">5.8.3. Instalar <code>gunicorn</code></h3>
 <ul>
 <li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero <code>mb_project.wsgi</code> para más instrucciones.</li>
 </ul>
 <pre><code>web: gunicorn mb_project.wsgi --log-file -
 </code></pre>
-
 <ul>
 <li>Luego, se instala <code>gunicorn</code>, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.</li>
 </ul>
 <pre><code>(mb) $ pipenv install gunicorn
 </code></pre>
-
 <h3 id="584-actualizar-settingspy">5.8.4. Actualizar <code>settings.py</code></h3>
 <ul>
 <li>Actualizar <code>ALLOWED_HOSTS</code> en el archivo <code>settings.py</code>.
 FICHERO: mb_project/settings.py</li>
 </ul>
-<pre><code class="python"># mb_project/settings.py
+<pre><code class="language-python"># mb_project/settings.py
 ALLOWED_HOSTS = ['*']
 </code></pre>
-
 <ul>
 <li><code>commit</code> y <code>push</code></li>
 </ul>
@@ -647,41 +607,35 @@ ALLOWED_HOSTS = ['*']
 (mb) $ git commit -m 'New updates for Heroku deployment'
 (mb) $ git push -u origin master
 </code></pre>
-
 <h2 id="59-despliegue-en-heroku">5.9. Despliegue en Heroku</h2>
 <ul>
 <li><em>Login</em></li>
 </ul>
-<pre><code class="bash">(mb) $ heroku login
+<pre><code class="language-bash">(mb) $ heroku login
 </code></pre>
-
 <ul>
 <li><em>Create</em>.- Genera un nombre aleatorio para la aplicación</li>
 </ul>
-<pre><code class="bash">(mb) $ heroku create
+<pre><code class="language-bash">(mb) $ heroku create
 Creating app... done,agile-inlet-25811
 https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25811.git
 </code></pre>
-
 <ul>
 <li>Establecer a git para usar el nombre de la nueva aplicación cuando se suba el código a Heroku.</li>
 </ul>
-<pre><code class="bash">(mb) $ heroku git:remote -a agile-inlet-25811
+<pre><code class="language-bash">(mb) $ heroku git:remote -a agile-inlet-25811
 </code></pre>
-
 <ul>
 <li>Indicar a que ignore los archivos estáticos (se tratará más adelante).</li>
 </ul>
 <pre><code>(mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
 </code></pre>
-
 <ul>
 <li>Subir el código a Heroku y añadir escalado gratuito para que se ejecute realmente en línea, de lo contrario el código sólo se quedará alojado.</li>
 </ul>
 <pre><code>(mb) $ git push heroku master
 (mb) $ heroku ps:scale web=1
 </code></pre>
-
 <ul>
 <li>Abrir el código con <code>heroku open</code> y automáticamente mostrará un navegador con la URL de la aplicación.</li>
 </ul>
@@ -714,7 +668,7 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -724,7 +678,7 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -738,6 +692,11 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

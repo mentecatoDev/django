@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>14. Newspaper app - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,117 +47,88 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">14. Newspaper app</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#14-newspaper-app">14. Newspaper app</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#141-articles-app">14.1. Articles app</a></li>
-        
-            <li><a class="toctree-l3" href="#142-urls-y-vistas">14.2. URLs y Vistas</a></li>
-        
-            <li><a class="toctree-l3" href="#143-editarborrar">14.3. Editar/Borrar</a></li>
-        
-            <li><a class="toctree-l3" href="#14crear-la-page">14.Crear la page</a></li>
-        
-            <li><a class="toctree-l3" href="#conclusion">Conclusión...</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">14. Newspaper app</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#141-articles-app">14.1. Articles app</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#142-urls-y-vistas">14.2. URLs y Vistas</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#143-editarborrar">14.3. Editar/Borrar</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14crear-la-page">14.Crear la page</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusión...</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -180,6 +153,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -197,18 +171,16 @@
 </ul>
 <pre><code>(news) $ python manage.py startapp articles
 </code></pre>
-
 <ul>
 <li>Añadirla a <code>INSTALLED_APPS</code> y actualizar la zona horaria ya que se marcará la hora de los artículos.</li>
 <li>Para averiguar la zona horaria correspondiente:</li>
 </ul>
-<pre><code class="python">&gt;&gt;&gt; from pytz import all_timezones, common_timezones
+<pre><code class="language-python">&gt;&gt;&gt; from pytz import all_timezones, common_timezones
 &gt;&gt;&gt; 'Europe/Madrid' in all_timezones
 True
 </code></pre>
-
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="python">INSTALLED_APPS = [
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -226,14 +198,13 @@ True
 ]
 TIME_ZONE = 'Europe/Madrid'
 </code></pre>
-
 <ul>
 <li>Se define el modelo de base de datos con cuatro campos: <code>title</code>, <code>body</code>, <code>date</code>, y <code>author</code>.</li>
 <li>Para el campo <code>autor</code> se hará referencia al modelo de usuario personalizado <code>users.CustomUser</code> que se ha establecido en el archivo <code>settings.py</code> como <code>AUTH_USER_MODEL</code>. Por lo tanto, si se importa la configuración podemos referirnos a ella como <code>settings.AUTH_USER_MODEL</code>.</li>
 <li>También se implementa la 'buena mejores práctica' de definir un <code>get_absolute_url</code> desde el principio y un método <code>__str__</code> para ver el modelo en la interfaz de administración.</li>
 </ul>
 <p>FICHERO: <code>articles/models.py</code></p>
-<pre><code class="python">from django.conf import settings
+<pre><code class="language-python">from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
@@ -253,25 +224,22 @@ def __str__(self):
 def get_absolute_url(self):
     return reverse('article_detail', args=[str(self.id)])
 </code></pre>
-
 <ul>
 <li>Como se tiene una nueva aplicación y modelo, es hora de hacer un nuevo archivo de migración y luego aplicarlo a la base de datos.</li>
 </ul>
-<pre><code class="bash">(news) $ python manage.py makemigrations articles
+<pre><code class="language-bash">(news) $ python manage.py makemigrations articles
 (news) $ python manage.py migrate
 </code></pre>
-
 <ul>
 <li>En este punto es conveniente ir a la administración para jugar con el modelo antes de construir las urls/vistas/plantillas necesarias para mostrar los datos en el sitio web. Pero primero necesitamos actualizar <code>admin.py</code> para que se muestre la nueva aplicación.</li>
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from . import models
 
 
 admin.site.register(models.Article)
 </code></pre>
-
 <ul>
 <li>Iniciar el servidor, ir a la página de administración y añadir algunos artículos de ejemplo.<ul>
 <li>No se podrá añadir la fecha porque fue añadida automáticamente por Django en nuestro nombre y no puede ser cambiada en la administración.</li>
@@ -284,7 +252,7 @@ admin.site.register(models.Article)
 <li>Vamos a hacer que los artículos aparezcan en <code>articles/</code>.</li>
 </ul>
 <p>FICHERO: <code># newspaper_project/urls.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include # new
 
 urlpatterns = [
@@ -295,9 +263,8 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
 ]
 </code></pre>
-
 <p>FICHERO: <code>articles/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 
@@ -305,12 +272,11 @@ urlpatterns = [
     path('', views.ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
-
 <ul>
 <li>Crear ahora la vista usando la genérica <code>ListView</code> de Django.</li>
 </ul>
 <p>FICHERO: <code># articles/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView
+<pre><code class="language-python">from django.views.generic import ListView
 from . import models
 
 
@@ -318,7 +284,6 @@ class ArticleListView(ListView):
     model = models.Article
     template_name = 'article_list.html'
 </code></pre>
-
 <ul>
 <li>
 <p>Los dos únicos campos que se necesitan especificar son el modelo de artículo y el nombre de la plantilla que será <code>article_list.html</code>.</p>
@@ -332,7 +297,7 @@ class ArticleListView(ListView):
 <li>Dentro de cada artículo se muestra el título, el cuerpo, el autor y la fecha. Incluso se proporcionan enlaces a las funciones de "editar" y "borrar" que aún no se han construido.</li>
 </ul>
 <p>FICHERO: <code>templates/article_list.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Articles{% endblock %}
 
@@ -354,7 +319,6 @@ class ArticleListView(ListView):
   {% endfor %}
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Arracar el servidor y consultar la página <code>articles/</code></li>
 </ul>
@@ -364,7 +328,7 @@ class ArticleListView(ListView):
 <li>Se puede aprovechar el hecho de que Django añade automáticamente una clave primaria a cada base de datos. Por lo tanto, el primer artículo con una clave primaria de <code>1</code> estará en <code>articles/1/edit/</code> y la ruta de borrado estará en <code>articles/1/delete/</code>.</li>
 </ul>
 <p>FICHERO: <code>articles/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -374,12 +338,11 @@ urlpatterns = [
     path('&lt;int:pk&gt;/delete/', views.ArticleDeleteView.as_view(), name='article_delete'), # new
 ]
 </code></pre>
-
 <ul>
 <li>Ahora se escribirán las vistas que usarán las vistas genéricas basadas en clases de Django para <code>DetailView</code>, <code>UpdateView</code> y <code>DeleteView</code>. Especificamos qué campos pueden ser actualizados -<code>title</code> y <code>body</code>- y dónde redirigir al usuario después de borrar un artículo: <code>article_list</code>.</li>
 </ul>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code class="python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -407,7 +370,6 @@ class ArticleDeleteView(DeleteView):
     template_name = 'article_delete.html'
     success_url = reverse_lazy('article_list')
 </code></pre>
-
 <ul>
 <li>Finalmente se necesita añadir las nuevas plantillas.</li>
 <li>Se empezará con la página de detalles que mostrará el título, la fecha, el cuerpo y el autor con enlaces para editar y borrar. También enlazará hacia atrás con todos los artículos.</li>
@@ -416,7 +378,7 @@ class ArticleDeleteView(DeleteView):
 <li>La página de artículos es una <code>ListView</code> por lo que no necesita que se le pase ningún argumento adicional.</li>
 </ul>
 <p>FICHERO: <code>templates/article_detail.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;article-entry&quot;&gt;
@@ -428,12 +390,11 @@ class ArticleDeleteView(DeleteView):
   &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;All Articles&lt;/a&gt;.&lt;/p&gt;
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Para las páginas de edición y borrado se puede usar el estilo del botón de Bootstrap para hacer que el botón de edición sea azul claro y el de borrado rojo.</li>
 </ul>
 <p>FICHERO: <code>templates/article_edit.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;h1&gt;Edit&lt;/h1&gt;
@@ -443,9 +404,8 @@ class ArticleDeleteView(DeleteView):
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <p>FICHERO: <code>templates/article_delete.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;h1&gt;Delete&lt;/h1&gt;
@@ -455,19 +415,17 @@ class ArticleDeleteView(DeleteView):
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <ul>
 <li>Como paso final se añaden los enlaces de edición y borrado a la página de listas en la clase <code>div</code> para el <code>card-foot</code>. Serán los mismos que los añadidos a la página detalle.</li>
 </ul>
 <p>FICHERO: <code>templates/article_list.html</code></p>
-<pre><code class="html">...
+<pre><code class="language-html">...
 &lt;div class=&quot;card-footer text-center text-muted&quot;&gt;
   &lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Edit&lt;/a&gt; |
   &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Delete&lt;/a&gt;
 &lt;/div&gt;
 ...
 </code></pre>
-
 <ul>
 <li>Arrancar el servidor e ir a la página de <code>articles/</code> y pulsar sobre <code>Edit</code>.</li>
 <li>Si se actualiza el campo "título" y se hace clic en actualizar, el usuario será redirigido a la página de detalles que mostrará el nuevo cambio.</li>
@@ -478,7 +436,7 @@ class ArticleDeleteView(DeleteView):
 <h2 id="14crear-la-page">14.Crear la page</h2>
 <p>El paso final es una página de creación de nuevos artículos que podemos hacer con el CreateView de Django. Nuestros tres pasos son crear una vista, una url y una plantilla. Este flujo ya debería resultar bastante familiar. En nuestro archivo de vistas agregamos CreateView a las importaciones de la parte superior y hacemos una nueva clase ArticleCreateView que especifica nuestro modelo, plantilla y los campos disponibles.</p>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code class="python">...
+<pre><code class="language-python">...
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
@@ -488,22 +446,19 @@ class ArticleCreateView(CreateView):
     fields = ['title', 'body', 'author',]
 ...
 </code></pre>
-
 <p>Nótese que nuestros campos tienen autor ya que queremos asociar un nuevo artículo con un autor, sin embargo una vez que un artículo ha sido creado no queremos que un usuario pueda cambiar el autor, por lo que ArticleUpdateView sólo tiene los campos ['title', 'body',] .
 Actualizar nuestro archivo de urls con la nueva ruta para la vista.</p>
 <p>FICHERO: <code>articles/urls.py</code></p>
-<pre><code class="python">...
+<pre><code class="language-python">...
 urlpatterns = [
     ...
     path('new/', views.ArticleCreateView.as_view(), name='article_new'),
     ...
 ]
 </code></pre>
-
 <p>Luego, salga del servidor Control+c para crear una nueva plantilla llamada article_new.html .</p>
 <pre><code>(news) $ touch templates/article_new.html
 </code></pre>
-
 <p>Y actualizarlo con el siguiente código HTML.</p>
 <p>FICHERO: <code>templates/article_new.html</code></p>
 <pre><code>{% extends 'base.html' %}
@@ -515,7 +470,6 @@ urlpatterns = [
 &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <p>Como paso final deberíamos añadir un enlace para crear nuevos artículos en nuestro navegador para que sea accesible en todas partes del sitio para los usuarios registrados.</p>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code>...
@@ -534,7 +488,6 @@ label=&quot;Toggle navigation&quot;&gt;
 &lt;/button&gt;
 ...
 </code></pre>
-
 <p>¿Y por qué no usar Bootstrap para mejorar nuestra página web original ahora también? Podemos actualizar plantillas/home.html como sigue.</p>
 <p>FICHERO: <code>templates/home.html</code></p>
 <pre><code>{% extends 'base.html' %}
@@ -550,7 +503,6 @@ on&quot;&gt;View All Articles&lt;/a&gt;
 &lt;/div&gt;
 {% endblock %}
 </code></pre>
-
 <p>Ya hemos terminado. Vamos a confirmar que todo funciona como se esperaba. Arranca el servidor de nuevo python manage.py runserver y navega a nuestra página web en: http://127.0.0.1:8000/.273</p>
 <p>Página principal con nuevo enlace en la navegación
 Haz clic en el enlace "+ Nuevo" en la parte superior del navegador y serás redirigido a nuestra página de creación.</p>
@@ -585,7 +537,7 @@ Hay un nuevo artículo en la parte inferior como se esperaba.</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -595,7 +547,7 @@ Hay un nuevo artículo en la parte inferior como se esperaba.</p>
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -609,6 +561,11 @@ Hay un nuevo artículo en la parte inferior como se esperaba.</p>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

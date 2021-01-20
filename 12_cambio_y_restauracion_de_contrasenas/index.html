@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>12. Cambio y Restauración de Contraseñas - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,117 +47,88 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">12. Cambio y Restauración de Contraseñas</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#12-cambio-y-restauracion-de-contrasenas">12. Cambio y Restauración de Contraseñas</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#121-cambio-de-contrasena">12.1. Cambio de contraseña</a></li>
-        
-            <li><a class="toctree-l3" href="#122-personalizar-el-cambio-de-contrasena">12.2. Personalizar el cambio de contraseña</a></li>
-        
-            <li><a class="toctree-l3" href="#123-restablecer-la-contrasena">12.3. Restablecer la contraseña</a></li>
-        
-            <li><a class="toctree-l3" href="#124-plantillas-personalizadas">12.4. Plantillas personalizadas</a></li>
-        
-            <li><a class="toctree-l3" href="#125-conclusion">12.5. Conclusión</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">12. Cambio y Restauración de Contraseñas</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#121-cambio-de-contrasena">12.1. Cambio de contraseña</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#122-personalizar-el-cambio-de-contrasena">12.2. Personalizar el cambio de contraseña</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#123-restablecer-la-contrasena">12.3. Restablecer la contraseña</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#124-plantillas-personalizadas">12.4. Plantillas personalizadas</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#125-conclusion">12.5. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -180,6 +153,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -201,13 +175,12 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 <p>Se van a personalizar estas dos páginas de cambio de contraseña para que coincidan con el aspecto y la sensación del sitio del periódico.</p>
 <p>Dado que Django ya ha creado las vistas y las URL, sólo hay que añadir nuevas plantillas.</p>
 <p>Crear dos nuevos archivos de plantillas en la carpeta de registro.</p>
-<pre><code class="bash">(news) $ touch templates/registration/password_change_form.html
+<pre><code class="language-bash">(news) $ touch templates/registration/password_change_form.html
 (news) $ touch templates/registration/password_change_done.html
 </code></pre>
-
 <p>Actualiza password_change_form.html con el siguiente código.</p>
 <p>FICHERO: <code>templates/registration/password_change_form.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Password Change{% endblock %}
 
@@ -221,11 +194,10 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que se usan títulos "blocks" en el archivo <code>base.html</code> se puede prescindir de ellos aquí. El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad. Usando <code>form.as_p</code> estamos simplemente mostrando en párrafos el contenido del formulario de restablecimiento de contraseña por defecto. Y finalmente incluimos un botón de envío que usa el estilo <code>btn btn-success</code> de Bootstrap para que sea verde.</p>
 <p>Lo siguiente es la plantilla <code>password_change_done</code>.</p>
 <p>FICHERO: <code>templates/registration/password_change_done.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Password Change Successful{% endblock %}
 
@@ -234,19 +206,17 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
   &lt;p&gt;Your password was changed.&lt;/p&gt;
 {% endblock content %}
 </code></pre>
-
 <p>También se extiende <code>base.html</code> y se incluye un nuevo título. Sin embargo, no hay ningún formulario en la página, sólo texto nuevo.</p>
 <p>La nueva página está en http://127.0.0.1:8000/users/password_change/done/.</p>
 <h2 id="123-restablecer-la-contrasena">12.3. Restablecer la contraseña</h2>
 <p>La única configuración que se requiere es decirle a Django cómo enviar los correos electrónicos. Después de todo, un usuario sólo puede restablecer una contraseña si se tiene acceso al correo electrónico vinculado a la cuenta. En la producción se usará el servicio de correo electrónico <code>SendGrid</code> para enviar realmente los correos electrónicos, pero para fines de prueba se puede confiar en la configuración del backend de la consola de Django que envía el texto del correo electrónico a la consola de línea de comandos en su lugar.</p>
 <p>En la parte inferior del archivo <code>settings.py</code> hacer el siguiente cambio de una línea.</p>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="python">EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+<pre><code class="language-python">EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 </code></pre>
-
 <p>Listo. Django se encargará del resto. Probar desde http://127.0.0.1:8000/users/password_reset/.</p>
 <p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en http://127.0.0.1:8000/users/password_reset/done/ que informa de que se revise el correo electrónico. Ya que se le ha dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por consola:</p>
-<pre><code class="text">Content-Type: text/plain; charset=&quot;utf-8&quot;
+<pre><code class="language-text">Content-Type: text/plain; charset=&quot;utf-8&quot;
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Subject: Password reset on 127.0.0.1:8000
@@ -268,7 +238,6 @@ Thanks for using our site!
 
 The 127.0.0.1:8000 team
 </code></pre>
-
 <p>El texto del correo electrónico debe ser idéntico excepto por tres líneas:
 - El "To:" en la sexta línea contiene la dirección de correo electrónico del usuario
 - El enlace URL contiene una señal segura que Django genera aleatoriamente y puede ser usada sólo una vez
@@ -281,15 +250,14 @@ The 127.0.0.1:8000 team
 <h2 id="124-plantillas-personalizadas">12.4. Plantillas personalizadas</h2>
 <p>Sólo hay que crear nuevas plantillas para personalizar el aspecto y la sensación del restablecimiento de la contraseña.</p>
 <p>Crear cuatro nuevos archivos de plantilla:</p>
-<pre><code class="bash">(news) $ touch templates/registration/password_reset_form.html
+<pre><code class="language-bash">(news) $ touch templates/registration/password_reset_form.html
 (news) $ touch templates/registration/password_reset_done.html
 (news) $ touch templates/registration/password_reset_confirm.html
 (news) $ touch templates/registration/password_reset_complete.html
 </code></pre>
-
 <p>Se empieza con el formulario de restablecimiento de contraseña que es <code>password_reset_form.html</code>.</p>
 <p>FICHERO: <code>templates/registration/password_reset_form.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Forgot Your Password?{% endblock %}
 
@@ -303,7 +271,6 @@ The 127.0.0.1:8000 team
 &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que usamos títulos "block" en el <code>base.html</code> se pueden anular aquí.</p>
 <ul>
 <li>El formulario usa POST ya que se están enviando datos y un <code>csrf_token</code> por razones de seguridad.</li>
@@ -317,7 +284,7 @@ The 127.0.0.1:8000 team
 </li>
 </ul>
 <p>FICHERO: <code>templates/registration/password_reset_done.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Email Sent{% endblock %}
 
@@ -326,11 +293,10 @@ The 127.0.0.1:8000 team
   &lt;p&gt;We've emailed you instructions for setting your password. You should receive the email shortly!&lt;/p&gt;
 {% endblock %}
 </code></pre>
-
 <p>Confirmar los cambios en http://127.0.0.1:8000/users/password_reset/done/</p>
 <p>A continuación, la página de confirmación del restablecimiento de la contraseña.</p>
 <p>FICHERO: <code>templates/registration/password_reset_confirm.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Enter new password{% endblock %}
 
@@ -343,11 +309,10 @@ The 127.0.0.1:8000 team
 &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <p>Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.</p>
 <p>Finalmente aquí está el código completo para reestablecer el password.</p>
 <p>FICHERO: <code>templates/registration/password_reset_complete.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block title %}Password reset complete{% endblock %}
 
@@ -356,7 +321,6 @@ The 127.0.0.1:8000 team
 &lt;p&gt;Your new password has been set. You can log in now on the &lt;a href=&quot;{% url 'login' %}&quot;&gt;log in page&lt;/a&gt;.&lt;/p&gt;
 {% endblock %}
 </code></pre>
-
 <h2 id="125-conclusion">12.5. Conclusión</h2>
 <p>En el próximo capítulo se conectará <em>Newspaper</em> con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente los correos electrónicos automatizados a los usuarios, en lugar de emitirlos en la consola de línea de comandos.</p>
               
@@ -381,7 +345,7 @@ The 127.0.0.1:8000 team
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -391,7 +355,7 @@ The 127.0.0.1:8000 team
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -405,6 +369,11 @@ The 127.0.0.1:8000 team
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

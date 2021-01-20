@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>8. Cuentas de Usuarios - Django</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,6 +36,7 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
@@ -45,123 +47,94 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../por_que_django/">¿Por qué Django?</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../01_introduccion/">1. Introducción</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../03_hello_world_app/">3. Hello World app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../04_pages_app/">4. Pages app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../05_message_board_app/">5. Message Board app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../06_blog_app/">6. Blog app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../07_formularios/">7. Formularios</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">8. Cuentas de Usuarios</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#8-cuentas-de-usuarios">8. Cuentas de Usuarios</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#81-login">8.1. Login</a></li>
-        
-            <li><a class="toctree-l3" href="#82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</a></li>
-        
-            <li><a class="toctree-l3" href="#83-enlace-para-logout">8.3. Enlace para Logout</a></li>
-        
-            <li><a class="toctree-l3" href="#84-inscripcion">8.4. Inscripción</a></li>
-        
-            <li><a class="toctree-l3" href="#85-git">8.5. Git</a></li>
-        
-            <li><a class="toctree-l3" href="#86-configuracion-de-heroku">8.6. Configuración de Heroku</a></li>
-        
-            <li><a class="toctree-l3" href="#87-despliegue-en-heroku">8.7. Despliegue en Heroku</a></li>
-        
-            <li><a class="toctree-l3" href="#88-conclusion">8.8. Conclusión</a></li>
-        
-        </ul>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">8. Cuentas de Usuarios</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#81-login">8.1. Login</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#83-enlace-para-logout">8.3. Enlace para Logout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#84-inscripcion">8.4. Inscripción</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#85-git">8.5. Git</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#86-configuracion-de-heroku">8.6. Configuración de Heroku</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#87-despliegue-en-heroku">8.7. Despliegue en Heroku</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#88-conclusion">8.8. Conclusión</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../11_bootstrap/">11. Bootstrap</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../13_email/">13. Email</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../14_newspaper_app/">14. Newspaper app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../16_comentarios/">16. Comentarios</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -186,6 +159,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -236,7 +210,7 @@
 <li>Se colocaran las páginas de <em>login</em> y <em>logout</em> en la URL <code>accounts/</code>.</li>
 </ul>
 <p>FICHERO: <code>blog_project/urls.py</code></p>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include
 
 
@@ -246,16 +220,14 @@ urlpatterns = [
     path('', include('blog.urls')),
 ]
 </code></pre>
-
 <ul>
 <li>Como se indica en la documentación de <code>LoginView</code>, por defecto Django buscará dentro de una carpeta de plantillas llamada <code>registration</code> un archivo llamado <code>login.html</code> para un formulario de inicio de sesión. Así que tenemos que crear un nuevo directorio llamado <code>registration</code> y el archivo requerido dentro de él.</li>
 </ul>
-<pre><code class="bash">(blog) $ mkdir templates/registration
+<pre><code class="language-bash">(blog) $ mkdir templates/registration
 (blog) $ touch templates/registration/login.html
 </code></pre>
-
 <p>FICHERO: <code>templates/registration/login.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
 &lt;h2&gt;Login&lt;/h2&gt;
@@ -266,15 +238,13 @@ urlpatterns = [
 &lt;/form&gt;
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Se usan las etiquetas HTML <form></form> con el método POST ya que se está enviando datos al servidor (se usa GET si se están solicitando datos, como en un formulario de un motor de búsqueda). Se añade <code>{% csrf_token %}</code> por motivos de seguridad, es decir, para evitar ataques XSS. El contenido del formulario se muestra entre las etiquetas de los párrafos gracias a <code>{{ form.as_p }}</code> y luego se añade un botón "enviar" (<code>submit</code>).</li>
 <li>En el paso final hay que especificar dónde redirigir al usuario cuando el acceso es exitoso. Podemos establecer esto con la configuración <code>LOGIN_REDIRECT_URL</code>. En la parte inferior del archivo <code>settings.py</code> agregar:
   FICHERO: <code>settings.py</code></li>
 </ul>
-<pre><code class="python">LOGIN_REDIRECT_URL = 'home'
+<pre><code class="language-python">LOGIN_REDIRECT_URL = 'home'
 </code></pre>
-
 <ul>
 <li>
 <p>Ahora el usuario será redirigido a la plantilla <code>home</code> que es la página de inicio.
@@ -292,7 +262,7 @@ urlpatterns = [
 <li>Por ahora, se pondrá este código en una posición preeminente. Más adelante se le podrá dar un estilo más apropiado.</li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">...
+<pre><code class="language-html">...
 &lt;/header&gt;
 {% if user.is_authenticated %}
   &lt;p&gt;Hi {{ user.username }}!&lt;/p&gt;
@@ -303,7 +273,6 @@ urlpatterns = [
 {% block content %}
 {% endblock content %}
 </code></pre>
-
 <ul>
 <li>Si el usuario está conectado, se le saludará por su nombre, si no,  se le dará un enlace a la recién creada página de acceso.</li>
 </ul>
@@ -314,37 +283,34 @@ urlpatterns = [
 <li>En el archivo <code>base.html</code> se agrega un enlace de una línea <code>{% url 'logout' %}</code> para desconectarse.</li>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="html">...
+<pre><code class="language-html">...
 {% if user.is_authenticated %}
   &lt;p&gt;Hi {{ user.username }}!&lt;/p&gt;
   &lt;p&gt;&lt;a href=&quot;{% url 'logout' %}&quot;&gt;logout&lt;/a&gt;&lt;/p&gt;
 {% else %}
 ...
 </code></pre>
-
 <ul>
 <li>Eso es todo lo que se necesita hacer ya que la vista necesaria proporciona una app de autenticación <code>auth</code>. Aún se necesita especificar dónde redirigir al usuario al cerrar la sesión.</li>
 <li>Actualizar <code>settings.py</code> para proporcionar un enlace de redireccionamiento que se llama, apropiadamente, <code>LOGOUT_REDIRECT_URL</code>. Podemos añadirlo justo al lado de nuestra redirección de inicio de sesión, de manera que la parte inferior del archivo tenga el siguiente aspecto:</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">LOGIN_REDIRECT_URL = 'home'
+<pre><code class="language-python">LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 </code></pre>
-
 <h2 id="84-inscripcion">8.4. Inscripción</h2>
 <p>Se necesita escribir una vista propia para la página de registro de nuevos usuarios, pero Django  proporciona una clase formulario, <code>UserCreationForm</code>, para facilitar las cosas. </p>
 <blockquote>
 <p>Por defecto viene con tres campos: nombre de usuario, contraseña y contraseña.</p>
 </blockquote>
 <p>Hay muchas maneras de organizar el código y la estructura de las urls para un sistema de autenticación de usuario robusto. Aquí se creará una nueva aplicación dedicada, <code>accounts</code>, para la página de registro.</p>
-<pre><code class="bash">(blog) $ python manage.py startapp accounts
+<pre><code class="language-bash">(blog) $ python manage.py startapp accounts
 </code></pre>
-
 <ul>
 <li>Añadir la nueva app a INSTALLED_APPS del fichero <code>settings.py</code>.
 FICHERO: <code>blog_project/settings.py</code></li>
 </ul>
-<pre><code class="python">INSTALLED_APPS = [
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -355,12 +321,11 @@ FICHERO: <code>blog_project/settings.py</code></li>
     'accounts',
 ]
 </code></pre>
-
 <ul>
 <li>A continuación añadimos una url a nivel de proyecto que apunta a esta nueva aplicación directamente debajo de donde incluimos la aplicación de autorización incorporada.
 FICHERO: <code>blog_project/urls.py</code></li>
 </ul>
-<pre><code class="python">from django.contrib import admin
+<pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include
 
 
@@ -371,16 +336,14 @@ urlpatterns = [
     path('', include('blog.urls')),
 ]
 </code></pre>
-
 <ul>
 <li>El orden de las <code>urls</code> importa porque Django lee este archivo de arriba a abajo. Por lo tanto, cuando se solicite la url <code>/accounts/signup</code>, Django buscará primero en el archivo <code>auth</code>, no lo encontrará, y luego procederá a la aplicación <code>accounts</code> de cuentas.</li>
 </ul>
-<pre><code class="bash">(blog) $ touch accounts/urls.py
+<pre><code class="language-bash">(blog) $ touch accounts/urls.py
 </code></pre>
-
 <p>And add the following code:
 FICHERO: <code>accounts/urls.py</code></p>
-<pre><code class="python">from django.urls import path
+<pre><code class="language-python">from django.urls import path
 from . import views
 
 
@@ -388,13 +351,12 @@ urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
 ]
 </code></pre>
-
 <ul>
 <li>Se éstá usando una vista que aún no se ha creado llamada  <code>SignupView</code> que está basada en clases, ya que está en mayúsculas, y tiene el sufijo <code>as_view()</code>. Su ruta es sólo <code>signup/</code> por lo que la ruta general será <code>accounts/signup/</code>.</li>
 <li>Ahora para la vista que usa el <code>UserCreationForm</code> incorporado y el CreateView genérico .
 FICHERO: <code>accounts/views.py</code></li>
 </ul>
-<pre><code class="python">from django.contrib.auth.forms import UserCreationForm
+<pre><code class="language-python">from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -404,17 +366,15 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 </code></pre>
-
 <ul>
 <li>Se está heredando de la vista genérica basada en clases <code>CreateView</code> la clase <code>SignUpView</code>. Se especifica el uso del <code>UserCreationForm</code> incorporado y la plantilla, aún no creada,  <code>signup.html</code>. Y se usa <code>reverse_lazy</code> para redirigir al usuario a la página de inicio de sesión cuando se registra con éxito.</li>
 <li>¿Por qué usar aquí <code>reverse_lazy</code> en lugar de <code>reverse</code>? La razón es que para todas las vistas genéricas basadas en clases las urls no se cargan cuando se importa el archivo, por lo que tenemos que usar la forma perezosa de <code>reverse</code> para cargarlas más tarde cuando estén disponibles.</li>
 <li>Añadir <code>signup.html</code> a la carpeta de plantillas a nivel de proyecto:</li>
 </ul>
-<pre><code class="bash">(blog) $ touch templates/signup.html
+<pre><code class="language-bash">(blog) $ touch templates/signup.html
 </code></pre>
-
 <p>TEMPLATE: <code>templates/signup.html</code></p>
-<pre><code class="html">{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;h2&gt;Sign up&lt;/h2&gt;
@@ -425,7 +385,6 @@ class SignUpView(CreateView):
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
-
 <ul>
 <li>Al principio se extiende la plantilla base, se coloca la lógica entre las etiquetas <code>&lt;form&gt;&lt;/form&gt;</code>, y se usa <code>csrf_token</code> por seguridad. El contenido del formulario se muestra en etiquetas de párrafo con <code>form.as_p</code> y se incluye un botón de envío.</li>
 <li>Navegar en: http://127.0.0.1:8000/accounts/signup/</li>
@@ -437,14 +396,12 @@ class SignUpView(CreateView):
 - Y por supuesto podemos modificar esto como queramos. La <code>SignupView</code> se redirige a la entrada al sistema (login) porque se establece <code>success_url = reverse_lazy('login')</code>. La página de <em>login</em> se redirige a la <em>homepage</em> porque en el archivo <code>settings.py</code> se establece <code>LOGIN_REDIRECT_URL = 'home'</code>.
 - Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.</p>
 <h2 id="85-git">8.5. Git</h2>
-<pre><code class="bash">(blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
+<pre><code class="language-bash">(blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 </code></pre>
-
 <p>Crear un nuevo repo en GitHub al que se puedes llamar como se desee.</p>
-<pre><code class="bash">(blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
+<pre><code class="language-bash">(blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
 (blog) $ git push -u origin master
 </code></pre>
-
 <h2 id="86-configuracion-de-heroku">8.6. Configuración de Heroku</h2>
 <ul>
 <li>Hay cuatro cambios que hacer para el despliegue en Heroku.</li>
@@ -454,61 +411,50 @@ class SignUpView(CreateView):
 <li>actualizar <code>settings.py</code></li>
 </ul>
 <p>FICHERO: <code>Pipfile</code></p>
-<pre><code class="pipfile">[requires]
+<pre><code class="language-pipfile">[requires]
 python_version = &quot;3.8&quot;
 </code></pre>
-
-<pre><code class="bash">(blog) $ pipenv lock
+<pre><code class="language-bash">(blog) $ pipenv lock
 </code></pre>
-
-<pre><code class="bash">(blog) $ touch Procfile
+<pre><code class="language-bash">(blog) $ touch Procfile
 </code></pre>
-
 <p>FICHERO: <code>Procfile</code></p>
 <pre><code>web: gunicorn blog_project.wsgi --log-file -
 </code></pre>
-
-<pre><code class="bash">(blog) $ pipenv install gunicorn
+<pre><code class="language-bash">(blog) $ pipenv install gunicorn
 </code></pre>
-
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">ALLOWED_HOSTS = ['*']
+<pre><code class="language-python">ALLOWED_HOSTS = ['*']
 </code></pre>
-
-<pre><code class="bash">(blog) $ git status
+<pre><code class="language-bash">(blog) $ git status
 (blog) $ git add -A
 (blog) $ git commit -m 'Añade ficheros de configuración Heroku'
 (blog) $ git push -u origin master
 </code></pre>
-
 <h2 id="87-despliegue-en-heroku">8.7. Despliegue en Heroku</h2>
-<pre><code class="bash">(blog) $ heroku login
+<pre><code class="language-bash">(blog) $ heroku login
 </code></pre>
-
 <ul>
 <li>"Create" indica a Heroku que haga un nuevo contenedor para la aplicación. Si sólo se ejecuta <code>heroku create</code>, Heroku asignará un nombre al azar, aunque se puede especificar un nombre personalizado, que debe ser único en Heroku.</li>
 </ul>
-<pre><code class="bash">(blog) $ heroku create dfb-blog
+<pre><code class="language-bash">(blog) $ heroku create dfb-blog
 </code></pre>
-
 <ul>
 <li>Ahora configurar git de manera que cuando se suba a Heroku (push), vaya al nombre de la nueva aplicación (reemplazar <code>dfb-blog</code> con el nombre elegido).</li>
 </ul>
-<pre><code class="bash">(blog) $ heroku git:remote -a dfb-blog
+<pre><code class="language-bash">(blog) $ heroku git:remote -a dfb-blog
 </code></pre>
-
 <ul>
 <li>Hay un paso más que debemos dar ahora que tenemos archivos estáticos, en este caso CSS. Django no soporta servir archivos estáticos en producción, sin embargo el proyecto <code>WhiteNoise</code> sí lo hace. Así que vamos a instalarlo.</li>
 </ul>
-<pre><code class="bash">(blog) $ pipenv install whitenoise
+<pre><code class="language-bash">(blog) $ pipenv install whitenoise
 </code></pre>
-
 <ul>
 <li>Hay que actualizar la configuración estática para que se use en producción. En el editor de texto abrir <code>settings.py</code> . Añadir <code>whitenoise</code> a <code>INSTALLED_APPS</code> encima de la aplicación de archivos estáticos incorporada y también a <code>MIDDLEWARE</code> en la tercera línea. El orden importa tanto para <code>INSTALLED_APPS</code> como para <code>MIDDLEWARE</code>.
   En la parte inferior del archivo añadir nuevas líneas tanto para <code>STATIC_ROOT</code> como para <code>STATICFILES_STORAGE</code>. Debería verse lo siguiente:</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="python">INSTALLED_APPS = [
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -535,17 +481,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # new!
 </code></pre>
-
-<pre><code class="bash">(blog) $ git add -A
+<pre><code class="language-bash">(blog) $ git add -A
 (blog) $ git commit -m 'Heroku config'
 (blog) $ git push origin master
 </code></pre>
-
 <p>Finalmente podemos subir el código a Heroku y añadir un proceso web para que el banco de pruebas se ponga en marcha.</p>
-<pre><code class="bash">(blog) $ git push heroku master
+<pre><code class="language-bash">(blog) $ git push heroku master
 (blog) $ heroku ps:scale web=1
 </code></pre>
-
 <h2 id="88-conclusion">8.8. Conclusión</h2>
 <p>Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.</p>
               
@@ -570,7 +513,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -580,7 +523,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -594,6 +537,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
