@@ -8,8 +8,8 @@ En esta sección se marca como **objetivo** para comenzar las pruebas con django
 $ cd ~/Escritorio
 $ mkdir helloworld
 $ cd helloworld
-$ pipenv install django
 $ pipenv shell
+$ pipenv install django
 (helloworld) $ django-admin startproject helloworld_project .
 (helloworld) $ tree
 .

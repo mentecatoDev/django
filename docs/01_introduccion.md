@@ -41,7 +41,55 @@ Django permite construir sitios profundos, dinámicos e interesantes en un tiemp
 
 Django hace que el desarrollo web sea mejor. Está diseñado para moverse rápidamente por muchos proyectos Django, y luego, en última instancia, enseñar todo lo que se necesita saber para diseñar, desarrollar e implementar con éxito un sitio del que sentirse orgulloso.
 
+
+
 ## 1.3. Panorama General
+
+### 1.3.1. ¿Qué es un Framework Web?
+Django es un miembro importante de una nueva generación de frameworks Web, pero ¿qué signica ese término exactamente?
+
+Para contestar esa pregunta, consideremos el diseño de una aplicación Web escrita usando el estándar *Common Gateway Interface* (CGI), una forma popular de escribir aplicaciones Web alrededor del año 1998. En esa época, cuando escribías una aplicación CGI, **hacías todo por ti mismo** (el equivalente a hacer una torta desde cero). Por ejemplo, aquí hay un script CGI sencillo, escrito en Python, que muestra los diez libros más recientemente publicados de una base de datos:
+
+```python
+#!/usr/bin/python
+import MySQLdb
+print ("Content-Type: text/html")
+print()
+print("<html><head><title>Libros</title></head>")
+print ("<body>")
+print ("<h1>Los últimos 10 libros</h1>")
+print ("<ul>")
+conexion = MySQLdb.connect(user='yo', passwd='dejame_entrar', db='mi_base')
+cursor = conexion.cursor()
+cursor.execute("SELECT nombre FROM libros ORDER BY fecha_pub DESC LIMIT 10")
+for fila in cursor.fetchall():
+    print("<li> %s</li>" % fila[0])
+    print("</ul>")
+print("</body></html>")
+conexion.close()
+```
+Este código es fácil de entender.
+
+- Primero imprime una línea de `Content-Type`, seguido de una línea en blanco, tal como requiere CGI.
+- Imprime HTML introductorio, se conecta a la base de datos y ejecuta una consulta que obtiene los diez libros más recientes. Hace un bucle sobre esos libros y genera una lista HTML desordenada.
+- Finalmente imprime el código para cerrar el HTML y cierra la conexión con la base de datos.
+
+Con una única página dinámica como ésta, el enfoque desde cero no es necesariamente malo. Por un lado, este código es sencillo de comprender; incluso un desarrollador novato puede leer estas 16 líneas de Python y entender todo lo que hace, de principio a fin. No hay más nada que aprender; no hay más código para leer. También es sencillo de utilizar: tan sólo guarda este código en un archivo llamado `ultimoslibros.cgi`, sube ese archivo a un servidor Web y visita esa página con un navegador.
+Pero a medida que una aplicación Web crece más allá de lo trivial, este enfoque se desmorona y te enfrentas a una serie de problemas:
+
+- ¿Qué sucede cuando múltiples páginas necesitan conectarse a la base de datos? Seguro que ese código de conexión a la base de datos no debería estar duplicado en cada uno de los scripts CGI, así que la forma pragmática de hacerlo sería refactorizarlo en una función compartida.
+
+- ¿Debería un desarrollador realmente tener que preocuparse por imprimir la línea de `Content-Type` y acordarse de cerrar la conexión con la base de datos? Este tipo de código repetitivo reduce la productividad del programador e introduce la oportunidad para que se cometan errores. Estas tareas de configuración y cierre estarían mejor manejadas por una infraestructura común.
+
+- ¿Qué sucede cuando este código es reutilizado en múltiples entornos, cada uno con una base de datos y contraseñas diferentes? En ese punto, se vuelve esencial alguna configuración específica del entorno.
+
+- ¿Qué sucede cuando un diseñador Web que no tiene experiencia programando en Python desea rediseñar la página? Lo ideal sería que la lógica de la página (la búsqueda de libros en la base de datos) esté separada del código HTML de la página, de modo que el diseñador pueda hacer modificaciones sin afectar la búsqueda.
+  
+Precisamente estos son los problemas que un framework Web intenta resolver. Un framework Web provee una infraestructura de programación para tus aplicaciones, para que puedas concentrarte en escribir código limpio y de fácil mantenimiento sin tener que reinventar la rueda.
+
+En resumidas cuentas, eso es lo que hace **Django**.
+
+### 1.3.2 Descripción de Django
 
 **Empezar con Django es difícil** porque es un proyecto muy grande, pero entender cómo se unen todas las partes a un alto nivel, permite dominar Django mucho más rápido.
 
@@ -69,7 +117,7 @@ El patrón de diseño de MVC se ha utilizado tanto para aplicaciones de escritor
 
 > "Al final del día, por supuesto, todo se reduce a hacer las cosas. Y, sin importar el nombre que se les dé, Django las hace de la manera más lógica para nosotros."
 
-### 1.3.1. Modelos Django
+### 1.3.3. Modelos Django
 
 Los **modelos de Django** proporcionan un **mapeo a objetos relacionales** (ORM *Object-Relational Mapper*) **de la base de datos** subyacente. ORM es una poderosa técnica de programación que facilita el trabajo con datos y bases de datos relacionales.
 
@@ -89,7 +137,7 @@ Esta relación se crea enlazando los modelos con una *clave foránea*, es decir,
 
 Esto es solo una simplificación, pero es una visión general útil de cómo el ORM de Django utiliza los datos del modelo para crear tablas de bases de datos. Las cosas se aclaran una vez que se tiene la oportunidad de construir modelos reales.
 
-### 1.3.2. Bases de datos soportadas
+### 1.3.4. Bases de datos soportadas
 
 Django soporta oficialmente cuatro bases de datos:
 
@@ -105,7 +153,7 @@ Hay varias aplicaciones de terceros para conectarse a otras bases de datos, si e
 
 **La preferencia de la mayoría de los desarrolladores de Django es PostgreSQL**. MySQL también es un backend de base de datos bastante común para Django. Instalar y configurar una base de datos no es una tarea para un principiante; afortunadamente, Django instala y configura SQLite de forma automática.
 
-#### 1.3.2.1. ¿Qué base de datos es mejor?
+#### 1.3.4.1. ¿Qué base de datos es mejor?
 
 **Primero lo fácil**: SQLite es para el desarrollo y pruebas tempranas. No debe ser usado en producción. Nunca.
 
@@ -115,7 +163,7 @@ Hay varias aplicaciones de terceros para conectarse a otras bases de datos, si e
 
 El programador inteligente evita este tipo de argumentos: **Si se puede, utilizar PostgreSQL, de lo contrario MySQL también está bien**.
 
-### 1.3.3. Plantillas Django
+### 1.3.5. Plantillas Django
 
 **Una plantilla Django es un archivo de texto diseñado para separar los datos de una aplicación de la forma en que se presenta**. En la mayoría de los casos, las plantillas Django son archivos de *Lenguaje de Marcas de Hipertexto* (HTML) para presentar los datos de la aplicación en un navegador web, sin embargo, las plantillas Django no se limitan al HTML, sino que pueden utilizarse para presentar varios formatos de texto diferentes.
 
@@ -125,7 +173,7 @@ El diseño de las plantillas de Django se basa en varios principios básicos, si
 2. Las plantillas deben **desalentar la redundancia**: no te repitas (DRY *Don't Repeat Yourself*).
 3. El sistema de plantillas debe ser **seguro** y estar **a salvo de la ejecución de código** en él.
 
-### 1.3.4. Separar la lógica del diseño
+### 1.3.6. Separar la lógica del diseño
 
 El **diseño** y la **programación** web son **dos disciplinas muy diferentes**. En todos los proyectos, excepto en los más pequeños, el diseño y la programación no la hace el mismo equipo; en muchos casos, ni siquiera la misma compañía.
 
@@ -145,7 +193,7 @@ Como se trata de texto plano y HTML, **un diseñador no necesita saber nada sobr
 
 La otra gran ventaja de este enfoque es que, dado que la mayor parte de la plantilla es HTML simple, como programador, **se puede crear un sitio web de buena apariencia sin un diseñador**: se puede descargar una plantilla HTML de Internet y agregar etiquetas de plantilla Django. Esto también funciona con las plantillas *Bootstrap* y los sitios pesados en la parte de *front-end* con JavaScript.
 
-### 1.3.5. Don't Repeat Yourself (DRY)
+### 1.3.7. Don't Repeat Yourself (DRY)
 
 DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es **uno de los principios fundamentales de Django**. El principio DRY es particularmente evidente en cómo Django utiliza la ***herencia de modelos***.
 
@@ -167,7 +215,7 @@ Django también admite la herencia múltiple, por lo que, siguiendo con el ejemp
 
 El único límite a la herencia de plantillas de Django es el práctico: **si se tienen plantillas que heredan más de dos o tres niveles de profundidad, se debería reevaluar el diseño del sitio**.
 
-### 1.3.6. Seguridad en las Plantillas
+### 1.3.8. Seguridad en las Plantillas
 
 La filosofía de Django es que Internet ya es lo suficientemente insegura como para introducir más problemas de seguridad al permitir la ejecución de código dentro de las plantillas de las páginas web. La solución de Django a las vulnerabilidades de seguridad de las plantillas es simple: **la ejecución de código está prohibida en las plantillas**.
 
@@ -186,7 +234,7 @@ Cosas que **no** se pueden hacer en una plantilla Django:
 
 Las plantillas de Django también añaden **características de seguridad adicionales** como el **escape automático de todas las cadenas**, **Cross-Site Scripting** y la protección **Cross-Site Request Forgery**. Estos dos últimos temas van más allá de un texto inicial, pero es útil comprender que **las plantillas de Django son seguras de forma predeterminada**, por lo que no hay que preocuparse de introducir problemas de seguridad en el sitio web de forma accidental.
 
-### 1.3.7. Vistas de Django
+### 1.3.9. Vistas de Django
 
 Las vistas de Django son los *brokers* de información de una aplicación de Django. **Una vista obtiene los datos de la base de datos** (o de una fuente o servicio de datos externos) **y los entrega a una plantilla**.
 
@@ -215,7 +263,7 @@ También hay **varias vistas basadas en clases** para simplificar las **tareas c
 
 También se proporcionan **vistas de fechas genéricas** adicionales basadas en clases para mostrar colecciones de objetos de día, semana, mes y año, como entradas de blog y artículos.
 
-### 1.3.8. URLconf - Colocando todo junto
+### 1.3.10. URLconf - Colocando todo junto
 
 Un sitio web no es de mucha utilidad si no se puede navegar por él: **hay que decirle a la vista qué mostrar en el navegador, en base a lo que el usuario ha solicitado**.
 

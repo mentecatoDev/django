@@ -1,5 +1,6 @@
 # Django
-#### [¿Por qué Django?](por_que_django.md)
+#### [¿Por qué Django?](00_por_que_django.md)
+
 #### [Introducción](01_introduccion.md)
 #### [Configuración Inicial](02_configuracion_inicial.md)
 #### [Hello World app](03_hello_world_app.md)
