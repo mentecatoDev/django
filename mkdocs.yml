@@ -1,6 +1,6 @@
 site_name: Django
 nav:
-  - ¿Por qué Django? : por_que_django.md
+  - ¿Por qué Django? : 00_por_que_django.md
   - 1. Introducción : 01_introduccion.md
   - 2. Configuración Inicial : 02_configuracion_inicial.md
   - 3. Hello World app : 03_hello_world_app.md

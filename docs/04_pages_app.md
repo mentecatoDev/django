@@ -171,7 +171,7 @@ class AboutPageView(TemplateView):
 - Conectar la vista con la ruta
 
  FICHERO: `pages/urls.py` 
-```python
+​```python
     from django.urls import path
     from .views import HomePageView, AboutPageView # new
 
@@ -229,7 +229,7 @@ FICHERO: `templates/base.html`
 {% endblock content %}
 
 ```
-FICHERO: `templates/about.html` 
+FICHERO: `templates/about.html`
 ```html
 {% extends 'base.html' %}
 
@@ -248,10 +248,9 @@ FICHERO: `templates/about.html`
   
   FICHERO: `pages/tests.py`
   
-  ```python
-  # pages/tests.py
-  from django.test import SimpleTestCase
-  ```
+```python
+# pages/tests.py
+from django.test import SimpleTestCase
 
 class SimpleTests(SimpleTestCase):
     def test_home_page_status_code(self):
@@ -263,12 +262,13 @@ class SimpleTests(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
 
 ```
+
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
 - Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.
 - Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
 - Para ejecutar los tests:
 
-``` bash
+​``` bash
 (pages) $ python manage.py test
 System check identified no issues (0 silenced).
 ..

@@ -85,6 +85,7 @@ Pero a medida que una aplicación Web crece más allá de lo trivial, este enfoq
 
 - ¿Qué sucede cuando un diseñador Web que no tiene experiencia programando en Python desea rediseñar la página? Lo ideal sería que la lógica de la página (la búsqueda de libros en la base de datos) esté separada del código HTML de la página, de modo que el diseñador pueda hacer modificaciones sin afectar la búsqueda.
   
+
 Precisamente estos son los problemas que un framework Web intenta resolver. Un framework Web provee una infraestructura de programación para tus aplicaciones, para que puedas concentrarte en escribir código limpio y de fácil mantenimiento sin tener que reinventar la rueda.
 
 En resumidas cuentas, eso es lo que hace **Django**.
@@ -111,7 +112,7 @@ Django utiliza una terminología ligeramente diferente en su aplicación del MVC
 
 3. La **vista** gestiona el grueso de las aplicaciones de proceso de datos, la lógica de las aplicaciones y la mensajería.
 
-<img src="./img_introduccion/MTV-Pattern.png" title="" alt="Django Tutorials - Django MTV Design Pattern" data-align="center">
+![Django Tutorials - Django MTV Design Pattern](./img_introduccion/MTV-Pattern.png)
 
 El patrón de diseño de MVC se ha utilizado tanto para aplicaciones de escritorio como para aplicaciones web durante muchos años, por lo que hay un gran número de variaciones en este tema, de las que Django no es una excepción. Si se desea profundizar un poco más en el patrón de diseño de MVC, sólo se debe advertir que **la gente puede ser muy apasionada sobre lo que es una interpretación** diferente de la misma cosa. Tomando prestada una cita del equipo de desarrollo de Django:
 
