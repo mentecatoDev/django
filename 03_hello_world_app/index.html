@@ -176,7 +176,7 @@
             <div class="section">
               
                 <h1 id="3-hello-world-app">3 Hello World app</h1>
-<p>En esta sección se marca como <strong>objetivo</strong> para comenzar las pruebas con django crear la típica aplicación "Hello World"</p>
+<p>Esta sección tiene como <strong>objetivo</strong> comenzar las pruebas con django creando la típica aplicación "Hello World"</p>
 <h2 id="31-configuracion-inicial">3.1 Configuración inicial</h2>
 <pre><code class="language-bash">$ cd ~/Escritorio
 $ mkdir helloworld
@@ -236,7 +236,7 @@ $ pipenv install django
 <li><code>tests.py</code>: Es para los tests específicos de la <strong>app</strong></li>
 <li><code>views.py</code>: Es donde se gestiona la lógica petición/respuesta <em>(request/response)</em> de la <strong>app</strong></li>
 <li>Aunque la <strong>app</strong> existe, Django no sabe nada de ella hasta que se la añadimos explícitamente.</li>
-<li>Para incluir la app en el proyecto se necesita añadir una <strong>referencia a su clase de configuración</strong> en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> está en el archivo <code>pages/apps.py</code> , es por eso por lo que su <em>path</em> expresado con puntos de separación enter directorios es <code>'pages.apps.PagesConfig'</code>.</li>
+<li>Para incluir la app en el proyecto se necesita añadir una <strong>referencia a su clase de configuración</strong> en la lista <a href="https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-INSTALLED_APPS"><code>INSTALLED_APPS</code></a>. La clase <code>PagesConfig</code> está en el archivo <code>pages/apps.py</code> , es por eso por lo que su <em>path</em> expresado con puntos de separación entre directorios es <code>'pages.apps.PagesConfig'</code>.</li>
 </ul>
 <blockquote>
 <p>DETALLE
@@ -268,7 +268,7 @@ El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajus
 <li><code>DEBUG</code>. Esto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a <code>false</code> en producción, ya que la información de depuración es útil a los atacantes. </li>
 </ul>
 </blockquote>
-<p>En la configuración de <code>INSTALLED_APPS</code>, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones pueden utilizarse en varios proyectos, y se pueden empaquetar y distribuir para que otros las utilicen en sus propios proyectos. De forma predeterminada, <code>INSTALLED_APPS</code> contiene las siguientes aplicaciones, todas ellas incluidas en Django:</p>
+<p>En la configuración de <code>INSTALLED_APPS</code>, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones <strong>pueden utilizarse en varios proyectos</strong>, y se pueden <strong>empaquetar</strong> y <strong>distribuir</strong> para que otros las utilicen en sus propios proyectos. De forma predeterminada, <code>INSTALLED_APPS</code> contiene las siguientes aplicaciones, todas ellas incluidas en Django:</p>
 <ul>
 <li><code>django.contrib.admin</code> : El sitio de administración.</li>
 <li><code>django.contrib.auth</code> : Un sistema de autenticación.</li>
@@ -277,19 +277,19 @@ El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajus
 <li><code>django.contrib.messages</code> : Un marco de mensajes.</li>
 <li><code>django.contrib.staticfiles</code>: Un marco de trabajo para la gestión de archivos estáticos.</li>
 </ul>
-<p>Estas aplicaciones se incluyen de forma predeterminada porque son convenientes para la mayoría de los casos. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesitan crear las tablas de la base de datos antes de poder utilizarlas. Para ello, hemos de hacer una <strong>migración</strong> con el siguiente comando:</p>
+<p>Estas aplicaciones se incluyen de forma predeterminada porque son convenientes para la mayoría de los casos. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesita crear las tablas en la base de datos antes de poder ser utilizadas. Para ello, hemos de hacer una <strong>migración</strong> con el siguiente comando:</p>
 <pre><code class="language-bash">$ python manage.py migrate
 </code></pre>
-<p>El comando de migración mira la configuración de <code>INSTALLED_APPS</code> y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos del archivo <code>settings.py</code> y las migraciones de bases de datos enviadas con cada aplicación. <strong>Se cubrirá más adelante</strong>.</p>
+<p>El comando de migración mira la configuración de <code>INSTALLED_APPS</code> y <strong>crea las tablas necesarias</strong> en la base de datos de acuerdo con la configuración de la base de datos del archivo <code>settings.py</code> y las migraciones de bases de datos enviadas con cada app. <strong>Se cubrirá más adelante</strong>.</p>
 <h2 id="33-vistas-views-y-configurariones-de-urls-urlconfs">3.3 Vistas (Views) y configurariones de URL's (URLConfs)</h2>
-<p>En <em>Django</em>, las vistas determinan qué contenido se muestra mientras que <em>URLConfs</em> indica dónde va ese contendio.</p>
-<p>URLConf utiliza una <strong>expresión regular</strong> para mapear las peticiones a la función apropiada de la vista que devuelve los datos correctos. </p>
+<p>En <em>Django</em>, <strong>las vistas determinan qué contenido se muestra</strong> mientras que <em>URLConfs</em> indica <strong>dónde</strong> va ese contenido.</p>
+<p>URLConf utiliza una <strong>expresión regular</strong> para mapear las <strong>peticiones a la función</strong> apropiada de la vista que devuelve los datos correctos. </p>
 <p>La vista saca el texto <code>Hello, World</code> mientras que la url se asegurará de que cuando el usuario visita la página sea <strong>redireccionado</strong> a la vista correcta.</p>
 <p>Cuando se escribe una URL, lo primero que ocurre dentro del proyecto <em>Django</em> es que se encuentra un patrón que coincide con la página de inicio (<em>homepage</em>). El <code>urlpattern</code> especifica una <strong>vista</strong>, que determinará el contenido de la página (normalmente desde una base de datos), y una <strong>plantilla</strong> (<em>template</em>) para darle estilo. El resultado final se devuelve al usuario como una respuesta HTTP.</p>
 <p>URL -&gt; View -&gt; Model (típicamente) -&gt; Template </p>
 <blockquote>
 <p>DETALLE:
-Una URLconf es como una tabla de contenido para un sitio web hecho con Django. Básicamente, es un mapeo entre los patrones URL y las funciones de vista que deben ser llamadas por esos patrones URL. Es como decirle a Django, "Para esta URL, llama a este código, y para esta URL, llama a este otro código". Recordar que estas funciones de vista deben estar en el Python Path. </p>
+Una URLconf es como una tabla de contenido para un sitio web hecho con Django. Básicamente, es un mapeo entre los patrones URL y las funciones de vista que deben ser llamadas por esos patrones URL. Es como decirle a Django, "Para esta URL, llama a este código, y para esta URL, llama a este otro". Recordar que estas funciones de vista deben estar en el Python Path.</p>
 </blockquote>
 <ul>
 <li>Se empieza actualizando el fichero <code>views.py</code></li>
@@ -314,11 +314,11 @@ Una URLconf es como una tabla de contenido para un sitio web hecho con Django. B
 <p>Primero, se importa la clase <code>HttpResponse</code>, que vive en el módulo <code>django.http</code>. Se necesita importar esta clase porque se usa más tarde en el código.</p>
 </li>
 <li>
-<p>A continuación, se define una función llamada <code>homePageView</code>- la función de la vista.</p>
+<p>A continuación, se define una función llamada <code>homePageView</code> -la función de la vista.</p>
 </li>
 </ul>
 <p>Cada función <code>view</code> toma al menos un parámetro, llamado <code>request</code> por convención. Se trata de un objeto que contiene información sobre la solicitud web actual que ha activado esta vista, y es una instancia de la clase <code>django.http.HttpRequest</code>.
-  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Se le llama <code>homePageView</code> aquí, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
+  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Aquí se le llama <code>homePageView</code>, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
   La principal lección aquí es ésta: <strong>una vista es sólo una función Python que toma una <code>HttpRequest</code> como primer parámetro y devuelve una instancia de <code>HttpResponse</code></strong>. Para que una función Python sea una vista Django, debe hacer estas dos cosas. (Hay excepciones, pero se verán más tarde).</p>
 </blockquote>
 <ul>
@@ -383,7 +383,7 @@ urlpatterns = [
 <p>DETALLE: <strong>URLconfs y el acoplamiento débil</strong></p>
 <p>Ahora es el momento de resaltar una parte clave de la filosofía detrás de las URLconf y detrás de Django en general: el <strong>principio de acoplamiento débil</strong> (loose coupling). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (loosely coupled) los cambios realizados sobre una de dichas piezas va a tener poco o ningún efecto sobre la otra.</p>
 <p>Las URLconfs de Django son un claro ejemplo de este principio en la práctica. En una aplicación Web de Django, la definición de la URL y la función de vista que se llamará están débilmente acopladas; de esta manera, la decisión de cuál debe ser la URL para una función, y la implementación de la función misma, residen en dos lugares separados. Esto permite el desarrollo de una pieza sin afectar a la otra.</p>
-<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python <a href="http://www.cherrypy.org/">CherryPy</a> la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo convenient a corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
+<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python <a href="http://www.cherrypy.org/">CherryPy</a> la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo conveniente a corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
 <p>Por ejemplo, consideremos una función de vista que nos muestra la fecha y la hora actual. Si se quiere cambiar la URL de la aplicación — digamos, mover desde algo como <code>/time</code> a <code>/currenttime/</code> — se puede hacer un rápido cambio en la URLconf, sin tener que preocuparse acerca de la implementación subyacente de la función. Similarmente, si se quiere cambiar la función de la vista — alterando la lógica de alguna manera — se puede hacer sin afectar la URL a la que está asociada la función de vista. Además, si se quiere exponer la funcionalidad de fecha actual en varias URL se podría hacer editando el URLconf con cuidado, sin tener que tocar una sola línea de código de la vista.
 Eso es el acoplamiento débil en acción: una <strong>filosofía de desarrollo</strong>.</p>
 </blockquote>

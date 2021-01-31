@@ -86,8 +86,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#48-tests">4.8 Tests</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#410-local-vs-produccion">4.10 Local vs Producción</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#411-heroku">4.11 Heroku</a>
@@ -335,7 +333,7 @@ urlpatterns = [
 <pre><code>- Conectar la vista con la ruta
 
  FICHERO: `pages/urls.py` 
-```python
+​```python
     from django.urls import path
     from .views import HomePageView, AboutPageView # new
 
@@ -394,7 +392,7 @@ urlpatterns = [
 <p>{% block content %}
     <h1>Homepage</h1>
 {% endblock content %}</p>
-<pre><code>FICHERO: `templates/about.html` 
+<pre><code>FICHERO: `templates/about.html`
 ```html
 {% extends 'base.html' %}
 
@@ -415,33 +413,37 @@ urlpatterns = [
 </li>
 </ul>
 <p>FICHERO: <code>pages/tests.py</code></p>
-<p><code>python
-  # pages/tests.py
-  from django.test import SimpleTestCase</code></p>
-<p>class SimpleTests(SimpleTestCase):
+<pre><code class="language-python"># pages/tests.py
+from django.test import SimpleTestCase
+
+class SimpleTests(SimpleTestCase):
     def test_home_page_status_code(self):
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)</p>
-<pre><code>def test_about_page_status_code(self):
-    response = self.client.get('/about/')
-    self.assertEqual(response.status_code, 200)
-</code></pre>
-<pre><code>- Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
-- Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.
-- Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
-- Para ejecutar los tests:
+        self.assertEqual(response.status_code, 200)
 
-``` bash
+    def test_about_page_status_code(self):
+        response = self.client.get('/about/')
+        self.assertEqual(response.status_code, 200)
+
+</code></pre>
+<ul>
+<li>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </li>
+<li>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</li>
+<li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
+<li>Para ejecutar los tests:</li>
+</ul>
+<p>​``` bash
 (pages) $ python manage.py test
 System check identified no issues (0 silenced).
-..
----------------------------------------------------------------
-Ran 2 tests in 0.014s
+..</p>
+<hr />
+<p>Ran 2 tests in 0.014s</p>
+<p>OK</p>
+<pre><code>
+## 4.9 Git, GitHub, GitLab y Bitbucket
 
-OK
-</code></pre>
-<h2 id="49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</h2>
-<pre><code class="language-bash">(pages) $ git init
+```bash
+(pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
 (pages) $ git commit -m 'Commit inicial'
