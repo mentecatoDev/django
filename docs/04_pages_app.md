@@ -17,11 +17,11 @@
 $ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.8
+$ pipenv install --python 3.9
 $ pipenv install django
 $ pipenv shell
 (pages) $ django-admin startproject pages_project .
-(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startproject pages
+(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startapp pages
 ```
 
 FICHERO: `pages_project/settings.py` 
@@ -41,7 +41,7 @@ FICHERO: `pages_project/settings.py`
 
 ## 4.3 Plantillas (Templates)
 
-- Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  
+- Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  
 
 <center>Plantilla –> Vista –> Ruta</center>
 
@@ -72,13 +72,13 @@ FICHERO: `pages_project/settings.py`
 FICHERO: `pages_project/settings.py` 
 
 ```python
-       TEMPLATES = [
-           {
-               ...
-               'DIRS': [os.path.join(BASE_DIR, 'templates')],
-               ...
-           },
-       ]
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        ...
+    },
+]
 ```
 
 > La función `os.path.join` une el path base de la aplicación (`BASE_DIR`) con el nuevo directorio `templates` añadiendo `/` según sea conveniente
@@ -230,7 +230,7 @@ FICHERO: `templates/base.html`
 
 ```
 FICHERO: `templates/about.html`
-```html
+​```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -268,7 +268,7 @@ class SimpleTests(SimpleTestCase):
 - Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
 - Para ejecutar los tests:
 
-​``` bash
+``` bash
 (pages) $ python manage.py test
 System check identified no issues (0 silenced).
 ..
@@ -280,7 +280,7 @@ OK
 
 ## 4.9 Git, GitHub, GitLab y Bitbucket
 
-```bash
+​```bash
 (pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
