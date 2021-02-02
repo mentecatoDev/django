@@ -86,9 +86,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#48-tests">4.8 Tests</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#410-local-vs-produccion">4.10 Local vs Producción</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#411-heroku">4.11 Heroku</a>
+    <li class="toctree-l2"><a class="reference internal" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#411-ficheros-adicionales">4.11 Ficheros adicionales</a>
     </li>
@@ -208,11 +206,11 @@
 <pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.8
+$ pipenv install --python 3.9
 $ pipenv install django
 $ pipenv shell
 (pages) $ django-admin startproject pages_project .
-(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startproject pages
+(pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startapp pages
 </code></pre>
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
 <pre><code class="language-python">...
@@ -227,7 +225,7 @@ $ pipenv shell
 </code></pre>
 <h2 id="43-plantillas-templates">4.3 Plantillas (Templates)</h2>
 <ul>
-<li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que  los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
+<li>Cada framework precisa generar de alguna manera ficheros HTML. En Django, la aproximación es usar plantillas (templates) de tal forma que los archivos HTML individuales puedan ser servidos por una vista a la  página web especificada por la ruta (URL).  </li>
 </ul>
 <p><center>Plantilla –&gt; Vista –&gt; Ruta</center></p>
 <ul>
@@ -253,13 +251,13 @@ $ pipenv shell
    (pages) $ touch templates/home.html
 </code></pre>
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
-<pre><code class="language-python">       TEMPLATES = [
-           {
-               ...
-               'DIRS': [os.path.join(BASE_DIR, 'templates')],
-               ...
-           },
-       ]
+<pre><code class="language-python">TEMPLATES = [
+    {
+        ...
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        ...
+    },
+]
 </code></pre>
 <blockquote>
 <p>La función <code>os.path.join</code> une el path base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente</p>
@@ -393,7 +391,7 @@ urlpatterns = [
     <h1>Homepage</h1>
 {% endblock content %}</p>
 <pre><code>FICHERO: `templates/about.html`
-```html
+​```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -432,41 +430,39 @@ class SimpleTests(SimpleTestCase):
 <li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
 <li>Para ejecutar los tests:</li>
 </ul>
-<p>​``` bash
-(pages) $ python manage.py test
+<pre><code class="language-bash">(pages) $ python manage.py test
 System check identified no issues (0 silenced).
-..</p>
-<hr />
-<p>Ran 2 tests in 0.014s</p>
-<p>OK</p>
-<pre><code>
-## 4.9 Git, GitHub, GitLab y Bitbucket
+..
+---------------------------------------------------------------
+Ran 2 tests in 0.014s
 
-```bash
+OK
+</code></pre>
+<h2 id="49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</h2>
+<p>​```bash
 (pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
-(pages) $ git commit -m 'Commit inicial'
-</code></pre>
-<h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
-<ul>
-<li>Código en producción</li>
-<li>Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.</li>
-<li>Hay muchos proveedores de servidores disponibles, pero usaremos <em>Heroku</em> porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.</li>
-</ul>
-<h2 id="411-heroku">4.11 Heroku</h2>
-<ul>
-<li>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</li>
-<li>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.</li>
-<li>Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.</li>
-<li>Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.</li>
-<li><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a></li>
-<li><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a><ul>
-<li><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-bash">$ yay -S heroku-cli
+(pages) $ git commit -m 'Commit inicial'</p>
+<pre><code>
+## 4.10 Local vs Producción
+
+- Código en producción
+  - Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.
+- Hay muchos proveedores de servidores disponibles, pero usaremos *Heroku* porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.
+
+## 4.11 Heroku
+
+- Se puede obtener una cuenta gratuita de Heroku en [su sitio web](https://www.heroku.com/).
+- Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.
+  - Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.
+  - Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.
+- [Instalar Heroku según el sitio web de Heroku](https://devcenter.heroku.com/articles/heroku-cli)
+  - [Arch Linux](https://devcenter.heroku.com/articles/heroku-cli#arch-linux)
+    - [Este paquete](https://aur.archlinux.org/packages/heroku-cli) está mantenido por la comunidad y no por Heroku.
+
+```bash
+$ yay -S heroku-cli
 </code></pre>
 <pre><code class="language-bash">(pages) $ heroku login
 Enter your Heroku credentials:

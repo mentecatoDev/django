@@ -62,32 +62,6 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">3. Hello World app</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#31-configuracion-inicial">3.1 Configuración inicial</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#32-crear-una-app">3.2 Crear una app</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#33-vistas-views-y-configurariones-de-urls-urlconfs">3.3 Vistas (Views) y configurariones de URL's (URLConfs)</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#34-resumiendo">3.4 Resumiendo</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#1-crear-app">1.- CREAR APP</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#2-informar-de-la-nueva-app">2.- INFORMAR DE LA NUEVA APP</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#3-crear-la-vista">3.- CREAR LA VISTA</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#4-crear-el-fichero-de-rutas-de-la-app">4.- CREAR EL FICHERO DE RUTAS DE LA APP</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#5-incluir-el-fichero-de-rutas-de-la-app-en-el-principal">5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#35-como-procesa-una-peticion-django">3.5. Cómo procesa una petición Django</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#331-como-procesa-una-peticion-django-detalles-completos">3.3.1. Cómo procesa una petición Django: Detalles completos</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                     </li>
                 </ul>
@@ -175,8 +149,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="3-hello-world-app">3 Hello World app</h1>
-<p>Esta sección tiene como <strong>objetivo</strong> comenzar las pruebas con django creando la típica aplicación "Hello World"</p>
+                <p>Esta sección tiene como <strong>objetivo</strong> comenzar las pruebas con django creando la típica aplicación "Hello World"</p>
 <h2 id="31-configuracion-inicial">3.1 Configuración inicial</h2>
 <pre><code class="language-bash">$ cd ~/Escritorio
 $ mkdir helloworld
@@ -208,6 +181,10 @@ $ pipenv install django
 <pre><code class="language-bash">(helloworld) $ python manage.py runserver
 </code></pre>
 <p>Visitar: <code>http://localhost:8000</code></p>
+<p>Nótese que la salida de la línea de comandos contendrá información adicional, incluyendo una advertencia sobre 18 migraciones no aplicadas.</p>
+<p>Técnicamente esta advertencia no importa en este momento. Django se está quejando de que no hemos
+aún "migrado", o configurado, nuestra base de datos inicial. Como no vamos a utilizar una base de datos por ahora, la advertencia no afectará al resultado final.
+Sin embargo, como las advertencias son molestas, podemos eliminarlas deteniendo primero el servidor local con el comando <code>&lt;Ctrl&gt;-C</code> y luego ejecutando <code>python manage.py migrate</code>.</p>
 <h2 id="32-crear-una-app">3.2 Crear una <strong>app</strong></h2>
 <ul>
 <li>Un <strong>proyecto</strong> Django consta de una o más <strong>apps</strong></li>
@@ -265,7 +242,7 @@ El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajus
 <p>Hay otros dos ajustes que no se cambiarán ahora, pero de los que se debería ser consciente:</p>
 <ul>
 <li><code>SECRET_KEY</code>. Ésta es una clave secreta que se usa como parte de la estrategia de seguridad del sitio web de Django. Si no se va a proteger este código durante el desarrollo, se necesitará usar un código diferente (quizás leyendo de una variable de entorno o un fichero)  cuando se ponga en producción. </li>
-<li><code>DEBUG</code>. Esto habilita que los registros (logs) de  depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a <code>false</code> en producción, ya que la información de depuración es útil a los atacantes. </li>
+<li><code>DEBUG</code>. Esto habilita que los registros (logs) de depuración se muestren en caso de error, en vez de las respuestas con los códigos de estado HTTP. Éste debería ajustarse a <code>false</code> en producción, ya que la información de depuración es útil a los atacantes. </li>
 </ul>
 </blockquote>
 <p>En la configuración de <code>INSTALLED_APPS</code>, en la parte superior del archivo, se encuentran los nombres de todas las aplicaciones que se activan en esta instancia de Django. Las aplicaciones <strong>pueden utilizarse en varios proyectos</strong>, y se pueden <strong>empaquetar</strong> y <strong>distribuir</strong> para que otros las utilicen en sus propios proyectos. De forma predeterminada, <code>INSTALLED_APPS</code> contiene las siguientes aplicaciones, todas ellas incluidas en Django:</p>
@@ -277,7 +254,7 @@ El fichero <strong>settings.py</strong> se usa para configurar muchos otros ajus
 <li><code>django.contrib.messages</code> : Un marco de mensajes.</li>
 <li><code>django.contrib.staticfiles</code>: Un marco de trabajo para la gestión de archivos estáticos.</li>
 </ul>
-<p>Estas aplicaciones se incluyen de forma predeterminada porque son convenientes para la mayoría de los casos. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesita crear las tablas en la base de datos antes de poder ser utilizadas. Para ello, hemos de hacer una <strong>migración</strong> con el siguiente comando:</p>
+<p>Estas aplicaciones se incluyen de forma predeterminada porque son convenientes para la mayoría de los casos. Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de la base de datos, por lo que se necesita crear las tablas en la base de datos antes de poder ser utilizadas. Para ello, hemos de hacer una <strong>migración</strong>, como se indicó anteriormente, con el siguiente comando:</p>
 <pre><code class="language-bash">$ python manage.py migrate
 </code></pre>
 <p>El comando de migración mira la configuración de <code>INSTALLED_APPS</code> y <strong>crea las tablas necesarias</strong> en la base de datos de acuerdo con la configuración de la base de datos del archivo <code>settings.py</code> y las migraciones de bases de datos enviadas con cada app. <strong>Se cubrirá más adelante</strong>.</p>
@@ -295,16 +272,16 @@ Una URLconf es como una tabla de contenido para un sitio web hecho con Django. B
 <li>Se empieza actualizando el fichero <code>views.py</code></li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<pre><code>    # from django.shortcuts import render
+<pre><code class="language-python">    # from django.shortcuts import render
     from django.http import HttpResponse     # new
 
 
     # Create your views here.
-    def homePageView(request):               # new
-        return HttpResponse(&quot;Hello World!&quot;)  # new
+    def home_page_view(request):             # new
+        return HttpResponse(&quot;¡Hola mundo!&quot;)  # new
 </code></pre>
 <ul>
-<li>Básicamente se indica que siempre que se llame a la función de la vista <code>homePageView</code> se devolverá el texto <code>“Hello World!”</code> . </li>
+<li>Básicamente se indica que siempre que se llame a la función de la vista <code>home_page_view</code> se devolverá el texto <code>“¡Hola mundo!”</code> . </li>
 <li>Más específicamente se ha importado el método <code>HttpResponse</code> para poder devolver un objeto respuesta al usuario.</li>
 </ul>
 <blockquote>
@@ -314,11 +291,11 @@ Una URLconf es como una tabla de contenido para un sitio web hecho con Django. B
 <p>Primero, se importa la clase <code>HttpResponse</code>, que vive en el módulo <code>django.http</code>. Se necesita importar esta clase porque se usa más tarde en el código.</p>
 </li>
 <li>
-<p>A continuación, se define una función llamada <code>homePageView</code> -la función de la vista.</p>
+<p>A continuación, se define una función llamada <code>home_page_view</code> -la función de la vista.</p>
 </li>
 </ul>
 <p>Cada función <code>view</code> toma al menos un parámetro, llamado <code>request</code> por convención. Se trata de un objeto que contiene información sobre la solicitud web actual que ha activado esta vista, y es una instancia de la clase <code>django.http.HttpRequest</code>.
-  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Aquí se le llama <code>homePageView</code>, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
+  En este ejemplo, no se hace nada con la solicitud , pero debe ser el primer parámetro de la vista de todos modos. Téngase en cuenta que el nombre de la función de la vista no importa; no tiene que estar nombrada de una forma determinada para que Django la reconozca. Aquí se le llama <code>home_page_view</code>, porque ese nombre indica claramente lo esencial de la vista, pero también podría llamarse <code>hola_mundo_maravilloso_y_hermoso</code>, o algo igualmente repugnante. En breve, se iluminará el camino de cómo Django encuentra esta función.  La función es una línea que devuelve un objeto <code>HttpResponse</code> instanciado con el texto <code>Hello, world!</code>.
   La principal lección aquí es ésta: <strong>una vista es sólo una función Python que toma una <code>HttpRequest</code> como primer parámetro y devuelve una instancia de <code>HttpResponse</code></strong>. Para que una función Python sea una vista Django, debe hacer estas dos cosas. (Hay excepciones, pero se verán más tarde).</p>
 </blockquote>
 <ul>
@@ -332,10 +309,10 @@ Una URLconf es como una tabla de contenido para un sitio web hecho con Django. B
 <p>FICHERO: <code>pages/urls.py</code> </p>
 <pre><code class="language-python"># pages/urls.py
 from django.urls import path
-from .views import homePageView
+from .views import home_page_view
 
 urlpatterns = [
-    path('', homePageView, name='home')
+    path('', home_page_view, name='home')
 ]
 </code></pre>
 <ul>
@@ -351,12 +328,12 @@ urlpatterns = [
 <li>
 <p>Una expresión regular Python para la cadena vacía ''</p>
 </li>
-<li>Especifica la vista que se llamará: <code>homePageView</code></li>
+<li>Especifica la vista que se llamará: <code>home_page_view</code></li>
 <li>
 <p>Añade un nombre de URL opcional <code>home</code></p>
 </li>
 <li>
-<p>Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces utilizar la vista llamada <code>homePageView</code></p>
+<p>Es decir, si el usuario requiere la pagina de inicio, representada por la cadena vacía, entonces se usará la vista llamada <code>home_page_view</code></p>
 </li>
 <li>
 <p>El último paso es configurar el fichero <code>urls.py</code> a nivel de proyecto donde se recogen todas las <strong>apps</strong> dentro de un proyecto Django, dado que <strong>cada una precisa de su propia ruta</strong>.</p>
@@ -364,7 +341,7 @@ urlpatterns = [
 </ul>
 <blockquote>
 <p>DETALLE
-Notemos que se pasa la función de vista <code>homePageView</code> como un objeto sin llamar a la función. Esto es una característica de Python (y otros lenguajes dinámicos): las funciones son objetos de primera clase, lo cual significa que se puede pasar como cualquier otra variable. ¡Qué bueno!, ¿no?</p>
+Notemos que se pasa la función de vista <code>home_page_view</code> como un objeto sin llamar a la función. Esto es una característica de Python (y otros lenguajes dinámicos): las funciones son objetos de primera clase, lo cual significa que se puede pasar como cualquier otra variable. ¡Qué bueno!, ¿no?</p>
 </blockquote>
 <p>FICHERO: <code>helloworld_project/urls.py</code> </p>
 <pre><code class="language-python">from django.contrib import admin
@@ -381,9 +358,9 @@ urlpatterns = [
 </ul>
 <blockquote>
 <p>DETALLE: <strong>URLconfs y el acoplamiento débil</strong></p>
-<p>Ahora es el momento de resaltar una parte clave de la filosofía detrás de las URLconf y detrás de Django en general: el <strong>principio de acoplamiento débil</strong> (loose coupling). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (loosely coupled) los cambios realizados sobre una de dichas piezas va a tener poco o ningún efecto sobre la otra.</p>
-<p>Las URLconfs de Django son un claro ejemplo de este principio en la práctica. En una aplicación Web de Django, la definición de la URL y la función de vista que se llamará están débilmente acopladas; de esta manera, la decisión de cuál debe ser la URL para una función, y la implementación de la función misma, residen en dos lugares separados. Esto permite el desarrollo de una pieza sin afectar a la otra.</p>
-<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python <a href="http://www.cherrypy.org/">CherryPy</a> la URL de la aplicación correspondía al nombre del método donde residía tu código. Esto puede parecer un atajo conveniente a corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
+<p>Ahora es el momento de resaltar una parte clave de la filosofía detrás de las URLconf y detrás de Django en general: el <strong>principio de acoplamiento débil</strong> (<em>loose coupling</em>). Para explicarlo de forma simple, el acoplamiento débil es una manera de diseñar software aprovechando el valor de la importancia de que se puedan cambiar las piezas. Si dos piezas de código están débilmente acopladas (<em>loosely coupled</em>) los cambios realizados sobre una de ellas va a tener poco o ningún efecto sobre la otra.</p>
+<p>Las URLconfs de Django son un claro ejemplo de este principio en la práctica. En una aplicación Web de Django, la definición de la URL y la función de vista que se llamará están débilmente acopladas; de esta manera, la decisión de cuál debe ser la URL para una función, y la implementación de la función misma, residen en dos lugares separados. Esto permite el desarrollo de una sin afectar a la otra.</p>
+<p>En contraste, otras plataformas de desarrollo Web acoplan la URL con el programa. En las típicas aplicaciones PHP, por ejemplo, la URL de la aplicación es designada por dónde se coloca el código en el sistema de archivos. En versiones anteriores del framework Web Python <a href="http://www.cherrypy.org/">CherryPy</a> la URL de la aplicación correspondía al nombre del método donde residía su código. Esto puede parecer un atajo conveniente a corto plazo, pero puede tornarse inmanejable a largo plazo.</p>
 <p>Por ejemplo, consideremos una función de vista que nos muestra la fecha y la hora actual. Si se quiere cambiar la URL de la aplicación — digamos, mover desde algo como <code>/time</code> a <code>/currenttime/</code> — se puede hacer un rápido cambio en la URLconf, sin tener que preocuparse acerca de la implementación subyacente de la función. Similarmente, si se quiere cambiar la función de la vista — alterando la lógica de alguna manera — se puede hacer sin afectar la URL a la que está asociada la función de vista. Además, si se quiere exponer la funcionalidad de fecha actual en varias URL se podría hacer editando el URLconf con cuidado, sin tener que tocar una sola línea de código de la vista.
 Eso es el acoplamiento débil en acción: una <strong>filosofía de desarrollo</strong>.</p>
 </blockquote>
@@ -405,17 +382,17 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def homePageView(request):
-    return HttpResponse(&quot;Hello World!&quot;)
+def home_page_view(request):
+    return HttpResponse(&quot;¡Hola mundo!&quot;)
 </code></pre>
 <h3 id="4-crear-el-fichero-de-rutas-de-la-app">4.- CREAR EL FICHERO DE RUTAS DE LA APP</h3>
 <p>FICHERO: <code>pages/urls.py</code> </p>
 <pre><code class="language-python"># pages/urls.py
 from django.urls import path
-from .views import homePageView
+from .views import home_page_view
 
 urlpatterns = [
-    path('', homePageView, name='home')
+    path('', home_page_view, name='home')
 ]
 </code></pre>
 <h3 id="5-incluir-el-fichero-de-rutas-de-la-app-en-el-principal">5.- INCLUIR EL FICHERO DE RUTAS DE LA APP EN EL PRINCIPAL</h3>
@@ -459,7 +436,7 @@ urlpatterns = [
 <p>Cuando llega una petición HTTP desde el navegador, un manejador específico a cada servidor construye la <code>HttpRequest</code>, para pasarla a los componentes y maneja el flujo del procesamiento de la respuesta.</p>
 </li>
 <li>
-<p>El manejador luego llama a cualquier middleware de Petición o Vista disponible. Estos tipos de middleware son útiles para augmenting los objetos HttpRequest así como también para proveer manejo especial a determinados tipos de peticiones. En el caso de que alguno de los mismos retornara un HttpResponse la vista no es invocada.</p>
+<p>El manejador luego llama a cualquier middleware de Petición o Vista disponible. Estos tipos de middleware son útiles para complementar los objetos <code>HttpRequest</code> así como también para proveer manejo especial a determinados tipos de peticiones. En el caso de que alguno de los mismos retornara un <code>HttpResponse</code> la vista no es invocada.</p>
 </li>
 <li>
 <p>Hasta a los mejores programadores se le escapan errores (bugs), pero el middleware de excepción ayuda a aplastarlos. Si una función de vista lanza una excepción, el control pasa al middleware de Excepción. Si este middleware no retorna un <code>HttpResponse</code>, la excepción se vuelve a lanzar.</p>
@@ -471,6 +448,46 @@ urlpatterns = [
 <p>Finalmente, el middleware de respuesta es bueno para el procesamiento posterior a un <code>HttpResponse</code> justo antes de que se envíe al navegador o haciendo una limpieza de recursos específicos a una petición.</p>
 </li>
 </ul>
+<h2 id="git-y-github">Git y GitHub</h2>
+<h3 id="361-git">3.6.1 Git</h3>
+<p>Supuestamente ya deberíamos tener Git instalado y configurado como nuestro sistema de control de versiones. Vamos a utilizarlo aquí.</p>
+<ul>
+<li>El primer paso es inicializar (o añadir) Git a nuestro repositorio. Asegúrate de que has detenido el servidor local con <code>&lt;Ctrl+C&gt;</code>, y luego ejecuta el comando <code>git init</code>.</li>
+</ul>
+<pre><code class="language-bash">(helloworld) $ git init
+</code></pre>
+<ul>
+<li>Si luego escribes <code>git status</code> verás una lista de cambios desde el último commit de Git. Como este es nuestra  primera confirmación, esta lista contiene todos los cambios realizados hasta ahora.</li>
+</ul>
+<pre><code class="language-bash">(helloworld) $ git status
+On branch master
+No commits yet
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+
+       Pipfile
+       Pipfile.lock
+       config/
+       db.sqlite3
+       manage.py
+       pages/
+
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+</code></pre>
+<p>A continuación queremos añadir todos los cambios utilizando el comando <code>add -A</code> y luego confirmar los cambios con <code>commit</code>  junto con un mensaje, (-m), describiendo lo que ha cambiado.</p>
+<pre><code class="language-bash">(helloworld) $ git add -A
+(helloworld) $ git commit -m &quot;Commit inicial&quot;
+</code></pre>
+<h3 id="362-github">3.6.2 GitHub</h3>
+<p>Es un buen hábito crear un repositorio remoto de tu código para cada proyecto. De esta manera se tiene una copia de seguridad en caso de que le pase algo a tu ordenador y, lo que es más importante, permite la colaboración con otros desarrolladores de software. Las opciones más populares son GitHub , Bitbucket y GitLab.</p>
+<p>Nosotros utilizaremos GitHub, pero los tres servicios ofrecen una funcionalidad similar para los recién llegados.</p>
+<p>Regístrate para obtener una cuenta gratuita en la página principal de GitHub y verifica tu dirección de correo electrónico. Luego navega a la página "Crear un nuevo repositorio" situada en https://github.com/new.
+Introduce el nombre del repositorio hello_world y haz clic en el botón de la parte inferior "Crear Repositorio".</p>
+<p>¡Tu primer repositorio ya está creado! Sin embargo, todavía no hay código en él. Desplázate hacia abajo en la página hasta donde dice “...or push an existing repository from the command line.” Eso es lo que queremos.</p>
+<p>Copia el texto que se encuentra inmediatamente debajo de este encabezado y pégalo en la línea de comandos. Esto sincroniza el directorio local en nuestro ordenador con el repositorio remoto en el sitio web de GitHub.</p>
+<p>El último paso es subir el contenido con <code>push</code>:</p>
+<pre><code class="language-bash">$ git push -u origin master
+</code></pre>
               
             </div>
           </div>
