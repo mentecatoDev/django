@@ -296,7 +296,7 @@ class Post(models.Model):     # new
 <li>Para utilizar el administrador de Django, primero necesitamos crear un superusuario que pueda iniciar sesión.</li>
 </ul>
 <pre><code class="language-bash">(mb) $ python manage.py createsuperuser
-Username (leave blank to use 'wsv'): wsv
+Username (leave blank to use 'mentecato'): mentecato
 Email:
 Password:
 Password (again):
@@ -314,9 +314,9 @@ a http://127.0.0.1:8000/admin/.</p>
 <p>FICHERO: <code>post/admin.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
 
-from posts.models import Post
+from posts.models import Post # new
 
-admin.site.register(Post)
+admin.site.register(Post)     # new
 </code></pre>
 <ul>
 <li>Ahora crear el primer mensaje en el tablero de mensajes.</li>
@@ -337,6 +337,7 @@ class Post(models.Model):
         return self.text[:50] # new
 </code></pre>
 <ul>
+<li>El cometido del método <code>__str__</code> es establecer el nombre que recibirá el post. Con el código anterior lo hemos redefinido (<em>overriden</em>) para que su nombre se establezca como los primeros 50 caracteres del texto del propio post.</li>
 <li>Es una buena práctica añadir métodos <code>__str__()</code> a todos los modelos para aumentar la legibilidad.</li>
 </ul>
 <h2 id="55-viewstemplatesurls">5.5. Views/Templates/URLs</h2>
@@ -349,19 +350,19 @@ class Post(models.Model):
 </ul>
 <p>FICHERO: <code>posts/views.py</code></p>
 <pre><code class="language-python"># posts/views.py
-from django.views.generic import ListView
-from .models import Post
+from django.views.generic import ListView # new
+from .models import Post                  # new
 
 
-class HomePageView(ListView):
-    model = Post
-    template_name = 'home.html'
+class HomePageView(ListView):             # new
+    model = Post                          # new
+    template_name = 'home.html'           # new
 </code></pre>
 <ul>
-<li>Importar <code>ListView</code></li>
-<li>Definir qué modelo se va a usar</li>
-<li>En la vista, se deriva la clase <code>ListView</code> para especificar el nombre del <strong>modelo</strong> y la referencia de la <strong>plantilla</strong>.<ul>
-<li>Internamente <code>ListView</code> devuelve un <strong>objeto</strong> llamado <code>object_list</code> que hay que mostrar en la plantilla.</li>
+<li>Se importa de la colección de vistas genéricas que tiene Django la clase <code>ListView</code> para personalizarla</li>
+<li>Se define qué modelo se va a usar</li>
+<li>En la vista, se deriva la clase <code>ListView</code> para especificar el nombre del <strong>modelo</strong> y la referencia a la <strong>plantilla</strong>.<ul>
+<li>Internamente <code>ListView</code> devuelve una variable de contexto llamada <code>object_list</code> que hay que mostrar en la plantilla.</li>
 </ul>
 </li>
 </ul>
@@ -379,7 +380,7 @@ class HomePageView(ListView):
 TEMPLATES = [
     {
         ...
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('template'))],   # new
         ...
     },
 ]
@@ -388,40 +389,64 @@ TEMPLATES = [
 <li>En el archivo <code>home.html</code> se puede usar bucle <code>for</code> del lenguaje de plantillas de Django para listar todos los objetos en <code>object_list</code>.</li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code></p>
-<pre><code class="language-html">&lt;!-- templates/home.html --&gt;
-&lt;h1&gt;Message board homepage&lt;/h1&gt;
-&lt;ul&gt;
-    {% for post in object_list %}
-        &lt;li&gt;{{ post }}&lt;/li&gt;
-    {% endfor %}
-&lt;/ul&gt;
-</code></pre>
-<p>FICHERO: <code>mb_project/urls.py</code></p>
-<pre><code class="language-python">    # mb_project/urls.py
-    from django.contrib import admin
-ç   from django.urls import path, include
-
-
-    urlpatterns = [
-        path('admin/', admin.site.urls),
-ç       path('', include('posts.urls')),
-    ]
+<pre><code class="language-html">&lt;!-- templates/home.html --&gt;                        # new
+&lt;h1&gt;Página de Inicio del Tablón de Anuncios&lt;/h1&gt;    # new
+&lt;ul&gt;                                                # new
+    {% for post in object_list %}                   # new
+        &lt;li&gt;{{ post.text }}&lt;/li&gt;                    # new
+    {% endfor %}                                    # new
+&lt;/ul&gt;                                               # new
 </code></pre>
 <ul>
-<li>Crear el fichero <code>urls.py</code> a nivel de app</li>
+<li>El nombre <code>object_list</code> no es muy apropiado así que pondremos uno más explícito a través del atributo <code>context_object_name</code>.</li>
+</ul>
+<p>FICHERO: <code>posts/views.py</code></p>
+<pre><code class="language-python">from django.views.generic import ListView
+from .models import Post
+
+class HomePageView(ListView):
+    model = Post
+    template_name = 'home.html'
+    context_object_name = 'all_posts_list'          # new
+</code></pre>
+<ul>
+<li>...que cambiaremos en:</li>
+</ul>
+<p>FICHERO: <code>templates/home.html</code></p>
+<pre><code class="language-html">...
+    {% for post in all_posts_list %}                # new
+...
+</code></pre>
+<ul>
+<li>Modificamos las urls del proyecto en:</li>
+</ul>
+<p>FICHERO: <code>mb_project/urls.py</code></p>
+<pre><code class="language-python"># mb_project/urls.py
+from django.contrib import admin
+from django.urls import path, include   # new
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('posts.urls')),    # new
+]
+</code></pre>
+<ul>
+<li>Crearemos el fichero <code>urls.py</code> a nivel de app</li>
 </ul>
 <pre><code>(mb) $ touch posts/urls.py
 </code></pre>
-<p>...con el siguiente contenido:
-FICHERO: <code>posts/urls.py</code></p>
-<pre><code class="language-python">ç   # posts/urls.py
-ç   from django.urls import path
-ç   from .views import HomePageView
+<ul>
+<li>...con el siguiente contenido:</li>
+</ul>
+<p>FICHERO: <code>posts/urls.py</code></p>
+<pre><code class="language-python">from django.urls import path                        # new
+from .views import HomePageView                     # new
 
 
-ç   urlpatterns = [
-ç       path('', HomePageView.as_view(), name='home'),
-ç   ]
+urlpatterns = [                                     # new
+    path('', HomePageView.as_view(), name='home'),  # new
+]                                                   # new
 </code></pre>
 <ul>
 <li>Reiniciar el servidor que ahora mostrará los post del tablón de mensajes</li>
@@ -430,12 +455,12 @@ FICHERO: <code>posts/urls.py</code></p>
 </ul>
 <pre><code>(mb) $ git init
 (mb) $ git add -A
-(mb) $ git commit -m 'Realiza el commit inicial'
+(mb) $ git commit -m 'Commit inicial'
 </code></pre>
 <h2 id="56-tests">5.6. Tests</h2>
 <ul>
-<li>Se necesita usar <code>TestCase</code> dado que ahora tenemos una base de datos y no solo una página estática.</li>
-<li>Se creará una base de datos con la que se pueden hacer pruebas (no se hacen con la base de datos real).</li>
+<li>Se necesita usar <code>TestCase</code> en lugar de <code>SimpleTestCase</code> dado que ahora tenemos una base de datos y no solo una página estática.</li>
+<li>Se creará una base de datos con la que se pueden hacer pruebas (tal y como se haría en una base de datos real).</li>
 <li>Se empezará añadiendo un mensaje de muestra al campo de la base de datos de texto para luego comprobar que se almacena correctamente.</li>
 <li>Es importante que todos los métodos de prueba comiencen con <code>test_</code> para que Django sepa cómo manejarlos</li>
 </ul>
@@ -486,7 +511,7 @@ Destroying test database for alias 'default'...
 </code></pre>
 <ul>
 <li>A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos.</li>
-<li>El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
+<li>El segundo test comprueba una sola página: la <em>homepage</em>. En concreto comprueba que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
 <li>Se necesita añadir un <code>import</code> más para <code>reverse</code> y una nueva clase <code>HomePageViewTest</code></li>
 </ul>
 <pre><code class="language-python">from django.test import TestCase
@@ -505,9 +530,9 @@ class PostModelTest(TestCase):
         self.assertEqual(expected_object_name, 'just a test')
 
 
-class HomePageViewTest(TestCase): # new
+class HomePageViewTest(TestCase):                       # new
 
-    def setUp(self):# new
+    def setUp(self):                                    # new
         Post.objects.create(text='this is another test')# new
 
     def test_view_url_exists_at_proper_location(self):  # new
@@ -593,18 +618,18 @@ python_version = &quot;3.8&quot;
 </code></pre>
 <h3 id="584-actualizar-settingspy">5.8.4. Actualizar <code>settings.py</code></h3>
 <ul>
-<li>Actualizar <code>ALLOWED_HOSTS</code> en el archivo <code>settings.py</code>.
-FICHERO: mb_project/settings.py</li>
+<li>Anteriormente, establecíamos <code>ALLOWED_HOSTS</code> en <code>*</code>, lo que significaba aceptar todos los hosts; esto es una atajo peligroso. Podemos, y debemos, ser más específicos. Los dos hosts locales en los que se ejecuta Django son: <code>localhost:8000</code> y <code>127.0.0.1:8000</code>. También sabemos que, una vez desplegado, cualquier sitio Heroku terminará con <code>.herokuapp.com</code>. Podemos añadir las tres rutas a nuestra configuración.</li>
 </ul>
+<p>FICHERO: mb_project/settings.py</p>
 <pre><code class="language-python"># mb_project/settings.py
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 </code></pre>
 <ul>
-<li><code>commit</code> y <code>push</code></li>
+<li>Ahora <code>commit</code> y <code>push</code></li>
 </ul>
 <pre><code>(mb) $ git status
 (mb) $ git add -A
-(mb) $ git commit -m 'New updates for Heroku deployment'
+(mb) $ git commit -m 'Actualiza el despliegue en Heroku'
 (mb) $ git push -u origin master
 </code></pre>
 <h2 id="59-despliegue-en-heroku">5.9. Despliegue en Heroku</h2>
@@ -646,6 +671,7 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 <li>Se creará una aplicación de blog con formularios para que los usuarios puedan crear, editar y borrar mensajes.</li>
 <li>Se le añadirá estilo a través de CSS.</li>
 </ul>
+<p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|                             </p>
               
             </div>
           </div>

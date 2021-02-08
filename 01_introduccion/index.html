@@ -352,7 +352,7 @@ Pero a medida que una aplicación Web crece más allá de lo trivial, este enfoq
 <p>Como se trata de texto plano y HTML, <strong>un diseñador no necesita saber nada sobre Django para poder crear una plantilla Django</strong>. Todo lo que el diseñador tiene que hacer es añadir un marcador de posición (etiqueta de comentario HTML, por ejemplo), para que el programador lo sustituya por una etiqueta Django al codificar el sitio web.</p>
 <p>La otra gran ventaja de este enfoque es que, dado que la mayor parte de la plantilla es HTML simple, como programador, <strong>se puede crear un sitio web de buena apariencia sin un diseñador</strong>: se puede descargar una plantilla HTML de Internet y agregar etiquetas de plantilla Django. Esto también funciona con las plantillas <em>Bootstrap</em> y los sitios pesados en la parte de <em>front-end</em> con JavaScript.</p>
 <h3 id="137-dont-repeat-yourself-dry">1.3.7. Don't Repeat Yourself (DRY)</h3>
-<p>DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es <strong>uno de los principios fundamentales de Django</strong>. El principio DRY es particularmente evidente en cómo Django utiliza la <strong><em>herencia de modelos</em></strong>.</p>
+<p>DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es <strong>uno de los principios fundamentales de Django</strong>. El principio DRY es particularmente evidente en cómo Django utiliza la <strong><em>herencia de plantillas</em></strong>.</p>
 <p>Para entender mejor cómo la herencia de plantillas nos ayuda a minimizar la repetición y el código redundante, vamos a examinar primero un diseño típico de una página web.</p>
 <p><img alt="Django Tutorials - Webpage Template" src="../img_introduccion/template_full.png" /></p>
 <p>Este diseño de página tiene <strong>una navegación superior, una imagen de cabecera, un menú lateral izquierdo, el contenido principal de la página y un pie de página</strong>. Si sólo se quisiera crear unas pocas páginas web, se podría copiar la página principal y simplemente <strong>cambiar el contenido</strong> y guardar cada página diferente como un archivo HTML.</p>
@@ -442,8 +442,8 @@ Pero a medida que una aplicación Web crece más allá de lo trivial, este enfoq
 </ul>
 <h3 id="142-por-que-unos-apuntes">1.4.2. Por qué unos apuntes</h3>
 <ul>
-<li>Django está bien <a href="https://docs.djangoproject.com/es/3.0/">documentado</a> pero es difícil de abordar para el principiante</li>
-<li>Incluso el <a href="https://docs.djangoproject.com/es/3.0/intro/tutorial01/">tutorial básico</a> es notablemente arduo</li>
+<li>Django está bien <a href="https://docs.djangoproject.com/es/3.1/">documentado</a> pero es difícil de abordar para el principiante</li>
+<li>Incluso el <a href="https://docs.djangoproject.com/es/3.1/intro/tutorial01/">tutorial básico</a> es notablemente arduo</li>
 <li>El problema viene de que está orientado a la <strong>profundidad</strong> y no a la <strong>facilidad de uso</strong></li>
 <li>Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS</li>
 </ul>

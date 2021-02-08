@@ -92,7 +92,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#67-ficheros-estaticos">6.7. Ficheros estáticos</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#68-individual-blog-pages">6.8. Individual blog pages</a>
+    <li class="toctree-l2"><a class="reference internal" href="#68-blog-pages-individuales">6.8. Blog pages individuales</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#69-tests">6.9. Tests</a>
     </li>
@@ -188,7 +188,7 @@
 <li>crear un nuevo directorio para el código en el Escritorio llamado blog</li>
 <li>instalar Django en un nuevo entorno virtual</li>
 <li>crear un nuevo proyecto de Django llamado <code>blog_project</code></li>
-<li>crear un nuevo blog de aplicaciones</li>
+<li>crear una nueva aplicación de nombre <code>blog</code></li>
 <li>realizar una migración para configurar la base de datos</li>
 <li>actualizar <code>settings.py</code></li>
 </ul>
@@ -324,7 +324,7 @@ class BlogListView(ListView):
 <pre><code class="language-python">TEMPLATES = [
     {
         ...
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         ...
     },
 ]
@@ -471,7 +471,7 @@ header h1 a {
   color: red;
 }
 </code></pre>
-<h2 id="68-individual-blog-pages">6.8. Individual blog pages</h2>
+<h2 id="68-blog-pages-individuales">6.8. Blog pages individuales</h2>
 <ul>
 <li>
 <p>Ahora se puede añadir funcionalidad a las páginas de blog individuales.</p>
@@ -484,7 +484,7 @@ header h1 a {
 </li>
 </ul>
 <p>FICHERO: <code>blog/views.py</code></p>
-<pre><code class="language-python">from django.views.generic import ListView, DetailView
+<pre><code class="language-python">from django.views.generic import ListView, DetailView # new
 from .models import Post
 
 
@@ -566,7 +566,7 @@ urlpatterns = [
 </code></pre>
 <ul>
 <li>Todas las entradas del blog comenzarán con <code>post/</code>. Lo siguiente es la clave principal de la entrada que se representará como un entero <code>&lt;int:pk&gt;</code>.</li>
-<li>¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos <code>title</code>, <code>author</code> and <code>body</code> en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado <code>id</code>, que es la clave primaria. Se puede acceder a ella como <code>id</code> o <code>pk</code>.</li>
+<li>¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos <code>title</code>, <code>author</code> y <code>body</code> en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado <code>id</code>, que es la clave primaria. Se puede acceder a ella como <code>id</code> o <code>pk</code>.</li>
 <li>La <code>pk</code> para el primer post "Hola, Mundo" es 1. Para el segundo post, es 2. Y así sucesivamente. Por lo tanto, cuando se vaya a la página de entrada individual para el primer post, el patrón de dirección es <code>post/1</code>.<blockquote>
 <p>Nota:</p>
 <p>Entender cómo funcionan claves primarias con <code>DetailView</code> es un punto de confusión muy común en los principiantes. Vale la pena releer los dos párrafos anteriores unas cuantas veces. Con la práctica se convertirá en algo natural.</p>
@@ -660,7 +660,7 @@ class BlogTests(TestCase):
 <pre><code class="language-bash">(testy) $ git init
 (testy) $ git status
 (testy) $ git add -A
-(testy) $ git commit -m 'initial commit'
+(testy) $ git commit -m 'Commit Inicial'
 </code></pre>
 <h2 id="611-conclusion">6.11. Conclusión</h2>
 <ul>
@@ -668,6 +668,7 @@ class BlogTests(TestCase):
 <li>Usando el administrador de Django se puede crear, editar o borrar el contenido.</li>
 <li>Se ha usado <code>DetailView</code> por primera vez para crear una vista individual detallada de cada entrada del blog.</li>
 </ul>
+<p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|</p>
               
             </div>
           </div>

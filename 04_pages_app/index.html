@@ -88,6 +88,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#410-local-vs-produccion">4.10 Local vs Producción</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#411-heroku">4.11 Heroku</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#411-ficheros-adicionales">4.11 Ficheros adicionales</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#412-despliegue">4.12 Despliegue</a>
@@ -247,7 +251,7 @@ $ pipenv shell
 <li><strong>La otra aproximación</strong> es hacer un directorio de plantillas común a todas las apps. </li>
 <li>Hay que cambiar <code>settings.py</code> para que busque, también en este directorio, las plantillas que se necesiten.</li>
 </ul>
-<pre><code>   (pages) $ mkdir templates
+<pre><code class="language-bash">   (pages) $ mkdir templates
    (pages) $ touch templates/home.html
 </code></pre>
 <p>FICHERO: <code>pages_project/settings.py</code> </p>
@@ -260,7 +264,7 @@ $ pipenv shell
 ]
 </code></pre>
 <blockquote>
-<p>La función <code>os.path.join</code> une el path base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente</p>
+<p><code>str(BASE_DIR.joinpath('templates'))</code> toma el directorio base y le abrega el directorio <code>templates</code> para finalmente construir una cadena con el <em>path</em> completo. También se podría utilizar la función <code>os.path.join</code> que une el <em>path</em> base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente. Hemos de importar la librería <code>os</code> (<code>import os</code>) para hacer uso de esta segunda función.</p>
 </blockquote>
 <p>FICHERO: <code>templates/home.html</code> </p>
 <pre><code class="language-html">   &lt;h1&gt;Homepage&lt;/h1&gt;
@@ -288,6 +292,14 @@ class HomePageView(TemplateView):
 <ul>
 <li>El último paso es actualizar las <code>URLConfs</code>.</li>
 </ul>
+<p>FICHERO: <code>pages/urls.py</code> </p>
+<pre><code class="language-python">from django.urls import path
+from .views import HomePageView
+
+urlpatterns = [
+    path('', HomePageView.as_view(), name='home'),
+]
+</code></pre>
 <p>FICHERO: <code>pages_project/urls.py</code> </p>
 <pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include # new
@@ -295,14 +307,6 @@ from django.urls import path, include # new
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')), # new
-]
-</code></pre>
-<p>FICHERO: <code>pages/urls.py</code> </p>
-<pre><code class="language-python">from django.urls import path
-from .views import HomePageView
-
-urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
 ]
 </code></pre>
 <ul>
@@ -316,23 +320,26 @@ urlpatterns = [
 <pre><code class="language-bash">(pages) $ touch templates/about.html
 </code></pre>
 <p>FICHERO: <code>templates/about.html</code> </p>
-<pre><code class="language-html">&lt;h1&gt;About page&lt;/h1&gt;
+<pre><code class="language-html">&lt;h1&gt;Acerca de...&lt;/h1&gt;
 </code></pre>
 <ul>
 <li>Crear una nueva vista para la página</li>
 </ul>
 <p>FICHERO: <code>pages/views.py</code> </p>
-<p><code>python
-  from django.views.generic import TemplateView</code></p>
-<p>class HomePageView(TemplateView):
-    template_name = 'home.html'</p>
-<p>class AboutPageView(TemplateView):
-    template_name = 'about.html'</p>
-<pre><code>- Conectar la vista con la ruta
+<pre><code class="language-python">from django.views.generic import TemplateView
 
- FICHERO: `pages/urls.py` 
-​```python
-    from django.urls import path
+
+class HomePageView(TemplateView):
+    template_name = 'home.html'
+
+class AboutPageView(TemplateView):
+    template_name = 'about.html'
+</code></pre>
+<ul>
+<li>Conectar la vista con la ruta</li>
+</ul>
+<p>FICHERO: <code>pages/urls.py</code> </p>
+<pre><code class="language-python">    from django.urls import path
     from .views import HomePageView, AboutPageView # new
 
     urlpatterns = [
@@ -370,7 +377,8 @@ urlpatterns = [
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code class="language-html">&lt;header&gt;
-  &lt;a href=&quot;{% url 'home' %}&quot;&gt;Home&lt;/a&gt; | &lt;a href=&quot;{% url 'about' %}&quot;&gt;About&lt;/a&gt;
+  &lt;a href=&quot;{% url 'home' %}&quot;&gt;Home&lt;/a&gt; | 
+  &lt;a href=&quot;{% url 'about' %}&quot;&gt;About&lt;/a&gt;
 &lt;/header&gt;
 
 {% block content %}
@@ -385,14 +393,14 @@ urlpatterns = [
 </li>
 </ul>
 <p>FICHERO: <code>templates/home.html</code> </p>
-<p><code>html
-  {% extends 'base.html' %}</code></p>
-<p>{% block content %}
-    <h1>Homepage</h1>
-{% endblock content %}</p>
-<pre><code>FICHERO: `templates/about.html`
-​```html
-{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
+
+{% block content %}
+&lt;h1&gt;Homepage&lt;/h1&gt;
+{% endblock content %}
+</code></pre>
+<p>FICHERO: <code>templates/about.html</code></p>
+<pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
     &lt;h1&gt;About page&lt;/h1&gt;
@@ -422,11 +430,10 @@ class SimpleTests(SimpleTestCase):
     def test_about_page_status_code(self):
         response = self.client.get('/about/')
         self.assertEqual(response.status_code, 200)
-
 </code></pre>
 <ul>
 <li>Se usa <code>SimpleTestCase</code> ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos <code>TestCase</code>. </li>
-<li>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.</li>
+<li>Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP exitosa.</li>
 <li>Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.</li>
 <li>Para ejecutar los tests:</li>
 </ul>
@@ -439,30 +446,30 @@ Ran 2 tests in 0.014s
 OK
 </code></pre>
 <h2 id="49-git-github-gitlab-y-bitbucket">4.9 Git, GitHub, GitLab y Bitbucket</h2>
-<p>​```bash
-(pages) $ git init
+<pre><code class="language-bash">(pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
-(pages) $ git commit -m 'Commit inicial'</p>
-<pre><code>
-## 4.10 Local vs Producción
-
-- Código en producción
-  - Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.
-- Hay muchos proveedores de servidores disponibles, pero usaremos *Heroku* porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.
-
-## 4.11 Heroku
-
-- Se puede obtener una cuenta gratuita de Heroku en [su sitio web](https://www.heroku.com/).
-- Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.
-  - Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.
-  - Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.
-- [Instalar Heroku según el sitio web de Heroku](https://devcenter.heroku.com/articles/heroku-cli)
-  - [Arch Linux](https://devcenter.heroku.com/articles/heroku-cli#arch-linux)
-    - [Este paquete](https://aur.archlinux.org/packages/heroku-cli) está mantenido por la comunidad y no por Heroku.
-
-```bash
-$ yay -S heroku-cli
+(pages) $ git commit -m 'Commit inicial'
+</code></pre>
+<h2 id="410-local-vs-produccion">4.10 Local vs Producción</h2>
+<ul>
+<li>Código en producción</li>
+<li>Código implementado en un servidor externo para que cualquiera pueda ver el sitio web.</li>
+<li>Hay muchos proveedores de servidores disponibles, pero usaremos <em>Heroku</em> porque es gratis para pequeños proyectos, ampliamente utilizado y tiene un proceso de implementación relativamente sencillo.</li>
+</ul>
+<h2 id="411-heroku">4.11 Heroku</h2>
+<ul>
+<li>Se puede obtener una cuenta gratuita de Heroku en <a href="https://www.heroku.com/">su sitio web</a>.</li>
+<li>Ahora se necesita instalar la interfaz de línea de comando (CLI) de Heroku para poder implementar desde la línea de comando.</li>
+<li>Queremos instalar Heroku globalmente para que esté disponible en toda nuestra computadora.</li>
+<li>Si se instala Heroku dentro de un entorno virtual, solo estará disponible allí.</li>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli">Instalar Heroku según el sitio web de Heroku</a></li>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli#arch-linux">Arch Linux</a><ul>
+<li><a href="https://aur.archlinux.org/packages/heroku-cli">Este paquete</a> está mantenido por la comunidad y no por Heroku.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-bash">$ yay -S heroku-cli
 </code></pre>
 <pre><code class="language-bash">(pages) $ heroku login
 Enter your Heroku credentials:
@@ -545,6 +552,8 @@ ALLOWED_HOSTS = ['*']
 Creating app... done, 
 https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasis-40349.git
 </code></pre>
+<p>Sólo queda hacer un conjunto de configuraciones de Heroku, que son decirle a Heroku que
+ignore los archivos estáticos como CSS y JavaScript que Django por defecto intenta optimizar por nosotros. </p>
 <h3 id="anadir-un-hook-para-heroku-dentro-de-git">Añadir un “hook” para Heroku dentro de git</h3>
 <ul>
 <li>Git almacenará tanto la configuración para enviar el código a GitHub como a Heroku.</li>
@@ -572,6 +581,7 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 <h3 id="visitar-la-aplicacion-en-la-url-proporcionada-por-heroku">Visitar la aplicación en la URL proporcionada por Heroku</h3>
 <ul>
 <li>Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.</li>
+<li>También puede utilizarse el comando 'heroku open' que abrirá el navegador con una pestaña a nuestra app.</li>
 </ul>
 <h2 id="413-errores-404">4.13 Errores 404</h2>
 <ul>
