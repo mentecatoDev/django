@@ -95,7 +95,7 @@ class Post(models.Model):     # new
 
 ``` bash
 (mb) $ python manage.py createsuperuser
-Username (leave blank to use 'wsv'): wsv
+Username (leave blank to use 'mentecato'): mentecato
 Email:
 Password:
 Password (again):
@@ -110,9 +110,9 @@ FICHERO: `post/admin.py`
 ```python
 from django.contrib import admin
 
-from posts.models import Post
+from posts.models import Post # new
 
-admin.site.register(Post)
+admin.site.register(Post)     # new
 ```
 - Ahora crear el primer mensaje en el tablero de mensajes.
 - *Problema*: La nueva entrada se llama “Post object”, lo cual no es muy útil
@@ -131,6 +131,7 @@ class Post(models.Model):
         return self.text[:50] # new
 ```
 
+- El cometido del método `__str__` es establecer el nombre que recibirá el post. Con el código anterior lo hemos redefinido (*overriden*) para que su nombre se establezca como los primeros 50 caracteres del texto del propio post.
 - Es una buena práctica añadir métodos `__str__()` a todos los modelos para aumentar la legibilidad.
 
 ## 5.5. Views/Templates/URLs
@@ -141,18 +142,18 @@ class Post(models.Model):
 FICHERO: `posts/views.py`
 ```python
 # posts/views.py
-from django.views.generic import ListView
-from .models import Post
+from django.views.generic import ListView # new
+from .models import Post                  # new
 
 
-class HomePageView(ListView):
-    model = Post
-    template_name = 'home.html'
+class HomePageView(ListView):             # new
+    model = Post                          # new
+    template_name = 'home.html'           # new
 ```
-- Importar `ListView`
-- Definir qué modelo se va a usar
-- En la vista, se deriva la clase `ListView` para especificar el nombre del **modelo** y la referencia de la **plantilla**.
-    + Internamente `ListView` devuelve un **objeto** llamado `object_list` que hay que mostrar en la plantilla.
+- Se importa de la colección de vistas genéricas que tiene Django la clase `ListView` para personalizarla
+- Se define qué modelo se va a usar
+- En la vista, se deriva la clase `ListView` para especificar el nombre del **modelo** y la referencia a la **plantilla**.
+    + Internamente `ListView` devuelve una variable de contexto llamada `object_list` que hay que mostrar en la plantilla.
 
 ### 5.4.2. Plantilla
 - Crear un directorio en el nivel del proyecto que se llame `templates` y una plantilla `home.html` en él
@@ -167,7 +168,7 @@ class HomePageView(ListView):
 TEMPLATES = [
     {
         ...
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('template'))],   # new
         ...
     },
 ]
@@ -176,41 +177,66 @@ TEMPLATES = [
 
 FICHERO: `templates/home.html`
 ```html
-<!-- templates/home.html -->
-<h1>Message board homepage</h1>
-<ul>
-    {% for post in object_list %}
-        <li>{{ post }}</li>
-    {% endfor %}
-</ul>
+<!-- templates/home.html -->						# new
+<h1>Página de Inicio del Tablón de Anuncios</h1>	# new
+<ul>												# new
+    {% for post in object_list %}					# new
+        <li>{{ post.text }}</li>					# new
+    {% endfor %}									# new
+</ul>												# new
 ```
-FICHERO: `mb_project/urls.py`
+- El nombre `object_list` no es muy apropiado así que pondremos uno más explícito a través del atributo `context_object_name`.
+
+FICHERO: `posts/views.py`
+
 ```python
-	# mb_project/urls.py
-	from django.contrib import admin
-ç	from django.urls import path, include
-	
-	
-	urlpatterns = [
-	    path('admin/', admin.site.urls),
-ç	    path('', include('posts.urls')),
-	]
+from django.views.generic import ListView
+from .models import Post
+
+class HomePageView(ListView):
+	model = Post
+	template_name = 'home.html'
+	context_object_name = 'all_posts_list'			# new
 ```
-- Crear el fichero `urls.py` a nivel de app
+- ...que cambiaremos en:
+
+FICHERO: `templates/home.html`
+```html
+...
+    {% for post in all_posts_list %}				# new
+...
+```
+
+- Modificamos las urls del proyecto en:
+
+FICHERO: `mb_project/urls.py`
+
+```python
+# mb_project/urls.py
+from django.contrib import admin
+from django.urls import path, include	# new
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('posts.urls')),	# new
+]
+```
+- Crearemos el fichero `urls.py` a nivel de app
 ```
 (mb) $ touch posts/urls.py
 ```
-...con el siguiente contenido:
+- ...con el siguiente contenido:
+
 FICHERO: `posts/urls.py`
 ```python
-ç	# posts/urls.py
-ç	from django.urls import path
-ç	from .views import HomePageView
-	
-	
-ç	urlpatterns = [
-ç	    path('', HomePageView.as_view(), name='home'),
-ç	]
+from django.urls import path						# new
+from .views import HomePageView						# new
+
+
+urlpatterns = [										# new
+    path('', HomePageView.as_view(), name='home'),	# new
+]													# new
 ```
 - Reiniciar el servidor que ahora mostrará los post del tablón de mensajes
 - Añádanse más posts ;-)
@@ -218,11 +244,11 @@ FICHERO: `posts/urls.py`
 ```
 (mb) $ git init
 (mb) $ git add -A
-(mb) $ git commit -m 'Realiza el commit inicial'
+(mb) $ git commit -m 'Commit inicial'
 ```
 ## 5.6. Tests
-- Se necesita usar `TestCase` dado que ahora tenemos una base de datos y no solo una página estática.
-- Se creará una base de datos con la que se pueden hacer pruebas (no se hacen con la base de datos real).
+- Se necesita usar `TestCase` en lugar de `SimpleTestCase` dado que ahora tenemos una base de datos y no solo una página estática.
+- Se creará una base de datos con la que se pueden hacer pruebas (tal y como se haría en una base de datos real).
 - Se empezará añadiendo un mensaje de muestra al campo de la base de datos de texto para luego comprobar que se almacena correctamente.
 - Es importante que todos los métodos de prueba comiencen con `test_` para que Django sepa cómo manejarlos
 
@@ -268,7 +294,7 @@ OK
 Destroying test database for alias 'default'...
 ```
 - A pesar de lo aparentemente complicado del asunto pronto se verá que en la mayor parte de los casos, los tests son repetitivos.
-- El segundo test comprueba una sola página: la homepage. En concreto que exista (lanza una respuesta HTTP 200). Usa la vista `home` y la plantilla `home.html`.
+- El segundo test comprueba una sola página: la *homepage*. En concreto comprueba que exista (lanza una respuesta HTTP 200). Usa la vista `home` y la plantilla `home.html`.
 -  
 Se necesita añadir un `import` más para `reverse` y una nueva clase `HomePageViewTest`
 ```python
@@ -278,7 +304,7 @@ from .models import Post
 
 
 class PostModelTest(TestCase):
-
+ 
     def setUp(self):
         Post.objects.create(text='just a test')
 
@@ -288,9 +314,9 @@ class PostModelTest(TestCase):
         self.assertEqual(expected_object_name, 'just a test')
 
 
-class HomePageViewTest(TestCase): # new
+class HomePageViewTest(TestCase): 						# new
 
-    def setUp(self):# new
+    def setUp(self):									# new
         Post.objects.create(text='this is another test')# new
 
     def test_view_url_exists_at_proper_location(self):  # new
@@ -365,17 +391,19 @@ web: gunicorn mb_project.wsgi --log-file -
 (mb) $ pipenv install gunicorn
 ```
 ### 5.8.4. Actualizar `settings.py`
-- Actualizar `ALLOWED_HOSTS` en el archivo `settings.py`.
-FICHERO: mb_project/settings.py
+- Anteriormente, establecíamos `ALLOWED_HOSTS` en `*`, lo que significaba aceptar todos los hosts; esto es una atajo peligroso. Podemos, y debemos, ser más específicos. Los dos hosts locales en los que se ejecuta Django son: `localhost:8000` y `127.0.0.1:8000`. También sabemos que, una vez desplegado, cualquier sitio Heroku terminará con `.herokuapp.com`. Podemos añadir las tres rutas a nuestra configuración.
+
+
+  FICHERO: mb_project/settings.py
 ```python
 # mb_project/settings.py
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 ```
-- `commit` y `push`
+- Ahora `commit` y `push`
 ```
 (mb) $ git status
 (mb) $ git add -A
-(mb) $ git commit -m 'New updates for Heroku deployment'
+(mb) $ git commit -m 'Actualiza el despliegue en Heroku'
 (mb) $ git push -u origin master
 ```
 ## 5.9. Despliegue en Heroku
@@ -409,3 +437,7 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 - Faltarían formularios para interactuar con el sitio (el panel de administración no es lo adecuado).
 - Se creará una aplicación de blog con formularios para que los usuarios puedan crear, editar y borrar mensajes.
 - Se le añadirá estilo a través de CSS.
+
+
+
+|\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|                             

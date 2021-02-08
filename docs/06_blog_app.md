@@ -10,7 +10,7 @@
     - crear un nuevo directorio para el código en el Escritorio llamado blog
     - instalar Django en un nuevo entorno virtual
     - crear un nuevo proyecto de Django llamado `blog_project`
-    - crear un nuevo blog de aplicaciones
+    - crear una nueva aplicación de nombre `blog`
     - realizar una migración para configurar la base de datos
     - actualizar `settings.py`
 
@@ -153,7 +153,7 @@ FICHERO: `blog_project/settings.py`
 TEMPLATES = [
     {
         ...
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         ...
     },
 ]
@@ -305,7 +305,7 @@ header h1 a {
 }
 ```
 
-## 6.8. Individual blog pages
+## 6.8. Blog pages individuales
 - Ahora se puede añadir funcionalidad a las páginas de blog individuales.
 
 - Crear una nueva vista, url y plantilla.
@@ -316,7 +316,7 @@ header h1 a {
 
 FICHERO: `blog/views.py`
 ```python
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView # new
 from .models import Post
 
 
@@ -400,7 +400,7 @@ urlpatterns = [
 ]
 ```
 - Todas las entradas del blog comenzarán con `post/`. Lo siguiente es la clave principal de la entrada que se representará como un entero `<int:pk>`.
--  ¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos `title`, `author` and `body` en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado `id`, que es la clave primaria. Se puede acceder a ella como `id` o `pk`.
+-  ¿Cuál es la clave primaria? Django añade automáticamente una clave primaria autoincrementada a los modelos de base de datos. Así que mientras que sólo se declaran los campos `title`, `author` y `body` en el modelo de publicación, bajo el capó, Django también añadió otro campo llamado `id`, que es la clave primaria. Se puede acceder a ella como `id` o `pk`.
 - La `pk` para el primer post "Hola, Mundo" es 1. Para el segundo post, es 2. Y así sucesivamente. Por lo tanto, cuando se vaya a la página de entrada individual para el primer post, el patrón de dirección es `post/1`.
 > Nota:
 >
@@ -490,10 +490,14 @@ class BlogTests(TestCase):
 (testy) $ git init
 (testy) $ git status
 (testy) $ git add -A
-(testy) $ git commit -m 'initial commit'
+(testy) $ git commit -m 'Commit Inicial'
 ```
 
 ## 6.11. Conclusión
 - Se ha construido una aplicación básica de blog desde cero
 - Usando el administrador de Django se puede crear, editar o borrar el contenido.
 - Se ha usado `DetailView` por primera vez para crear una vista individual detallada de cada entrada del blog.
+
+
+
+|\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|

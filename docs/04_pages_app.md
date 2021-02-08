@@ -64,7 +64,7 @@ FICHERO: `pages_project/settings.py`
 - **La otra aproximación** es hacer un directorio de plantillas común a todas las apps. 
   - Hay que cambiar `settings.py` para que busque, también en este directorio, las plantillas que se necesiten.
 
-```
+```bash
    (pages) $ mkdir templates
    (pages) $ touch templates/home.html
 ```
@@ -81,7 +81,7 @@ TEMPLATES = [
 ]
 ```
 
-> La función `os.path.join` une el path base de la aplicación (`BASE_DIR`) con el nuevo directorio `templates` añadiendo `/` según sea conveniente
+> `str(BASE_DIR.joinpath('templates'))` toma el directorio base y le abrega el directorio `templates` para finalmente construir una cadena con el *path* completo. También se podría utilizar la función `os.path.join` que une el *path* base de la aplicación (`BASE_DIR`) con el nuevo directorio `templates` añadiendo `/` según sea conveniente. Hemos de importar la librería `os` (`import os`) para hacer uso de esta segunda función.
 
 FICHERO: `templates/home.html` 
 
@@ -113,6 +113,17 @@ class HomePageView(TemplateView):
 
 - El último paso es actualizar las `URLConfs`.
 
+FICHERO: `pages/urls.py` 
+
+```python
+from django.urls import path
+from .views import HomePageView
+
+urlpatterns = [
+    path('', HomePageView.as_view(), name='home'),
+]
+```
+
 FICHERO: `pages_project/urls.py` 
 
 ```python
@@ -122,17 +133,6 @@ from django.urls import path, include # new
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('pages.urls')), # new
-]
-```
-
-FICHERO: `pages/urls.py` 
-
-```python
-from django.urls import path
-from .views import HomePageView
-
-urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
 ]
 ```
 
@@ -147,31 +147,32 @@ urlpatterns = [
 (pages) $ touch templates/about.html
 ```
 
- FICHERO: `templates/about.html` 
+FICHERO: `templates/about.html` 
 
 ```html
-<h1>About page</h1>
+<h1>Acerca de...</h1>
 ```
 
 - Crear una nueva vista para la página
   
-  FICHERO: `pages/views.py` 
-  
-  ```python
-  from django.views.generic import TemplateView
-  ```
+
+FICHERO: `pages/views.py` 
+
+```python
+from django.views.generic import TemplateView
+
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
 class AboutPageView(TemplateView):
     template_name = 'about.html'
-
 ```
 - Conectar la vista con la ruta
 
- FICHERO: `pages/urls.py` 
-​```python
+FICHERO: `pages/urls.py` 
+
+```python
     from django.urls import path
     from .views import HomePageView, AboutPageView # new
 
@@ -207,7 +208,8 @@ FICHERO: `templates/base.html`
 
 ```html
 <header>
-  <a href="{% url 'home' %}">Home</a> | <a href="{% url 'about' %}">About</a>
+  <a href="{% url 'home' %}">Home</a> | 
+  <a href="{% url 'about' %}">About</a>
 </header>
 
 {% block content %}
@@ -220,17 +222,15 @@ FICHERO: `templates/base.html`
   
   FICHERO: `templates/home.html` 
   
-  ```html
-  {% extends 'base.html' %}
-  ```
+```html
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>Homepage</h1>
+<h1>Homepage</h1>
 {% endblock content %}
-
 ```
 FICHERO: `templates/about.html`
-​```html
+```html
 {% extends 'base.html' %}
 
 {% block content %}
@@ -260,11 +260,10 @@ class SimpleTests(SimpleTestCase):
     def test_about_page_status_code(self):
         response = self.client.get('/about/')
         self.assertEqual(response.status_code, 200)
-
 ```
 
 - Se usa `SimpleTestCase` ya que no estamos usando una base de datos. Si estuviéramos usando una base de datos, en su lugar usaríamos `TestCase`. 
-- Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP  exitosa.
+- Luego se realiza una comprobación de si el código de estado para cada página es 200, que es la respuesta estándar para una solicitud HTTP exitosa.
 - Esa es una manera elegante de garantizar que una página web determinada realmente existe, pero no dice nada sobre su contenido.
 - Para ejecutar los tests:
 
@@ -280,7 +279,7 @@ OK
 
 ## 4.9 Git, GitHub, GitLab y Bitbucket
 
-​```bash
+```bash
 (pages) $ git init
 (pages) $ git status
 (pages) $ git add -A
@@ -392,6 +391,8 @@ ALLOWED_HOSTS = ['*']
 Creating app... done, 
 https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasis-40349.git
 ```
+Sólo queda hacer un conjunto de configuraciones de Heroku, que son decirle a Heroku que
+ignore los archivos estáticos como CSS y JavaScript que Django por defecto intenta optimizar por nosotros. 
 
 ### Añadir un “hook” para Heroku dentro de git
 
@@ -427,6 +428,7 @@ https://cryptic-oasis-40349.herokuapp.com/ | https://git.heroku.com/cryptic-oasi
 ### Visitar la aplicación en la URL proporcionada por Heroku
 
 - Vistiar algo como https://cryptic-oasis-40349.herokuapp.com ó https://cryptic-oasis-40349.herokuapp.com/about/.
+- También puede utilizarse el comando 'heroku open' que abrirá el navegador con una pestaña a nuestra app.
 
 ## 4.13 Errores 404
 

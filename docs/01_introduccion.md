@@ -196,7 +196,7 @@ La otra gran ventaja de este enfoque es que, dado que la mayor parte de la plant
 
 ### 1.3.7. Don't Repeat Yourself (DRY)
 
-DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es **uno de los principios fundamentales de Django**. El principio DRY es particularmente evidente en cómo Django utiliza la ***herencia de modelos***.
+DRY (Don't Repeat Yourself) es un término que aparece a menudo en el discurso de Django, ya que es **uno de los principios fundamentales de Django**. El principio DRY es particularmente evidente en cómo Django utiliza la ***herencia de plantillas***.
 
 Para entender mejor cómo la herencia de plantillas nos ayuda a minimizar la repetición y el código redundante, vamos a examinar primero un diseño típico de una página web.
 
@@ -316,8 +316,8 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 
 ### 1.4.2. Por qué unos apuntes
 
-- Django está bien [documentado](https://docs.djangoproject.com/es/3.0/) pero es difícil de abordar para el principiante
-- Incluso el [tutorial básico](https://docs.djangoproject.com/es/3.0/intro/tutorial01/) es notablemente arduo
+- Django está bien [documentado](https://docs.djangoproject.com/es/3.1/) pero es difícil de abordar para el principiante
+- Incluso el [tutorial básico](https://docs.djangoproject.com/es/3.1/intro/tutorial01/) es notablemente arduo
 - El problema viene de que está orientado a la **profundidad** y no a la **facilidad de uso**
 - Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS
 
