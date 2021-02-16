@@ -243,7 +243,7 @@ db.sqlite3 mb_project manage.py
 <ul>
 <li>Lanzar el servidor local y comprobar el funcionamiento</li>
 </ul>
-<pre><code>(mb) $ python manage.py runserver
+<pre><code class="language-bash">(mb) $ python manage.py runserver
 </code></pre>
 <h2 id="52-crear-un-modelo-de-base-de-datos">5.2. Crear un modelo de base de datos</h2>
 <ul>
@@ -465,20 +465,20 @@ urlpatterns = [                                     # new
 <li>Es importante que todos los métodos de prueba comiencen con <code>test_</code> para que Django sepa cómo manejarlos</li>
 </ul>
 <p>FICHERO: <code>posts/test.py</code></p>
-<pre><code class="language-python">    # posts/tests.py
-    from django.test import TestCase
-ç   from .models import Post
+<pre><code class="language-python"># posts/tests.py
+from django.test import TestCase
+from .models import Post
 
 
-ç   class PostModelTest(TestCase):
+class PostModelTest(TestCase):
 
-ç       def setUp(self):
-ç           Post.objects.create(text='just a test')
+    def setUp(self):
+        Post.objects.create(text='just a test')
 
-ç       def test_text_content(self):
-ç           post = Post.objects.get(id=1)
-ç           expected_object_name = f'{post.text}'
-ç           self.assertEqual(expected_object_name, 'just a test')
+    def test_text_content(self):
+        post = Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
 </code></pre>
 <ol>
 <li>Importa el módulo <code>TestCase</code> que permite crear una base de datos de muestra</li>
@@ -594,7 +594,7 @@ FICHERO: <code>Pipfile</code></li>
 </ul>
 <pre><code class="language-Pipfile"># Pipfile
 [requires]
-python_version = &quot;3.8&quot;
+python_version = &quot;3.9&quot;
 </code></pre>
 <p>Ejecutar <code>pipenv lock</code> para generar el <code>Pipfile.lock</code> adecuado.</p>
 <pre><code class="language-bash">(mb) $ pipenv lock
@@ -609,7 +609,7 @@ python_version = &quot;3.8&quot;
 <ul>
 <li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero <code>mb_project.wsgi</code> para más instrucciones.</li>
 </ul>
-<pre><code>web: gunicorn mb_project.wsgi --log-file -
+<pre><code class="language-text">web: gunicorn mb_project.wsgi --log-file -
 </code></pre>
 <ul>
 <li>Luego, se instala <code>gunicorn</code>, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.</li>

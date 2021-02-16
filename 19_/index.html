@@ -148,7 +148,7 @@
             <div class="section">
               
                 <h1 id="19-proyecto-bookstore">19. Proyecto Bookstore</h1>
-<p>​   Es hora de construir el proyecto principal del curso, una <strong>librería en línea</strong>. Se comenzará con un nuevo proyecto, se cambiará a Docker, se le añadirá un modelo de usuario personalizado y se implementarán las primeras pruebas.
+<p>Es hora de construir el proyecto principal del curso, una <strong>librería en línea</strong>. Se comenzará con un nuevo proyecto, se cambiará a Docker, se le añadirá un modelo de usuario personalizado y se implementarán las primeras pruebas.
 Se comienza creando un nuevo proyecto Django con Pipenv localmente y luego se cambiará a Docker.</p>
 <p>​   Se creará un directorio <code>books</code> para el código, y luego se instalará django. También se usará <code>PostgreSQL</code> por lo que se instalará también el adaptador <code>psycopg2</code>. Sólo después de que se haya construido la imagen inicial, se empezarán a instalar los futuros paquetes de software dentro del propio Docker. Por último, se usará el comando shell para entrar en el nuevo entorno virtual.</p>
 <pre><code class="language-bash">$ cd ..
@@ -156,7 +156,7 @@ $ mkdir books &amp;&amp; cd books
 $ pipenv install django==2.2.7 psycopg2-binary==2.8.4
 $ pipenv shell
 </code></pre>
-<p>​   Le daremos un nombre a nuestro nuevo proyecto de librería de Django. Asegúrate de no olvidar ese punto, ., al final del comando o Django creará un directorio extra que no necesitamos. Luego usa el servidor de ejecución para iniciar el servidor web local de Django y confirmar que todo funciona correctamente.</p>
+<p>Le daremos un nombre a nuestro nuevo proyecto de librería de Django. Asegúrate de no olvidar ese punto, ., al final del comando o Django creará un directorio extra que no necesitamos. Luego usa el servidor de ejecución para iniciar el servidor web local de Django y confirmar que todo funciona correctamente.</p>
 <p>(books) $ django-admin startproject bookstore_project .
 (books) $ python manage.py runserver</p>
 <p>En tu navegador de Internet ve a http://127.0.0.1:8000/49 y deberías ver la amistosa página de bienvenida de Django.</p>

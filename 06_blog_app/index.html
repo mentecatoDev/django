@@ -224,13 +224,20 @@ $ pipenv shell
 <pre><code class="language-python">from django.db import models
 
 
+# Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(
+        'Título',
+        max_length=200
+    )
     author = models.ForeignKey(
         'auth.User',
+        verbose_name='Autor',
         on_delete=models.CASCADE,
     )
-    body = models.TextField()
+    body = models.TextField(
+        'Cuerpo'
+    )
 
     def __str__(self):
         return self.title
@@ -239,12 +246,13 @@ class Post(models.Model):
 <li>Se importan los modelos de la clase y luego se crea una subclase del modelo llamada <code>Post</code>.</li>
 <li>Usando esta funcionalidad de subclase se tiene acceso automáticamente a todo lo que hay dentro de <code>django.db.models.Models</code> y se pueden añadir campos y métodos adicionales según se desee.</li>
 <li>El título se limita a 200 caracteres y para el cuerpo se usa un campo de texto que se expandirá automáticamente según sea necesario para adaptarse al texto del usuario.<ul>
-<li><strong>Hay muchos tipos de campos disponibles en Django</strong>; se puede ver la lista completa <a href="https://docs.djangoproject.com/es/3.0/ref/models/fields/#field-types">aquí</a>.</li>
+<li><strong>Hay muchos tipos de campos disponibles en Django</strong>; se puede ver la lista completa <a href="https://docs.djangoproject.com/es/3.1/ref/models/fields/#field-types">aquí</a>.</li>
 </ul>
 </li>
 <li>Para el campo de autor se usa una clave foránea (<code>ForeignKey</code>) que permite una relación de <em>uno a muchos</em>: un autor puede tener muchas entradas de blog diferentes, pero no al revés.</li>
 <li>La referencia <code>auth.User</code> pertenece al modelo de usuario incorporado que Django proporciona para la autenticación.</li>
 <li>Para todas las relaciones de uno a muchos, con <code>ForeignKey</code>, también debemos especificar una opción de <code>on_delete</code>.</li>
+<li>En todos los campos se ha insertado el valor para <code>verbose_name</code> que recoge la etiqueta que se utilizará una vez que se presenten los datos en los templates.</li>
 <li>Ahora que se ha creado el nuevo modelo de base de datos, se necesita crear un nuevo registro de migración para él y migrar el cambio a la base de datos. Este proceso de dos pasos se puede completar con los siguientes comandos:</li>
 </ul>
 <pre><code class="language-bash">(blog) $ python manage.py makemigrations blog
@@ -377,7 +385,7 @@ class BlogListView(ListView):
 <li>Añadir en la parte inferior del archivo, debajo de la entrada para <code>STATIC_URL</code>.</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="language-python">STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+<pre><code class="language-python">STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 </code></pre>
 <ul>
 <li>Crear una carpeta <code>css</code> dentro de <code>static</code> y crear el fichero <code>base.css</code></li>

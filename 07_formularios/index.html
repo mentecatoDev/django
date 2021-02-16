@@ -184,7 +184,7 @@
 <pre><code class="language-html">{% load static %}
 &lt;html lang=&quot;es&quot;&gt;
   &lt;head&gt;
-    &lt;title&gt;Django blog&lt;/title&gt;
+    &lt;title&gt;Django Blog&lt;/title&gt;
     &lt;link href=&quot;https://fonts.googleapis.com/css?family=\
 Source+Sans+Pro:400&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;link href=&quot;{% static 'css/base.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
@@ -193,10 +193,10 @@ Source+Sans+Pro:400&quot; rel=&quot;stylesheet&quot;&gt;
     &lt;div&gt;
       &lt;header&gt;
         &lt;div class=&quot;nav-left&quot;&gt;
-            &lt;h1&gt;&lt;a href=&quot;{% url 'home' %}&quot;&gt;Django blog&lt;/a&gt;&lt;/h1&gt;
+            &lt;h1&gt;&lt;a href=&quot;{% url 'home' %}&quot;&gt;Django Blog&lt;/a&gt;&lt;/h1&gt;
         &lt;/div&gt;
         &lt;div class=&quot;nav-right&quot;&gt;
-            &lt;a href=&quot;{% url 'post_new' %}&quot;&gt;+ New Blog Post&lt;/a&gt;
+            &lt;a href=&quot;{% url 'post_new' %}&quot;&gt;+ Nuevo Blog Post&lt;/a&gt;
         &lt;/div&gt;
       &lt;/header&gt;
       {% block content %}
@@ -238,7 +238,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(CreateView): # new
     model = Post
     template_name = 'post_new.html'
-    fields = ['title', 'author', 'body']   # fields = '__all__'
+    fields = ['title', 'author', 'body']   # ó fields = '__all__'
 
 </code></pre>
 <ul>
@@ -254,21 +254,21 @@ class BlogCreateView(CreateView): # new
     &lt;h1&gt;Nuevo post&lt;/h1&gt;
     &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
       {{ form.as_p }}
-      &lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;Guardar&quot;/&gt;
     &lt;/form&gt;
-{% endblock %}
+{% endblock content%}
 </code></pre>
 <ul>
 <li>En la línea superior se hereda la plantilla base.</li>
 <li>Se usan etiquetas HTML <code>&lt;form&gt;</code> con el método POST ya que se está enviando datos. Si se reciben datos desde un formulario, por ejemplo en un cuadro de búsqueda, se utilizaría GET.</li>
 <li>Se añade un <code>{% csrf_token %}</code> que proporciona Django <strong>para proteger al formulario de ataques de cross-site scripting</strong>. <u>Se debe usar en todos los formularios de Django</u>.</li>
 <li>Luego para obtener los datos del formulario se usa <code>{{ form.as_p }}</code> que lo renderiza dentro de etiquetas de párrafo <code>&lt;p&gt;</code>.</li>
-<li>Por último, se especifica un <code>input type="submit"</code> con el valor "Save".</li>
+<li>Por último, se especifica un <code>input type="submit"</code> con el valor "Guardar".</li>
 <li>
 <p>Iniciar el servidor con <code>python manage.py runserver</code> e ir a la página web en http://127.0.0.1:8000</p>
 </li>
 <li>
-<p>Hacer clic en el enlace para "+ New Blog Post" que le redirigirá a:
+<p>Hacer clic en el enlace para "+ Nuevo Blog Post" que le redirigirá a:
   http://127.0.0.1:8000/post/new/.</p>
 </li>
 <li>Crear una nueva entrada de blog.</li>
@@ -279,23 +279,31 @@ class BlogCreateView(CreateView): # new
 <li>En resumen, se debería añadir un método <code>get_absolute_url()</code> y <code>__str__()</code> a cada modelo que se escriba.</li>
 </ul>
 <p>FICHERO: <code>blog/models.py</code></p>
-<pre><code class="language-python">    from django.db import models
-    from django.urls import reverse # new
+<pre><code class="language-python">from django.db import models
+from django.urls import reverse
 
 
-    class Post(models.Model):
-        title = models.CharField(max_length=200)
-        author = models.ForeignKey(
-            'auth.User',
-            on_delete=models.CASCADE,
-        )
-        body = models.TextField()
+# Create your models here.
+class Post(models.Model):
+    title = models.CharField(
+        'Título',
+        max_length=200
+    )
+    author = models.ForeignKey(
+        'auth.User',
+        verbose_name='Autor',
+        on_delete=models.CASCADE,
+    )
+    body = models.TextField(
+        'Cuerpo'
+    )
 
-        def __str__(self):
-            return self.title
+    def __str__(self):
+        return self.title
 
-        def get_absolute_url(self):
-            return reverse('post_detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
+
 </code></pre>
 <ul>
 <li><code>reverse</code> es una función muy útil que Django proporciona para referirse a un objeto por el nombre de su plantilla URL, en este caso <code>post_detail</code>.</li>
@@ -325,7 +333,8 @@ class BlogCreateView(CreateView): # new
     &lt;p&gt;{{ object.body }}&lt;/p&gt;
   &lt;/div&gt;
 
-  &lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;
+  &lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Editar Post&lt;/a&gt;
+
 {% endblock content %}
 </code></pre>
 <ul>
@@ -336,8 +345,9 @@ class BlogCreateView(CreateView): # new
 <pre><code class="language-python">{% extends 'base.html' %}
 
 {% block content %}
-  &lt;h1&gt;Edit post&lt;/h1&gt;
-  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
+  &lt;h1&gt;Editar Post&lt;/h1&gt;
+  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+    {% csrf_token %}
     {{ form.as_p }}
     &lt;input type=&quot;submit&quot; value=&quot;Update&quot; /&gt;
   &lt;/form&gt;
@@ -387,8 +397,7 @@ from .views import (
     BlogUpdateView,                                                             # new
 )
 urlpatterns = [
-    path('post/&lt;int:pk&gt;/edit/',
-        BlogUpdateView.as_view(), name='post_edit'),                            # new
+    path('post/&lt;int:pk&gt;/edit/', BlogUpdateView.as_view(), name='post_edit'),    # new
     path('post/new/', BlogCreateView.as_view(), name='post_new'),
     path('post/&lt;int:pk&gt;/', BlogDetailView.as_view(), name='post_detail'),
     path('', BlogListView.as_view(), name='home'),
@@ -398,7 +407,7 @@ urlpatterns = [
 <ul>
 <li>En la parte superior se agrega la vista <code>BlogUpdateView</code> a la lista de vistas importadas, luego se creará un nuevo patrón de url para <code>/post/pk/edit</code> y se le dará el nombre <code>post_edit</code>.</li>
 <li>Ahora, si se hace click en una entrada del blog, se verá el nuevo botón <em>Editar</em>.</li>
-<li>Si se hace clic en <em>"+ Edit Blog Post"</em> se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.</li>
+<li>Si se hace clic en <em>"+ Editar Post"</em> se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.</li>
 <li>Téngase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.</li>
 <li>
 <p>Vamos a hacer un cambio...</p>
@@ -425,6 +434,7 @@ urlpatterns = [
 
   &lt;p&gt;&lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;&lt;/p&gt;
   &lt;p&gt;&lt;a href=&quot;{% url 'post_delete' post.pk %}&quot;&gt;+ Delete Blog Post&lt;/a&gt;&lt;/p&gt;
+
 {% endblock content %}
 </code></pre>
 <ul>
@@ -436,8 +446,8 @@ urlpatterns = [
 {% block content %}
   &lt;h1&gt;Delete post&lt;/h1&gt;
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
-    &lt;p&gt;Are you sure you want to delete &quot;{{ post.title }}&quot;?&lt;/p&gt;
-    &lt;input type=&quot;submit&quot; value=&quot;Confirm&quot; /&gt;
+    &lt;p&gt;¿Seguro que quiere borrar &quot;{{ post.title }}&quot;?&lt;/p&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Confirmar&quot; /&gt;
   &lt;/form&gt;
 {% endblock content %}
 </code></pre>
@@ -500,12 +510,10 @@ from .views import (
     BlogDeleteView, # new
 )
 urlpatterns = [
-    path('post/&lt;int:pk&gt;/delete/', # new
-        BlogDeleteView.as_view(), name='post_delete'),
+    path('post/&lt;int:pk&gt;/delete/', BlogDeleteView.as_view(), name='post_delete'),
     path('post/new/', BlogCreateView.as_view(), name='post_new'),
     path('post/&lt;int:pk&gt;/', BlogDetailView.as_view(), name='post_detail'),
-    path('post/&lt;int:pk&gt;/edit/',
-        BlogUpdateView.as_view(), name='post_edit'),
+    path('post/&lt;int:pk&gt;/edit/', BlogUpdateView.as_view(), name='post_edit'),
     path('', BlogListView.as_view(), name='home'),
 ]
 </code></pre>
@@ -519,7 +527,7 @@ urlpatterns = [
 </ul>
 <p>FICHERO: <code>blog/tests.py</code></p>
 <pre><code class="language-python">from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 from .models import Post
 
@@ -542,7 +550,7 @@ class BlogTests(TestCase):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
 
-    def test_get_absolute_url(self): # new
+    def test_get_absolute_url(self):
         self.assertEqual(self.post.get_absolute_url(), '/post/1/')
 
     def test_post_content(self):
@@ -564,26 +572,31 @@ class BlogTests(TestCase):
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
 
-    def test_post_create_view(self): # new
-        response = self.client.post(reverse('post_new'), {
-            'title': 'New title',
-            'body': 'New text',
-            'author': self.user.id,
-        })
+    def test_post_create_view(self):
+        response = self.client.post(reverse('post_new'),
+                                    {
+                                        'title': 'New title',
+                                        'body': 'New text',
+                                        'author': self.user.id,
+                                    }
+                                    )
         self.assertEqual(response.status_code, 302)
-        self.assertContains(response, 'New title')
-        self.assertContains(response, 'New text')
+        self.assertEqual(Post.objects.last().title, 'New title')
+        self.assertEqual(Post.objects.last().body, 'New text')
 
-    def test_post_update_view(self): # new
-        response = self.client.post(reverse('post_edit', args='1'), {
-            'title': 'Updated title',
-            'body': 'Updated text',
-        })
+    def test_post_update_view(self):
+        response = self.client.post(reverse('post_edit', args='1'),
+                                    {
+                                        'title': 'Updated title',
+                                        'body': 'Updated text',
+                                    }
+                                    )
         self.assertEqual(response.status_code, 302)
 
-    def test_post_delete_view(self):  # new
-        response = self.client.get(reverse('post_delete', args='1'))
+    def test_post_delete_view(self):
+        response = self.client.post(reverse('post_delete', args='1'))
         self.assertEqual(response.status_code, 302)
+
 </code></pre>
 <ul>
 <li>Se espera que la url de la prueba esté en <code>post/1/</code> ya que sólo hay un post y el <code>1</code> es la clave primaria que Django añade automáticamente. Para testar la creación de la vista se crea una nueva respuesta y luego se asegura que se pase la respuesta (código de estado 200) y contenga nuestro el título y texto del cuerpo.</li>

@@ -496,7 +496,7 @@ Logged in as will@wsvincent.com
 </ul>
 <pre><code class="language-pipfile"># Pipfile
 [requires]
-python_version = &quot;3.8&quot;
+python_version = &quot;3.9&quot;
 </code></pre>
 <ul>
 <li>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</li>
@@ -508,7 +508,7 @@ python_version = &quot;3.8&quot;
 <li>A continuación crear un <code>Procfile</code> que es específico para Heroku.</li>
 </ul>
 <p>FICHERO: <code>Procfile</code></p>
-<pre><code>web: gunicorn pages_project.wsgi --log-file -
+<pre><code class="language-text">web: gunicorn pages_project.wsgi --log-file -
 </code></pre>
 <ul>
 <li>Esto indica que se use el fichero <code>pages_project.wsgi</code> existente pero con <code>gunicorn</code>, que es un <em>servidor web adecuado para la producción</em>, en lugar del propio servidor de Django; que por otro lado aún tenemos que instalar.</li>

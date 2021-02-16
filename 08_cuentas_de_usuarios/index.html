@@ -253,7 +253,7 @@ urlpatterns = [
 <li>
 <p>Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.</p>
 </li>
-<li>Nótese que no se ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.</li>
+<li>Nótese que no se ha añadido ninguna lógica de visualización ni se ha creado un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.</li>
 </ul>
 <h2 id="82-actualizado-de-la-homepage">8.2. Actualizado de la homepage</h2>
 <ul>
@@ -317,8 +317,8 @@ FICHERO: <code>blog_project/settings.py</code></li>
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'accounts',
+    'blog.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
 ]
 </code></pre>
 <ul>
@@ -332,7 +332,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),            # new
     path('', include('blog.urls')),
 ]
 </code></pre>
@@ -341,7 +341,7 @@ urlpatterns = [
 </ul>
 <pre><code class="language-bash">(blog) $ touch accounts/urls.py
 </code></pre>
-<p>And add the following code:
+<p>...y añade el siguiente código:
 FICHERO: <code>accounts/urls.py</code></p>
 <pre><code class="language-python">from django.urls import path
 from . import views
@@ -353,7 +353,7 @@ urlpatterns = [
 </code></pre>
 <ul>
 <li>Se éstá usando una vista que aún no se ha creado llamada  <code>SignupView</code> que está basada en clases, ya que está en mayúsculas, y tiene el sufijo <code>as_view()</code>. Su ruta es sólo <code>signup/</code> por lo que la ruta general será <code>accounts/signup/</code>.</li>
-<li>Ahora para la vista que usa el <code>UserCreationForm</code> incorporado y el CreateView genérico .
+<li>Ahora para la vista que usa el <code>UserCreationForm</code> incorporado y el <code>CreateView</code> genérico .
 FICHERO: <code>accounts/views.py</code></li>
 </ul>
 <pre><code class="language-python">from django.contrib.auth.forms import UserCreationForm
@@ -393,12 +393,14 @@ class SignUpView(CreateView):
 <li>El último flujo es, por lo tanto:</li>
 </ul>
 <p><center>Inscripción (Signup) -&gt; Inicio de sesión (Login) -&gt; Página de inicio (Homepage)</center>
-- Y por supuesto podemos modificar esto como queramos. La <code>SignupView</code> se redirige a la entrada al sistema (login) porque se establece <code>success_url = reverse_lazy('login')</code>. La página de <em>login</em> se redirige a la <em>homepage</em> porque en el archivo <code>settings.py</code> se establece <code>LOGIN_REDIRECT_URL = 'home'</code>.
-- Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.</p>
+- Y por supuesto podemos modificar esto como queramos. La <code>SignupView</code> se redirige a la entrada al sistema (login) porque se establece <code>success_url = reverse_lazy('login')</code>. La página de <em>login</em> se redirige a la <em>homepage</em> porque en el archivo <code>settings.py</code> se establece <code>LOGIN_REDIRECT_URL = 'home'</code>.</p>
+<blockquote>
+<p>Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.</p>
+</blockquote>
 <h2 id="85-git">8.5. Git</h2>
 <pre><code class="language-bash">(blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 </code></pre>
-<p>Crear un nuevo repo en GitHub al que se puedes llamar como se desee.</p>
+<p>Crear un nuevo repo en GitHub al que se puede llamar como se desee.</p>
 <pre><code class="language-bash">(blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
 (blog) $ git push -u origin master
 </code></pre>
@@ -491,6 +493,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 </code></pre>
 <h2 id="88-conclusion">8.8. Conclusión</h2>
 <p>Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.</p>
+<p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|</p>
               
             </div>
           </div>
