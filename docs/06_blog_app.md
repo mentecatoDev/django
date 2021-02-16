@@ -47,13 +47,20 @@ FICHERO: `blog/models.py`
 from django.db import models
 
 
+# Create your models here.
 class Post(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(
+        'Título',
+        max_length=200
+    )
     author = models.ForeignKey(
         'auth.User',
+        verbose_name='Autor',
         on_delete=models.CASCADE,
     )
-    body = models.TextField()
+    body = models.TextField(
+        'Cuerpo'
+    )
 
     def __str__(self):
         return self.title
@@ -61,10 +68,11 @@ class Post(models.Model):
 - Se importan los modelos de la clase y luego se crea una subclase del modelo llamada `Post`.
 - Usando esta funcionalidad de subclase se tiene acceso automáticamente a todo lo que hay dentro de `django.db.models.Models` y se pueden añadir campos y métodos adicionales según se desee.
 - El título se limita a 200 caracteres y para el cuerpo se usa un campo de texto que se expandirá automáticamente según sea necesario para adaptarse al texto del usuario.
-    + **Hay muchos tipos de campos disponibles en Django**; se puede ver la lista completa [aquí](https://docs.djangoproject.com/es/3.0/ref/models/fields/#field-types).
+    + **Hay muchos tipos de campos disponibles en Django**; se puede ver la lista completa [aquí](https://docs.djangoproject.com/es/3.1/ref/models/fields/#field-types).
 - Para el campo de autor se usa una clave foránea (`ForeignKey`) que permite una relación de *uno a muchos*: un autor puede tener muchas entradas de blog diferentes, pero no al revés.
 - La referencia `auth.User` pertenece al modelo de usuario incorporado que Django proporciona para la autenticación.
 - Para todas las relaciones de uno a muchos, con `ForeignKey`, también debemos especificar una opción de `on_delete`.
+- En todos los campos se ha insertado el valor para `verbose_name` que recoge la etiqueta que se utilizará una vez que se presenten los datos en los templates.
 - Ahora que se ha creado el nuevo modelo de base de datos, se necesita crear un nuevo registro de migración para él y migrar el cambio a la base de datos. Este proceso de dos pasos se puede completar con los siguientes comandos:
 ```bash
 (blog) $ python manage.py makemigrations blog
@@ -209,7 +217,7 @@ FICHERO:  `templates/home.html`
 
 FICHERO: `blog_project/settings.py`
 ```python
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 ```
 
 - Crear una carpeta `css` dentro de `static` y crear el fichero `base.css`

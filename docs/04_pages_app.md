@@ -328,7 +328,7 @@ Logged in as will@wsvincent.com
 ```pipfile
 # Pipfile
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 ```
 
 - Luego ejecutar `pipenv lock` para generar el archivo `Pipfile.lock` apropiado.
@@ -342,7 +342,7 @@ python_version = "3.8"
 
 FICHERO: `Procfile`
 
-```
+```text
 web: gunicorn pages_project.wsgi --log-file -
 ```
 

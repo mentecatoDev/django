@@ -19,7 +19,7 @@ FICHERO: `templates/base.html`
 {% load static %}
 <html lang="es">
   <head>
-    <title>Django blog</title>
+    <title>Django Blog</title>
 	<link href="https://fonts.googleapis.com/css?family=\
 Source+Sans+Pro:400" rel="stylesheet">
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
@@ -28,10 +28,10 @@ Source+Sans+Pro:400" rel="stylesheet">
 	<div>
 	  <header>
 		<div class="nav-left">
-			<h1><a href="{% url 'home' %}">Django blog</a></h1>
+			<h1><a href="{% url 'home' %}">Django Blog</a></h1>
 		</div>
 		<div class="nav-right">
-			<a href="{% url 'post_new' %}">+ New Blog Post</a>
+			<a href="{% url 'post_new' %}">+ Nuevo Blog Post</a>
 		</div>
 	  </header>
 	  {% block content %}
@@ -75,7 +75,7 @@ class BlogDetailView(DetailView):
 class BlogCreateView(CreateView): # new
 	model = Post
 	template_name = 'post_new.html'
-	fields = ['title', 'author', 'body']   # fields = '__all__'
+	fields = ['title', 'author', 'body']   # ó fields = '__all__'
 
 ```
 - Dentro de `BlogCreateView` se especifica el modelo de base de datos `Post`, el nombre de la plantilla `post_new.html`, y los campos  `title` ,  `author` y `body`. También puede usarse la fómula  `'__all__'`  para especificar todos los campos.
@@ -92,18 +92,18 @@ FICHERO: `templates/post_new.html`
     <h1>Nuevo post</h1>
     <form action="" method="post">{% csrf_token %}
       {{ form.as_p }}
-      <input type="submit" value="Save" />
+      <input type="submit" value="Guardar"/>
     </form>
-{% endblock %}
+{% endblock content%}
 ```
 - En la línea superior se hereda la plantilla base.
 - Se usan etiquetas HTML `<form>` con el método POST ya que se está enviando datos. Si se reciben datos desde un formulario, por ejemplo en un cuadro de búsqueda, se utilizaría GET.
 - Se añade un `{% csrf_token %}` que proporciona Django **para proteger al formulario de ataques de cross-site scripting**. <u>Se debe usar en todos los formularios de Django</u>.
 - Luego para obtener los datos del formulario se usa `{{ form.as_p }}` que lo renderiza dentro de etiquetas de párrafo `<p>`.
-- Por último, se especifica un `input type="submit"` con el valor "Save".
+- Por último, se especifica un `input type="submit"` con el valor "Guardar".
 - Iniciar el servidor con `python manage.py runserver` e ir a la página web en http://127.0.0.1:8000
 
-- Hacer clic en el enlace para "+ New Blog Post" que le redirigirá a:
+- Hacer clic en el enlace para "+ Nuevo Blog Post" que le redirigirá a:
   http://127.0.0.1:8000/post/new/.
 - Crear una nueva entrada de blog.
 - ¡Ups! ¿Qué ha pasado?
@@ -114,23 +114,31 @@ FICHERO: `templates/post_new.html`
 
 FICHERO: `blog/models.py`
 ```python
-    from django.db import models
-    from django.urls import reverse # new
+from django.db import models
+from django.urls import reverse
 
 
-    class Post(models.Model):
-        title = models.CharField(max_length=200)
-        author = models.ForeignKey(
-            'auth.User',
-            on_delete=models.CASCADE,
-        )
-        body = models.TextField()
+# Create your models here.
+class Post(models.Model):
+    title = models.CharField(
+        'Título',
+        max_length=200
+    )
+    author = models.ForeignKey(
+        'auth.User',
+        verbose_name='Autor',
+        on_delete=models.CASCADE,
+    )
+    body = models.TextField(
+        'Cuerpo'
+    )
 
-        def __str__(self):
-            return self.title
+    def __str__(self):
+        return self.title
 
-        def get_absolute_url(self):
-            return reverse('post_detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])
+
 ```
 
 - `reverse` es una función muy útil que Django proporciona para referirse a un objeto por el nombre de su plantilla URL, en este caso `post_detail`.
@@ -159,7 +167,8 @@ FICHERO: `templates/post_detail.html`
     <p>{{ object.body }}</p>
   </div>
 
-  <a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
+  <a href="{% url 'post_edit' post.pk %}">+ Editar Post</a>
+
 {% endblock content %}
 ```
 - Se ha  añadido un enlace usando `<a href>...</a>` y la etiqueta del motor de plantillas de Django `{% url... %}`. Dentro de ella se ha especificado el nombre del objetivo de la url, que se llamará `post_edit`, y también se ha pasado el parámetro necesario, que es la clave principal del post `post.pk`.
@@ -170,8 +179,9 @@ FICHERO: `templates/post_edit.html`
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Edit post</h1>
-  <form action="" method="post">{% csrf_token %}
+  <h1>Editar Post</h1>
+  <form action="" method="post">
+	{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Update" />
   </form>
@@ -220,8 +230,7 @@ from .views import (
 	BlogUpdateView, 															# new
 )
 urlpatterns = [
-	path('post/<int:pk>/edit/',
-		BlogUpdateView.as_view(), name='post_edit'),						 	# new
+	path('post/<int:pk>/edit/',	BlogUpdateView.as_view(), name='post_edit'), 	# new
 	path('post/new/', BlogCreateView.as_view(), name='post_new'),
 	path('post/<int:pk>/', BlogDetailView.as_view(), name='post_detail'),
 	path('', BlogListView.as_view(), name='home'),
@@ -230,7 +239,7 @@ urlpatterns = [
 ```
 - En la parte superior se agrega la vista `BlogUpdateView` a la lista de vistas importadas, luego se creará un nuevo patrón de url para `/post/pk/edit` y se le dará el nombre `post_edit`.
 - Ahora, si se hace click en una entrada del blog, se verá el nuevo botón *Editar*.
-- Si se hace clic en *"+ Edit Blog Post"* se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.
+- Si se hace clic en *"+ Editar Post"* se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.
 - Téngase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.
 -  Vamos a hacer un cambio...
 
@@ -255,6 +264,7 @@ FICHERO: `templates/post_detail.html`
 
   <p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
   <p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+
 {% endblock content %}
 ```
 - A continuación, se crea un nuevo archivo para la plantilla de la página de borrado.
@@ -266,8 +276,8 @@ FICHERO: `templates/post_delete.html`
 {% block content %}
   <h1>Delete post</h1>
   <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ post.title }}"?</p>
-    <input type="submit" value="Confirm" />
+    <p>¿Seguro que quiere borrar "{{ post.title }}"?</p>
+    <input type="submit" value="Confirmar" />
   </form>
 {% endblock content %}
 ```
@@ -330,12 +340,10 @@ from .views import (
 	BlogDeleteView, # new
 )
 urlpatterns = [
-	path('post/<int:pk>/delete/', # new
-	    BlogDeleteView.as_view(), name='post_delete'),
+	path('post/<int:pk>/delete/', BlogDeleteView.as_view(), name='post_delete'),
 	path('post/new/', BlogCreateView.as_view(), name='post_new'),
 	path('post/<int:pk>/', BlogDetailView.as_view(), name='post_detail'),
-	path('post/<int:pk>/edit/',
-		BlogUpdateView.as_view(), name='post_edit'),
+	path('post/<int:pk>/edit/', BlogUpdateView.as_view(), name='post_edit'),
 	path('', BlogListView.as_view(), name='home'),
 ]
 ```
@@ -350,7 +358,7 @@ urlpatterns = [
 FICHERO: `blog/tests.py`
 ```python
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 from .models import Post
 
@@ -373,8 +381,8 @@ class BlogTests(TestCase):
         post = Post(title='A sample title')
         self.assertEqual(str(post), post.title)
 
-    def test_get_absolute_url(self): # new
-		self.assertEqual(self.post.get_absolute_url(), '/post/1/')
+    def test_get_absolute_url(self):
+        self.assertEqual(self.post.get_absolute_url(), '/post/1/')
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
@@ -395,26 +403,31 @@ class BlogTests(TestCase):
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
 
-    def test_post_create_view(self): # new
-        response = self.client.post(reverse('post_new'), {
-            'title': 'New title',
-            'body': 'New text',
-            'author': self.user.id,
-        })
+    def test_post_create_view(self):
+        response = self.client.post(reverse('post_new'),
+                                    {
+                                        'title': 'New title',
+                                        'body': 'New text',
+                                        'author': self.user.id,
+                                    }
+                                    )
         self.assertEqual(response.status_code, 302)
-        self.assertContains(response, 'New title')
-        self.assertContains(response, 'New text')
+        self.assertEqual(Post.objects.last().title, 'New title')
+        self.assertEqual(Post.objects.last().body, 'New text')
 
-    def test_post_update_view(self): # new
-        response = self.client.post(reverse('post_edit', args='1'), {
-            'title': 'Updated title',
-            'body': 'Updated text',
-        })
+    def test_post_update_view(self):
+        response = self.client.post(reverse('post_edit', args='1'),
+                                    {
+                                        'title': 'Updated title',
+                                        'body': 'Updated text',
+                                    }
+                                    )
         self.assertEqual(response.status_code, 302)
 
-    def test_post_delete_view(self):  # new
-        response = self.client.get(reverse('post_delete', args='1'))
+    def test_post_delete_view(self):
+        response = self.client.post(reverse('post_delete', args='1'))
         self.assertEqual(response.status_code, 302)
+
 ```
 - Se espera que la url de la prueba esté en `post/1/` ya que sólo hay un post y el `1` es la clave primaria que Django añade automáticamente. Para testar la creación de la vista se crea una nueva respuesta y luego se asegura que se pase la respuesta (código de estado 200) y contenga nuestro el título y texto del cuerpo.
 - Para actualizar la vista, se accede al primer post que tiene un `pk` de `1` que se pasa como único argumento y confirmamos que resulta en una redirección 302.

@@ -69,7 +69,7 @@ LOGIN_REDIRECT_URL = 'home'
   Navegar ahora a: http://127.0.0.1:8000/accounts/login/
 
 - Al introducir la información de acceso de la cuenta de superusuario, seremos redirigidos a la página de inicio.
-- Nótese que no se ha añadido ninguna lógica de visualización ni se ha creados un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.
+- Nótese que no se ha añadido ninguna lógica de visualización ni se ha creado un modelo de base de datos porque el sistema de autentificación de Django los proporcionó automáticamente.
 
 ## 8.2. Actualizado de la homepage
 
@@ -135,8 +135,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'accounts',
+    'blog.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
 ]
 ```
 - A continuación añadimos una url a nivel de proyecto que apunta a esta nueva aplicación directamente debajo de donde incluimos la aplicación de autorización incorporada.
@@ -149,7 +149,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),			# new
     path('', include('blog.urls')),
 ]
 ```
@@ -157,7 +157,7 @@ urlpatterns = [
 ```bash
 (blog) $ touch accounts/urls.py
 ```
-And add the following code:
+...y añade el siguiente código:
 FICHERO: `accounts/urls.py`
 ```python
 from django.urls import path
@@ -169,7 +169,7 @@ urlpatterns = [
 ]
 ```
 - Se éstá usando una vista que aún no se ha creado llamada  `SignupView` que está basada en clases, ya que está en mayúsculas, y tiene el sufijo `as_view()`. Su ruta es sólo `signup/` por lo que la ruta general será `accounts/signup/`.
-- Ahora para la vista que usa el `UserCreationForm` incorporado y el CreateView genérico .
+- Ahora para la vista que usa el `UserCreationForm` incorporado y el `CreateView` genérico .
 FICHERO: `accounts/views.py`
 ```python
 from django.contrib.auth.forms import UserCreationForm
@@ -209,13 +209,14 @@ TEMPLATE: `templates/signup.html`
 
 <center>Inscripción (Signup) -> Inicio de sesión (Login) -> Página de inicio (Homepage)</center>
 - Y por supuesto podemos modificar esto como queramos. La `SignupView` se redirige a la entrada al sistema (login) porque se establece `success_url = reverse_lazy('login')`. La página de *login* se redirige a la *homepage* porque en el archivo `settings.py` se establece `LOGIN_REDIRECT_URL = 'home'`.
-- Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.
+
+> Al principio puede parecer abrumador llevar la cuenta de todas las partes de un proyecto Django. Eso es normal. Con el tiempo empezarán a tener más sentido.
 
 ## 8.5. Git
 ```bash
 (blog) $ git commit -m 'Añade formulario para crear cuentas de usuario'
 ```
-Crear un nuevo repo en GitHub al que se puedes llamar como se desee.
+Crear un nuevo repo en GitHub al que se puede llamar como se desee.
 ```bash
 (blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
 (blog) $ git push -u origin master
@@ -321,3 +322,7 @@ Finalmente podemos subir el código a Heroku y añadir un proceso web para que e
 
 ## 8.8. Conclusión
 Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.
+
+
+
+|\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|

@@ -51,7 +51,7 @@ db.sqlite3 mb_project manage.py
 > *Nota*.- Técnicamente se crea un fichero `db.sqlite3` la primera vez que se ejecuta una migración (`migrate`) o se ejecuta el servidor (`runserver`). El uso de `runserver` configura una base de datos utilizando la configuración predeterminada de Django, sin embargo, la migración sincronizará la base de datos con el estado actual de cualquier modelo de base de datos contenido en el proyecto y listado en `INSTALLED_APPS`. En otras palabras, para asegurar que la base de datos refleja el estado actual del proyecto se tendrá que ejecutar `migrate` (y también `makemigrations`) cada vez que se actualiza un modelo. Más en breve.
 
 - Lanzar el servidor local y comprobar el funcionamiento
-```
+```bash
 (mb) $ python manage.py runserver
 ```
 
@@ -254,20 +254,20 @@ urlpatterns = [										# new
 
 FICHERO: `posts/test.py`
 ```python
-	# posts/tests.py
-	from django.test import TestCase
-ç	from .models import Post
+# posts/tests.py
+from django.test import TestCase
+from .models import Post
 	
 	
-ç	class PostModelTest(TestCase):
+class PostModelTest(TestCase):
 
-ç	    def setUp(self):
-ç	        Post.objects.create(text='just a test')
+    def setUp(self):
+        Post.objects.create(text='just a test')
 
-ç	    def test_text_content(self):
-ç	        post = Post.objects.get(id=1)
-ç	        expected_object_name = f'{post.text}'
-ç	        self.assertEqual(expected_object_name, 'just a test')
+    def test_text_content(self):
+        post = Post.objects.get(id=1)
+        expected_object_name = f'{post.text}'
+        self.assertEqual(expected_object_name, 'just a test')
 ```
 1. Importa el módulo `TestCase` que permite crear una base de datos de muestra
 2. Importa el modelo `Post`
@@ -367,7 +367,7 @@ FICHERO: `Pipfile`
 ```Pipfile
 # Pipfile
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 ```
 Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 ```bash
@@ -381,7 +381,7 @@ Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 ### 5.8.3. Instalar `gunicorn`
 - Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero `mb_project.wsgi` para más instrucciones.
 
-```
+```text
 web: gunicorn mb_project.wsgi --log-file -
 ```
 

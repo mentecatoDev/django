@@ -28,7 +28,7 @@ La creación del modelo de usuario personalizado requiere cuatro pasos:
 - Actualizar `settings.py`
 - Crear un nuevo modelo `CustomUser` añadiendo un nuevo campo `age`
 - Crear nuevos formularios para `UserCreation` y `UserChangeForm`
-- Actualizar el `admin`
+- Actualizar la app `admin`
 
 
  FICHERO: `newspaper_project/settings.py`
@@ -139,3 +139,7 @@ El hecho de que esto funcione es la primera prueba de que el modelo de usuario p
 
 ## 9.5. Conclusión
 Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación *Newspaper*.
+
+
+
+|\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|
