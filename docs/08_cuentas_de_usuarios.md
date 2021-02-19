@@ -82,9 +82,9 @@ FICHERO: `templates/base.html`
 ...
 </header>
 {% if user.is_authenticated %}
-  <p>Hi {{ user.username }}!</p>
+  <p>¡Hola {{ user.username }}!</p>
 {% else %}
-  <p>You are not logged in</p>
+  <p>No estás logueado</p>
   <a href="{% url 'login' %}">login</a>
 {% endif %}
 {% block content %}
@@ -101,7 +101,7 @@ FICHERO: `templates/base.html`
 ```html
 ...
 {% if user.is_authenticated %}
-  <p>Hi {{ user.username }}!</p>
+  <p>¡Hola {{ user.username }}!</p>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
 ...
@@ -168,7 +168,7 @@ urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
 ]
 ```
-- Se éstá usando una vista que aún no se ha creado llamada  `SignupView` que está basada en clases, ya que está en mayúsculas, y tiene el sufijo `as_view()`. Su ruta es sólo `signup/` por lo que la ruta general será `accounts/signup/`.
+- Se está usando una vista que aún no se ha creado llamada  `SignupView` que está basada en clases, ya que está en mayúsculas, y tiene el sufijo `as_view()`. Su ruta es sólo `signup/` por lo que la ruta general será `accounts/signup/`.
 - Ahora para la vista que usa el `UserCreationForm` incorporado y el `CreateView` genérico .
 FICHERO: `accounts/views.py`
 ```python
@@ -204,7 +204,7 @@ TEMPLATE: `templates/signup.html`
 - Al principio se extiende la plantilla base, se coloca la lógica entre las etiquetas `<form></form>`, y se usa `csrf_token` por seguridad. El contenido del formulario se muestra en etiquetas de párrafo con `form.as_p` y se incluye un botón de envío.
 - Navegar en: http://127.0.0.1:8000/accounts/signup/
 - Observar que hay mucho texto extra que Django incluye por defecto. Se puede personalizar usando el *marco de mensajes* incorporado, pero por ahora probar el formulario.
-- Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado `Hi William`.
+- Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado `Hola William`.
 - El último flujo es, por lo tanto:
 
 <center>Inscripción (Signup) -> Inicio de sesión (Login) -> Página de inicio (Homepage)</center>

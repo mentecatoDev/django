@@ -196,19 +196,19 @@ Como campos se usan `Meta.fields` que sólo muestran la configuración por defec
 
 FICHERO: `users/forms.py`
 ```python
-...
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
 class CustomUserCreationForm(UserCreationForm):
-
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = ('username', 'email', ) # new
 
 
-    class CustomUserChangeForm(UserChangeForm):
-        class Meta:
-            model = CustomUser
-            fields = ('username', 'email', ) # new
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', ) # new
 ```
 El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.
 

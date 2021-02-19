@@ -155,7 +155,7 @@ path('post/<int:pk>/', views.BlogDetailView.as_view(), name='post_detail'),
 
 - Para empezar, se añade un nuevo enlace a `post_detail.html` para que la opción de editar una entrada de blog aparezca en una página de blog individual.
 
-> Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema anterior, se estará usando el contexto `anything_you_want` que habrá que eliminar para volver a usar los habituales `object`y `post`.
+> Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema anterior, se estará usando el contexto `anything_you_want` que **habrá que eliminar** para volver a usar los habituales `object`y `post`.
 
 FICHERO: `templates/post_detail.html`
 ```html
@@ -163,8 +163,8 @@ FICHERO: `templates/post_detail.html`
 
 {% block content %}
   <div class="post-entry">
-    <h2>{{ object.title }}</h2>
-    <p>{{ object.body }}</p>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
   </div>
 
   <a href="{% url 'post_edit' post.pk %}">+ Editar Post</a>
@@ -183,9 +183,9 @@ FICHERO: `templates/post_edit.html`
   <form action="" method="post">
 	{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update" />
+    <input type="submit" value="Actualizar" />
   </form>
-{% endblock %}
+{% endblock content %}
 ```
 - De nuevo se usan las etiquetas HTML `<form></form>`, el `csrf_token` de Django por seguridad, el `form.as_p` para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón *submit*.
 - Ahora a nuestra vista. Necesitamos importar `UpdateView` en la segunda línea superior y luego heredarla en nuestra nueva vista `BlogUpdateView`.
@@ -262,8 +262,8 @@ FICHERO: `templates/post_detail.html`
     <p>{{ object.body }}</p>
   </div>
 
-  <p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a></p>
-  <p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+  <p><a href="{% url 'post_edit' post.pk %}">+ Editar Post</a></p>
+  <p><a href="{% url 'post_delete' post.pk %}">+ Borrar Post</a></p>
 
 {% endblock content %}
 ```
@@ -318,7 +318,7 @@ class BlogUpdateView(UpdateView):
 
 
 class BlogDeleteView(DeleteView): # new
-	model = Post
+    model = Post
 	template_name = 'post_delete.html'
 	success_url = reverse_lazy('home')
 

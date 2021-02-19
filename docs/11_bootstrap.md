@@ -8,7 +8,7 @@ Cuando centrarse en la funcionalidad de un proyecto y no en el diseño es lo imp
 
 ## 11.1. Pages app
 
-Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo `urls.py`. Aunque este enfoque funciona, es una triquiñuela y ciertamente escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar se puede y debe crear una aplicación de páginas dedicadas para todas las **páginas estáticas**. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando `startapp` para crear la aplicación `pages`.
+Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo `urls.py`. Aunque este enfoque funciona, es una triquiñuela y ciertamente no escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar se puede y debe crear una aplicación de páginas dedicadas para todas las **páginas estáticas**. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando `startapp` para crear la aplicación `pages`.
 
 ```bash
 (news) $ python manage.py startapp pages
