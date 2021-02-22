@@ -89,6 +89,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#91-setup">9.1. Setup</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#92-modelo-de-usuario-personalizado">9.2 Modelo de usuario personalizado</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#abstractbaseuser-vs-abstractuser">AbstractBaseUser vs AbstractUser</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#93-formularios">9.3. Formularios</a>
     </li>
@@ -170,7 +174,7 @@ $ cd news
 $ pipenv install django
 $ pipenv shell
 (news) $ django-admin startproject newspaper_project .
-(news) $ python manage.py startapp users
+(news) $ python manage.py startapp accounts
 (news) $ python manage.py runserver
 </code></pre>
 <p>Tener en cuenta que aún <strong>no se ha ejecutado la migración</strong> para configurar la base de datos.</p>
@@ -194,20 +198,31 @@ $ pipenv shell
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',                             # new
+    'account.apps.AccountsConfig',                          # new
 ]
 ...
 # Authentication                                          # new
-AUTH_USER_MODEL = 'users.CustomUser'                      # new
+AUTH_USER_MODEL = 'accounts.CustomUser'                   # new
 </code></pre>
-<p>FICHERO: <code>users/models.py</code></p>
+<p>FICHERO: <code>accounts/models.py</code></p>
 <pre><code class="language-python">from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class CustomUser(AbstractUser):
-    age = models.PositiveIntegerField(default=0)
+    age = models.PositiveIntegerField(null=True, blank=True)
 </code></pre>
+<p>Si leemos la documentación oficial sobre modelos de usuario personalizados, ésta recomienda usar <code>AbstractBaseUser</code> en lugar de <code>AbstractUser</code> lo cual trae consigo complicaciones innecesarias; sobre todo para los novatos.</p>
+<blockquote>
+<h4 id="abstractbaseuser-vs-abstractuser"><code>AbstractBaseUser</code> vs <code>AbstractUser</code></h4>
+<p><code>AbstractBaseUser</code> requiere un nivel muy fino de control y personalización. Esencialmente reescribimos Django. Esto puede ser útil, pero si sólo queremos un modelo de usuario personalizado que se pueda actualizar con algunos campos adicionales, la mejor opción es <code>AbstractUser</code>, que es una subclase de <code>AbstractBaseUser</code>.
+En otras palabras, escribimos mucho menos código y tenemos menos oportunidades de estropear las cosas. Es la mejor opción a menos que realmente sepas lo que estás haciendo con Django.</p>
+</blockquote>
+<p>Tenga en cuenta que utilizamos tanto <code>null</code> como <code>blank</code> con nuestro campo <code>age</code>. Estos dos términos son fáciles de confundir pero son bastante distintos:
+- <code>null</code> está relacionado con la <strong>base de datos</strong>. Cuando un campo tiene <code>null=True</code> puede almacenar una entrada de la base de datos como NULL, es decir, sin valor.
+- <code>blank</code> está relacionado con <strong>la validación</strong>, si <code>blank=True</code> un formulario permitirá un valor vacío, mientras que si <code>blank=False</code> se requiere un valor.</p>
+<p>En la práctica, <code>null</code> y <code>blank</code> se utilizan comúnmente juntos de esta manera para que un formulario permita un valor vacío y la base de datos almacene ese valor como <code>NULL</code>.</p>
+<p>Un problema común que hay que tener en cuenta es que el tipo de campo dicta cómo utilizar estos valores. Siempre que el campo esté basado en cadenas de caracteres, como <code>CharField</code> o <code>TextField</code>, si se establece tanto <code>null</code> como <code>blank</code>, como hemos hecho, resultará en dos valores posibles para "sin datos" en la base de datos. Lo cual es una mala idea. La convención de Django es usar la cadena vacía <code>''</code>, no NULL.</p>
 <h2 id="93-formularios">9.3. Formularios</h2>
 <p>Hay <strong>dos formas</strong> de interactuar con el <strong>nuevo modelo</strong> de usuario personalizado</p>
 <ul>
@@ -215,19 +230,18 @@ class CustomUser(AbstractUser):
 <li>Dentro de la <strong>aplicación de administración</strong> que permite, como superusuarios, modificar los usuarios existentes.</li>
 </ul>
 <p>Así que hay que actualizar los dos formularios incorporados para esta funcionalidad: <code>UserCreationForm</code> y <code>UserChangeForm</code>.</p>
-<pre><code class="language-bash">(noticias) $ touch users/forms.py
+<pre><code class="language-bash">(noticias) $ touch accounts/forms.py
 </code></pre>
-<p>FICHERO: <code>users/forms.py</code></p>
-<pre><code class="language-python">from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+<p>FICHERO: <code>accounts/forms.py</code></p>
+<pre><code class="language-python">from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
 
-    class Meta(UserCreationForm.Meta):
+    class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields
+        fields = UserCreationForm.Meta.fields + ('age',)
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -238,15 +252,16 @@ class CustomUserChangeForm(UserChangeForm):
 </code></pre>
 <p>Para ambos formularios se usa el modelo <code>CustomUser</code> con los campos por defecto de <code>Meta.fields</code>.</p>
 <p>El modelo de <code>CustomUser</code> contiene todos los campos del modelo de usuario por defecto y el campo <code>age</code> adicional que se ha definido.</p>
+<p>Para los nuevos formularios usamos la clase <code>Meta</code> para anular los campos por defecto estableciendo el
+modelo a nuestro <code>CustomUser</code> y utilizando los campos por defecto a través de <code>Meta.fields</code> que incluye todos los campos por defecto. Para añadir nuestro campo <code>age</code> personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
+El concepto de campos en un formulario puede ser confuso al principio, así que vamos a dedicar un momento a explorarlo más a fondo. Nuestro modelo <code>CustomUser</code> contiene todos los campos del modelo <code>User</code> por defecto y el campo adicional que hemos establecido.</p>
 <p>¿Pero cuáles son estos campos por defecto?</p>
-<ul>
-<li>Resulta que hay muchos, incluyendo <code>username</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>password</code>, <code>groups</code> y más.</li>
-<li>Sin embargo, cuando un usuario se registra en una nueva cuenta en Django, el formulario predeterminado sólo pide un nombre de usuario, un correo electrónico y una contraseña.</li>
-<li>Esto nos dice que la configuración predeterminada para los campos en <code>UserCreationForm</code> son sólo el <code>username</code>,  <code>email</code> y <code>password</code> aunque hay muchos más campos disponibles.</li>
-<li>Por tanto, entender los formularios y los modelos correctamente lleva algún tiempo.</li>
-</ul>
+<p>Resulta que hay muchos, incluyendo <code>username</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>password</code>, <code>groups</code> y más.</p>
+<p>Sin embargo, cuando un usuario se registra en una nueva cuenta en Django, el formulario predeterminado sólo pide un nombre de usuario, un correo electrónico y una contraseña.</p>
+<p>Esto nos dice que la configuración predeterminada para los campos en <code>UserCreationForm</code> son sólo el <code>username</code>,  <code>email</code> y <code>password</code> aunque hay muchos más campos disponibles.</p>
+<p>Por tanto, entender los formularios y los modelos correctamente lleva algún tiempo.</p>
 <p>El paso final es actualizar el archivo <code>admin.py</code> ya que <em>Admin</em> está estrechamente unido al modelo de usuario por defecto. Se extenderá la clase existente <code>UserAdmin</code> para usar el nuevo modelo de <code>CustomUser</code> y los dos nuevos formularios.</p>
-<p>FICHERO: <code>users/admin.py</code></p>
+<p>FICHERO: <code>accounts/admin.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
@@ -256,15 +271,11 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    list_display = ['email', 'username', 'age']
     model = CustomUser
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
-<ul>
-<li>Obsérvese que <code>CustomUserAdmin</code> también tiene un ajuste de <code>list_display</code> de manera que sólo muestra los campos <code>email</code> , <code>username</code> y <code>age</code> aunque de hecho hay muchos más en el modelo de <code>CustomUser</code></li>
-</ul>
 <p>Ejecutar <code>makemigrations</code> y <code>migrate</code> por primera vez para crear una nueva base de datos que utilice el modelo de usuario personalizado.</p>
 <pre><code class="language-bash">(news) $ python manage.py makemigrations
 (news) $ python manage.py migrate
@@ -275,7 +286,31 @@ admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
 <p>El hecho de que esto funcione es la primera prueba de que el modelo de usuario personalizado funciona como se esperaba.</p>
 <ul>
-<li>Navegar a http://127.0.0.1:8000/admin, logear y probar.</li>
+<li>Navegar a http://127.0.0.1:8000/admin, logear y probar. Si haces clic en el enlace para "Usuarios", se debería ver la cuenta de superusuario, así como los campos predeterminados de Nombre de usuario
+  Dirección de correo electrónico, Nombre, Apellido y Estado del personal.</li>
+</ul>
+<p>Para controlar los campos listados aquí se utiliza <code>list_display</code>. Sin embargo, para editar y añadir nuevos campos personalizados, como la edad, debemos añadir también <code>fieldsets</code>.</p>
+<p>FICHERO: <code>accounts/admin.py</code></p>
+<pre><code class="language-python">from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import CustomUser
+
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+    list_display = ['email', 'username', 'age', 'is_staff', ]
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)
+
+
+admin.site.register(CustomUser, CustomUserAdmin)
+</code></pre>
+<ul>
+<li>Actualizar la página y ver el resultado</li>
 </ul>
 <h2 id="95-conclusion">9.5. Conclusión</h2>
 <p>Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación <em>Newspaper</em>.</p>

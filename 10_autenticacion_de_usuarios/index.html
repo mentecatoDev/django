@@ -315,19 +315,19 @@ class CustomUserChangeForm(UserChangeForm):
 </code></pre>
 <p>Como campos se usan <code>Meta.fields</code> que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como <code>('username', 'email',)</code> . ¡No se necesita incluir el campo <code>password</code> porque es <strong>obligatorio</strong>! Pero todos los demás campos pueden ser configurados como se quiera.</p>
 <p>FICHERO: <code>users/forms.py</code></p>
-<pre><code class="language-python">...
+<pre><code class="language-python">from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
 class CustomUserCreationForm(UserCreationForm):
-
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = ('username', 'email', ) # new
 
 
-    class CustomUserChangeForm(UserChangeForm):
-        class Meta:
-            model = CustomUser
-            fields = ('username', 'email', ) # new
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', ) # new
 </code></pre>
 <p>El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.</p>
 <h2 id="104-conclusion">10.4. Conclusión</h2>

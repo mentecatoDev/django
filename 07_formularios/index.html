@@ -322,15 +322,15 @@ class Post(models.Model):
 <li>Para empezar, se añade un nuevo enlace a <code>post_detail.html</code> para que la opción de editar una entrada de blog aparezca en una página de blog individual.</li>
 </ul>
 <blockquote>
-<p>Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema anterior, se estará usando el contexto <code>anything_you_want</code> que habrá que eliminar para volver a usar los habituales <code>object</code>y <code>post</code>.</p>
+<p>Nota.- Si se sigue usando el contexto de la vista tal y como se dejó al final del tema anterior, se estará usando el contexto <code>anything_you_want</code> que <strong>habrá que eliminar</strong> para volver a usar los habituales <code>object</code>y <code>post</code>.</p>
 </blockquote>
 <p>FICHERO: <code>templates/post_detail.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
   &lt;div class=&quot;post-entry&quot;&gt;
-    &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
-    &lt;p&gt;{{ object.body }}&lt;/p&gt;
+    &lt;h2&gt;{{ post.title }}&lt;/h2&gt;
+    &lt;p&gt;{{ post.body }}&lt;/p&gt;
   &lt;/div&gt;
 
   &lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Editar Post&lt;/a&gt;
@@ -349,9 +349,9 @@ class Post(models.Model):
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
     {% csrf_token %}
     {{ form.as_p }}
-    &lt;input type=&quot;submit&quot; value=&quot;Update&quot; /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Actualizar&quot; /&gt;
   &lt;/form&gt;
-{% endblock %}
+{% endblock content %}
 </code></pre>
 <ul>
 <li>De nuevo se usan las etiquetas HTML <code>&lt;form&gt;&lt;/form&gt;</code>, el <code>csrf_token</code> de Django por seguridad, el <code>form.as_p</code> para mostrar los campos de formulario con etiquetas de párrafo, y finalmente se le da el valor "Update" en el botón <em>submit</em>.</li>
@@ -432,8 +432,8 @@ urlpatterns = [
     &lt;p&gt;{{ object.body }}&lt;/p&gt;
   &lt;/div&gt;
 
-  &lt;p&gt;&lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Edit Blog Post&lt;/a&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;a href=&quot;{% url 'post_delete' post.pk %}&quot;&gt;+ Delete Blog Post&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;{% url 'post_edit' post.pk %}&quot;&gt;+ Editar Post&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;{% url 'post_delete' post.pk %}&quot;&gt;+ Borrar Post&lt;/a&gt;&lt;/p&gt;
 
 {% endblock content %}
 </code></pre>

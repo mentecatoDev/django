@@ -265,9 +265,9 @@ urlpatterns = [
 <pre><code class="language-html">...
 &lt;/header&gt;
 {% if user.is_authenticated %}
-  &lt;p&gt;Hi {{ user.username }}!&lt;/p&gt;
+  &lt;p&gt;¡Hola {{ user.username }}!&lt;/p&gt;
 {% else %}
-  &lt;p&gt;You are not logged in&lt;/p&gt;
+  &lt;p&gt;No estás logueado&lt;/p&gt;
   &lt;a href=&quot;{% url 'login' %}&quot;&gt;login&lt;/a&gt;
 {% endif %}
 {% block content %}
@@ -285,7 +285,7 @@ urlpatterns = [
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code class="language-html">...
 {% if user.is_authenticated %}
-  &lt;p&gt;Hi {{ user.username }}!&lt;/p&gt;
+  &lt;p&gt;¡Hola {{ user.username }}!&lt;/p&gt;
   &lt;p&gt;&lt;a href=&quot;{% url 'logout' %}&quot;&gt;logout&lt;/a&gt;&lt;/p&gt;
 {% else %}
 ...
@@ -352,7 +352,7 @@ urlpatterns = [
 ]
 </code></pre>
 <ul>
-<li>Se éstá usando una vista que aún no se ha creado llamada  <code>SignupView</code> que está basada en clases, ya que está en mayúsculas, y tiene el sufijo <code>as_view()</code>. Su ruta es sólo <code>signup/</code> por lo que la ruta general será <code>accounts/signup/</code>.</li>
+<li>Se está usando una vista que aún no se ha creado llamada  <code>SignupView</code> que está basada en clases, ya que está en mayúsculas, y tiene el sufijo <code>as_view()</code>. Su ruta es sólo <code>signup/</code> por lo que la ruta general será <code>accounts/signup/</code>.</li>
 <li>Ahora para la vista que usa el <code>UserCreationForm</code> incorporado y el <code>CreateView</code> genérico .
 FICHERO: <code>accounts/views.py</code></li>
 </ul>
@@ -389,7 +389,7 @@ class SignUpView(CreateView):
 <li>Al principio se extiende la plantilla base, se coloca la lógica entre las etiquetas <code>&lt;form&gt;&lt;/form&gt;</code>, y se usa <code>csrf_token</code> por seguridad. El contenido del formulario se muestra en etiquetas de párrafo con <code>form.as_p</code> y se incluye un botón de envío.</li>
 <li>Navegar en: http://127.0.0.1:8000/accounts/signup/</li>
 <li>Observar que hay mucho texto extra que Django incluye por defecto. Se puede personalizar usando el <em>marco de mensajes</em> incorporado, pero por ahora probar el formulario.</li>
-<li>Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado <code>Hi William</code>.</li>
+<li>Crear un nuevo usuario llamado "William" y comprobar como al enviarlo se redirige a la página de acceso y de como, después de ingresar exitosamente, se redirige a la página de inicio con el saludo personalizado <code>Hola William</code>.</li>
 <li>El último flujo es, por lo tanto:</li>
 </ul>
 <p><center>Inscripción (Signup) -&gt; Inicio de sesión (Login) -&gt; Página de inicio (Homepage)</center>
@@ -414,7 +414,7 @@ class SignUpView(CreateView):
 </ul>
 <p>FICHERO: <code>Pipfile</code></p>
 <pre><code class="language-pipfile">[requires]
-python_version = &quot;3.8&quot;
+python_version = &quot;3.9&quot;
 </code></pre>
 <pre><code class="language-bash">(blog) $ pipenv lock
 </code></pre>
@@ -462,7 +462,7 @@ python_version = &quot;3.8&quot;
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic', # new!
+    'whitenoise.runserver_nostatic',                            # new!
     'django.contrib.staticfiles',
     'blog',
     'accounts',
@@ -470,7 +470,7 @@ python_version = &quot;3.8&quot;
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # new!
+    'whitenoise.middleware.WhiteNoiseMiddleware',               # new!
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -478,9 +478,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 ...
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # new!
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new!
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # new!
 </code></pre>
 <pre><code class="language-bash">(blog) $ git add -A
