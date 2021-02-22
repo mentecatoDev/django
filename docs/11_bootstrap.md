@@ -2,9 +2,9 @@
 
 El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.
 
-Afortunadamente está **Bootstrap**, el marco de trabajo más popular para construir proyectos *responsivos* y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
+Afortunadamente está **[Bootstrap](https://getbootstrap.com/)** (aunque también podríamos contar con **[Tailwind CSS](https://tailwindcss.com/)**), el marco de trabajo más popular para construir proyectos *responsivos* y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
 
-Cuando centrarse en la funcionalidad de un proyecto y no en el diseño es lo importante, Bootstrap es una gran elección.
+Cuando centrarse en la funcionalidad de un proyecto, y no en el diseño, es lo importante, Bootstrap es una gran elección.
 
 ## 11.1. Pages app
 
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
+    'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',                             # new
 ]
 ```
@@ -37,10 +37,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('pages.urls')),                      # new
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('pages.urls')),                      # new
 ]
 ```
 
@@ -76,11 +76,11 @@ class HomePageView(TemplateView):
 
 Ya existe una plantilla `home.html`. Confirmar que sigue funcionando como se esperaba con la nueva url y vista.
 
-## 11.2. Pruebas
+## 11.2. Tests
 
 Hay dos momentos ideales para añadir pruebas
 - Antes de escribir cualquier código (test-driven-development)
-- Inmediatamente después de que se haya añadido una nueva funcionalidad y lo aún esté claro en mente.
+- Inmediatamente después de que se haya añadido una nueva funcionalidad y aún esté clara en la mente.
 
 Actualmente el proyecto tiene cuatro páginas:
 
@@ -119,7 +119,7 @@ class SignupPageTests(TestCase):
     email = 'newuser@email.com'
 
     def test_signup_page_status_code(self):
-        response = self.client.get('/users/signup/')
+        response = self.client.get('/accounts/signup/')
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_by_name(self):
@@ -147,16 +147,20 @@ class SignupPageTests(TestCase):
   - Si se está utilizando la plantilla adecuada
 - La página de registro también tiene un formulario, así que se debería probar eso también.
 - En el formulario `test_signup_form` se está verificando que cuando un nombre de usuario y una dirección de correo electrónico son POSTeados (enviados a la base de datos), coinciden con lo que se almacena en el modelo `CustomUser`.
-
+- Ten en cuenta que hay dos formas de especificar una página: o bien codificando como en `test_signup_page_-status_code` donde establecemos la respuesta a `/accounts/signup/` o a través del nombre de la URL de `signup` como se hace en `test_view_url_by_name` y `test_view_uses_correct_template`.
 - Ejecutar:
 ```bash
 (news) $ python manage.py test
 ```
 
 ## 11.3. Bootstrap
+Si no has utilizado nunca Bootstrap, estás ante una auténtica maravilla. Al igual que Django, consigue
+mucho con muy poco código.
+
 Hay dos maneras de añadir *Bootstrap* a un proyecto:
+
 - Se pueden descargar todos los archivos y servirlos localmente
-- Confiar en una Red de Entrega de Contenido (CDN)
+- Confiar en una Red de Entrega de Contenido (CDN *Content Delivery Network*)
 
 El segundo enfoque es más sencillo de implementar siempre que se tenga una conexión a Internet consistente, así que eso es lo que se usará aquí.
 
@@ -179,10 +183,10 @@ FICHERO: `templates/base.html`
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>¡Hola, mundo!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>¡Hola, mundo!</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -192,7 +196,11 @@ FICHERO: `templates/base.html`
   </body>
 </html>
 ```
+Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está abreviado.
+de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los [documentos de inicio rápido](https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start).
+
 Se añade ahora:
+
 - Una barra de navegación en la parte superior de la página que contiene los enlaces para:
     - la página de inicio
     - inicio de sesión
@@ -302,7 +310,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # Local
-    'users.apps.UsersConfig',
+    'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
 ]
 ```
@@ -310,7 +318,7 @@ Ya que se está usando `Bootstrap4` también se debería añadir esa configuraci
 
 FICHERO: `newspaper_project/settings.py`
 ```python
-CRISPY_TEMPLATE_PACK = 'bootstrap'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ```
 
 Ahora en la plantilla de `signup.html` se puede usar rápidamente formularios crujientes (*crispy forms*). Primero se cargan las etiquetas `crispy_forms_tags` en la parte superior y luego se intercambia `{{ form.as_p }}` por `{{ form|crispy }}`.
