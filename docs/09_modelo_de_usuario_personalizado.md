@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.AccountsConfig',                          # new
+    'account.apps.AccountsConfig',                          # new
 ]
 ...
 # Authentication                                          # new
@@ -58,7 +58,7 @@ class CustomUser(AbstractUser):
 ```
 Si leemos la documentación oficial sobre modelos de usuario personalizados, ésta recomienda usar `AbstractBaseUser` en lugar de `AbstractUser` lo cual trae consigo complicaciones innecesarias; sobre todo para los novatos.
 
-> #### `AbstractBAseUser` vs `AbstractUser`
+> #### `AbstractBaseUser` vs `AbstractUser`
 >
 > `AbstractBaseUser` requiere un nivel muy fino de control y personalización. Esencialmente reescribimos Django. Esto puede ser útil, pero si sólo queremos un modelo de usuario personalizado que se pueda actualizar con algunos campos adicionales, la mejor opción es `AbstractUser`, que es una subclase de `AbstractBaseUser`.
 > En otras palabras, escribimos mucho menos código y tenemos menos oportunidades de estropear las cosas. Es la mejor opción a menos que realmente sepas lo que estás haciendo con Django.
@@ -85,7 +85,6 @@ Así que hay que actualizar los dos formularios incorporados para esta funcional
 
 FICHERO: `accounts/forms.py`
 ```python
-from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
 
@@ -171,10 +170,12 @@ from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
-    form = CustomUserChangeFormmodel = CustomUser
+    form = CustomUserChangeForm
+    model = CustomUser
     list_display = ['email', 'username', 'age', 'is_staff', ]
     fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)
     add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
 ```
