@@ -161,7 +161,7 @@
               
                 <h1 id="11-bootstrap">11. Bootstrap</h1>
 <p>El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.</p>
-<p>Afortunadamente está <strong><a href="https://getbootstrap.com/">Bootstrap</a></strong> (aunque también podríamos contar con <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong>), el marco de trabajo más popular para construir proyectos <em>responsivos</em> y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.</p>
+<p>Afortunadamente está <strong><a href="https://getbootstrap.com/">Bootstrap</a></strong> , el marco de trabajo más popular para construir proyectos <em>responsivos</em> y para móviles (aunque también podríamos contar con <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong>). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.</p>
 <p>Cuando centrarse en la funcionalidad de un proyecto, y no en el diseño, es lo importante, Bootstrap es una gran elección.</p>
 <h2 id="111-pages-app">11.1. Pages app</h2>
 <p>Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo <code>urls.py</code>. Aunque este enfoque funciona, es una triquiñuela y ciertamente no escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar se puede y debe crear una aplicación de páginas dedicadas para todas las <strong>páginas estáticas</strong>. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando <code>startapp</code> para crear la aplicación <code>pages</code>.</p>
@@ -225,7 +225,7 @@ class HomePageView(TemplateView):
 <li><code>login</code></li>
 <li><code>logout</code></li>
 </ul>
-<p>Sólo se necesita probar las dos primeras. <code>login</code> y <code>logut</code> son parte de Django y ya tienen cobertura de pruebas.</p>
+<p>Sólo se necesita probar las dos primeras. <code>login</code> y <code>logut</code> que son parte de Django y ya tienen cobertura de tests.</p>
 <p>FICHERO: <code>pages/tests.py</code></p>
 <pre><code class="language-python">from django.contrib.auth import get_user_model
 from django.test import SimpleTestCase, TestCase
@@ -263,7 +263,7 @@ class SignupPageTests(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'signup.html')
+        self.assertTemplateUsed(response, 'registration/signup.html')
 
     def test_signup_form(self):
         new_user = get_user_model().objects.create_user(
@@ -305,30 +305,35 @@ mucho con muy poco código.</p>
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code class="language-html">&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+&lt;html lang=&quot;es&quot;&gt;
   &lt;head&gt;
-  &lt;!-- Required meta tags --&gt;
-  &lt;meta charset=&quot;utf- &quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+    &lt;!-- Required meta tags --&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
 
-  &lt;!-- Bootstrap CSS --&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot; integrity=&quot;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2&quot; crossorigin=&quot;anonymous&quot;&gt;
 
-    &lt;title&gt;¡Hola, mundo!&lt;/title&gt;
+    &lt;title&gt;Hello, world!&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1&gt;¡Hola, mundo!&lt;/h1&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
 
-    &lt;!-- Optional JavaScript --&gt;
-    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
-    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.slim.min.js&quot; integrity=&quot;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&quot; integrity=&quot;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&quot; integrity=&quot;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;!-- Optional JavaScript; choose one of the two! --&gt;
+
+    &lt;!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) --&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.5.1.slim.min.js&quot; integrity=&quot;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.5.1.slim.min.js&quot; integrity=&quot;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js&quot; integrity=&quot;sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js&quot; integrity=&quot;sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    --&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está abreviado.
-de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start">documentos de inicio rápido</a>.</p>
+<p>Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está actualizado a 23/02/2021 pero se puede encontrar la última versión en los <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start">documentos de inicio rápido</a>.</p>
 <p>Se añade ahora:</p>
 <ul>
 <li>
@@ -346,54 +351,65 @@ de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los <a hre
 </ul>
 <p>FICHERO: <code>templates/base.html</code></p>
 <pre><code class="language-html">&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+&lt;html lang=&quot;es&quot;&gt;
   &lt;head&gt;
     &lt;!-- Required meta tags --&gt;
-    &lt;meta charset=&quot;utf- &quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale= , shrink-to-fit=no&quot;&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;&gt;
+
     &lt;!-- Bootstrap CSS --&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css&quot; integrity=&quot;sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2&quot; crossorigin=&quot;anonymous&quot;&gt;
 
     &lt;title&gt;{% block title %}Newspaper App{% endblock title %}&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;nav class=&quot;navbar navbar-expand-md navbar-dark bg-dark mb-4&quot;&gt;
-    &lt;a class=&quot;navbar-brand&quot; href=&quot;{% url 'home' %}&quot;&gt;Newspaper&lt;/a&gt;
-    &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarCollapse&quot; aria-controls=&quot;navbarCollapse&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
-      &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarCollapse&quot;&gt;
-      {% if user.is_authenticated %}
-        &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
-          &lt;li class=&quot;nav-item&quot;&gt;
-            &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;userMenu&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;
-              {{ user.username }}
-            &lt;/a&gt;
-            &lt;div class=&quot;dropdown-menu dropdown-menu-right&quot; aria-labelledby=&quot;userMenu&quot;&gt;
-              &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'password_change' %}&quot;&gt;Change password&lt;/a&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;nav class=&quot;navbar navbar-expand-lg navbar-dark bg-dark&quot;&gt;
+      &lt;a class=&quot;navbar-brand&quot; href=&quot;{% url 'home' %}&quot;&gt;Newspaper&lt;/a&gt;
+      &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarSupportedContent&quot; aria-controls=&quot;navbarSupportedContent&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+        &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarSupportedContent&quot;&gt;
+        {% if user.is_authenticated %}
+          &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+              &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; id=&quot;navbarDropdown&quot; role=&quot;button&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;
+                {{ user.username }}
+              &lt;/a&gt;
+              &lt;div class=&quot;dropdown-menu dropdown-menu-lg-right&quot; aria-labelledby=&quot;navbarDropdown&quot;&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'password_change'%}&quot;&gt;Change password&lt;/a&gt;
                 &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'logout' %}&quot;&gt;Log out&lt;/a&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'logout' %}&quot;&gt;Log Out&lt;/a&gt;
               &lt;/div&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         {% else %}
           &lt;form class=&quot;form-inline ml-auto&quot;&gt;
-            &lt;a href=&quot;{% url 'login' %}&quot; class=&quot;btn btn-outline-secondary&quot;&gt;Log in&lt;/a&gt;
-            &lt;a href=&quot;{% url 'signup' %}&quot; class=&quot;btn btn-primary ml- &quot;&gt;Sign up&lt;/a&gt;
+            &lt;a href=&quot;{% url 'login' %}&quot; class=&quot;btn btn-outline-secondary&quot;&gt;Log In&lt;/a&gt;
+            &lt;a href=&quot;{% url 'signup' %}&quot; class=&quot;btn btn-primary ml-2&quot;&gt;Sign up&lt;/a&gt;
           &lt;/form&gt;
         {% endif %}
       &lt;/div&gt;
     &lt;/nav&gt;
-    &lt;div class=&quot;container&quot;&gt;
-      {% block content %}
-      {% endblock %}
-    &lt;/div&gt;
 
-    &lt;!-- Optional JavaScript --&gt;
-    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
-    &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.slim.min.js&quot; integrity=&quot;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js&quot; integrity=&quot;sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
-    &lt;script src=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js&quot; integrity=&quot;sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;main&gt;
+      &lt;div class=&quot;container&quot;&gt;
+        {% block content %}
+        {% endblock content %}
+      &lt;/div&gt;
+    &lt;/main&gt;
+
+
+    &lt;!-- Optional JavaScript; choose one of the two! --&gt;
+
+    &lt;!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.5.1.slim.min.js&quot; integrity=&quot;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    --&gt;
+
+    &lt;!-- Option 2: jQuery, Popper.js, and Bootstrap JS --&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.5.1.slim.min.js&quot; integrity=&quot;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js&quot; integrity=&quot;sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js&quot; integrity=&quot;sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
@@ -406,12 +422,12 @@ de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los <a hre
 <h2 id="114-formulario-de-inscripcion">11.4. Formulario de inscripción</h2>
 <p>¿De dónde vino ese texto? Cuando algo se siente "mágico" en Django, seguro que no lo es.</p>
 <p>El método más rápido para averiguar lo que ocurre bajo el capó de Django es simplemente ir al código fuente de Django en Github, usar la barra de búsqueda e intentar encontrar el trozo de texto específico.</p>
-<p>Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página <code>django/contrib/auth/models.py</code> que se encuentra ahí en la línea 301. El texto viene como parte de la app <code>auth</code>, en el campo de nombre de usuario de <code>AbstractUser</code>.</p>
+<p>Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página <code>django/contrib/auth/models.py</code> que se encuentra ahí en la línea 334. El texto viene como parte de la app <code>auth</code>, en el campo de nombre de usuario de <code>AbstractUser</code>.</p>
 <p>Ahora hay tres opciones:
 - anular el <code>help_text</code> existente
 - ocultar el <code>help_text</code>
 - reestilar el <code>help_text</code></p>
-<p>Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros <code>django-crispy-forms</code>. Trabajar con formularios es un reto y <code>django-crispy-forms</code> hace más fácil escribir código <em>ÁRIDO</em>.</p>
+<p>Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros <code>django-crispy-forms</code>. Trabajar con formularios es un reto y <code>django-crispy-forms</code> hace más fácil escribir código <em>DRY</em> (Don't Repeat Yourself).</p>
 <pre><code class="language-bash">(news) $ pipenv install django-crispy-forms
 </code></pre>
 <ul>
@@ -445,21 +461,21 @@ de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los <a hre
 
 {% load crispy_forms_tags %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Registro{% endblock %}
 
 {% block content %}
-  &lt;h2&gt;Sign up&lt;/h2&gt;
+  &lt;h2&gt;Registro&lt;/h2&gt;
   &lt;form method=&quot;post&quot;&gt;
     {% csrf_token %}
     {{ form|crispy }}
-    &lt;button type=&quot;submit&quot;&gt;Sign up&lt;/button&gt;
+    &lt;button type=&quot;submit&quot;&gt;Registrarse&lt;/button&gt;
   &lt;/form&gt;
-{% endblock %}
+{% endblock content %}
 </code></pre>
 <p>Mucho mejor. Aunque, ¿qué tal si el botón de "Registrarse" fuera un poco más atractivo?¿Quizás hacerlo verde? Bootstrap tiene todo tipo de opciones de estilo de botones donde elegir. Se usará el "exitoso" fondo verde con texto blanco.</p>
 <p>FICHERO: <code>templates/signup.html</code></p>
 <pre><code class="language-html">...
-&lt;button class=&quot;btn btn-success&quot; type=&quot;submit&quot;&gt;Sign up&lt;/button&gt;
+&lt;button class=&quot;btn btn-success&quot; type=&quot;submit&quot;&gt;Registrarse&lt;/button&gt;
 ...
 </code></pre>
 <h2 id="115-proximos-pasos">11.5. Próximos pasos</h2>

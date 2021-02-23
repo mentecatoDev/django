@@ -210,7 +210,7 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    age = models.PositiveIntegerField(null=True, blank=True)
+    age = models.PositiveIntegerField(null=True, blank=True, verbose_name=&quot;Edad&quot;)
 </code></pre>
 <p>Si leemos la documentación oficial sobre modelos de usuario personalizados, ésta recomienda usar <code>AbstractBaseUser</code> en lugar de <code>AbstractUser</code> lo cual trae consigo complicaciones innecesarias; sobre todo para los novatos.</p>
 <blockquote>
@@ -241,7 +241,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('age',)
+        fields = UserCreationForm.Meta.fields
 
 
 class CustomUserChangeForm(UserChangeForm):
