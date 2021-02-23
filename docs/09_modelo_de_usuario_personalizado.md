@@ -54,7 +54,7 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
-    age = models.PositiveIntegerField(null=True, blank=True)
+    age = models.PositiveIntegerField(null=True, blank=True, verbose_name="Edad")
 ```
 Si leemos la documentación oficial sobre modelos de usuario personalizados, ésta recomienda usar `AbstractBaseUser` en lugar de `AbstractUser` lo cual trae consigo complicaciones innecesarias; sobre todo para los novatos.
 
@@ -183,5 +183,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 ## 9.5. Conclusión
 Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación *Newspaper*.
+
+
 
 |\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|

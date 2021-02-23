@@ -2,7 +2,7 @@
 
 El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.
 
-Afortunadamente está **[Bootstrap](https://getbootstrap.com/)** (aunque también podríamos contar con **[Tailwind CSS](https://tailwindcss.com/)**), el marco de trabajo más popular para construir proyectos *responsivos* y para móviles. En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
+Afortunadamente está **[Bootstrap](https://getbootstrap.com/)** , el marco de trabajo más popular para construir proyectos *responsivos* y para móviles (aunque también podríamos contar con **[Tailwind CSS](https://tailwindcss.com/)**). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
 
 Cuando centrarse en la funcionalidad de un proyecto, y no en el diseño, es lo importante, Bootstrap es una gran elección.
 
@@ -89,7 +89,7 @@ Actualmente el proyecto tiene cuatro páginas:
 - `login`
 - `logout`
 
-Sólo se necesita probar las dos primeras. `login` y `logut` son parte de Django y ya tienen cobertura de pruebas.
+Sólo se necesita probar las dos primeras. `login` y `logut` que son parte de Django y ya tienen cobertura de tests.
 
 FICHERO: `pages/tests.py`
 ```python
@@ -129,7 +129,7 @@ class SignupPageTests(TestCase):
     def test_view_uses_correct_template(self):
         response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'signup.html')
+        self.assertTemplateUsed(response, 'registration/signup.html')
 
     def test_signup_form(self):
         new_user = get_user_model().objects.create_user(
@@ -176,28 +176,41 @@ FICHERO: `templates/base.html`
 <!doctype html>
 <html lang="en">
   <head>
-  <!-- Required meta tags -->
-  <meta charset="utf- ">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>¡Hola, mundo!</title>
+    <title>Hello, world!</title>
   </head>
   <body>
-    <h1>¡Hola, mundo!</h1>
+    <h1>Hello, world!</h1>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
   </body>
 </html>
 ```
-Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está abreviado.
-de código. Copie y pegue los enlaces completos para Bootstrap 4.5 de los [documentos de inicio rápido](https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start).
+Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está actualizado a 23/02/2021 pero se puede encontrar la última versión en los [documentos de inicio rápido](https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start).
+
+
+
+
+
+
+
+
 
 Se añade ahora:
 

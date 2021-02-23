@@ -37,16 +37,18 @@ Ahora se pueden crear cuatro nuevas plantillas:
 
 ```bash
 (news) $ touch templates/registration/login.html
+(news) $ touch templates/registration/signup.html
 (news) $ touch templates/base.html
 (news) $ touch templates/home.html
-(news) $ touch templates/registration/signup.html
 ```
-Este es el código HTML para cada archivo a utilizar. `base.html` será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como `{% block content %}` se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.
+Veamos el código HTML para cada archivo.
+
+`base.html` será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como `{% block content %}` se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.
 
 FICHERO: `templates/base.html`
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Newspaper App{% endblock title %}</title>
@@ -54,7 +56,7 @@ FICHERO: `templates/base.html`
 <body>
   <main>
     {% block content %}
-    {% endblock %}
+    {% endblock content %}
   </main>
 </body>
 </html>
@@ -67,10 +69,10 @@ FICHERO: `templates/home.html`
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hi {{ user.username }}!
+    ¡Hola {{ user.username }}!
     <p><a href="{% url 'logout' %}">Logout</a></p>
   {% else %}
-    <p>You are not logged in</p>
+    <p>No estás logueado</p>
     <a href="{% url 'login' %}">Login</a> |
     <a href="{% url 'signup' %}">Registro</a>
   {% endif %}
@@ -98,7 +100,7 @@ FICHERO: `templates/registration/signup.html`
 {% block title %}Registro{% endblock %}
 
 {% block content %}
-<h2>Sign up</h2>
+<h2>Registro</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
@@ -140,7 +142,8 @@ Actualizar `accounts/urls.py` con el siguiente código:
 FICHERO: `accounts/urls.py`
 ```python
 from django.urls import path
-from .views import SignUpView
+from .views import SignUp
+
 urlpatterns = [
     path('signup/', SignUp.as_view(), name='signup'),
 ]
@@ -162,7 +165,7 @@ class SignUp(CreateView):
 
 Arrancar el servidor con python `manage.py runserver` e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario `testuser`.
 
-Como tenemos un nuevo campo `age` añadámoslo al template `home.html`. Es un campo del modelo de usuario por lo que para mostrarlo sólo tenemos que usar `{{ user.age }}`.
+Como tenemos un nuevo campo `age` añadámoslo al template `home.html`. Es un campo del modelo de usuario por lo que para mostrarlo sólo tenemos que usar `{{ user.age }}` pero comprobando previamente que su contenido no es `null`.
 
 FICHERO: `templates/home.html`
 
@@ -173,7 +176,10 @@ FICHERO: `templates/home.html`
 
 {% block content %}
 {% if user.is_authenticated %}
-  ¡Hola {{ user.username }}! Tienes {{ user.age }} años.
+  ¡Hola {{ user.username }}! 
+  {% if user.age %}
+    Tienes {{ user.age }} años.
+  {% endif %}
   <p><a href="{% url 'logout' %}">Logout</a></p>
 {% else %}
   <p>No estás logueado</p>
@@ -191,10 +197,7 @@ Entrar también en el administrador para ver las dos cuentas de usuario. No se p
 
 Todo está funcionando pero **no** hay un campo `email` para el usuario `testuser` porque no fue incluido en `accounts/form.py`.
 
-Este es un punto importante: sólo porque el modelo de usuario tiene un campo, no se incluirá en nuestro
-formulario de registro personalizado a menos que se añada explícitamente. Hagámoslo ahora.
-Actualmente, en `accounts/forms.py`  estamos usando como campos `Meta.fields`, que sólo muestra
-la configuración por defecto de nombre de usuario/edad/contraseña. Pero también podemos establecer explícitamente qué campos queremos que se muestren, así que vamos a actualizarlo para que nos pida un nombre de usuario/correo electrónico/edad/contraseña  `('username', 'email', 'age',)`. No necesitamos incluir los campos de contraseña porque son obligatorios. Todos los demás campos pueden ser configurados como queramos.
+Este es un punto importante: sólo porque el modelo de usuario tenga un campo no implica que se incluirá en nuestro formulario de registro personalizado a menos que se añada explícitamente. Hagámoslo ahora.
 
 En principio `accounts/forms.py` tiene el siguiente aspecto:
 
@@ -218,12 +221,13 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = UserChangeForm.Meta.fields
 ```
-Como campos se usan `Meta.fields` que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como `('username', 'email',)` . ¡No se necesita incluir el campo `password` porque es **obligatorio**! Pero todos los demás campos pueden ser configurados como se quiera.
+Como campos se usan `Meta.fields` que sólo muestran la configuración por defecto de nombre_de_usuario/contraseña. Pero también se puede establecer explícitamente qué campos se quieren mostrar, así que se actualizará para pedir un nombre_de_usuario/correo_electrónico/contraseña configurándolo como `('username', 'email','age')` . ¡No se necesita incluir el campo `password` porque es **obligatorio**! Pero todos los demás campos pueden ser configurados como se quiera.
 
 FICHERO: `accounts/forms.py`
 ```python
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
@@ -241,3 +245,8 @@ El flujo de autenticación de usuarios de Django requiere un poco de configuraci
 ## 10.4. Conclusión
 
 Hasta ahora la aplicación `Newspaper` tiene un modelo de usuario personalizado y funciona con páginas de *registro*, *login* y *logout* aunque no tiene muy buen aspecto. Próximamente se añadirá **Bootstrap** para mejorar el estilo además de una *app* dedicada de `pages` .
+
+
+
+|\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|
+
