@@ -47,7 +47,7 @@ Veamos el código HTML para cada archivo.
 
 FICHERO: `templates/base.html`
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -144,6 +144,8 @@ FICHERO: `accounts/urls.py`
 from django.urls import path
 from .views import SignUp
 
+
+
 urlpatterns = [
     path('signup/', SignUp.as_view(), name='signup'),
 ]
@@ -187,7 +189,6 @@ FICHERO: `templates/home.html`
   <a href="{% url 'signup' %}">Registro</a>
 {% endif %}
 {% endblock content %}
-
 ```
 
 
@@ -238,7 +239,7 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'age' ) # new
+        fields = ('username', 'email', 'age') # new
 ```
 El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.
 

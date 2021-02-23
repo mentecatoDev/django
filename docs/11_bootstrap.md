@@ -174,7 +174,7 @@ El segundo enfoque es más sencillo de implementar siempre que se tenga una cone
 FICHERO: `templates/base.html`
 ```html
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -204,14 +204,6 @@ FICHERO: `templates/base.html`
 ```
 Este fragmento de código incluye los enlaces completos de Bootstrap CSS y JavaScript. Está actualizado a 23/02/2021 pero se puede encontrar la última versión en los [documentos de inicio rápido](https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start).
 
-
-
-
-
-
-
-
-
 Se añade ahora:
 
 - Una barra de navegación en la parte superior de la página que contiene los enlaces para:
@@ -225,54 +217,65 @@ Se añade ahora:
 FICHERO: `templates/base.html`
 ```html
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf- ">
-    <meta name="viewport" content="width=device-width, initial-scale= , shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <title>{% block title %}Newspaper App{% endblock title %}</title>
-</head>
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="{% url 'home' %}">Newspaper</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{ user.username }}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-              <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'home' %}">Newspaper</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if user.is_authenticated %}
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'password_change'%}">Change password</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
               </div>
             </li>
           </ul>
         {% else %}
           <form class="form-inline ml-auto">
-            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log in</a>
-            <a href="{% url 'signup' %}" class="btn btn-primary ml- ">Sign up</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log In</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
           </form>
         {% endif %}
       </div>
     </nav>
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9KScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <main>
+      <div class="container">
+        {% block content %}
+        {% endblock content %}
+      </div>
+    </main>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    -->
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
   </body>
 </html>
 ```
@@ -293,14 +296,14 @@ FICHERO: `templates/registration/login.html`
 
 El método más rápido para averiguar lo que ocurre bajo el capó de Django es simplemente ir al código fuente de Django en Github, usar la barra de búsqueda e intentar encontrar el trozo de texto específico.
 
-Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página `django/contrib/auth/models.py` que se encuentra ahí en la línea 301. El texto viene como parte de la app `auth`, en el campo de nombre de usuario de `AbstractUser`.
+Por ejemplo, si se busca "150 characters or fewer" se encontrará en la página `django/contrib/auth/models.py` que se encuentra ahí en la línea 334. El texto viene como parte de la app `auth`, en el campo de nombre de usuario de `AbstractUser`.
 
 Ahora hay tres opciones:
 - anular el `help_text` existente
 - ocultar el `help_text`
 - reestilar el `help_text`
 
-Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros `django-crispy-forms`. Trabajar con formularios es un reto y `django-crispy-forms` hace más fácil escribir código *ÁRIDO*.
+Se escogerá la tercera opción ya que es una buena manera de introducir el excelente paquete de terceros `django-crispy-forms`. Trabajar con formularios es un reto y `django-crispy-forms` hace más fácil escribir código *DRY* (Don't Repeat Yourself).
 
 ```bash
 (news) $ pipenv install django-crispy-forms
@@ -342,16 +345,16 @@ FICHERO: `templates/signup.html`
 
 {% load crispy_forms_tags %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Registro{% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
+  <h2>Registro</h2>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">Sign up</button>
+    <button type="submit">Registrarse</button>
   </form>
-{% endblock %}
+{% endblock content %}
 ```
 
 Mucho mejor. Aunque, ¿qué tal si el botón de "Registrarse" fuera un poco más atractivo?¿Quizás hacerlo verde? Bootstrap tiene todo tipo de opciones de estilo de botones donde elegir. Se usará el "exitoso" fondo verde con texto blanco.
@@ -359,7 +362,7 @@ Mucho mejor. Aunque, ¿qué tal si el botón de "Registrarse" fuera un poco más
 FICHERO: `templates/signup.html`
 ```html
 ...
-<button class="btn btn-success" type="submit">Sign up</button>
+<button class="btn btn-success" type="submit">Registrarse</button>
 ...
 ```
 
