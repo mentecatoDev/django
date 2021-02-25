@@ -12,7 +12,7 @@
 (news) $ python manage.py startapp articles
 ```
 
-- Añadirla a `INSTALLED_APPS` y actualizar la zona horaria ya que se marcará la hora de los artículos.
+- Añadirla a `INSTALLED_APPS` y actualizar la [zona horaria](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) ya que se marcará la hora de los artículos.
 - Para averiguar la zona horaria correspondiente:
 ```python
 >>> from pytz import all_timezones, common_timezones
@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     
     # Local
-    'users',
+    'accounts',
     'pages',
     'articles', # new
 ]
@@ -42,8 +42,8 @@ TIME_ZONE = 'Europe/Madrid'
 ```
 
 - Se define el modelo de base de datos con cuatro campos: `title`, `body`, `date`, y `author`.
-- Para el campo `autor` se hará referencia al modelo de usuario personalizado `users.CustomUser` que se ha establecido en el archivo `settings.py` como `AUTH_USER_MODEL`. Por lo tanto, si se importa la configuración podemos referirnos a ella como `settings.AUTH_USER_MODEL`.
-- También se implementa la 'buena mejores práctica' de definir un `get_absolute_url` desde el principio y un método `__str__` para ver el modelo en la interfaz de administración.
+- Para el campo `autor` se hará referencia al modelo de usuario personalizado `accounts.CustomUser` que se ha establecido en el archivo `settings.py` como `AUTH_USER_MODEL`. Por lo tanto, si se importa la configuración podemos referirnos a ella como `settings.AUTH_USER_MODEL` o bien usando el método `get_user_model`. 
+- También implementamos práctica recomendada de definir un método `get_absolute_url` desde el principio y un método `__str__` para ver el modelo en nuestra interfaz de administración.
 
 FICHERO: `articles/models.py`
 ```python
@@ -57,15 +57,15 @@ class Article(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        get_user_model(),    					  # ó settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
 
-def __str__(self):
-    return self.title
+	def __str__(self):
+    	return self.title
 
-def get_absolute_url(self):
-    return reverse('article_detail', args=[str(self.id)])
+	def get_absolute_url(self):
+    	return reverse('article_detail', args=[str(self.id)])
 ```
 
 - Como se tiene una nueva aplicación y modelo, es hora de hacer un nuevo archivo de migración y luego aplicarlo a la base de datos.
@@ -99,22 +99,23 @@ from django.contrib import admin
 from django.urls import path, include # new
 
 urlpatterns = [
-    path('', include('pages.urls')),
-    path('articles/', include('articles.urls')), # new
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('articles/', include('articles.urls')), 			# new
+    path('', include('pages.urls')),
+
 ]
 ```
 
 FICHERO: `articles/urls.py`
 ```python
 from django.urls import path
-from . import views
+from .views import ArticleListView
 
 
 urlpatterns = [
-    path('', views.ArticleListView.as_view(), name='article_list'),
+    path('', ArticleListView.as_view(), name='article_list'),
 ]
 ```
 - Crear ahora la vista usando la genérica `ListView` de Django.
@@ -122,11 +123,11 @@ urlpatterns = [
 FICHERO: `# articles/views.py`
 ```python
 from django.views.generic import ListView
-from . import models
+from .models import Article
 
 
 class ArticleListView(ListView):
-    model = models.Article
+    model = Article
     template_name = 'article_list.html'
 ```
 
@@ -155,7 +156,7 @@ FICHERO: `templates/article_list.html`
         {{ article.body }}
       </div>
       <div class="card-footer text-center text-muted">
-        <a href="#">Edit</a> | <a href="#">Delete</a>
+        <a href="#">Editar</a> | <a href="#">Borrar</a>
       </div>
     </div>
     <br />
@@ -163,6 +164,9 @@ FICHERO: `templates/article_list.html`
 {% endblock content %}
 ```
 - Arracar el servidor y consultar la página `articles/`
+- Para más información de personalización consultar el siguiente [enlace](https://docs.djangoproject.com/es/3.1/howto/custom-template-tags/)
+
+
 
 ## 14.3. Editar/Borrar
 
@@ -173,13 +177,18 @@ FICHERO: `templates/article_list.html`
 FICHERO: `articles/urls.py`
 ```python
 from django.urls import path
-from . import views
+from .views import(
+    ArticleListView,
+    ArticleUpdateView, # new
+    ArticleDetailView, # new
+    ArticleDeleteView, # new
+)
 
 urlpatterns = [
-    path('', views.ArticleListView.as_view(), name='article_list'),
-    path('<int:pk>/edit/',views.ArticleUpdateView.as_view(), name='article_edit'),# new
-    path('<int:pk>/', views.ArticleDetailView.as_view(), name='article_detail'), # new
-    path('<int:pk>/delete/', views.ArticleDeleteView.as_view(), name='article_delete'), # new
+    path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
+    path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'), # new
+    path('<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
+    path('', ArticleListView.as_view(), name='article_list'),
 ]
 ```
 
@@ -190,28 +199,27 @@ FICHERO: `articles/views.py`
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
-
-from . import models
+from .models import Article
 
 
 class ArticleListView(ListView):
-    model = models.Article
+    model = Article
     template_name = 'article_list.html'
 
 
 class ArticleDetailView(DetailView):
-    model = models.Article
+    model = Article
     template_name = 'article_detail.html'
 
 
 class ArticleUpdateView(UpdateView):
-    model = models.Article
+    model = Article
     fields = ['title', 'body', ]
     template_name = 'article_edit.html'
 
 
 class ArticleDeleteView(DeleteView):
-    model = models.Article
+    model = Article
     template_name = 'article_delete.html'
     success_url = reverse_lazy('article_list')
 ```
@@ -232,8 +240,8 @@ FICHERO: `templates/article_detail.html`
       <p>by {{ object.author }} | {{ object.date }}</p>
       <p>{{ object.body }}</p>
   </div>
-  <p><a href="{% url 'article_edit' article.pk %}">Edit</a> | <a href="{% url 'article_delete' article.pk %}">Delete</a></p>
-  <p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+  <p><a href="{% url 'article_edit' article.pk %}">Editar</a> | <a href="{% url 'article_delete' article.pk %}">Borrar</a></p>
+  <p>Back to <a href="{% url 'article_list' %}">Todos los artículos</a>.</p>
 {% endblock content %}
 ```
 
@@ -247,7 +255,7 @@ FICHERO: `templates/article_edit.html`
   <h1>Edit</h1>
   <form action="" method="post">{% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-info ml-2" type="submit">Update</button>
+    <button class="btn btn-info ml-2" type="submit">Actualizar</button>
   </form>
 {% endblock %}
 ```
@@ -259,8 +267,8 @@ FICHERO: `templates/article_delete.html`
 {% block content %}
   <h1>Delete</h1>
   <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ article.title }}"?</p>
-    <button class="btn btn-danger ml- " type="submit">Confirm</button>
+    <p>¿Estás seguro de que quieres borrar "{{ article.title }}"?</p>
+    <button class="btn btn-danger ml- " type="submit">Confirmar</button>
   </form>
 {% endblock %}
 ```
@@ -271,8 +279,8 @@ FICHERO: `templates/article_list.html`
 ```html
 ...
 <div class="card-footer text-center text-muted">
-  <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-  <a href="{% url 'article_delete' article.pk %}">Delete</a>
+  <a href="{% url 'article_edit' article.pk %}">Editar</a> |
+  <a href="{% url 'article_delete' article.pk %}">Borrar</a>
 </div>
 ...
 ```
