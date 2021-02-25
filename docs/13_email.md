@@ -23,9 +23,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 FICHERO: `newspaper_project/settings.py`
 ```python
+DEFAULT_FROM_EMAIL = '<email>'
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'sendgrid_username'
-EMAIL_HOST_PASSWORD = 'sendgrid_password'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '<password apikey>'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 ```

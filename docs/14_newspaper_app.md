@@ -1,6 +1,6 @@
 # 14. Newspaper app
 
-- Habrá una página de artículos en la que los periodistas podrán publicar artículos, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada artículo, lo que introducirá el concepto de *claves externas*.
+Habrá una página de artículos en la que los periodistas podrán publicar, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada uno de ellos, lo que introducirá el concepto de *claves externas*.
 
 ## 14.1. Articles app
 
@@ -8,7 +8,7 @@
 - Una regla general es usar el plural del nombre de una aplicación -`posts`, `payments`, `users`, etc.- a menos que hacerlo sea obviamente incorrecto como en el caso común de `blog` donde el singular tiene más sentido.
 - Crear la aplicación para los nuevos artículos.
 
-```
+```bash
 (news) $ python manage.py startapp articles
 ```
 
@@ -34,9 +34,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     
     # Local
-    'accounts',
-    'pages',
-    'articles', # new
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+    'articles.apps.ArticlesConfig', # new
 ]
 TIME_ZONE = 'Europe/Madrid'
 ```
@@ -53,12 +53,13 @@ from django.urls import reverse
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=255, verbose_name='Título')
+    body = models.TextField(verbose_name='Cuerpo')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha')
     author = models.ForeignKey(
         get_user_model(),    					  # ó settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        verbose_name='Autor'
     )
 
 	def __str__(self):
