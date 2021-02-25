@@ -2,7 +2,7 @@
 
 El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.
 
-Afortunadamente está **[Bootstrap](https://getbootstrap.com/)** , el marco de trabajo más popular para construir proyectos *responsivos* y para móviles (aunque también podríamos contar con **[Tailwind CSS](https://tailwindcss.com/)**). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
+Afortunadamente está **[Bootstrap](https://getbootstrap.com/)** , el framework más popular para construir proyectos *responsivos* y para móviles (aunque también podríamos contar con **[Tailwind CSS](https://tailwindcss.com/)**). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.
 
 Cuando centrarse en la funcionalidad de un proyecto, y no en el diseño, es lo importante, Bootstrap es una gran elección.
 
@@ -242,16 +242,16 @@ FICHERO: `templates/base.html`
                 {{ user.username }}
               </a>
               <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'password_change'%}">Change password</a>
+                <a class="dropdown-item" href="{% url 'password_change'%}">Cambiar contraseña</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               </div>
             </li>
           </ul>
         {% else %}
           <form class="form-inline ml-auto">
-            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Log In</a>
-            <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Registrar</a>
           </form>
         {% endif %}
       </div>
@@ -322,7 +322,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #3rd Party
+    # 3rd Party
     'crispy_forms',
 
     # Local
