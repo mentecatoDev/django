@@ -161,6 +161,7 @@
               
                 <h1 id="12-cambio-y-restauracion-de-contrasenas">12. Cambio y Restauración de Contraseñas</h1>
 <p>Así como Django viene con vistas y urls incorporadas para el inicio y cierre de sesión, también viene con vistas/urls para el cambio y el restablecimiento de la contraseña.</p>
+<p>Inicialmente implementaremos las vistas y URLs integradas en Django tanto para el cambio de contraseña como para el cambio de contraseña antes de personalizarlas con nuestras propias plantillas y servicios de correo electrónico basados en Bootstrap.</p>
 <h2 id="121-cambio-de-contrasena">12.1. Cambio de contraseña</h2>
 <p>Django proporciona una implementación predeterminada que ya funciona para este cometido.</p>
 <p>Para probarlo:</p>
@@ -182,15 +183,15 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 <p>FICHERO: <code>templates/registration/password_change_form.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Password Change{% endblock %}
+{% block title %}Cambio de Contraseña{% endblock %}
 
 {% block content %}
-  &lt;h1&gt;Password change&lt;/h1&gt;
-  &lt;p&gt;Please enter your old password, for security's sake, and then enter your new password twice so we can verify you typed it in correctly.&lt;/p&gt;
+  &lt;h1&gt;Cambio de Contraseña&lt;/h1&gt;
+  &lt;p&gt;Introduzca su antigua contraseña, por seguridad, y luego la nueva dos veces para verificar que se ha escrito correctamente.&lt;/p&gt;
   &lt;form method=&quot;POST&quot;&gt;
     {% csrf_token %}
     {{ form.as_p }}
-    &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;Change my password&quot;&gt;
+    &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;Cambiar Contraseña&quot;&gt;
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
@@ -199,44 +200,44 @@ http://127.0.0.1:8000/users/password_change/done/.</li>
 <p>FICHERO: <code>templates/registration/password_change_done.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Password Change Successful{% endblock %}
+{% block title %}Cambio de Contraseña Exitoso{% endblock %}
 
 {% block content %}
-  &lt;h1&gt;Password change successful&lt;/h1&gt;
-  &lt;p&gt;Your password was changed.&lt;/p&gt;
+  &lt;h1&gt;Cambio de Contraseña exitoso&lt;/h1&gt;
+  &lt;p&gt;Su contraseña ha cambiado.&lt;/p&gt;
 {% endblock content %}
 </code></pre>
 <p>También se extiende <code>base.html</code> y se incluye un nuevo título. Sin embargo, no hay ningún formulario en la página, sólo texto nuevo.</p>
-<p>La nueva página está en http://127.0.0.1:8000/users/password_change/done/.</p>
+<p>La nueva página está en http://127.0.0.1:8000/accounts/password_change/done/.</p>
 <h2 id="123-restablecer-la-contrasena">12.3. Restablecer la contraseña</h2>
-<p>La única configuración que se requiere es decirle a Django cómo enviar los correos electrónicos. Después de todo, un usuario sólo puede restablecer una contraseña si se tiene acceso al correo electrónico vinculado a la cuenta. En la producción se usará el servicio de correo electrónico <code>SendGrid</code> para enviar realmente los correos electrónicos, pero para fines de prueba se puede confiar en la configuración del backend de la consola de Django que envía el texto del correo electrónico a la consola de línea de comandos en su lugar.</p>
+<p>La única configuración que se requiere es decirle a Django cómo enviar los correos electrónicos. Después de todo, un usuario sólo puede restablecer una contraseña si se tiene acceso al correo electrónico vinculado a la cuenta. En producción se usará el servicio de correo electrónico <code>SendGrid</code> para enviar realmente los correos electrónicos, pero para fines de prueba se puede confiar en la configuración del backend de la consola de Django que envía el texto del correo electrónico a la consola de línea de comandos en su lugar.</p>
 <p>En la parte inferior del archivo <code>settings.py</code> hacer el siguiente cambio de una línea.</p>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
 <pre><code class="language-python">EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 </code></pre>
-<p>Listo. Django se encargará del resto. Probar desde http://127.0.0.1:8000/users/password_reset/.</p>
-<p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en http://127.0.0.1:8000/users/password_reset/done/ que informa de que se revise el correo electrónico. Ya que se le ha dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por consola:</p>
-<pre><code class="language-text">Content-Type: text/plain; charset=&quot;utf-8&quot;
+<p>Listo. Django se encargará del resto. Probar desde http://127.0.0.1:8000/accounts/password_reset/.</p>
+<p>Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en http://127.0.0.1:8000/accounts/password_reset/done/ que informa de que se revise el correo electrónico. Ya que se le ha dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por consola:</p>
+<pre><code class="language-tex">Content-Type: text/plain; charset=&quot;utf-8&quot;
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Password reset on 127.0.0.1:8000
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?Contrase=C3=B1a_restablecida_en_127=2E0=2E0=2E1=3A8000?=
 From: webmaster@localhost
-To: will@wsvincent.com
-Date: Thu,22 Mar 2018 20:31:48 -0000
-Message-ID: &lt;152175070807.39206.18266082938043731152@1.0.0.127.in-addr.arpa&gt;
+To: testuser2@gmail.com
+Date: Wed, 24 Feb 2021 19:08:41 -0000
+Message-ID: &lt;161419372146.227460.6264007619116440451@padre&gt;
 
 
-You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+Ha recibido este correo electrónico porque ha solicitado restablecer la contraseña para su cuenta en 127.0.0.1:8000.
 
-Please go to the following page and choose a new password:
+Por favor, vaya a la página siguiente y escoja una nueva contraseña.
 
-http://127.0.0.1:8000/user/reset/MQ/4up-678712c114db2ead7780/
+http://127.0.0.1:8000/accounts/reset/NA/ail96h-fc019327b99befed62950c6dc526e12b/
 
-Your username, in case you've forgotten: wsv
+Su nombre de usuario, en caso de que lo haya olvidado: testuser2
 
-Thanks for using our site!
+¡Gracias por usar nuestro sitio!
 
-The 127.0.0.1:8000 team
+El equipo de 127.0.0.1:8000
 </code></pre>
 <p>El texto del correo electrónico debe ser idéntico excepto por tres líneas:
 - El "To:" en la sexta línea contiene la dirección de correo electrónico del usuario
@@ -259,17 +260,17 @@ The 127.0.0.1:8000 team
 <p>FICHERO: <code>templates/registration/password_reset_form.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Forgot Your Password?{% endblock %}
+{% block title %}¿Olvidó su contraseña?{% endblock %}
 
 {% block content %}
-&lt;h1&gt;Forgot your password?&lt;/h1&gt;
-&lt;p&gt;Enter your email address below, and we'll email instructions for setting a new one.&lt;/p&gt;
+&lt;h1&gt;¿Olvidó su contraseña?&lt;/h1&gt;
+&lt;p&gt;Introduzca su dirección de correo electrónico y recibirá instrucciones para establecer una nueva.&lt;/p&gt;
 &lt;form method=&quot;POST&quot;&gt;
   {% csrf_token %}
   {{ form.as_p }}
-  &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;Send me instructions!&quot;&gt;
+  &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;¡Envíenme instrucciones!&quot;&gt;
 &lt;/form&gt;
-{% endblock %}
+{% endblock content %}
 </code></pre>
 <p>En la parte superior se extiende <code>base.html</code> y se fija el título de la página. Debido a que usamos títulos "block" en el <code>base.html</code> se pueden anular aquí.</p>
 <ul>
@@ -286,40 +287,41 @@ The 127.0.0.1:8000 team
 <p>FICHERO: <code>templates/registration/password_reset_done.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Email Sent{% endblock %}
+{% block title %}Correo electrónico enviado{% endblock %}
 
 {% block content %}
-  &lt;h1&gt;Check your inbox.&lt;/h1&gt;
-  &lt;p&gt;We've emailed you instructions for setting your password. You should receive the email shortly!&lt;/p&gt;
-{% endblock %}
+  &lt;h1&gt;Compruebe su buzón de correo electrónico.&lt;/h1&gt;
+  &lt;p&gt;Se le ha enviado instrucciones para establecer su nueva contraseña.&lt;br&gt;
+     ¡Debería recibir el correo electrócino en breve!.&lt;/p&gt;
+{% endblock content %}
 </code></pre>
-<p>Confirmar los cambios en http://127.0.0.1:8000/users/password_reset/done/</p>
+<p>Confirmar los cambios en http://127.0.0.1:8000/accounts/password_reset/done/</p>
 <p>A continuación, la página de confirmación del restablecimiento de la contraseña.</p>
 <p>FICHERO: <code>templates/registration/password_reset_confirm.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Enter new password{% endblock %}
+{% block title %}Introducir nueva contraseña{% endblock %}
 
 {% block content %}
-&lt;h1&gt;Set a new password!&lt;/h1&gt;
+&lt;h1&gt;¡Establezca una nueva contraseñá!&lt;/h1&gt;
 &lt;form method=&quot;POST&quot;&gt;
   {% csrf_token %}
   {{ form.as_p }}
-  &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;Change my password&quot;&gt;
+  &lt;input class=&quot;btn btn-success&quot; type=&quot;submit&quot; value=&quot;Cambiar Contraseña&quot;&gt;
 &lt;/form&gt;
-{% endblock %}
+{% endblock content %}
 </code></pre>
 <p>Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.</p>
 <p>Finalmente aquí está el código completo para reestablecer el password.</p>
 <p>FICHERO: <code>templates/registration/password_reset_complete.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
-{% block title %}Password reset complete{% endblock %}
+{% block title %}Restablecimiento de la contraseña completo{% endblock %}
 
 {% block content %}
-&lt;h1&gt;Password reset complete&lt;/h1&gt;
-&lt;p&gt;Your new password has been set. You can log in now on the &lt;a href=&quot;{% url 'login' %}&quot;&gt;log in page&lt;/a&gt;.&lt;/p&gt;
-{% endblock %}
+&lt;h1&gt;Restablecimiento de la contraseña completo&lt;/h1&gt;
+&lt;p&gt;Su nueva contraseña se ha reestablecido. Puede logarse ahora en la página de &lt;a href=&quot;{% url 'login' %}&quot;&gt;login&lt;/a&gt;.&lt;/p&gt;
+{% endblock content%}
 </code></pre>
 <h2 id="125-conclusion">12.5. Conclusión</h2>
 <p>En el próximo capítulo se conectará <em>Newspaper</em> con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente los correos electrónicos automatizados a los usuarios, en lugar de emitirlos en la consola de línea de comandos.</p>

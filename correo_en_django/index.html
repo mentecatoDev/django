@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Documentación Django - Django</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Documentaci\u00f3n Django";
+    var mkdocs_page_input_path = "correo_en_django.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Django</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Django</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Documentación Django</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="documentacion-django">Documentación Django</h1>
+<h2 id="envio-de-emails"><a href="https://docs.djangoproject.com/es/3.0/topics/email/#module-django.core.mail">Envío de emails</a></h2>
+<p>Aunque Python proporciona una interfaz de envío de correo a través del módulo <a href="https://docs.python.org/3/library/smtplib.html#module-smtplib"><code>smtplib</code></a>, Django proporciona un par de <em>wrappers</em> ligeros que lo recubren. Estos <em>wrappers</em> se proporcionan para hacer el envío de correo electrónico de forma extra rápida, para ayudar a probar el envío de correo electrónico durante el desarrollo y para proporcionar apoyo a las plataformas que no pueden utilizar SMTP.</p>
+<p>El código vive en el módulo <code>django.core.mail</code>.</p>
+<h2 id="ejemplo-rapido"><a href="https://docs.djangoproject.com/es/3.0/topics/email/#quick-example">Ejemplo rápido</a></h2>
+<p>En dos líneas:</p>
+<pre><code>from django.core.mail import send_mail
+
+send_mail(
+    'Subject here',
+    'Here is the message.',
+    'from@example.com',
+    ['to@example.com'],
+    fail_silently=False,
+)
+</code></pre>
+<p>El correo se envía usando el host SMTP y el puerto especificado en los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST"><code>EMAIL_HOST</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_PORT"><code>EMAIL_PORT</code></a>. Los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_USER"><code>EMAIL_HOST_USER</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_PASSWORD"><code>EMAIL_HOST_PASSWORD</code></a>, si están configurados, se utilizan para autenticarse en el servidor SMTP, y los ajustes <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_TLS"><code>EMAIL_USE_TLS</code></a> y <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_SSL"><code>EMAIL_USE_SSL</code></a> controlan si se utiliza una conexión segura.</p>
+<blockquote>
+<p>Nota
+El conjunto de caracteres del correo electrónico enviado con <code>django.core.mail</code> se ajustará al valor ajustado en <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-DEFAULT_CHARSET"><code>DEFAULT_CHARSET</code></a>.</p>
+</blockquote>
+<h2 id="send_mail"><a href="https://docs.djangoproject.com/es/3.0/topics/email/#send-mail"><code>send_mail()</code></a></h2>
+<pre><code class="language-python">send_mail`(subject, message, from_email, recipient_list, fail_silently=False, auth_user=None, auth_password=None, connection=None, html_message=None
+</code></pre>
+<p>En la mayoría de los casos, se puede enviar un correo electrónico usando <code>django.core.mail.send_mail()</code>.</p>
+<p>Se requieren los parámetros "subject", "message", "from_email" y "recipient_list".</p>
+<ul>
+<li><code>subject</code>: Una cadena.</li>
+<li><code>message</code>: Una cadena.</li>
+<li><code>from_email</code>: Una cadena.</li>
+<li><code>recipient_list</code>: Una lista de cadenas, cada una con una dirección de correo electrónico. Cada miembro de <em>la lista de recipientes</em> verá a los demás destinatarios en el campo "From:" del mensaje de correo electrónico.</li>
+<li><code>fail_silently</code>: Un booleano. Cuando es <code>False</code>, <code>send_mail()</code> levantará una <a href="https://docs.python.org/3/library/smtplib.html#smtplib.SMTPException"><code>smtplib.SMTPException</code></a> si ocurre un error. Consultar los documentos de <a href="https://docs.python.org/3/library/smtplib.html#module-smtplib"><code>smtplib</code></a> para ver una lista de posibles excepciones, todas ellas subclases de <a href="https://docs.python.org/3/library/smtplib.html#smtplib.SMTPException"><code>SMTPException</code></a>.</li>
+<li><code>auth_user</code>: El nombre de usuario opcional a usar para autenticarse en el servidor SMTP. Si no se proporciona, Django usará el valor del parámetro <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_USER"><code>EMAIL_HOST_USER</code></a>.</li>
+<li><code>auth_password</code>: La contraseña opcional a utilizar para autenticarse en el servidor SMTP. Si no se proporciona, Django utilizará el valor del parámetro <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_PASSWORD"><code>EMAIL_HOST_PASSWORD</code></a>.</li>
+<li><code>connection</code>: El backend opcional de correo electrónico a utilizar para enviar el correo. Si no se especifica, se usará una instancia del backend por defecto. Ver la documentación en <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topic-email-backends">Email backends</a> para más detalles.</li>
+<li><code>html_message</code>: Si se proporciona <code>html_message</code>, el correo electrónico resultante será un correo electrónico <em>multiparte/alternativo</em> con <code>message</code> como tipo de contenido <em>texto/plano</em> y <code>html_message</code> como tipo de contenido <em>texto/html</em>.</li>
+</ul>
+<p>El valor de retorno será el número de mensajes entregados con éxito (que puede ser <code>0</code> o <code>1</code> ya que sólo se puede enviar un mensaje).</p>
+<h2 id="send_mass_mail">send_mass_mail()</h2>
+<pre><code class="language-python">send_mass_mail(datatuple, fail_silently=False, auth_user=None, auth_password=None, connection=None)
+</code></pre>
+<p><code>django.core.mail.send_mass_mail()</code> está pensado para manejar el envío masivo de correo electrónico.</p>
+<p><code>datatuple</code> es una tupla en la que cada elemento está en este formato:
+```￼
+(subject, message, from_email, recipient_list)</p>
+<pre><code>`fail_silently`, `auth_user` y `auth_password` tienen las mismas funciones que en `send_mail()`.
+
+Cada elemento separado del `datatuple` resulta en un mensaje de correo electrónico separado. Al igual que en `send_mail()`, los destinatarios de la misma lista de destinatarios verán todas las demás direcciones en el campo &quot;To:&quot; de los mensajes de correo electrónico.
+
+Por ejemplo, el siguiente código enviaría dos mensajes diferentes a dos conjuntos de destinatarios diferentes; sin embargo, sólo se abriría una conexión con el servidor de correo:
+
+```python
+mensaje1 = ('Subject here', 'Here is the message', 'from@example.com', ['first@example.com', 'other@example.com'])
+message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['second@test.com'])
+send_mass_mail((mensaje1, mensaje2), fail_silently=False)
+</code></pre>
+<p>El valor de retorno será el número de mensajes entregados con éxito.</p>
+<h2 id="send_mass_mail-vs-send_mail"><code>send_mass_mail()</code> vs. <code>send_mail()</code></h2>
+<p>La principal diferencia entre <code>send_mass_mail()</code> y <code>send_mail()</code> es que <code>send_mail()</code> abre una conexión al servidor de correo cada vez que se ejecuta, mientras que send_mass_mail() utiliza una única conexión para todos sus mensajes. Esto hace que <code>send_mass_mail()</code> sea ligeramente más eficiente.</p>
+<pre><code class="language-python">mail_admins()
+mail_admins(subject, message, fail_silently=Falso, connection=None, html_message=None)
+</code></pre>
+<h2 id="mail_admins"><code>mail_admins()</code></h2>
+<pre><code>mail_admins`(*subject*, *message*, *fail_silently=False*, *connection=None*, *html_message=None*)
+</code></pre>
+<p><code>django.core.mail.mail_admins()</code> es un atajo para enviar un correo electrónico a los administradores del sitio, como se define en la configuración de ADMINS.</p>
+<p><code>mail_admins()</code> antepone al asunto el valor del ajuste <code>EMAIL_SUBJECT_PREFIX</code>, que es <code>[Django]</code>  por defecto.</p>
+<p>El encabezado "From:" del correo electrónico será el valor del ajuste <code>SERVER_EMAIL</code>.</p>
+<p>Este método existe por conveniencia y legibilidad.</p>
+<p>Si se proporciona <code>html_message</code>, el correo electrónico resultante será un correo electrónico multiparte/alternativo con el mensaje de tipo text/plain y <code>html_message</code> de tipo text/html.</p>
+<h2 id="mail_managers">mail_managers()</h2>
+<pre><code>mail_managers(subject, message, fail_silently=Falso, connection=None, html_message=None)
+</code></pre>
+<p><code>django.core.mail.mail_managers()</code> es igual que <code>mail_admins()</code>, excepto que envía un correo electrónico a los administradores del sitio, como se define en la configuración <code>MANAGERS</code>.</p>
+<h3 id="ejemplos">Ejemplos</h3>
+<p>Esto envía un solo correo electrónico a john@example.com y jane@example.com, y ambos aparecen en el "Para:'':</p>
+<pre><code class="language-python">send_mail(
+    &quot;Sujeto&quot;,
+    &quot;Mensaje&quot;,
+    'from@example.com',
+    ['john@example.com', 'jane@example.com'],
+)
+</code></pre>
+<p>Esto envía un mensaje a john@example.com y jane@example.com, y ambos reciben un correo electrónico separado:</p>
+<pre><code class="language-python">datatuple = (('Asunto', 'Mensaje', 'from@example.com', ['john@example.com']),
+('Asunto', 'Mensaje', 'from@example.com', ['jane@example.com']),)
+send_mass_mail(datatuple)
+</code></pre>
+<p>Prevenir la inyección en la cabeza...
+La inyección de cabeceras es un exploit de seguridad en el que un atacante inserta cabeceras de correo electrónico adicionales para controlar el "Para:" y "Desde:" en los mensajes de correo electrónico que sus scripts generan.</p>
+<p>Las funciones de correo electrónico de Django descritas anteriormente protegen contra la inyección de encabezado prohibiendo las nuevas líneas en los valores de los encabezados. Si algún asunto, from_email o recipient_list contiene una nueva línea (ya sea en estilo Unix, Windows o Mac), la función de correo electrónico (p. ej., send_mail()) elevará django.core.mail.BadHeaderError (una subclase de ValueError) y, por lo tanto, no enviará el correo electrónico. Es tu responsabilidad validar todos los datos antes de pasarlos a las funciones de correo electrónico.</p>
+<p>Si un mensaje contiene cabeceras al principio de la cadena, las cabeceras se imprimirán como el primer bit del mensaje de correo electrónico.</p>
+<p>Aquí hay una vista de ejemplo que toma un asunto, mensaje y from_email de los datos POST de la solicitud, lo envía a admin@example.com y lo redirige a "/contacto/gracias/" cuando está hecho:</p>
+<p>￼
+desde django.core.mail importar BadHeaderError, send_mail
+de django.http import HttpResponse, HttpResponseRedirect</p>
+<p>def send_email(request):
+    subject = request.POST.get('subject', '')
+    mensaje = request.POST.get('mensaje', '')
+    from_email = request.POST.get('from_email', '')
+    si el asunto y el mensaje y from_email:
+        Inténtalo:
+            send_mail(subject, message, from_email, ['admin@example.com'])
+        excepto BadHeaderError:
+            devuelve HttpResponse('Cabecera inválida encontrada').
+        return HttpResponseRedirect('/contacto/gracias/')
+    ...sino..:
+        # En realidad usaríamos una clase de forma
+        # para obtener los errores de validación adecuados.
+        devuelve HttpResponse('Asegúrate de que todos los campos están introducidos y son válidos')
+La clase EmailMessage¶
+Las funciones send_mail() y send_mass_mail() de Django son en realidad envoltorios delgados que hacen uso de la clase EmailMessage.</p>
+<p>No todas las características de la clase EmailMessage están disponibles a través de las funciones send_mail() y las funciones de envoltura relacionadas. Si desea utilizar funciones avanzadas, como destinatarios CCO, archivos adjuntos o correo electrónico de varias partes, deberá crear instancias de EmailMessage directamente.</p>
+<p>Nota</p>
+<p>Esto es...<code>nd_mass_mail()</code><a href="https://docs.djangoproject.com/es/3.0/topics/email/#send-mass-mail">¶</a></p>
+<ul>
+<li><code>send_mass_mail</code>(<em>datatuple</em>, <em>fail_silently=False</em>, <em>auth_user=None</em>, <em>auth_password=None</em>, <em>connection=None</em>)[<a href="https://docs.djangoproject.com/es/3.0/_modules/django/core/mail/#send_mass_mail">fuente]</a><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mass_mail">¶</a></li>
+</ul>
+<p><code>django.core.mail.send_mass_mail()</code> is intended to handle mass emailing.</p>
+<p><code>datatuple</code> is a tuple in which each element is in this format:</p>
+<pre><code>(subject, message, from_email, recipient_list)
+</code></pre>
+<p><code>fail_silently</code>, <code>auth_user</code> and <code>auth_password</code> have the same functions as in <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a>.</p>
+<p>Each separate element of <code>datatuple</code> results in a separate email message. As in <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a>, recipients in the same <code>recipient_list</code> will all see the other addresses in the email messages” «To:» field.</p>
+<p>For example, the following code would send two different messages to two different sets of recipients; however, only one connection to the mail server would be opened:</p>
+<pre><code>message1 = ('Subject here', 'Here is the message', 'from@example.com', ['first@example.com', 'other@example.com'])
+message2 = ('Another Subject', 'Here is another message', 'from@example.com', ['second@test.com'])
+send_mass_mail((message1, message2), fail_silently=False)
+</code></pre>
+<p>The return value will be the number of successfully delivered messages.</p>
+<h3 id="send_mass_mail-vs-send_mail_1"><code>send_mass_mail()</code> vs. <code>send_mail()</code><a href="https://docs.djangoproject.com/es/3.0/topics/email/#send-mass-mail-vs-send-mail">¶</a></h3>
+<p>The main difference between <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mass_mail"><code>send_mass_mail()</code></a> and <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a> is that <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a> opens a connection to the mail server each time it’s executed, while <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mass_mail"><code>send_mass_mail()</code></a> uses a single connection for all of its messages. This makes <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mass_mail"><code>send_mass_mail()</code></a> slightly more efficient.</p>
+<h2 id="mail_admins_1"><code>mail_admins()</code><a href="https://docs.djangoproject.com/es/3.0/topics/email/#mail-admins">¶</a></h2>
+<ul>
+<li><code>mail_admins</code>(<em>subject</em>, <em>message</em>, <em>fail_silently=False</em>, <em>connection=None</em>, <em>html_message=None</em>)[<a href="https://docs.djangoproject.com/es/3.0/_modules/django/core/mail/#mail_admins">fuente]</a><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.mail_admins">¶</a></li>
+</ul>
+<p><code>django.core.mail.mail_admins()</code> is a shortcut for sending an email to the site admins, as defined in the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-ADMINS"><code>ADMINS</code></a> setting.</p>
+<p><code>mail_admins()</code> prefixes the subject with the value of the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_SUBJECT_PREFIX"><code>EMAIL_SUBJECT_PREFIX</code></a> setting, which is <code>"[Django] "</code> by default.</p>
+<p>The «From:» header of the email will be the value of the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-SERVER_EMAIL"><code>SERVER_EMAIL</code></a> setting.</p>
+<p>This method exists for convenience and readability.</p>
+<p>If <code>html_message</code> is provided, the resulting email will be a <em>multipart/alternative</em> email with <code>message</code> as the <em>text/plain</em> content type and <code>html_message</code> as the <em>text/html</em> content type.</p>
+<h2 id="mail_managers_1"><code>mail_managers()</code><a href="https://docs.djangoproject.com/es/3.0/topics/email/#mail-managers">¶</a></h2>
+<ul>
+<li><code>mail_managers</code>(<em>subject</em>, <em>message</em>, <em>fail_silently=False</em>, <em>connection=None</em>, <em>html_message=None</em>)[<a href="https://docs.djangoproject.com/es/3.0/_modules/django/core/mail/#mail_managers">fuente]</a><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.mail_managers">¶</a></li>
+</ul>
+<p><code>django.core.mail.mail_managers()</code> is just like <code>mail_admins()</code>, except it sends an email to the site managers, as defined in the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-MANAGERS"><code>MANAGERS</code></a> setting.</p>
+<h2 id="examples">Examples<a href="https://docs.djangoproject.com/es/3.0/topics/email/#examples">¶</a></h2>
+<p>This sends a single email to <a href="mailto:john%40example.com">john@example.com</a> and <a href="mailto:jane%40example.com">jane@example.com</a>, with them both appearing in the «To:»:</p>
+<pre><code>send_mail(
+    'Subject',
+    'Message.',
+    'from@example.com',
+    ['john@example.com', 'jane@example.com'],
+)
+</code></pre>
+<p>This sends a message to <a href="mailto:john%40example.com">john@example.com</a> and <a href="mailto:jane%40example.com">jane@example.com</a>, with them both receiving a separate email:</p>
+<pre><code>datatuple = (
+    ('Subject', 'Message.', 'from@example.com', ['john@example.com']),
+    ('Subject', 'Message.', 'from@example.com', ['jane@example.com']),
+)
+send_mass_mail(datatuple)
+</code></pre>
+<h2 id="preventing-header-injection">Preventing header injection<a href="https://docs.djangoproject.com/es/3.0/topics/email/#preventing-header-injection">¶</a></h2>
+<p><a href="http://www.nyphp.org/phundamentals/8_Preventing-Email-Header-Injection">Header injection</a> is a security exploit in which an attacker inserts extra email headers to control the «To:» and «From:» in email messages that your scripts generate.</p>
+<p>The Django email functions outlined above all protect against header injection by forbidding newlines in header values. If any <code>subject</code>, <code>from_email</code> or <code>recipient_list</code> contains a newline (in either Unix, Windows or Mac style), the email function (e.g. <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a>) will raise <code>django.core.mail.BadHeaderError</code> (a subclass of <code>ValueError</code>) and, hence, will not send the email. It’s your responsibility to validate all data before passing it to the email functions.</p>
+<p>If a <code>message</code> contains headers at the start of the string, the headers will be printed as the first bit of the email message.</p>
+<p>Here’s an example view that takes a <code>subject</code>, <code>message</code> and <code>from_email</code> from the request’s POST data, sends that to <a href="mailto:admin%40example.com">admin@example.com</a> and redirects to «/contact/thanks/» when it’s done:</p>
+<pre><code>from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
+
+def send_email(request):
+    subject = request.POST.get('subject', '')
+    message = request.POST.get('message', '')
+    from_email = request.POST.get('from_email', '')
+    if subject and message and from_email:
+        try:
+            send_mail(subject, message, from_email, ['admin@example.com'])
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        return HttpResponseRedirect('/contact/thanks/')
+    else:
+        # In reality we'd use a form class
+        # to get proper validation errors.
+        return HttpResponse('Make sure all fields are entered and valid.')
+</code></pre>
+<h2 id="the-emailmessage-class">The <code>EmailMessage</code> class<a href="https://docs.djangoproject.com/es/3.0/topics/email/#the-emailmessage-class">¶</a></h2>
+<p>Django’s <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a> and <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mass_mail"><code>send_mass_mail()</code></a> functions are actually thin wrappers that make use of the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> class.</p>
+<p>Not all features of the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> class are available through the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a> and related wrapper functions. If you wish to use advanced features, such as BCC’ed recipients, file attachments, or multi-part email, you’ll need to create <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> instances directly.</p>
+<p>Nota</p>
+<p>This is a design feature. <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.send_mail"><code>send_mail()</code></a> and related functions were originally the only interface Django provided. However, the list of parameters they accepted was slowly growing over time. It made sense to move to a more object-oriented design for email messages and retain the original functions only for backwards compatibility.</p>
+<p><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> is responsible for creating the email message itself. The <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topic-email-backends">email backend</a> is then responsible for sending the email.</p>
+<p>For convenience, <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> provides a <code>send()</code> method for sending a single email. If you need to send multiple messages, the email backend API <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topics-sending-multiple-emails">provides an alternative</a>.</p>
+<h3 id="emailmessage-objects"><code>EmailMessage</code> Objects<a href="https://docs.djangoproject.com/es/3.0/topics/email/#emailmessage-objects">¶</a></h3>
+<ul>
+<li><em>class</em> <code>EmailMessage</code>[<a href="https://docs.djangoproject.com/es/3.0/_modules/django/core/mail/message/#EmailMessage">fuente]</a><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage">¶</a></li>
+</ul>
+<p>The <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> class is initialized with the following parameters (in the given order, if positional arguments are used). All parameters are optional and can be set at any time prior to calling the <code>send()</code> method.</p>
+<ul>
+<li><code>subject</code>: The subject line of the email.</li>
+<li><code>body</code>: The body text. This should be a plain text message.</li>
+<li><code>from_email</code>: The sender’s address. Both <code>fred@example.com</code> and <code>"Fred"</code> forms are legal. If omitted, the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-DEFAULT_FROM_EMAIL"><code>DEFAULT_FROM_EMAIL</code></a> setting is used.</li>
+<li><code>to</code>: A list or tuple of recipient addresses.</li>
+<li><code>bcc</code>: A list or tuple of addresses used in the «Bcc» header when sending the email.</li>
+<li><code>connection</code>: An email backend instance. Use this parameter if you want to use the same connection for multiple messages. If omitted, a new connection is created when <code>send()</code> is called.</li>
+<li><code>attachments</code>: A list of attachments to put on the message. These can be either <a href="https://docs.python.org/3/library/email.mime.html#email.mime.base.MIMEBase"><code>MIMEBase</code></a> instances, or <code>(filename, content, mimetype)</code> triples.</li>
+<li><code>headers</code>: A dictionary of extra headers to put on the message. The keys are the header name, values are the header values. It’s up to the caller to ensure header names and values are in the correct format for an email message. The corresponding attribute is <code>extra_headers</code>.</li>
+<li><code>cc</code>: A list or tuple of recipient addresses used in the «Cc» header when sending the email.</li>
+<li><code>reply_to</code>: A list or tuple of recipient addresses used in the «Reply-To» header when sending the email.</li>
+</ul>
+<p>For example:</p>
+<pre><code>from django.core.mail import EmailMessage
+
+email = EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to1@example.com', 'to2@example.com'],
+    ['bcc@example.com'],
+    reply_to=['another@example.com'],
+    headers={'Message-ID': 'foo'},
+)
+</code></pre>
+<p>The class has the following methods:</p>
+<ul>
+<li>
+<p><code>send(fail_silently=False)</code> sends the message. If a connection was specified when the email was constructed, that connection will be used. Otherwise, an instance of the default backend will be instantiated and used. If the keyword argument <code>fail_silently</code> is <code>True</code>, exceptions raised while sending the message will be quashed. An empty list of recipients will not raise an exception.</p>
+</li>
+<li>
+<p><code>message()</code> constructs a <code>django.core.mail.SafeMIMEText</code> object (a subclass of Python’s <a href="https://docs.python.org/3/library/email.mime.html#email.mime.text.MIMEText"><code>MIMEText</code></a> class) or a <code>django.core.mail.SafeMIMEMultipart</code> object holding the message to be sent. If you ever need to extend the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> class, you’ll probably want to override this method to put the content you want into the MIME object.</p>
+</li>
+<li>
+<p><code>recipients()</code> returns a list of all the recipients of the message, whether they’re recorded in the <code>to</code>, <code>cc</code> or <code>bcc</code> attributes. This is another method you might need to override when subclassing, because the SMTP server needs to be told the full list of recipients when the message is sent. If you add another way to specify recipients in your class, they need to be returned from this method as well.</p>
+</li>
+<li>
+<p><code>attach()</code> creates a new file attachment and adds it to the message. There are two ways to call <code>attach()</code>:</p>
+</li>
+<li>
+<p>You can pass it a single argument that is a <a href="https://docs.python.org/3/library/email.mime.html#email.mime.base.MIMEBase"><code>MIMEBase</code></a> instance. This will be inserted directly into the resulting message.</p>
+</li>
+<li>
+<p>Alternatively, you can pass <code>attach()</code> three arguments: <code>filename</code>, <code>content</code> and <code>mimetype</code>. <code>filename</code> is the name of the file attachment as it will appear in the email, <code>content</code> is the data that will be contained inside the attachment and <code>mimetype</code> is the optional MIME type for the attachment. If you omit <code>mimetype</code>, the MIME content type will be guessed from the filename of the attachment.</p>
+<p>For example:</p>
+</li>
+</ul>
+<pre><code>    message.attach('design.png', img_data, 'image/png')
+</code></pre>
+<pre><code>If you specify a `mimetype` of `message/rfc822`, it will also accept [`django.core.mail.EmailMessage`](https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage) and [`email.message.Message`](https://docs.python.org/3/library/email.compat32-message.html#email.message.Message).
+
+For a `mimetype` starting with `text/`, content is expected to be a string. Binary data will be decoded using UTF-8, and if that fails, the MIME type will be changed to `application/octet-stream` and the data will be attached unchanged.
+
+In addition, `message/rfc822` attachments will no longer be base64-encoded in violation of [**RFC 2046#section-5.2.1**](https://tools.ietf.org/html/rfc2046.html#section-5.2.1), which can cause issues with displaying the attachments in [Evolution](https://bugzilla.gnome.org/show_bug.cgi?id=651197) and [Thunderbird](https://bugzilla.mozilla.org/show_bug.cgi?id=333880).
+</code></pre>
+<ul>
+<li><code>attach_file()</code> creates a new attachment using a file from your filesystem. Call it with the path of the file to attach and, optionally, the MIME type to use for the attachment. If the MIME type is omitted, it will be guessed from the filename. You can use it like this:</li>
+</ul>
+<p><code>message.attach_file('/images/weather_map.png')</code></p>
+<p>For MIME types starting with <code>text/</code>, binary data is handled as in <code>attach()</code>.</p>
+<h4 id="sending-alternative-content-types">Sending alternative content types<a href="https://docs.djangoproject.com/es/3.0/topics/email/#sending-alternative-content-types">¶</a></h4>
+<p>It can be useful to include multiple versions of the content in an email; the classic example is to send both text and HTML versions of a message. With Django’s email library, you can do this using the <code>EmailMultiAlternatives</code> class. This subclass of <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> has an <code>attach_alternative()</code> method for including extra versions of the message body in the email. All the other methods (including the class initialization) are inherited directly from <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a>.</p>
+<p>To send a text and HTML combination, you could write:</p>
+<pre><code>from django.core.mail import EmailMultiAlternatives
+
+subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
+text_content = 'This is an important message.'
+html_content = '&lt;p&gt;This is an &lt;strong&gt;important&lt;/strong&gt; message.&lt;/p&gt;'
+msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+msg.attach_alternative(html_content, &quot;text/html&quot;)
+msg.send()
+</code></pre>
+<p>By default, the MIME type of the <code>body</code> parameter in an <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> is <code>"text/plain"</code>. It is good practice to leave this alone, because it guarantees that any recipient will be able to read the email, regardless of their mail client. However, if you are confident that your recipients can handle an alternative content type, you can use the <code>content_subtype</code> attribute on the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> class to change the main content type. The major type will always be <code>"text"</code>, but you can change the subtype. For example:</p>
+<pre><code>msg = EmailMessage(subject, html_content, from_email, [to])
+msg.content_subtype = &quot;html&quot;  # Main content is now text/html
+msg.send()
+</code></pre>
+<h2 id="email-backends">Email backends<a href="https://docs.djangoproject.com/es/3.0/topics/email/#email-backends">¶</a></h2>
+<p>The actual sending of an email is handled by the email backend.</p>
+<p>The email backend class has the following methods:</p>
+<ul>
+<li><code>open()</code> instantiates a long-lived email-sending connection.</li>
+<li><code>close()</code> closes the current email-sending connection.</li>
+<li><code>send_messages(email_messages)</code> sends a list of <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> objects. If the connection is not open, this call will implicitly open the connection, and close the connection afterwards. If the connection is already open, it will be left open after mail has been sent.</li>
+</ul>
+<p>It can also be used as a context manager, which will automatically call <code>open()</code> and <code>close()</code> as needed:</p>
+<pre><code>from django.core import mail
+
+with mail.get_connection() as connection:
+    mail.EmailMessage(
+        subject1, body1, from1, [to1],
+        connection=connection,
+    ).send()
+    mail.EmailMessage(
+        subject2, body2, from2, [to2],
+        connection=connection,
+    ).send()
+</code></pre>
+<h3 id="obtaining-an-instance-of-an-email-backend">Obtaining an instance of an email backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#obtaining-an-instance-of-an-email-backend">¶</a></h3>
+<p>The <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.get_connection"><code>get_connection()</code></a> function in <code>django.core.mail</code> returns an instance of the email backend that you can use.</p>
+<ul>
+<li><code>get_connection</code>(<em>backend=None</em>, <em>fail_silently=False</em>, <strong>args<em>, </em></strong>kwargs*)[<a href="https://docs.djangoproject.com/es/3.0/_modules/django/core/mail/#get_connection">fuente]</a><a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.get_connection">¶</a></li>
+</ul>
+<p>By default, a call to <code>get_connection()</code> will return an instance of the email backend specified in <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_BACKEND"><code>EMAIL_BACKEND</code></a>. If you specify the <code>backend</code> argument, an instance of that backend will be instantiated.</p>
+<p>The <code>fail_silently</code> argument controls how the backend should handle errors. If <code>fail_silently</code> is True, exceptions during the email sending process will be silently ignored.</p>
+<p>All other arguments are passed directly to the constructor of the email backend.</p>
+<p>Django ships with several email sending backends. With the exception of the SMTP backend (which is the default), these backends are only useful during testing and development. If you have special email sending requirements, you can <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topic-custom-email-backend">write your own email backend</a>.</p>
+<h4 id="smtp-backend">SMTP backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#smtp-backend">¶</a></h4>
+<ul>
+<li><em>class</em> <code>backends.smtp.``EmailBackend</code>(<em>host=None</em>, <em>port=None</em>, <em>username=None</em>, <em>password=None</em>, <em>use_tls=None</em>, <em>fail_silently=False</em>, <em>use_ssl=None</em>, <em>timeout=None</em>, <em>ssl_keyfile=None</em>, <em>ssl_certfile=None</em>, **<em>kwargs</em>)<a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.backends.smtp.EmailBackend">¶</a></li>
+</ul>
+<p>This is the default backend. Email will be sent through a SMTP server.The value for each argument is retrieved from the matching setting if the argument is <code>None</code>:<code>host</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST"><code>EMAIL_HOST</code></a><code>port</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_PORT"><code>EMAIL_PORT</code></a><code>username</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_USER"><code>EMAIL_HOST_USER</code></a><code>password</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST_PASSWORD"><code>EMAIL_HOST_PASSWORD</code></a><code>use_tls</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_TLS"><code>EMAIL_USE_TLS</code></a><code>use_ssl</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_USE_SSL"><code>EMAIL_USE_SSL</code></a><code>timeout</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_TIMEOUT"><code>EMAIL_TIMEOUT</code></a><code>ssl_keyfile</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_SSL_KEYFILE"><code>EMAIL_SSL_KEYFILE</code></a><code>ssl_certfile</code>: <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_SSL_CERTFILE"><code>EMAIL_SSL_CERTFILE</code></a>The SMTP backend is the default configuration inherited by Django. If you want to specify it explicitly, put the following in your settings:<code>EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'</code>If unspecified, the default <code>timeout</code> will be the one provided by <a href="https://docs.python.org/3/library/socket.html#socket.getdefaulttimeout"><code>socket.getdefaulttimeout()</code></a>, which defaults to <code>None</code> (no timeout).</p>
+<h4 id="console-backend">Console backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#console-backend">¶</a></h4>
+<p>Instead of sending out real emails the console backend just writes the emails that would be sent to the standard output. By default, the console backend writes to <code>stdout</code>. You can use a different stream-like object by providing the <code>stream</code> keyword argument when constructing the connection.</p>
+<p>To specify this backend, put the following in your settings:</p>
+<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+</code></pre>
+<p>This backend is not intended for use in production – it is provided as a convenience that can be used during development.</p>
+<h4 id="file-backend">File backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#file-backend">¶</a></h4>
+<p>The file backend writes emails to a file. A new file is created for each new session that is opened on this backend. The directory to which the files are written is either taken from the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_FILE_PATH"><code>EMAIL_FILE_PATH</code></a> setting or from the <code>file_path</code> keyword when creating a connection with <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.get_connection"><code>get_connection()</code></a>.</p>
+<p>To specify this backend, put the following in your settings:</p>
+<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/app-messages' # change this to a proper location
+</code></pre>
+<p>This backend is not intended for use in production – it is provided as a convenience that can be used during development.</p>
+<h4 id="in-memory-backend">In-memory backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#in-memory-backend">¶</a></h4>
+<p>The <code>'locmem'</code> backend stores messages in a special attribute of the <code>django.core.mail</code> module. The <code>outbox</code> attribute is created when the first message is sent. It’s a list with an <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> instance for each message that would be sent.</p>
+<p>To specify this backend, put the following in your settings:</p>
+<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+</code></pre>
+<p>This backend is not intended for use in production – it is provided as a convenience that can be used during development and testing.</p>
+<h4 id="dummy-backend">Dummy backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#dummy-backend">¶</a></h4>
+<p>As the name suggests the dummy backend does nothing with your messages. To specify this backend, put the following in your settings:</p>
+<pre><code>EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+</code></pre>
+<p>This backend is not intended for use in production – it is provided as a convenience that can be used during development.</p>
+<h3 id="defining-a-custom-email-backend">Defining a custom email backend<a href="https://docs.djangoproject.com/es/3.0/topics/email/#defining-a-custom-email-backend">¶</a></h3>
+<p>If you need to change how emails are sent you can write your own email backend. The <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_BACKEND"><code>EMAIL_BACKEND</code></a> setting in your settings file is then the Python import path for your backend class.</p>
+<p>Custom email backends should subclass <code>BaseEmailBackend</code> that is located in the <code>django.core.mail.backends.base</code> module. A custom email backend must implement the <code>send_messages(email_messages)</code> method. This method receives a list of <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> instances and returns the number of successfully delivered messages. If your backend has any concept of a persistent session or connection, you should also implement the <code>open()</code> and <code>close()</code> methods. Refer to <code>smtp.EmailBackend</code> for a reference implementation.</p>
+<h3 id="sending-multiple-emails">Sending multiple emails<a href="https://docs.djangoproject.com/es/3.0/topics/email/#sending-multiple-emails">¶</a></h3>
+<p>Establishing and closing an SMTP connection (or any other network connection, for that matter) is an expensive process. If you have a lot of emails to send, it makes sense to reuse an SMTP connection, rather than creating and destroying a connection every time you want to send an email.</p>
+<p>There are two ways you tell an email backend to reuse a connection.</p>
+<p>Firstly, you can use the <code>send_messages()</code> method. <code>send_messages()</code> takes a list of <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> instances (or subclasses), and sends them all using a single connection.</p>
+<p>For example, if you have a function called <code>get_notification_email()</code> that returns a list of <a href="https://docs.djangoproject.com/es/3.0/topics/email/#django.core.mail.EmailMessage"><code>EmailMessage</code></a> objects representing some periodic email you wish to send out, you could send these emails using a single call to send_messages:</p>
+<pre><code>from django.core import mail
+connection = mail.get_connection()   # Use default email connection
+messages = get_notification_email()
+connection.send_messages(messages)
+</code></pre>
+<p>In this example, the call to <code>send_messages()</code> opens a connection on the backend, sends the list of messages, and then closes the connection again.</p>
+<p>The second approach is to use the <code>open()</code> and <code>close()</code> methods on the email backend to manually control the connection. <code>send_messages()</code> will not manually open or close the connection if it is already open, so if you manually open the connection, you can control when it is closed. For example:</p>
+<pre><code>from django.core import mail
+connection = mail.get_connection()
+
+# Manually open the connection
+connection.open()
+
+# Construct an email message that uses the connection
+email1 = mail.EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to1@example.com'],
+    connection=connection,
+)
+email1.send() # Send the email
+
+# Construct two more messages
+email2 = mail.EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to2@example.com'],
+)
+email3 = mail.EmailMessage(
+    'Hello',
+    'Body goes here',
+    'from@example.com',
+    ['to3@example.com'],
+)
+
+# Send the two emails in a single call -
+connection.send_messages([email2, email3])
+# The connection was already open so send_messages() doesn't close it.
+# We need to manually close the connection.
+connection.close()
+</code></pre>
+<h2 id="configuring-email-for-development">Configuring email for development<a href="https://docs.djangoproject.com/es/3.0/topics/email/#configuring-email-for-development">¶</a></h2>
+<p>There are times when you do not want Django to send emails at all. For example, while developing a website, you probably don’t want to send out thousands of emails – but you may want to validate that emails will be sent to the right people under the right conditions, and that those emails will contain the correct content.</p>
+<p>The easiest way to configure email for local development is to use the <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topic-email-console-backend">console</a> email backend. This backend redirects all email to stdout, allowing you to inspect the content of mail.</p>
+<p>The <a href="https://docs.djangoproject.com/es/3.0/topics/email/#topic-email-file-backend">file</a> email backend can also be useful during development – this backend dumps the contents of every SMTP connection to a file that can be inspected at your leisure.</p>
+<p>Another approach is to use a «dumb» SMTP server that receives the emails locally and displays them to the terminal, but does not actually send anything. Python has a built-in way to accomplish this with a single command:</p>
+<pre><code>python -m smtpd -n -c DebuggingServer localhost:1025
+</code></pre>
+<p>This command will start a minimal SMTP server listening on port 1025 of localhost. This server prints to standard output all email headers and the email body. You then only need to set the <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_HOST"><code>EMAIL_HOST</code></a> and <a href="https://docs.djangoproject.com/es/3.0/ref/settings/#std:setting-EMAIL_PORT"><code>EMAIL_PORT</code></a> accordingly. For a more detailed discussion of SMTP server options, see the Python documentation for the <a href="https://docs.python.org/3/library/smtpd.html#module-smtpd"><code>smtpd</code></a> module.</p>
+<p>For information about unit-testing the sending of emails in your application, see the <a href="https://docs.djangoproject.com/es/3.0/topics/testing/tools/#topics-testing-email">Email services</a> section of the testing documentation. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

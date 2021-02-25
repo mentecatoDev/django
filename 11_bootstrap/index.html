@@ -161,7 +161,7 @@
               
                 <h1 id="11-bootstrap">11. Bootstrap</h1>
 <p>El desarrollo de la web requiere de muchas habilidades. No sólo hay que programar un sitio web para que funcione correctamente, los usuarios también esperan que se vea bien. Cuando se está creando todo desde cero, puede ser abrumador añadir también todo el HTML/CSS necesario para un sitio atractivo.</p>
-<p>Afortunadamente está <strong><a href="https://getbootstrap.com/">Bootstrap</a></strong> , el marco de trabajo más popular para construir proyectos <em>responsivos</em> y para móviles (aunque también podríamos contar con <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong>). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.</p>
+<p>Afortunadamente está <strong><a href="https://getbootstrap.com/">Bootstrap</a></strong> , el framework más popular para construir proyectos <em>responsivos</em> y para móviles (aunque también podríamos contar con <strong><a href="https://tailwindcss.com/">Tailwind CSS</a></strong>). En lugar de escribir nuestro propio CSS y JavaScript para las características comunes de diseño de sitios web, podemos confiar en Bootstrap para hacer el trabajo pesado. Esto significa que con sólo una pequeña cantidad de código de nuestra parte podemos tener rápidamente sitios web de gran apariencia. Y si queremos hacer cambios personalizados a medida que el proyecto avanza, también es fácil anular Bootstrap cuando sea necesario.</p>
 <p>Cuando centrarse en la funcionalidad de un proyecto, y no en el diseño, es lo importante, Bootstrap es una gran elección.</p>
 <h2 id="111-pages-app">11.1. Pages app</h2>
 <p>Hasta ahora se muestra la página de inicio incluyendo la lógica de la vista en el archivo <code>urls.py</code>. Aunque este enfoque funciona, es una triquiñuela y ciertamente no escala a medida que un sitio web crece con el tiempo. También es probablemente algo confuso para los recién llegados a Django. En su lugar se puede y debe crear una aplicación de páginas dedicadas para todas las <strong>páginas estáticas</strong>. Esto mantendrá el código bien organizado en el futuro. En la línea de comandos usar el comando <code>startapp</code> para crear la aplicación <code>pages</code>.</p>
@@ -376,16 +376,16 @@ mucho con muy poco código.</p>
                 {{ user.username }}
               &lt;/a&gt;
               &lt;div class=&quot;dropdown-menu dropdown-menu-lg-right&quot; aria-labelledby=&quot;navbarDropdown&quot;&gt;
-                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'password_change'%}&quot;&gt;Change password&lt;/a&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'password_change'%}&quot;&gt;Cambiar contraseña&lt;/a&gt;
                 &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'logout' %}&quot;&gt;Log Out&lt;/a&gt;
+                &lt;a class=&quot;dropdown-item&quot; href=&quot;{% url 'logout' %}&quot;&gt;Logout&lt;/a&gt;
               &lt;/div&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         {% else %}
           &lt;form class=&quot;form-inline ml-auto&quot;&gt;
-            &lt;a href=&quot;{% url 'login' %}&quot; class=&quot;btn btn-outline-secondary&quot;&gt;Log In&lt;/a&gt;
-            &lt;a href=&quot;{% url 'signup' %}&quot; class=&quot;btn btn-primary ml-2&quot;&gt;Sign up&lt;/a&gt;
+            &lt;a href=&quot;{% url 'login' %}&quot; class=&quot;btn btn-outline-secondary&quot;&gt;Login&lt;/a&gt;
+            &lt;a href=&quot;{% url 'signup' %}&quot; class=&quot;btn btn-primary ml-2&quot;&gt;Registrar&lt;/a&gt;
           &lt;/form&gt;
         {% endif %}
       &lt;/div&gt;
@@ -443,7 +443,7 @@ mucho con muy poco código.</p>
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #3rd Party
+    # 3rd Party
     'crispy_forms',
 
     # Local

@@ -172,7 +172,7 @@
 <pre><code>(news) $ python manage.py startapp articles
 </code></pre>
 <ul>
-<li>Añadirla a <code>INSTALLED_APPS</code> y actualizar la zona horaria ya que se marcará la hora de los artículos.</li>
+<li>Añadirla a <code>INSTALLED_APPS</code> y actualizar la <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">zona horaria</a> ya que se marcará la hora de los artículos.</li>
 <li>Para averiguar la zona horaria correspondiente:</li>
 </ul>
 <pre><code class="language-python">&gt;&gt;&gt; from pytz import all_timezones, common_timezones
@@ -192,7 +192,7 @@ True
     'crispy_forms',
 
     # Local
-    'users',
+    'accounts',
     'pages',
     'articles', # new
 ]
@@ -200,8 +200,8 @@ TIME_ZONE = 'Europe/Madrid'
 </code></pre>
 <ul>
 <li>Se define el modelo de base de datos con cuatro campos: <code>title</code>, <code>body</code>, <code>date</code>, y <code>author</code>.</li>
-<li>Para el campo <code>autor</code> se hará referencia al modelo de usuario personalizado <code>users.CustomUser</code> que se ha establecido en el archivo <code>settings.py</code> como <code>AUTH_USER_MODEL</code>. Por lo tanto, si se importa la configuración podemos referirnos a ella como <code>settings.AUTH_USER_MODEL</code>.</li>
-<li>También se implementa la 'buena mejores práctica' de definir un <code>get_absolute_url</code> desde el principio y un método <code>__str__</code> para ver el modelo en la interfaz de administración.</li>
+<li>Para el campo <code>autor</code> se hará referencia al modelo de usuario personalizado <code>accounts.CustomUser</code> que se ha establecido en el archivo <code>settings.py</code> como <code>AUTH_USER_MODEL</code>. Por lo tanto, si se importa la configuración podemos referirnos a ella como <code>settings.AUTH_USER_MODEL</code> o bien usando el método <code>get_user_model</code>. </li>
+<li>También implementamos práctica recomendada de definir un método <code>get_absolute_url</code> desde el principio y un método <code>__str__</code> para ver el modelo en nuestra interfaz de administración.</li>
 </ul>
 <p>FICHERO: <code>articles/models.py</code></p>
 <pre><code class="language-python">from django.conf import settings
@@ -214,15 +214,15 @@ class Article(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        get_user_model(),                         # ó settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
 
-def __str__(self):
-    return self.title
+    def __str__(self):
+        return self.title
 
-def get_absolute_url(self):
-    return reverse('article_detail', args=[str(self.id)])
+    def get_absolute_url(self):
+        return reverse('article_detail', args=[str(self.id)])
 </code></pre>
 <ul>
 <li>Como se tiene una nueva aplicación y modelo, es hora de hacer un nuevo archivo de migración y luego aplicarlo a la base de datos.</li>
@@ -256,20 +256,21 @@ admin.site.register(models.Article)
 from django.urls import path, include # new
 
 urlpatterns = [
-    path('', include('pages.urls')),
-    path('articles/', include('articles.urls')), # new
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('articles/', include('articles.urls')),            # new
+    path('', include('pages.urls')),
+
 ]
 </code></pre>
 <p>FICHERO: <code>articles/urls.py</code></p>
 <pre><code class="language-python">from django.urls import path
-from . import views
+from .views import ArticleListView
 
 
 urlpatterns = [
-    path('', views.ArticleListView.as_view(), name='article_list'),
+    path('', ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
 <ul>
@@ -277,11 +278,11 @@ urlpatterns = [
 </ul>
 <p>FICHERO: <code># articles/views.py</code></p>
 <pre><code class="language-python">from django.views.generic import ListView
-from . import models
+from .models import Article
 
 
 class ArticleListView(ListView):
-    model = models.Article
+    model = Article
     template_name = 'article_list.html'
 </code></pre>
 <ul>
@@ -312,7 +313,7 @@ class ArticleListView(ListView):
         {{ article.body }}
       &lt;/div&gt;
       &lt;div class=&quot;card-footer text-center text-muted&quot;&gt;
-        &lt;a href=&quot;#&quot;&gt;Edit&lt;/a&gt; | &lt;a href=&quot;#&quot;&gt;Delete&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;#&quot;&gt;Borrar&lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;br /&gt;
@@ -321,6 +322,7 @@ class ArticleListView(ListView):
 </code></pre>
 <ul>
 <li>Arracar el servidor y consultar la página <code>articles/</code></li>
+<li>Para más información de personalización consultar el siguiente <a href="https://docs.djangoproject.com/es/3.1/howto/custom-template-tags/">enlace</a></li>
 </ul>
 <h2 id="143-editarborrar">14.3. Editar/Borrar</h2>
 <ul>
@@ -329,13 +331,18 @@ class ArticleListView(ListView):
 </ul>
 <p>FICHERO: <code>articles/urls.py</code></p>
 <pre><code class="language-python">from django.urls import path
-from . import views
+from .views import(
+    ArticleListView,
+    ArticleUpdateView, # new
+    ArticleDetailView, # new
+    ArticleDeleteView, # new
+)
 
 urlpatterns = [
-    path('', views.ArticleListView.as_view(), name='article_list'),
-    path('&lt;int:pk&gt;/edit/',views.ArticleUpdateView.as_view(), name='article_edit'),# new
-    path('&lt;int:pk&gt;/', views.ArticleDetailView.as_view(), name='article_detail'), # new
-    path('&lt;int:pk&gt;/delete/', views.ArticleDeleteView.as_view(), name='article_delete'), # new
+    path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
+    path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'), # new
+    path('&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
+    path('', ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
 <ul>
@@ -345,28 +352,27 @@ urlpatterns = [
 <pre><code class="language-python">from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
-
-from . import models
+from .models import Article
 
 
 class ArticleListView(ListView):
-    model = models.Article
+    model = Article
     template_name = 'article_list.html'
 
 
 class ArticleDetailView(DetailView):
-    model = models.Article
+    model = Article
     template_name = 'article_detail.html'
 
 
 class ArticleUpdateView(UpdateView):
-    model = models.Article
+    model = Article
     fields = ['title', 'body', ]
     template_name = 'article_edit.html'
 
 
 class ArticleDeleteView(DeleteView):
-    model = models.Article
+    model = Article
     template_name = 'article_delete.html'
     success_url = reverse_lazy('article_list')
 </code></pre>
@@ -386,8 +392,8 @@ class ArticleDeleteView(DeleteView):
       &lt;p&gt;by {{ object.author }} | {{ object.date }}&lt;/p&gt;
       &lt;p&gt;{{ object.body }}&lt;/p&gt;
   &lt;/div&gt;
-  &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Edit&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Delete&lt;/a&gt;&lt;/p&gt;
-  &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;All Articles&lt;/a&gt;.&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;Todos los artículos&lt;/a&gt;.&lt;/p&gt;
 {% endblock content %}
 </code></pre>
 <ul>
@@ -400,7 +406,7 @@ class ArticleDeleteView(DeleteView):
   &lt;h1&gt;Edit&lt;/h1&gt;
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
     {{ form.as_p }}
-    &lt;button class=&quot;btn btn-info ml-2&quot; type=&quot;submit&quot;&gt;Update&lt;/button&gt;
+    &lt;button class=&quot;btn btn-info ml-2&quot; type=&quot;submit&quot;&gt;Actualizar&lt;/button&gt;
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
@@ -410,8 +416,8 @@ class ArticleDeleteView(DeleteView):
 {% block content %}
   &lt;h1&gt;Delete&lt;/h1&gt;
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
-    &lt;p&gt;Are you sure you want to delete &quot;{{ article.title }}&quot;?&lt;/p&gt;
-    &lt;button class=&quot;btn btn-danger ml- &quot; type=&quot;submit&quot;&gt;Confirm&lt;/button&gt;
+    &lt;p&gt;¿Estás seguro de que quieres borrar &quot;{{ article.title }}&quot;?&lt;/p&gt;
+    &lt;button class=&quot;btn btn-danger ml- &quot; type=&quot;submit&quot;&gt;Confirmar&lt;/button&gt;
   &lt;/form&gt;
 {% endblock %}
 </code></pre>
@@ -421,8 +427,8 @@ class ArticleDeleteView(DeleteView):
 <p>FICHERO: <code>templates/article_list.html</code></p>
 <pre><code class="language-html">...
 &lt;div class=&quot;card-footer text-center text-muted&quot;&gt;
-  &lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Edit&lt;/a&gt; |
-  &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Delete&lt;/a&gt;
+  &lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; |
+  &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;
 &lt;/div&gt;
 ...
 </code></pre>
