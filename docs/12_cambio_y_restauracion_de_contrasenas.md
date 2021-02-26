@@ -10,10 +10,10 @@ Django proporciona una implementación predeterminada que ya funciona para este 
 Para probarlo:
 
 - Hacer clic en el botón "Login" para asegurar que se ha iniciado sesión.
-- Luego navegar a la página "Password change" en http://127.0.0.1:8000/users/password_change/
+- Luego navegar a la página "Password change" en http://127.0.0.1:8000/accounts/password_change/
 - Introducir la antigua contraseña y luego una nueva. Luego hacer clic en el botón "Change My Password".
 - Se será redirigido a la página "Password change successful" ubicada en:
-http://127.0.0.1:8000/users/password_change/done/.
+http://127.0.0.1:8000/accounts/password_change/done/.
 
 ## 12.2. Personalizar el cambio de contraseña
 Se van a personalizar estas dos páginas de cambio de contraseña para que coincidan con el aspecto y la sensación del sitio del periódico.
@@ -157,9 +157,9 @@ FICHERO: `templates/registration/password_reset_done.html`
 {% block title %}Correo electrónico enviado{% endblock %}
 
 {% block content %}
-  <h1>Compruebe su buzón de correo electrónico.</h1>
+  <h1>Compruebe su buzón de correo electrónico</h1>
   <p>Se le ha enviado instrucciones para establecer su nueva contraseña.<br>
-     ¡Debería recibir el correo electrócino en breve!.</p>
+     ¡Debería recibir el correo electrónico en breve!.</p>
 {% endblock content %}
 ```
 Confirmar los cambios en http://127.0.0.1:8000/accounts/password_reset/done/
@@ -174,7 +174,7 @@ FICHERO: `templates/registration/password_reset_confirm.html`
 {% block title %}Introducir nueva contraseña{% endblock %}
 
 {% block content %}
-<h1>¡Establezca una nueva contraseñá!</h1>
+<h1>¡Establezca una nueva contraseña!</h1>
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
@@ -184,7 +184,7 @@ FICHERO: `templates/registration/password_reset_confirm.html`
 ```
 Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.
 
-Finalmente aquí está el código completo para reestablecer el password.
+Finalmente aquí está el código completo para restablecer el password.
 
 FICHERO: `templates/registration/password_reset_complete.html`
 ```html
@@ -194,8 +194,8 @@ FICHERO: `templates/registration/password_reset_complete.html`
 
 {% block content %}
 <h1>Restablecimiento de la contraseña completo</h1>
-<p>Su nueva contraseña se ha reestablecido. Puede logarse ahora en la página de <a href="{% url 'login' %}">login</a>.</p>
-{% endblock content%}
+<p>Su nueva contraseña se ha restablecido. Puede logarse ahora en la página de <a href="{% url 'login' %}">login</a>.</p>
+{% endblock content %}
 ```
 ## 12.5. Conclusión
 En el próximo capítulo se conectará *Newspaper* con el servicio de correo electrónico *SendGrid* para enviar realmente los correos electrónicos automatizados a los usuarios, en lugar de emitirlos en la consola de línea de comandos.
