@@ -174,9 +174,10 @@
 <li>Luego, justo debajo, agregar las siguientes cinco líneas de configuración de correo electrónico. Tener en cuenta que lo ideal sería almacenar información segura como la contraseña en variables de entorno, pero no estamos aquí para mantener las cosas simples.</li>
 </ul>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="language-python">EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'sendgrid_username'
-EMAIL_HOST_PASSWORD = 'sendgrid_password'
+<pre><code class="language-python">DEFAULT_FROM_EMAIL = '&lt;email&gt;'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '&lt;password apikey&gt;'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 </code></pre>

@@ -167,10 +167,10 @@
 <p>Para probarlo:</p>
 <ul>
 <li>Hacer clic en el botón "Login" para asegurar que se ha iniciado sesión.</li>
-<li>Luego navegar a la página "Password change" en http://127.0.0.1:8000/users/password_change/</li>
+<li>Luego navegar a la página "Password change" en http://127.0.0.1:8000/accounts/password_change/</li>
 <li>Introducir la antigua contraseña y luego una nueva. Luego hacer clic en el botón "Change My Password".</li>
 <li>Se será redirigido a la página "Password change successful" ubicada en:
-http://127.0.0.1:8000/users/password_change/done/.</li>
+http://127.0.0.1:8000/accounts/password_change/done/.</li>
 </ul>
 <h2 id="122-personalizar-el-cambio-de-contrasena">12.2. Personalizar el cambio de contraseña</h2>
 <p>Se van a personalizar estas dos páginas de cambio de contraseña para que coincidan con el aspecto y la sensación del sitio del periódico.</p>
@@ -290,9 +290,9 @@ El equipo de 127.0.0.1:8000
 {% block title %}Correo electrónico enviado{% endblock %}
 
 {% block content %}
-  &lt;h1&gt;Compruebe su buzón de correo electrónico.&lt;/h1&gt;
+  &lt;h1&gt;Compruebe su buzón de correo electrónico&lt;/h1&gt;
   &lt;p&gt;Se le ha enviado instrucciones para establecer su nueva contraseña.&lt;br&gt;
-     ¡Debería recibir el correo electrócino en breve!.&lt;/p&gt;
+     ¡Debería recibir el correo electrónico en breve!.&lt;/p&gt;
 {% endblock content %}
 </code></pre>
 <p>Confirmar los cambios en http://127.0.0.1:8000/accounts/password_reset/done/</p>
@@ -303,7 +303,7 @@ El equipo de 127.0.0.1:8000
 {% block title %}Introducir nueva contraseña{% endblock %}
 
 {% block content %}
-&lt;h1&gt;¡Establezca una nueva contraseñá!&lt;/h1&gt;
+&lt;h1&gt;¡Establezca una nueva contraseña!&lt;/h1&gt;
 &lt;form method=&quot;POST&quot;&gt;
   {% csrf_token %}
   {{ form.as_p }}
@@ -312,7 +312,7 @@ El equipo de 127.0.0.1:8000
 {% endblock content %}
 </code></pre>
 <p>Abrir la linea de comandos y tomar el enlace URL del correo electrónico enviado a la consola.</p>
-<p>Finalmente aquí está el código completo para reestablecer el password.</p>
+<p>Finalmente aquí está el código completo para restablecer el password.</p>
 <p>FICHERO: <code>templates/registration/password_reset_complete.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
 
@@ -320,8 +320,8 @@ El equipo de 127.0.0.1:8000
 
 {% block content %}
 &lt;h1&gt;Restablecimiento de la contraseña completo&lt;/h1&gt;
-&lt;p&gt;Su nueva contraseña se ha reestablecido. Puede logarse ahora en la página de &lt;a href=&quot;{% url 'login' %}&quot;&gt;login&lt;/a&gt;.&lt;/p&gt;
-{% endblock content%}
+&lt;p&gt;Su nueva contraseña se ha restablecido. Puede logarse ahora en la página de &lt;a href=&quot;{% url 'login' %}&quot;&gt;login&lt;/a&gt;.&lt;/p&gt;
+{% endblock content %}
 </code></pre>
 <h2 id="125-conclusion">12.5. Conclusión</h2>
 <p>En el próximo capítulo se conectará <em>Newspaper</em> con el servicio de correo electrónico <em>SendGrid</em> para enviar realmente los correos electrónicos automatizados a los usuarios, en lugar de emitirlos en la consola de línea de comandos.</p>

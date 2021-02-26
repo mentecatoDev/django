@@ -170,28 +170,39 @@
 <li>Se va a eliminar el autor de los campos y en su lugar se establecerá automáticamente a través del método <code>form_valid</code>.</li>
 </ul>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code>...
+<pre><code class="language-python">`...`
 class ArticleCreateView(CreateView):
     model = models.Article
     template_name = 'article_new.html'
-    fields = ['title', 'body']
+    fields = ('title', 'body')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-...
+`...`
 </code></pre>
 <blockquote>
-<p>Las vistas genéricas basadas en clases son increíbles para empezar nuevos proyectos, pero cuando se quieren personalizar, es necesario arremangarse y empezar a entender lo que pasa bajo el capó. Lo más probable es que lo que estás intentando hacer ya haya sido resuelto en algún lugar, ya sea dentro de Django mismo o en un foro como Stack Overflow. No tengas miedo de pedir ayuda!</p>
+<p>Las vistas genéricas basadas en clases son increíbles para empezar nuevos proyectos, pero cuando se quieren personalizar, es necesario remangarse y empezar a entender lo que pasa bajo el capó. Lo más probable es que lo que estás intentando hacer ya haya sido resuelto en algún lugar, ya sea dentro de Django mismo o en un foro como Stack Overflow. No tengas miedo de pedir ayuda!</p>
 </blockquote>
 <ul>
-<li>Ahora el autor ya no es un campo a rellenar si se crea un nuevo artículo y sino que se establece automáticamente según el usuario actual conectado.</li>
+<li>Ahora el autor ya no es un campo a rellenar si se crea un nuevo artículo sino que se establece automáticamente según el usuario actual conectado.</li>
 </ul>
 <h2 id="152-autorizaciones">15.2. Autorizaciones</h2>
 <ul>
-<li>Hay múltiples problemas en torno a la falta de autorizaciones en nuestro proyecto actual.<ul>
-<li>Nos gustaría restringir el acceso sólo a los usuarios para tener la opción de cobrar un día a los lectores de nuestro periódico.</li>
-<li>Cualquier usuario desconectado al azar que conozca la URL correcta puede acceder a cualquier parte del sitio.</li>
+<li>
+<p>Hay múltiples problemas en torno a la falta de autorizaciones en nuestro proyecto actual.</p>
+<ul>
+<li>
+<p>Nos gustaría restringir el acceso sólo a los usuarios para tener la opción de cobrar un día a los lectores de nuestro periódico.</p>
+</li>
+<li>
+<p>Cualquier usuario desconectado al azar que conozca la URL correcta puede acceder a cualquier parte del sitio.</p>
+</li>
+<li>
+<p>¿Qué pasaría si un usuario que ha cerrado la sesión intentara crear un nuevo artículo? Para probarlo haga clic en su nombre de usuario en la esquina superior derecha de la barra de navegación y seleccione "Cerrar sesión" en las opciones desplegables. El enlace "+ Nuevo" desaparece de la barra de navegación, pero ¿qué ocurre si vas directamente a: http://127.0.0.1:8000/articles/new/?: La página sigue ahí.</p>
+</li>
+<li>Intenta crear un nuevo artículo y pulsar el botón "Grabar".</li>
+<li>ERROR: El modelo espera un campo <code>author</code> que está enlazado al usuario logeado, pero, como no hay ninguno, no hay autor tampoco y por tanto el envío falla. ¿Qué hacer?</li>
 </ul>
 </li>
 </ul>
@@ -204,31 +215,62 @@ class ArticleCreateView(CreateView):
 </li>
 </ul>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code>from django.contrib.auth.mixins import LoginRequiredMixin # new
+<pre><code class="language-python">from django.contrib.auth.mixins import LoginRequiredMixin # new
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.urls import reverse_lazy
 
-...
+from .models import Article
 
+`...`
 class ArticleCreateView(LoginRequiredMixin, CreateView): # new
-    ...
+
 </code></pre>
 <ul>
 <li>Regresar a la URL para crear nuevos mensajes en http://127.0.0.1:8000/articles/new/ y se verá un error:<ul>
 <li>Django se ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en <code>/accounts/login</code>, sin embargo, en los URLs a nivel de proyecto se usa usando <code>users/</code> como ruta. Por eso la página de acceso está en <code>users/login</code>. Entonces, ¿cómo se informa a <code>ArticleCreateView</code> sobre esto?</li>
-<li>La respuesta está en la documentación para LoginRequired mixin. Se puede agregar ua ruta <code>login_url</code> para anular el parámetro por defecto. Se usa la URL con nombre de la ruta <code>login</code>.</li>
+<li>La respuesta está en la documentación para <code>LoginRequiredMixin</code>. Se puede agregar una ruta <code>login_url</code> para anular el parámetro por defecto. Se usa la URL con nombre de la ruta <code>login</code>.</li>
 </ul>
 </li>
 </ul>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code>...
+<pre><code class="language-python">from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Article
+
+
+class ArticleListView(LoginRequiredMixin, ListView): # new
+    model = Article
+    template_name = 'article_list.html'
+
+
+class ArticleDetailView(LoginRequiredMixin, DetailView): # new
+    model = Article
+    template_name = 'article_detail.html'
+
+
+class ArticleUpdateView(LoginRequiredMixin, UpdateView): # new
+    model = Article
+    fields = ('title', 'body',)
+    template_name = 'article_edit.html'
+
+
+class ArticleDeleteView(LoginRequiredMixin, DeleteView): # new
+    model = Article
+    template_name = 'article_delete.html'
+    success_url = reverse_lazy('article_list')
+
 class ArticleCreateView(LoginRequiredMixin, CreateView):
-    model = models.Article
+    model = Article
     template_name = 'article_new.html'
-    fields = ['title', 'body',]
-    login_url = 'login' # new
+    fields = ('title', 'body',)
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 </code></pre>
 <ul>
 <li>Probar el enlace para crear nuevos mensajes de nuevo: http://127.0.0.1:8000/articles/new/.<ul>
@@ -237,54 +279,45 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 </li>
 </ul>
 <h2 id="154-actualizando-las-vistas">15.4 Actualizando las vistas</h2>
+<p>Estamos progresando, pero todavía existe el problema de nuestras vistas de edición y borrado. Cualquier usuario conectado puede hacer cambios en cualquier artículo. Lo que queremos es restringir este acceso para que sólo el autor de un artículo tenga este permiso.
+Podríamos añadir lógica de permisos a cada vista para esto, pero una solución más elegante es crear un mixin dedicado, una clase con una característica particular que queremos reutilizar en nuestro código Django. Y mejor aún, Django viene con un mixin incorporado, <code>UserPassesTestMixin</code>, ¡sólo para este propósito!</p>
 <ul>
 <li>Restringir el acceso a las vistas es sólo cuestión de añadir <code>LoginRequiredMixin</code> al principio de todas las vistas existentes y especificar el <code>login_url</code> correcto.</li>
 <li>Actualizar el resto de las vistas de los artículos ya que no se desea que un usuario pueda crear, leer, actualizar o borrar un mensaje si no está conectado.</li>
 <li>El archivo completo <code>views.py</code> debería tener ahora este aspecto:</li>
 </ul>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code>from django.contrib.auth.mixins import LoginRequiredMixin
+<pre><code class="language-python">from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+    UserPassesTestMixin # new
+)
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from . import models
+from .models import Article
 
+`...`
 
-class ArticleListView(LoginRequiredMixin, ListView):
-    model = models.Article
-    template_name = 'article_list.html'
-    login_url = 'login'
-
-
-class ArticleDetailView(LoginRequiredMixin, DetailView):
-    model = models.Article
-    template_name = 'article_detail.html'
-    login_url = 'login'
-
-
-class ArticleUpdateView(LoginRequiredMixin, UpdateView):
-    model = models.Article
-    fields = ['title', 'body', ]
+class ArticleUpdateView(
+    LoginRequiredMixin, UserPassesTestMixin, UpdateView): # new
+    model = Article
+    fields = ('title', 'body',)
     template_name = 'article_edit.html'
-    login_url = 'login'
 
+    def test_func(self): # new
+        obj = self.get_object()
+    return obj.author == self.request.user
 
-class ArticleDeleteView(LoginRequiredMixin, DeleteView):
-    model = models.Article
+class ArticleDeleteView(
+    LoginRequiredMixin, UserPassesTestMixin, DeleteView): # new
+    model = Article
     template_name = 'article_delete.html'
     success_url = reverse_lazy('article_list')
-    login_url = 'login'
 
+    def test_func(self): # new
+        obj = self.get_object()
+        return obj.author == self.request.user
 
-class ArticleCreateView(LoginRequiredMixin, CreateView):
-    model = models.Article
-    template_name = 'article_new.html'
-    fields = ['title', 'body', ]
-    login_url = 'login'
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
 </code></pre>
 <ul>
 <li>Jugar con el sitio para confirmar que las redirecciones de acceso ahora funcionan como se esperaba.</li>

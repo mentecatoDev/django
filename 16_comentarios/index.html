@@ -161,23 +161,24 @@
 <ul>
 <li>Dos maneras:</li>
 <li>Crear una aplicación de comentarios dedicada y enlazarla a los artículos (sobreingeniería en este momento).</li>
-<li>Añadir un modelo adicional llamado <code>Comment</code> a la aplicación de artículos y enlazarlo al modelo de Artículo a través de una clave externa.</li>
+<li>Añadir un modelo adicional llamado <code>Comment</code> a la aplicación de artículos y enlazarlo al modelo de Artículo a través de una clave foránea.</li>
 <li>Los usuarios también tendrán la posibilidad de dejar comentarios en los artículos de cualquier otro usuario.</li>
 </ul>
 <h2 id="161-modelo">16.1. Modelo</h2>
 <ul>
 <li>Añadir otra tabla a nuestra base de datos existente llamada <code>Comment</code>.<ul>
-<li>Tendrá una relación muchos a uno de clave primaria con <code>Article</code>: un artículo puede tener muchos comentarios, pero no al revés. Tradicionalmente el nombre del campo de la clave foránea es simplemente el modelo con el que se vincula, por lo que este campo se llamará <code>article</code>. Los otros dos campos serán <code>comment</code> y <code>author</code>.</li>
+<li>Tendrá una relación de muchos a uno con clave primaria  <code>Article</code>: un artículo puede tener muchos comentarios, pero no al revés. Tradicionalmente el nombre del campo de la clave foránea es simplemente el modelo con el que se vincula, por lo que este campo se llamará <code>article</code>. Los otros dos campos serán <code>comment</code> y <code>author</code>.</li>
 </ul>
 </li>
 </ul>
 <p>FICHERO: <code>articles/models.py</code></p>
-<pre><code>...
+<pre><code class="language-python">`...`
+
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     comment = models.CharField(max_length=140)
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        get_user_model(),         # ó settings.AUTH_USER_MODEL
         on_delete=models.CASCADE,
     )
 
@@ -216,43 +217,54 @@ admin.site.register(models.Comment)
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
-from . import models
+from .models import Article, Comment
 
+class CommentInline(admin.StackedInline): # new
+    model = Comment
 
-class CommentInline(admin.StackedInline):
-    model = models.Comment
-
-
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(admin.ModelAdmin): # new
     inlines = [
         CommentInline,
     ]
 
-
-admin.site.register(models.Article, ArticleAdmin)
-admin.site.register(models.Comment)
+admin.site.register(Article, ArticleAdmin) # new
+admin.site.register(Comment)
 </code></pre>
 <ul>
-<li>Se pueden ver y modificar todos los artículos y comentarios relacionados en un solo lugar.</li>
-<li>En caso de usar  <code>TabularInline</code> se muestra más información en menos espacio. Para cambiar a él sólo hay que cambiar <code>CommentInline</code> de <code>admin.StackedInline</code> a <code>admin.TabularInline</code>.</li>
+<li>
+<p>Se pueden ver y modificar todos los artículos y comentarios relacionados en un solo lugar.</p>
+</li>
+<li>
+<p>Note
+  that by default, the Django admin will display 3 empty rows here. You can change the default
+  number that appear with the extra field. So if you wanted no fields by default, the code would
+  look like this:</p>
+</li>
+<li>
+<p>FICHERO: <code>articles/admin.py</code></p>
+</li>
+</ul>
+<pre><code class="language-python">class CommentInline(admin.StackedInline):
+   model = Comment
+   extra = 0 # new
+</code></pre>
+<ul>
+<li>En caso de usar  <code>TabularInline</code> se muestra más información en menos espacio, lo cual es preferible. Para cambiar a él sólo hay que cambiar <code>CommentInline</code> de <code>admin.StackedInline</code> a <code>admin.TabularInline</code>.</li>
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
-from . import models
+from .models import Article, Comment
 
-
-class CommentInline(admin.TabularInline):
-    model = models.Comment
-
+class CommentInline(admin.TabularInline): # new
+    model = Comment
 
 class ArticleAdmin(admin.ModelAdmin):
     inlines = [
         CommentInline,
     ]
 
-
-admin.site.register(models.Article, ArticleAdmin)
-admin.site.register(models.Comment)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Comment)
 </code></pre>
 <ul>
 <li>Ver lo cambios en la página de administración de Django: todos los campos de cada modelo se muestran en la misma línea.</li>

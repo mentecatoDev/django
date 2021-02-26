@@ -112,7 +112,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#143-editarborrar">14.3. Editar/Borrar</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#14crear-la-page">14.Crear la page</a>
+    <li class="toctree-l2"><a class="reference internal" href="#14crear-page">14.Crear Page</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusión...</a>
     </li>
@@ -160,16 +160,14 @@
             <div class="section">
               
                 <h1 id="14-newspaper-app">14. Newspaper app</h1>
-<ul>
-<li>Habrá una página de artículos en la que los periodistas podrán publicar artículos, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada artículo, lo que introducirá el concepto de <em>claves externas</em>.</li>
-</ul>
+<p>Habrá una página de artículos en la que los periodistas podrán publicar, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada uno de ellos, lo que introducirá el concepto de <em>claves externas</em>.</p>
 <h2 id="141-articles-app">14.1. Articles app</h2>
 <ul>
 <li>No hay reglas rígidas sobre cómo llamar a las aplicaciones, excepto que no se puede usar el nombre de una aplicación incorporada.</li>
 <li>Una regla general es usar el plural del nombre de una aplicación -<code>posts</code>, <code>payments</code>, <code>users</code>, etc.- a menos que hacerlo sea obviamente incorrecto como en el caso común de <code>blog</code> donde el singular tiene más sentido.</li>
 <li>Crear la aplicación para los nuevos artículos.</li>
 </ul>
-<pre><code>(news) $ python manage.py startapp articles
+<pre><code class="language-bash">(news) $ python manage.py startapp articles
 </code></pre>
 <ul>
 <li>Añadirla a <code>INSTALLED_APPS</code> y actualizar la <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">zona horaria</a> ya que se marcará la hora de los artículos.</li>
@@ -180,7 +178,9 @@
 True
 </code></pre>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="language-python">INSTALLED_APPS = [
+<pre><code class="language-python">`...`
+
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -192,10 +192,17 @@ True
     'crispy_forms',
 
     # Local
-    'accounts',
-    'pages',
-    'articles', # new
+    'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    'articles.apps.ArticlesConfig',  # new
+=======
+    'articles.apps.ArticlesConfig', # new
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
+
+`...`
+
 TIME_ZONE = 'Europe/Madrid'
 </code></pre>
 <ul>
@@ -204,18 +211,19 @@ TIME_ZONE = 'Europe/Madrid'
 <li>También implementamos práctica recomendada de definir un método <code>get_absolute_url</code> desde el principio y un método <code>__str__</code> para ver el modelo en nuestra interfaz de administración.</li>
 </ul>
 <p>FICHERO: <code>articles/models.py</code></p>
-<pre><code class="language-python">from django.conf import settings
+<pre><code class="language-python">from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=255, verbose_name='Título')
+    body = models.TextField(verbose_name='Cuerpo')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha')
     author = models.ForeignKey(
         get_user_model(),                         # ó settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        verbose_name='Autor'
     )
 
     def __str__(self):
@@ -235,10 +243,10 @@ class Article(models.Model):
 </ul>
 <p>FICHERO: <code>articles/admin.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
-from . import models
+from .models import Article
 
 
-admin.site.register(models.Article)
+admin.site.register(Article)
 </code></pre>
 <ul>
 <li>Iniciar el servidor, ir a la página de administración y añadir algunos artículos de ejemplo.<ul>
@@ -261,7 +269,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('articles/', include('articles.urls')),            # new
     path('', include('pages.urls')),
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+=======
 
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 </code></pre>
 <p>FICHERO: <code>articles/urls.py</code></p>
@@ -307,7 +318,7 @@ class ArticleListView(ListView):
     &lt;div class=&quot;card&quot;&gt;
       &lt;div class=&quot;card-header&quot;&gt;
         &lt;span class=&quot;font-weight-bold&quot;&gt;{{ article.title }}&lt;/span&gt; &amp;middot;
-        &lt;span class=&quot;text-muted&quot;&gt;by {{ article.author }} | {{ article.date }}&lt;/span&gt;
+        &lt;span class=&quot;text-muted&quot;&gt;por {{ article.author }} | {{ article.date }}&lt;/span&gt;
       &lt;/div&gt;
       &lt;div class=&quot;card-body&quot;&gt;
         {{ article.body }}
@@ -331,7 +342,11 @@ class ArticleListView(ListView):
 </ul>
 <p>FICHERO: <code>articles/urls.py</code></p>
 <pre><code class="language-python">from django.urls import path
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+from .views import (
+=======
 from .views import(
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     ArticleListView,
     ArticleUpdateView, # new
     ArticleDetailView, # new
@@ -339,9 +354,15 @@ from .views import(
 )
 
 urlpatterns = [
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),    # new
+    path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'),       # new
+    path('&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'),# new
+=======
     path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
     path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'), # new
     path('&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     path('', ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
@@ -365,9 +386,25 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
 
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+class ArticleUpdateView(UpdateView):{% extends 'base.html' %}
+
+{% block content %}
+  &lt;div class=&quot;article-entry&quot;&gt;
+    &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
+      &lt;p&gt;por {{ object.author }} | {{ object.date }}&lt;/p&gt;
+      &lt;p&gt;{{ object.body }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;Todos los artículos&lt;/a&gt;.&lt;/p&gt;
+{% endblock content %}
+    model = Article
+    fields = ('title', 'body', )
+=======
 class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'body', ]
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     template_name = 'article_edit.html'
 
 
@@ -378,10 +415,24 @@ class ArticleDeleteView(DeleteView):
 </code></pre>
 <ul>
 <li>Finalmente se necesita añadir las nuevas plantillas.</li>
-<li>Se empezará con la página de detalles que mostrará el título, la fecha, el cuerpo y el autor con enlaces para editar y borrar. También enlazará hacia atrás con todos los artículos.</li>
-<li>El nombre de la ruta de edición es <code>article_edit</code> y tenemos que pasarle su clave principal <code>article.pk</code>.</li>
-<li>El nombre de la ruta de borrado es <code>article_delete</code> y también necesita una clave primaria <code>article.pk</code>.</li>
-<li>La página de artículos es una <code>ListView</code> por lo que no necesita que se le pase ningún argumento adicional.</li>
+</ul>
+<pre><code class="language-bash">(news) $ touch templates/article_detail.html
+(news) $ touch templates/article_edit.html
+(news) $ touch templates/article_delete.html
+</code></pre>
+<ul>
+<li>
+<p>Se empezará con la página de detalles que mostrará el título, la fecha, el cuerpo y el autor con enlaces para editar y borrar. También enlazará hacia atrás con todos los artículos.</p>
+</li>
+<li>
+<p>El nombre de la ruta de edición es <code>article_edit</code> y tenemos que pasarle su clave principal <code>article.pk</code>.</p>
+</li>
+<li>
+<p>El nombre de la ruta de borrado es <code>article_delete</code> y también necesita una clave primaria <code>article.pk</code>.</p>
+</li>
+<li>
+<p>La página de artículos es una <code>ListView</code> por lo que no necesita que se le pase ningún argumento adicional.</p>
+</li>
 </ul>
 <p>FICHERO: <code>templates/article_detail.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
@@ -389,11 +440,15 @@ class ArticleDeleteView(DeleteView):
 {% block content %}
   &lt;div class=&quot;article-entry&quot;&gt;
     &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
-      &lt;p&gt;by {{ object.author }} | {{ object.date }}&lt;/p&gt;
+      &lt;p&gt;por {{ object.author }} | {{ object.date }}&lt;/p&gt;
       &lt;p&gt;{{ object.body }}&lt;/p&gt;
   &lt;/div&gt;
   &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;&lt;/p&gt;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+  &lt;p&gt;Volver a la &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;lista de artículos&lt;/a&gt;.&lt;/p&gt;
+=======
   &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;Todos los artículos&lt;/a&gt;.&lt;/p&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 {% endblock content %}
 </code></pre>
 <ul>
@@ -403,7 +458,7 @@ class ArticleDeleteView(DeleteView):
 <pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
-  &lt;h1&gt;Edit&lt;/h1&gt;
+  &lt;h1&gt;Editar&lt;/h1&gt;
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
     {{ form.as_p }}
     &lt;button class=&quot;btn btn-info ml-2&quot; type=&quot;submit&quot;&gt;Actualizar&lt;/button&gt;
@@ -414,7 +469,7 @@ class ArticleDeleteView(DeleteView):
 <pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
-  &lt;h1&gt;Delete&lt;/h1&gt;
+  &lt;h1&gt;Borrar&lt;/h1&gt;
   &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
     &lt;p&gt;¿Estás seguro de que quieres borrar &quot;{{ article.title }}&quot;?&lt;/p&gt;
     &lt;button class=&quot;btn btn-danger ml- &quot; type=&quot;submit&quot;&gt;Confirmar&lt;/button&gt;
@@ -438,87 +493,93 @@ class ArticleDeleteView(DeleteView):
 <li>Si se hace clic en el enlace <code>Delete</code> el usuario será redirigido a la página de borrado.</li>
 <li>Si se presiona el aterrador botón rojo <code>Confirm</code> el usuario será redirigido a la página de artículos donde ahora habrá una entrada menos.</li>
 </ul>
-<p>00000000000000000000000000000000000000000000000000000000000000000000000000000</p>
-<h2 id="14crear-la-page">14.Crear la page</h2>
-<p>El paso final es una página de creación de nuevos artículos que podemos hacer con el CreateView de Django. Nuestros tres pasos son crear una vista, una url y una plantilla. Este flujo ya debería resultar bastante familiar. En nuestro archivo de vistas agregamos CreateView a las importaciones de la parte superior y hacemos una nueva clase ArticleCreateView que especifica nuestro modelo, plantilla y los campos disponibles.</p>
+<h2 id="14crear-page">14.Crear Page</h2>
+<p>El paso final es una página de creación de nuevos artículos que podemos hacer con el <code>CreateView</code> de Django. Nuestros tres pasos son crear una vista, una url y una plantilla. Este flujo ya debería resultar bastante familiar. En nuestro archivo de vistas agregamos <code>CreateView</code> a las importaciones de la parte superior y hacemos una nueva clase <code>ArticleCreateView</code> que especifica nuestro modelo, plantilla y los campos disponibles.</p>
 <p>FICHERO: <code>articles/views.py</code></p>
-<pre><code class="language-python">...
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-
+<pre><code class="language-python">`...`
+from django.views.generic.edit import (
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+`...`
 class ArticleCreateView(CreateView):
-    model = models.Article
+    model = Article
     template_name = 'article_new.html'
-    fields = ['title', 'body', 'author',]
-...
+    fields = ('title', 'body', 'author',)
 </code></pre>
 <p>Nótese que nuestros campos tienen autor ya que queremos asociar un nuevo artículo con un autor, sin embargo una vez que un artículo ha sido creado no queremos que un usuario pueda cambiar el autor, por lo que ArticleUpdateView sólo tiene los campos ['title', 'body',] .
 Actualizar nuestro archivo de urls con la nueva ruta para la vista.</p>
 <p>FICHERO: <code>articles/urls.py</code></p>
-<pre><code class="language-python">...
+<pre><code class="language-python">from django.urls import path
+from .views import (
+    ArticleListView,
+    ArticleUpdateView,
+    ArticleDetailView,
+    ArticleDeleteView,
+    ArticleCreateView, # new
+)
 urlpatterns = [
-    ...
-    path('new/', views.ArticleCreateView.as_view(), name='article_new'),
-    ...
+    path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),
+    path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'),
+    path('&lt;int:pk&gt;/delete/',ArticleDeleteView.as_view(), name='article_delete'),
+    path('new/', ArticleCreateView.as_view(), name='article_new'), # new
+    path('', ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
-<p>Luego, salga del servidor Control+c para crear una nueva plantilla llamada article_new.html .</p>
+<p>Luego, salga del servidor Control+c para crear una nueva plantilla llamada <code>article_new.html</code>.</p>
 <pre><code>(news) $ touch templates/article_new.html
 </code></pre>
 <p>Y actualizarlo con el siguiente código HTML.</p>
 <p>FICHERO: <code>templates/article_new.html</code></p>
-<pre><code>{% extends 'base.html' %}
+<pre><code class="language-html">{% extends 'base.html' %}
+
 {% block content %}
-&lt;h1&gt;New article&lt;/h1&gt;
-&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
-{{ form.as_p }}
-&lt;button class=&quot;btn btn-success ml- &quot; type=&quot;submit&quot;&gt;Save&lt;/button&gt;
-&lt;/form&gt;
-{% endblock %}
+    &lt;h1&gt;Nuevo artículo&lt;/h1&gt;
+    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
+        {{ form.as_p }}
+        &lt;button class=&quot;btn btn-success ml- &quot; type=&quot;submit&quot;&gt;Guardar&lt;/button&gt;
+    &lt;/form&gt;
+{% endblock content %}
 </code></pre>
 <p>Como paso final deberíamos añadir un enlace para crear nuevos artículos en nuestro navegador para que sea accesible en todas partes del sitio para los usuarios registrados.</p>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code>...
-&lt;body&gt;
-&lt;nav class=&quot;navbar navbar-expand-md navbar-dark bg-dark mb- &quot;&gt;
-&lt;a class=&quot;navbar-brand&quot; href=&quot;{% url 'home' %}&quot;&gt;Newspaper&lt;/a&gt;
-{% if user.is_authenticated %}
-&lt;ul class=&quot;navbar-nav mr-auto&quot;&gt;
-&lt;li class=&quot;nav-item&quot;&gt;&lt;a href=&quot;{% url 'article_new' %}&quot;&gt;+ New&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-{% endif %}
-&lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-tar\
-get=&quot;#navbarCollapse&quot; aria-controls=&quot;navbarCollapse&quot; aria-expanded=&quot;false&quot; aria-\
-label=&quot;Toggle navigation&quot;&gt;
-&lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
-&lt;/button&gt;
-...
+<pre><code class="language-html">&lt;body&gt;
+  &lt;nav class=&quot;navbar navbar-expand-lg navbar-dark bg-dark&quot;&gt;
+    &lt;a class=&quot;navbar-brand&quot; href=&quot;{% url 'home' %}&quot;&gt;Newspaper&lt;/a&gt;
+    {% if user.is_authenticated %}
+      &lt;ul class=&quot;navbar-nav mr-auto&quot;&gt;
+        &lt;li class=&quot;nav-item&quot;&gt;
+          &lt;a href=&quot;{% url 'article_new' %}&quot;&gt;+ Nuevo&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    {% endif %}
+`...`
 </code></pre>
-<p>¿Y por qué no usar Bootstrap para mejorar nuestra página web original ahora también? Podemos actualizar plantillas/home.html como sigue.</p>
+<p>¿Y por qué no usar Bootstrap para mejorar nuestra página web original ahora también? Podemos actualizar <code>templates/home.html</code> como sigue.</p>
 <p>FICHERO: <code>templates/home.html</code></p>
-<pre><code>{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+<pre><code class="language-html">{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
 {% block content %}
-&lt;div class=&quot;jumbotron&quot;&gt;
-&lt;h1 class=&quot;display- &quot;&gt;Newspaper app&lt;/h1&gt;
-&lt;p class=&quot;lead&quot;&gt;A Newspaper website built with Django.&lt;/p&gt;
-&lt;p class=&quot;lead&quot;&gt;
-&lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;{% url 'article_list' %}&quot; role=&quot;butt\
-on&quot;&gt;View All Articles&lt;/a&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-{% endblock %}
+  &lt;br/&gt;
+  &lt;div class=&quot;jumbotron&quot;&gt;
+    &lt;h1 class=&quot;display-4&quot;&gt;Newspaper app&lt;/h1&gt;
+    &lt;p class=&quot;lead&quot;&gt;Un Periódico con Django.&lt;/p&gt;
+    &lt;p class=&quot;lead&quot;&gt;
+      &lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;{% url 'article_list' %}&quot;
+      role=&quot;button&quot;&gt;Ver los artículos&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+{% endblock content %}
 </code></pre>
-<p>Ya hemos terminado. Vamos a confirmar que todo funciona como se esperaba. Arranca el servidor de nuevo python manage.py runserver y navega a nuestra página web en: http://127.0.0.1:8000/.273</p>
-<p>Página principal con nuevo enlace en la navegación
-Haz clic en el enlace "+ Nuevo" en la parte superior del navegador y serás redirigido a nuestra página de creación.</p>
-<p>Crear página
-Adelante, crea un nuevo artículo. Luego haz clic en el botón "Guardar". Serás redirigido a la página de detalles. ¿Por qué? Porque en nuestro archivo models.py establecemos el método get_-absolute_url en article_detail . Este es un buen enfoque porque si más tarde cambiamos el patrón de url de la página de detalles a, digamos, artículos/detalles/ / , la redirección seguirá funcionando. Se utilizará cualquier ruta asociada a article_detail; no hay código duro de la ruta en sí.</p>
-<p>Página de detalles
-Tengan en cuenta también que la clave principal aquí está en el URL. Aunque sólo estamos mostrando tres artículos ahora mismo, Django no reordena las claves primarias sólo porque hayamos borrado una. En la práctica, la mayoría de los sitios del mundo real no borran nada; en su lugar, "ocultan" los campos borrados, ya que esto facilita el mantenimiento de la integridad de una base de datos y da la opción de "recuperar" más adelante si es necesario. Con nuestro enfoque actual, una vez que algo se borra, ¡se va para siempre!
+<p>Ya hemos terminado. Vamos a confirmar que todo funciona como se esperaba. Arranca el servidor de nuevo <code>python manage.py runserver</code> y navega a nuestra página web en: http://127.0.0.1:8000/.</p>
+<p>Haz clic en el enlace "+ Nuevo" en la parte superior del navegador y serás redirigido a nuestra página de creación.</p>
+<p>Adelante, crea un nuevo artículo. Luego haz clic en el botón "Guardar". Serás redirigido a la página de detalles. ¿Por qué? Porque en nuestro archivo <code>models.py</code> establecemos el método <code>get_absolute_url</code> en <code>article_detail</code>. Este es un buen enfoque porque si más tarde cambiamos el patrón de url de la página de detalles a, digamos, <code>articles/details/4/</code> , la redirección seguirá funcionando. Se utilizará cualquier ruta asociada a <code>article_detail</code>; no hay código duro para la ruta en sí misma.</p>
+<p>Ten en cuenta también que la clave principal aquí está en el URL. Aunque sólo estamos mostrando tres artículos ahora mismo, Django no reordena las claves primarias sólo porque hayamos borrado una. En la práctica, la mayoría de los sitios del mundo real no borran nada; en su lugar, "ocultan" los campos borrados, ya que esto facilita el mantenimiento de la integridad de una base de datos y da la opción de "recuperar" más adelante si es necesario. Con nuestro enfoque actual, una vez que algo se borra, ¡se va para siempre!
 Haga clic en el enlace de "Todos los artículos" para ver nuestra nueva página de artículos.</p>
-<p>Página de artículos actualizada
-Hay un nuevo artículo en la parte inferior como se esperaba.</p>
+<p>Hay un nuevo artículo en la parte inferior, como se esperaba.</p>
 <h2 id="conclusion">Conclusión...</h2>
 <p>Hemos creado una aplicación de artículos dedicados con la funcionalidad de CRUD. Pero aún no hay permisos o autorizaciones, lo que significa que cualquiera puede hacer cualquier cosa. Un usuario desconectado puede visitar todas las URLs y cualquier usuario conectado puede editar o eliminar un artículo existente, ¡incluso uno que no sea suyo! En el próximo capítulo añadiremos permisos y autorizaciones a nuestro proyecto para arreglar esto.</p>
               
