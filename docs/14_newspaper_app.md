@@ -1,6 +1,6 @@
 # 14. Newspaper app
 
-- Habrá una página de artículos en la que los periodistas podrán publicar artículos, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada artículo, lo que introducirá el concepto de *claves externas*.
+Habrá una página de artículos en la que los periodistas podrán publicar, establecer permisos para que sólo el autor de un artículo pueda editarlo o borrarlo, y finalmente añadir la posibilidad de que otros usuarios escriban comentarios en cada uno de ellos, lo que introducirá el concepto de *claves externas*.
 
 ## 14.1. Articles app
 
@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
+<<<<<<< HEAD
     'articles.apps.ArticlesConfig',  # new
+=======
+    'articles.apps.ArticlesConfig', # new
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 
 `...`
@@ -58,12 +62,13 @@ from django.urls import reverse
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
-    body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=255, verbose_name='Título')
+    body = models.TextField(verbose_name='Cuerpo')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Fecha')
     author = models.ForeignKey(
         get_user_model(),    					  # ó settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        verbose_name='Autor'
     )
 
     def __str__(self):
@@ -109,6 +114,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('articles/', include('articles.urls')), 			# new
     path('', include('pages.urls')),
+<<<<<<< HEAD
+=======
+
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 ```
 
@@ -181,7 +190,11 @@ FICHERO: `templates/article_list.html`
 FICHERO: `articles/urls.py`
 ```python
 from django.urls import path
+<<<<<<< HEAD
 from .views import (
+=======
+from .views import(
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     ArticleListView,
     ArticleUpdateView, # new
     ArticleDetailView, # new
@@ -189,9 +202,15 @@ from .views import (
 )
 
 urlpatterns = [
+<<<<<<< HEAD
     path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),	 # new
     path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'), 		 # new
     path('<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'),# new
+=======
+    path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
+    path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'), # new
+    path('<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     path('', ArticleListView.as_view(), name='article_list'),
 ]
 ```
@@ -216,6 +235,7 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
 
+<<<<<<< HEAD
 class ArticleUpdateView(UpdateView):{% extends 'base.html' %}
 
 {% block content %}
@@ -229,6 +249,11 @@ class ArticleUpdateView(UpdateView):{% extends 'base.html' %}
 {% endblock content %}
     model = Article
     fields = ('title', 'body', )
+=======
+class ArticleUpdateView(UpdateView):
+    model = Article
+    fields = ['title', 'body', ]
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     template_name = 'article_edit.html'
 
 
@@ -264,7 +289,11 @@ FICHERO: `templates/article_detail.html`
       <p>{{ object.body }}</p>
   </div>
   <p><a href="{% url 'article_edit' article.pk %}">Editar</a> | <a href="{% url 'article_delete' article.pk %}">Borrar</a></p>
+<<<<<<< HEAD
   <p>Volver a la <a href="{% url 'article_list' %}">lista de artículos</a>.</p>
+=======
+  <p>Back to <a href="{% url 'article_list' %}">Todos los artículos</a>.</p>
+>>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 {% endblock content %}
 ```
 
