@@ -194,16 +194,12 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-    'articles.apps.ArticlesConfig',  # new
-=======
     'articles.apps.ArticlesConfig', # new
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 
 `...`
 
-TIME_ZONE = 'Europe/Madrid'
+TIME_ZONE = 'Europe/Madrid'         # new
 </code></pre>
 <ul>
 <li>Se define el modelo de base de datos con cuatro campos: <code>title</code>, <code>body</code>, <code>date</code>, y <code>author</code>.</li>
@@ -261,7 +257,7 @@ admin.site.register(Article)
 </ul>
 <p>FICHERO: <code># newspaper_project/urls.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
-from django.urls import path, include # new
+from django.urls import path, include                       # new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -269,10 +265,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('articles/', include('articles.urls')),            # new
     path('', include('pages.urls')),
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-=======
-
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 </code></pre>
 <p>FICHERO: <code>articles/urls.py</code></p>
@@ -327,7 +319,7 @@ class ArticleListView(ListView):
         &lt;a href=&quot;#&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;#&quot;&gt;Borrar&lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;br /&gt;
+    &lt;br&gt;
   {% endfor %}
 {% endblock content %}
 </code></pre>
@@ -342,11 +334,7 @@ class ArticleListView(ListView):
 </ul>
 <p>FICHERO: <code>articles/urls.py</code></p>
 <pre><code class="language-python">from django.urls import path
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-from .views import (
-=======
 from .views import(
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     ArticleListView,
     ArticleUpdateView, # new
     ArticleDetailView, # new
@@ -354,15 +342,9 @@ from .views import(
 )
 
 urlpatterns = [
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
     path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),    # new
     path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'),       # new
     path('&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'),# new
-=======
-    path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
-    path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'), # new
-    path('&lt;int:pk&gt;/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     path('', ArticleListView.as_view(), name='article_list'),
 ]
 </code></pre>
@@ -386,25 +368,9 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-class ArticleUpdateView(UpdateView):{% extends 'base.html' %}
-
-{% block content %}
-  &lt;div class=&quot;article-entry&quot;&gt;
-    &lt;h2&gt;{{ object.title }}&lt;/h2&gt;
-      &lt;p&gt;por {{ object.author }} | {{ object.date }}&lt;/p&gt;
-      &lt;p&gt;{{ object.body }}&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;&lt;/p&gt;
-  &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;Todos los artículos&lt;/a&gt;.&lt;/p&gt;
-{% endblock content %}
-    model = Article
-    fields = ('title', 'body', )
-=======
 class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'body', ]
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     template_name = 'article_edit.html'
 
 
@@ -444,11 +410,7 @@ class ArticleDeleteView(DeleteView):
       &lt;p&gt;{{ object.body }}&lt;/p&gt;
   &lt;/div&gt;
   &lt;p&gt;&lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; | &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;&lt;/p&gt;
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
   &lt;p&gt;Volver a la &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;lista de artículos&lt;/a&gt;.&lt;/p&gt;
-=======
-  &lt;p&gt;Back to &lt;a href=&quot;{% url 'article_list' %}&quot;&gt;Todos los artículos&lt;/a&gt;.&lt;/p&gt;
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 {% endblock content %}
 </code></pre>
 <ul>
@@ -480,12 +442,12 @@ class ArticleDeleteView(DeleteView):
 <li>Como paso final se añaden los enlaces de edición y borrado a la página de listas en la clase <code>div</code> para el <code>card-foot</code>. Serán los mismos que los añadidos a la página detalle.</li>
 </ul>
 <p>FICHERO: <code>templates/article_list.html</code></p>
-<pre><code class="language-html">...
-&lt;div class=&quot;card-footer text-center text-muted&quot;&gt;
-  &lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; |
-  &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;
-&lt;/div&gt;
-...
+<pre><code class="language-html">`...`
+      &lt;div class=&quot;card-footer text-center text-muted&quot;&gt;
+        &lt;a href=&quot;{% url 'article_edit' article.pk %}&quot;&gt;Editar&lt;/a&gt; |
+        &lt;a href=&quot;{% url 'article_delete' article.pk %}&quot;&gt;Borrar&lt;/a&gt;
+      &lt;/div&gt;
+`...`
 </code></pre>
 <ul>
 <li>Arrancar el servidor e ir a la página de <code>articles/</code> y pulsar sobre <code>Edit</code>.</li>
@@ -519,6 +481,7 @@ from .views import (
     ArticleDeleteView,
     ArticleCreateView, # new
 )
+
 urlpatterns = [
     path('&lt;int:pk&gt;/edit/', ArticleUpdateView.as_view(), name='article_edit'),
     path('&lt;int:pk&gt;/', ArticleDetailView.as_view(), name='article_detail'),
