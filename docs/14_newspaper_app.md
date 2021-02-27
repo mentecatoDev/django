@@ -38,16 +38,12 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
-<<<<<<< HEAD
-    'articles.apps.ArticlesConfig',  # new
-=======
     'articles.apps.ArticlesConfig', # new
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 
 `...`
 
-TIME_ZONE = 'Europe/Madrid'
+TIME_ZONE = 'Europe/Madrid'         # new
 ```
 
 - Se define el modelo de base de datos con cuatro campos: `title`, `body`, `date`, y `author`.
@@ -106,7 +102,7 @@ admin.site.register(Article)
 FICHERO: `# newspaper_project/urls.py`
 ```python
 from django.contrib import admin
-from django.urls import path, include # new
+from django.urls import path, include                       # new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -114,10 +110,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('articles/', include('articles.urls')), 			# new
     path('', include('pages.urls')),
-<<<<<<< HEAD
-=======
-
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 ]
 ```
 
@@ -172,7 +164,7 @@ FICHERO: `templates/article_list.html`
         <a href="#">Editar</a> | <a href="#">Borrar</a>
       </div>
     </div>
-    <br />
+    <br>
   {% endfor %}
 {% endblock content %}
 ```
@@ -190,11 +182,7 @@ FICHERO: `templates/article_list.html`
 FICHERO: `articles/urls.py`
 ```python
 from django.urls import path
-<<<<<<< HEAD
-from .views import (
-=======
 from .views import(
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     ArticleListView,
     ArticleUpdateView, # new
     ArticleDetailView, # new
@@ -202,15 +190,9 @@ from .views import(
 )
 
 urlpatterns = [
-<<<<<<< HEAD
     path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),	 # new
     path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'), 		 # new
     path('<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'),# new
-=======
-    path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),# new
-    path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'), # new
-    path('<int:pk>/delete/', ArticleDeleteView.as_view(), name='article_delete'), # new
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     path('', ArticleListView.as_view(), name='article_list'),
 ]
 ```
@@ -235,25 +217,9 @@ class ArticleDetailView(DetailView):
     template_name = 'article_detail.html'
 
 
-<<<<<<< HEAD
-class ArticleUpdateView(UpdateView):{% extends 'base.html' %}
-
-{% block content %}
-  <div class="article-entry">
-    <h2>{{ object.title }}</h2>
-      <p>por {{ object.author }} | {{ object.date }}</p>
-      <p>{{ object.body }}</p>
-  </div>
-  <p><a href="{% url 'article_edit' article.pk %}">Editar</a> | <a href="{% url 'article_delete' article.pk %}">Borrar</a></p>
-  <p>Back to <a href="{% url 'article_list' %}">Todos los artículos</a>.</p>
-{% endblock content %}
-    model = Article
-    fields = ('title', 'body', )
-=======
 class ArticleUpdateView(UpdateView):
     model = Article
     fields = ['title', 'body', ]
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
     template_name = 'article_edit.html'
 
 
@@ -289,11 +255,7 @@ FICHERO: `templates/article_detail.html`
       <p>{{ object.body }}</p>
   </div>
   <p><a href="{% url 'article_edit' article.pk %}">Editar</a> | <a href="{% url 'article_delete' article.pk %}">Borrar</a></p>
-<<<<<<< HEAD
   <p>Volver a la <a href="{% url 'article_list' %}">lista de artículos</a>.</p>
-=======
-  <p>Back to <a href="{% url 'article_list' %}">Todos los artículos</a>.</p>
->>>>>>> d877e94a4f92a03bbffd8a7162f3c622dfcefaec
 {% endblock content %}
 ```
 
@@ -329,12 +291,12 @@ FICHERO: `templates/article_delete.html`
 
 FICHERO: `templates/article_list.html`
 ```html
-...
-<div class="card-footer text-center text-muted">
-  <a href="{% url 'article_edit' article.pk %}">Editar</a> |
-  <a href="{% url 'article_delete' article.pk %}">Borrar</a>
-</div>
-...
+`...`
+      <div class="card-footer text-center text-muted">
+        <a href="{% url 'article_edit' article.pk %}">Editar</a> |
+        <a href="{% url 'article_delete' article.pk %}">Borrar</a>
+      </div>
+`...`
 ```
 
 - Arrancar el servidor e ir a la página de `articles/` y pulsar sobre `Edit`.
@@ -375,6 +337,7 @@ from .views import (
     ArticleDeleteView,
     ArticleCreateView, # new
 )
+
 urlpatterns = [
     path('<int:pk>/edit/', ArticleUpdateView.as_view(), name='article_edit'),
     path('<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
