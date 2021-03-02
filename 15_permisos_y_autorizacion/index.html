@@ -172,7 +172,7 @@
 <p>FICHERO: <code>articles/views.py</code></p>
 <pre><code class="language-python">`...`
 class ArticleCreateView(CreateView):
-    model = models.Article
+    model = Article
     template_name = 'article_new.html'
     fields = ('title', 'body')
 
@@ -228,7 +228,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView): # new
 </code></pre>
 <ul>
 <li>Regresar a la URL para crear nuevos mensajes en http://127.0.0.1:8000/articles/new/ y se verá un error:<ul>
-<li>Django se ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en <code>/accounts/login</code>, sin embargo, en los URLs a nivel de proyecto se usa usando <code>users/</code> como ruta. Por eso la página de acceso está en <code>users/login</code>. Entonces, ¿cómo se informa a <code>ArticleCreateView</code> sobre esto?</li>
+<li>Django se ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en <code>/accounts/login</code>, sin embargo, en los URLs a nivel de proyecto se usa  <code>users/</code> como ruta. Por eso la página de acceso está en <code>users/login</code>. Entonces, ¿cómo se informa a <code>ArticleCreateView</code> sobre esto?</li>
 <li>La respuesta está en la documentación para <code>LoginRequiredMixin</code>. Se puede agregar una ruta <code>login_url</code> para anular el parámetro por defecto. Se usa la URL con nombre de la ruta <code>login</code>.</li>
 </ul>
 </li>
@@ -270,7 +270,6 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
 </code></pre>
 <ul>
 <li>Probar el enlace para crear nuevos mensajes de nuevo: http://127.0.0.1:8000/articles/new/.<ul>
@@ -280,7 +279,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 </ul>
 <h2 id="154-actualizando-las-vistas">15.4 Actualizando las vistas</h2>
 <p>Estamos progresando, pero todavía existe el problema de nuestras vistas de edición y borrado. Cualquier usuario conectado puede hacer cambios en cualquier artículo. Lo que queremos es restringir este acceso para que sólo el autor de un artículo tenga este permiso.
-Podríamos añadir lógica de permisos a cada vista para esto, pero una solución más elegante es crear un mixin dedicado, una clase con una característica particular que queremos reutilizar en nuestro código Django. Y mejor aún, Django viene con un mixin incorporado, <code>UserPassesTestMixin</code>, ¡sólo para este propósito!</p>
+Podríamos añadir lógica de permisos a cada vista para esto, pero una solución más elegante es crear un mixin dedicado, una clase con una característica particular que queremos reutilizar en nuestro código Django. O mejor aún, Django viene con un mixin incorporado, <code>UserPassesTestMixin</code>, ¡sólo para este propósito!</p>
 <ul>
 <li>Restringir el acceso a las vistas es sólo cuestión de añadir <code>LoginRequiredMixin</code> al principio de todas las vistas existentes y especificar el <code>login_url</code> correcto.</li>
 <li>Actualizar el resto de las vistas de los artículos ya que no se desea que un usuario pueda crear, leer, actualizar o borrar un mensaje si no está conectado.</li>
@@ -306,7 +305,7 @@ class ArticleUpdateView(
 
     def test_func(self): # new
         obj = self.get_object()
-    return obj.author == self.request.user
+        return obj.author == self.request.user
 
 class ArticleDeleteView(
     LoginRequiredMixin, UserPassesTestMixin, DeleteView): # new
@@ -317,7 +316,7 @@ class ArticleDeleteView(
     def test_func(self): # new
         obj = self.get_object()
         return obj.author == self.request.user
-
+`...`
 </code></pre>
 <ul>
 <li>Jugar con el sitio para confirmar que las redirecciones de acceso ahora funcionan como se esperaba.</li>
