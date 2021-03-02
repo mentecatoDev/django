@@ -14,11 +14,12 @@ FICHERO: `articles/models.py`
 `...`
 
 class Comment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=140)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='Artículo')
+    comment = models.CharField(max_length=140, verbose_name='Comentario')
     author = models.ForeignKey(
         get_user_model(),         # ó settings.AUTH_USER_MODEL
         on_delete=models.CASCADE,
+        verbose_name='Autor'
     )
 
     def __str__(self):
@@ -26,6 +27,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         return reverse('article_list')
+
 ```
 - El modelo `Comment` tiene un método `__str__` y un método `get_absolute_url` que regresa a la página principal `articles/`.
 - Ya que se han actualizado los modelos, es hora de hacer un nuevo archivo de migración y luego aplicarlo.
@@ -42,13 +44,14 @@ class Comment(models.Model):
 
 FICHERO: `articles/admin.py`
 ```python
+# articles/admin.py
 from django.contrib import admin
-from . import models
+from .models import Article, Comment # new
 
-admin.site.register(models.Article)
-admin.site.register(models.Comment)
+admin.site.register(Article)
+admin.site.register(Comment) # new
 ```
-- En este punto se podríamos añadir un campo de administración adicional para ver el comentario y el artículo en la página de administración de Django. ¿Pero no sería mejor ver todos los modelos de `Comment` relacionados con un solo modelo `Post`? Resulta que sí, con una función de administración de Django llamada **inlines** que muestra las relaciones de claves externas de una manera más visual y agradable.
+- En este punto podríamos añadir un campo de administración adicional para ver el comentario y el artículo en la página de administración de Django. ¿Pero no sería mejor ver todos los modelos de `Comment` relacionados con un solo modelo `Post`? Resulta que sí, con una función de administración de Django llamada **inlines** que muestra las relaciones de claves externas de una manera más visual y agradable.
 - Hay dos vistas **inlines** principales: `TabularInline` y `StackedInline`. La única diferencia entre las dos es el modelo para mostrar la información. En una `TabularInline` todos los campos del modelo aparecen en una línea mientras que en una `StackedInline` cada campo tiene su propia línea.
 - Se implementarán las dos para decidir cuál se prefiere
 
@@ -57,10 +60,10 @@ FICHERO: `articles/admin.py`
 from django.contrib import admin
 from .models import Article, Comment
 
-class CommentInline(admin.StackedInline): # new
+class CommentInline(admin.StackedInline):  # new
 	model = Comment
 
-class ArticleAdmin(admin.ModelAdmin): # new
+class ArticleAdmin(admin.ModelAdmin):      # new
 	inlines = [
 		CommentInline,
 	]
@@ -113,14 +116,25 @@ admin.site.register(Comment)
 - Para empezar, agregar un atributo `related_name` al modelo de comentarios. Un buen valor por defecto es nombrarlo en el plural del modelo que contiene la clave foránea.
 
 FICHERO: `articles/models.py`
-```
-...
+```python
+`...`
 class Comment(models.Model):
     article = models.ForeignKey(
         Article,
         on_delete=models.CASCADE,
-        related_name='comments' # new
-)
+        related_name='comments', # new
+    )
+    comment = models.CharField(max_length=140)
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+    )
+
+    def__str__(self):
+        return self.comment
+
+    def get_absolute_url(self):
+        return reverse('article_list')
 ```
 - Como se acaba de hacer un cambio en el modelo de base de datos, se necesita crear un archivo de migraciones y actualizar la base de datos.
 
@@ -136,7 +150,7 @@ FICHERO: `template/article_list.html`
 ```html
 {% extends 'base.html' %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}Articles{% endblock title %}
 
 {% block content %}
   {% for article in object_list %}
@@ -160,6 +174,41 @@ FICHERO: `template/article_list.html`
       </div>
     </div>
     <br />
+  {% endfor %}
+{% endblock content %}
+
+
+
+{% extends 'base.html' %}
+
+{% block title %}Articles{% endblock title %}
+
+{% block content %}
+  {% for article in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <span class="font-weight-bold">{{ article.title }}</span> &middot;
+        <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
+      </div>
+      <div class="card-body">
+        <!-- Los cambios empiezan aquí -->
+        <p>{{ article.body }}</p>
+        <a href="{% url 'article_edit' article.pk %}">Editar</a> |
+        <a href="{% url 'article_delete' article.pk %}">Borrar</a>
+      </div>
+      <div class="card-footer">
+        {% for comment in article.comments.all %}
+          <p>
+            <span class="font-weight-bold">
+              {{ comment.author }} &middot;
+            </span>
+            {{ comment }}
+          </p>
+        {% endfor %}
+      </div>
+      <!-- Los cambios terminan aquí -->
+    </div>
+    <br>
   {% endfor %}
 {% endblock content %}
 ```

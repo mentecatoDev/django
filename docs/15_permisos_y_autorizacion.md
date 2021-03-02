@@ -11,7 +11,7 @@ FICHERO: `articles/views.py`
 ```python
 `...`
 class ArticleCreateView(CreateView):
-    model = models.Article
+    model = Article
     template_name = 'article_new.html'
     fields = ('title', 'body')
 
@@ -54,7 +54,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView): # new
 
 ```
 - Regresar a la URL para crear nuevos mensajes en http://127.0.0.1:8000/articles/new/ y se verá un error:
-    - Django se ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en `/accounts/login`, sin embargo, en los URLs a nivel de proyecto se usa usando `users/` como ruta. Por eso la página de acceso está en `users/login`. Entonces, ¿cómo se informa a `ArticleCreateView` sobre esto?
+    - Django se ha redirigido automáticamente a la ubicación por defecto de la página de inicio de sesión que está en `/accounts/login`, sin embargo, en los URLs a nivel de proyecto se usa  `users/` como ruta. Por eso la página de acceso está en `users/login`. Entonces, ¿cómo se informa a `ArticleCreateView` sobre esto?
     - La respuesta está en la documentación para `LoginRequiredMixin`. Se puede agregar una ruta `login_url` para anular el parámetro por defecto. Se usa la URL con nombre de la ruta `login`.
 
 FICHERO: `articles/views.py`
@@ -67,35 +67,34 @@ from .models import Article
 
 
 class ArticleListView(LoginRequiredMixin, ListView): # new
-	model = Article
-	template_name = 'article_list.html'
+    model = Article
+    template_name = 'article_list.html'
 
-    
+
 class ArticleDetailView(LoginRequiredMixin, DetailView): # new
-	model = Article
-	template_name = 'article_detail.html'
+    model = Article
+    template_name = 'article_detail.html'
 
 
 class ArticleUpdateView(LoginRequiredMixin, UpdateView): # new
     model = Article
     fields = ('title', 'body',)
-	template_name = 'article_edit.html'
+    template_name = 'article_edit.html'
 
-    
+
 class ArticleDeleteView(LoginRequiredMixin, DeleteView): # new
-	model = Article
-	template_name = 'article_delete.html'
-	success_url = reverse_lazy('article_list')
-    
+    model = Article
+    template_name = 'article_delete.html'
+    success_url = reverse_lazy('article_list')
+
 class ArticleCreateView(LoginRequiredMixin, CreateView):
-	model = Article
-	template_name = 'article_new.html'
-	fields = ('title', 'body',)
+    model = Article
+    template_name = 'article_new.html'
+    fields = ('title', 'body',)
 
     def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
-
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 ```
 
 - Probar el enlace para crear nuevos mensajes de nuevo: http://127.0.0.1:8000/articles/new/.
@@ -103,7 +102,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
 ## 15.4 Actualizando las vistas
 Estamos progresando, pero todavía existe el problema de nuestras vistas de edición y borrado. Cualquier usuario conectado puede hacer cambios en cualquier artículo. Lo que queremos es restringir este acceso para que sólo el autor de un artículo tenga este permiso.
-Podríamos añadir lógica de permisos a cada vista para esto, pero una solución más elegante es crear un mixin dedicado, una clase con una característica particular que queremos reutilizar en nuestro código Django. Y mejor aún, Django viene con un mixin incorporado, `UserPassesTestMixin`, ¡sólo para este propósito!
+Podríamos añadir lógica de permisos a cada vista para esto, pero una solución más elegante es crear un mixin dedicado, una clase con una característica particular que queremos reutilizar en nuestro código Django. O mejor aún, Django viene con un mixin incorporado, `UserPassesTestMixin`, ¡sólo para este propósito!
 
 - Restringir el acceso a las vistas es sólo cuestión de añadir `LoginRequiredMixin` al principio de todas las vistas existentes y especificar el `login_url` correcto.
 - Actualizar el resto de las vistas de los artículos ya que no se desea que un usuario pueda crear, leer, actualizar o borrar un mensaje si no está conectado.
@@ -112,8 +111,8 @@ Podríamos añadir lógica de permisos a cada vista para esto, pero una solució
 FICHERO: `articles/views.py`
 ```python
 from django.contrib.auth.mixins import (
-	LoginRequiredMixin,
-	UserPassesTestMixin # new
+    LoginRequiredMixin,
+    UserPassesTestMixin # new
 )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
@@ -123,25 +122,25 @@ from .models import Article
 `...`
 
 class ArticleUpdateView(
-	LoginRequiredMixin, UserPassesTestMixin, UpdateView): # new
-	model = Article
-	fields = ('title', 'body',)
-	template_name = 'article_edit.html'
+    LoginRequiredMixin, UserPassesTestMixin, UpdateView): # new
+    model = Article
+    fields = ('title', 'body',)
+    template_name = 'article_edit.html'
 
-	def test_func(self): # new
-		obj = self.get_object()
-	return obj.author == self.request.user
+    def test_func(self): # new
+        obj = self.get_object()
+        return obj.author == self.request.user
 
 class ArticleDeleteView(
-	LoginRequiredMixin, UserPassesTestMixin, DeleteView): # new
-	model = Article
-	template_name = 'article_delete.html'
-	success_url = reverse_lazy('article_list')
+    LoginRequiredMixin, UserPassesTestMixin, DeleteView): # new
+    model = Article
+    template_name = 'article_delete.html'
+    success_url = reverse_lazy('article_list')
 
 	def test_func(self): # new
 		obj = self.get_object()
 		return obj.author == self.request.user
-
+`...`
 ```
 
 - Jugar con el sitio para confirmar que las redirecciones de acceso ahora funcionan como se esperaba.
