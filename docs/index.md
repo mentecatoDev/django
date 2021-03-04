@@ -17,3 +17,6 @@
 #### [Newspaper app](14_newspaper_app.md)
 #### [Permisos y Autorización](15_permisos_y_autorizacion.md)
 #### [Comentarios](16_comentarios.md)
+#### [Docker](17_docker.md)
+#### [Portafolio](portfolio/portfolio.md)
+

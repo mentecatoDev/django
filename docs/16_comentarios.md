@@ -2,7 +2,7 @@
 
 - Dos maneras:
    - Crear una aplicación de comentarios dedicada y enlazarla a los artículos (sobreingeniería en este momento).
-   - Añadir un modelo adicional llamado `Comment` a la aplicación de artículos y enlazarlo al modelo de Artículo a través de una clave foránea.
+   - Añadir un modelo adicional llamado `Comment` a la aplicación de artículos y enlazarlo al modelo de `Article` a través de una clave foránea.
 - Los usuarios también tendrán la posibilidad de dejar comentarios en los artículos de cualquier otro usuario.
 
 ## 16.1. Modelo
@@ -26,7 +26,7 @@ class Comment(models.Model):
         return self.comment
 
     def get_absolute_url(self):
-        return reverse('article_list')
+        return reverse('article_list', args=[str(self.id)])
 
 ```
 - El modelo `Comment` tiene un método `__str__` y un método `get_absolute_url` que regresa a la página principal `articles/`.
@@ -60,13 +60,16 @@ FICHERO: `articles/admin.py`
 from django.contrib import admin
 from .models import Article, Comment
 
+
 class CommentInline(admin.StackedInline):  # new
-	model = Comment
+    model = Comment
+
 
 class ArticleAdmin(admin.ModelAdmin):      # new
-	inlines = [
-		CommentInline,
-	]
+    inlines = [
+        CommentInline,
+    ]
+
 
 admin.site.register(Article, ArticleAdmin) # new
 admin.site.register(Comment)
@@ -74,11 +77,8 @@ admin.site.register(Comment)
 
 - Se pueden ver y modificar todos los artículos y comentarios relacionados en un solo lugar.
 
-- Note
-  that by default, the Django admin will display 3 empty rows here. You can change the default
-  number that appear with the extra field. So if you wanted no fields by default, the code would
-  look like this:
-
+- Note that by default, the Django admin will display 3 empty rows here. You can change the default   number that appear with the extra field. So if you wanted no fields by default, the code would  look like this:
+  
 - FICHERO: `articles/admin.py`
 
 ```python
@@ -105,12 +105,12 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Comment)
 ```
-- Ver lo cambios en la página de administración de Django: todos los campos de cada modelo se muestran en la misma línea.
+- Ver los cambios en la página de administración de Django: todos los campos de cada modelo se muestran en la misma línea.
 
 ## 16.5. Plantilla
 
 - Dado que `Comment` vive dentro de la app `articles` existente, sólo necesitamos actualizar las plantillas existentes para `article_list.html` y `article_detail.html` para mostrar el nuevo contenido. No hay que crear nuevas plantillas y jugar con las urls y las vistas.
-- Lo que se quiere hacer es mostrar **todos** los comentarios relacionados con un artículo específico. Esto se llama "query" ya que estamos pidiendo a la base de datos una información específica. En este caso, al trabajar con una clave rofánea, se busca seguir una relación hacia atrás: para cada `Article` buscar modelos de `Comment` relacionados.
+- Lo que se quiere hacer es mostrar **todos** los comentarios relacionados con un artículo específico. Esto se llama "query" ya que estamos pidiendo a la base de datos una información específica. En este caso, al trabajar con una clave foránea, se busca seguir una relación hacia atrás: para cada `Article` buscar modelos de `Comment` relacionados.
 - Django tiene una sintaxis incorporada que se puede usar conocida como `FOO_set` donde `FOO` es el nombre del modelo fuente en minúsculas. Así que para el modelo de `Article` se puede usar `article_set` para acceder a todas las instancias del modelo.
 - Esta sintaxis es un poco confusa y no intuitiva. Un mejor enfoque es añadir un atributo `related_name` al modelo que permita establecer explícitamente el nombre de esta relación inversa en su lugar. Hagámoslo.
 - Para empezar, agregar un atributo `related_name` al modelo de comentarios. Un buen valor por defecto es nombrarlo en el plural del modelo que contiene la clave foránea.
@@ -123,11 +123,13 @@ class Comment(models.Model):
         Article,
         on_delete=models.CASCADE,
         related_name='comments', # new
+        verbose_name='Artículo'
     )
-    comment = models.CharField(max_length=140)
+    comment = models.CharField(max_length=140,  verbose_name='Comentario')
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
+        verbose_name='Autor'
     )
 
     def__str__(self):
@@ -157,38 +159,7 @@ FICHERO: `template/article_list.html`
     <div class="card">
       <div class="card-header">
         <span class="font-weight-bold">{{ article.title }}</span> &middot;
-        <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
-      </div>
-      <div class="card-body">
-        <p>{{ article.body }}</p>
-        <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-        <a href="{% url 'article_delete' article.pk %}">Delete</a>
-      </div>
-      <div class="card-footer">
-        {% for comment in article.comments.all %}
-          <p>
-            <span class="font-weight-bold">{{ comment.author }} &middot;</span>
-            {{ comment }}
-          </p>
-        {% endfor %}
-      </div>
-    </div>
-    <br />
-  {% endfor %}
-{% endblock content %}
-
-
-
-{% extends 'base.html' %}
-
-{% block title %}Articles{% endblock title %}
-
-{% block content %}
-  {% for article in object_list %}
-    <div class="card">
-      <div class="card-header">
-        <span class="font-weight-bold">{{ article.title }}</span> &middot;
-        <span class="text-muted">by {{ article.author }} | {{ article.date }}</span>
+        <span class="text-muted">por {{ article.author }} | {{ article.date }}</span>
       </div>
       <div class="card-body">
         <!-- Los cambios empiezan aquí -->
