@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>18. Docker - Django</title>
+  <title>17. Docker - Django</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "18. Docker";
+    var mkdocs_page_name = "17. Docker";
     var mkdocs_page_input_path = "17_docker.md";
     var mkdocs_page_url = null;
   </script>
@@ -115,6 +115,30 @@
                     <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
                     </li>
                 </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">17. Docker</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#181-que-es-docker">18.1. ¿Qué es Docker?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#182-contenedores-vs-entornos-virtuales">18.2. Contenedores vs. Entornos Virtuales</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#183-instalar-docker">18.3. Instalar Docker</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#184-docker-hola-mundo">18.4. Docker, Hola Mundo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#185-django-hola-mundo">18.5. Django, Hola mundo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#186-pages-app">18.6. Pages App</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#187-imagenes-contenedores-y-el-docker-host">18.7. Imágenes, Contenedores y el "Docker Host"</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../portfolio/portfolio/">Portafolio</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -136,7 +160,7 @@
     
       
     
-    <li>18. Docker</li>
+    <li>17. Docker</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -148,71 +172,27 @@
             <div class="section">
               
                 <h1 id="18-docker">18. Docker</h1>
-<ul>
-<li>
 <p>La configuración adecuada de un entorno de desarrollo local sigue siendo un gran reto a pesar de todos los otros avances de la programación moderna. Simplemente hay demasiadas variables: <strong>diferentes ordenadores</strong>, <strong>sistemas operativos</strong>, <strong>versiones de lenguajes</strong> y <strong>frameworks</strong>, <strong>opciones de entornos virtuales</strong>,  y así sucesivamente. Cuando se añade el reto de <strong>trabajar en equipo</strong> en un entorno en el que todos necesitan tener la misma configuración, el problema se magnifica.</p>
-</li>
-<li>
 <p>En los últimos años ha surgido una solución: <a href="https://www.docker.com/">Docker</a>. Aunque sólo tiene unos pocos años, Docker se ha convertido rápidamente en la opción por defecto para muchos desarrolladores que trabajan en proyectos a nivel de producción.</p>
-</li>
-<li>
 <p>Con Docker finalmente es posible reproducir un entorno de producción de forma fiel y fiable localmente, desde la versión adecuada de Python hasta la instalación de Django a la par de ejecutar servicios adicionales como una base de datos a nivel de producción. Esto significa que ya no es importante si se desarrolla en un equipo Linux, Mac o Windows. Todo funciona dentro del mismo Docker.</p>
-</li>
-<li>
 <p>Docker también facilita exponencialmente la colaboración en equipo. Atrás quedaron los días de compartir archivos <code>README</code> largos y obsoletos para añadir un nuevo desarrollador a un proyecto de grupo.</p>
-</li>
-<li>
 <p>En lugar de eso, con Docker sólo se tienen que compartir dos archivos: <code>Dockerfile</code> y  <code>docker-compose.yml</code> y el desarrollador puede tener la confianza de que su <strong>entorno de desarrollo local es exactamente igual que el del resto del equipo</strong>.</p>
-</li>
-<li>
 <p>Docker no es una tecnología perfecta. Todavía es relativamente nueva y compleja bajo el capó; aún está en desarrollo activo. Pero aspira a la promesa de una política coherente y a un entorno de desarrollo compartible, que pueda ejecutarse localmente en cualquier ordenador o desplegado en cualquier servidor, lo que lo convierte en una opción sólida.</p>
-</li>
-</ul>
 <h2 id="181-que-es-docker">18.1. ¿Qué es Docker?</h2>
-<ul>
-<li>
 <p>Docker es una forma de aislar todo un sistema operativo a través de <strong>contenedores Linux</strong> que son un tipo de virtualización. La virtualización tiene sus raíces en los inicios de la informática cuando las computadoras grandes y caras eran la norma. ¿Cómo podrían varios programadores utilizar la misma máquina?. La respuesta fue la virtualización y específicamente las máquinas virtuales que son copias completas de un sistema informático desde el sistema operativo en adelante.<img alt="https://diveintodocker.com/assets/courses/virtual-machine-vs-docker-container-diveintodocker-da32029afb09e889fdee17b66876493d3b2441f30e77708520cd9bf338a21866.jpg" src="../img_docker/img00.png" /></p>
-</li>
-<li>
 <p>Cuando se alquila un espacio en un proveedor de cloud computing como Amazon Web Services (AWS) normalmente no se proporciona una pieza de hardware dedicada. En lugar de eso, se comparte un servidor físico con otros clientes. Pero como cada cliente tiene su propio sistema virtual que se ejecuta en el servidor, le parece que tiene el suyo propio.</p>
-</li>
-<li>
 <p>Esta tecnología es la que hace posible añadir o eliminar servidores de un <em>servicio de cloud</em> de forma rápida y sencilla. Se trata en gran medida de software entre bastidores, no de hardware real.</p>
-</li>
-<li>
 <p>¿Cuál es el inconveniente de una máquina virtual? Tamaño y velocidad. Un sistema operativo huésped típico (<em>guest</em>) puede ocupar fácilmente hasta 700MB de tamaño. Así que si un servidor físico soporta tres máquinas virtuales, eso es al menos 2,1 GB de espacio en disco ocupado junto con el resto de necesidades para otros recursos como CPU y memoria.</p>
-</li>
-<li>
 <p>Al entrar en Docker, la idea clave es que la mayoría de los ordenadores dependen del mismo sistema operativo <a href="https://es.wikipedia.org/wiki/GNU/Linux">Linux</a>. ¿Y si virtualizamos desde la capa de Linux hacia arriba? ¿No proporcionaría eso una forma más rápida y ligera de duplicar gran parte de la misma funcionalidad? La respuesta es sí. Y en los últimos años los contenedores <a href="https://en.wikipedia.org/wiki/List_of_Linux_containers">Linux</a> se han vuelto muy populares. Para la mayoría de las aplicaciones -especialmente las aplicaciones web- una máquina virtual proporciona mucho más recursos de los que se necesitan y un contenedor es más que suficiente.</p>
-</li>
-<li>
 <p>Esto, fundamentalmente, es Docker: ¡una forma de implementar contenedores Linux!</p>
-</li>
-<li>
-<p>Una analogía que podemos usar es la de los edificios y los apartamentos. Las máquinas virtuales son como viviendas: edificios independientes con su propia infraestructura, incluida la fontanería y calefacción, así como cocina, baños, dormitorios, etc. Los contenedores Docker son como los apartamentos: comparten una infraestructura común como la fontanería y la calefacción, pero vienen en varios tamaños que se ajustan a las necesidades exactas de un propietario.</p>
-</li>
-</ul>
+<p>Una analogía que podemos usar es la de los unifamiliares y las habitaciones de hotel. Las máquinas virtuales son como unifamiliares: edificios independientes con su propia infraestructura, incluida la fontanería y calefacción, así como cocina, baños, dormitorios, etc. Los contenedores Docker son como apartamentos: comparten una infraestructura común como la fontanería y la calefacción, cocinas, comedores, salones, piscinas... y vienen en varios tamaños que se ajustan a las necesidades exactas de cada huésped.</p>
 <h2 id="182-contenedores-vs-entornos-virtuales">18.2. Contenedores vs. Entornos Virtuales</h2>
-<ul>
-<li>
 <p>Como programador de Python se debe estar familiarizado con el concepto de <strong>entornos virtuales</strong> que son una forma de aislar los paquetes Python. Gracias al entorno virtual, una computadora puede ejecutar múltiples proyectos localmente. Por ejemplo, el Proyecto A podría usar Python 3.4 y Django 1.11 entre otras dependencias; mientras que el Proyecto B usa Python 3.8 y Django 2.2. Configurando un entorno virtual dedicado en cada proyecto se puede gestionar estos diferentes paquetes de software sin contaminar nuestro entorno global.</p>
-</li>
-<li>
 <p>Hay una pequeña confusión derivada de que hay múltiples herramientas en este momento para implementar un entorno virtual: desde <code>virtualenv</code>, <code>venv</code> a <code>Pipenv</code>, pero fundamentalmente todas hacen lo mismo.</p>
-</li>
-<li>
 <p>La mayor distinción entre los entornos virtuales y Docker es que los entornos virtuales sólo pueden aislar paquetes Python. <strong>No pueden aislar a los no-Python como una base de datos</strong> PostgreSQL o MySQL. Y siguen dependiendo del sistema global; de la instalación de Python a nivel de sistema (en otras palabras, de <strong>su</strong> ordenador). <strong>Los entornos virtuales apuntan a una instalación Python existente; no contienen Python en sí mismos</strong>.</p>
-</li>
-<li>
 <p>Los contenedores Linux van un paso más allá y <strong>aíslan todo el sistema operativo</strong>, no sólo las partes de Python. En otras palabras, instalaremos el propio Python dentro de Docker, así como se instalará y ejecutará en él la base de datos a nivel de producción.</p>
-</li>
-<li>
 <p>Docker en sí mismo es un tema complejo y no se va a profundizar tanto en él, sin embargo, es importante comprender sus antecedentes y componentes clave. Si quieres aprender más sobre él puedes acceder a diferentes cursos de los que dispones en la plataforma de <a href="https://www.openwebinars.com">OpenWebinars</a>.</p>
-</li>
-</ul>
 <h2 id="183-instalar-docker">18.3. Instalar Docker</h2>
-<ul>
-<li>
 <p>Ok, suficiente teoría. Empecemos a usar Docker y Django juntos. El primer paso es registrarse en <a href="https://hub.docker.com/signup">Docker Hub</a> para obtener una cuenta gratuita y luego instalar la aplicación de escritorio Docker en nuestra máquina local:</p>
 <ul>
 <li><a href="https://docs.docker.com/install/">Docker para Linux</a><ul>
@@ -222,30 +202,34 @@
 <li><a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">Docker para Mac</a></li>
 <li><a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">Docker para Windows</a></li>
 </ul>
-</li>
-<li>
 <p>Esta descarga puede tomarse algún tiempo ya que es un archivo grande.</p>
-</li>
-<li>
-<p>Una vez que Docker se haya terminado de instalar, podemos confirmar que se está ejecutando la versión correcta escribiendo <code>docker --version</code> en la línea de comandos. Debe ser al menos la versión 18.</p>
-</li>
+<ul>
+<li>Una vez que Docker se haya terminado de instalar, podemos confirmar que se está ejecutando la versión correcta escribiendo <code>docker --version</code> en la línea de comandos. Debe ser al menos la versión 18.</li>
 </ul>
 <pre><code class="language-bash">$ docker --version
-Docker versión 19.03.5-ce, build 633a0ea838
+Docker version 20.10.4, build d3cb89ee53
 </code></pre>
 <ul>
 <li>
 <p>Docker se utiliza a menudo con una herramienta adicional, <a href="https://docs.docker.com/compose/">Docker Compose</a>, para ayudar a automatizar los comandos. Docker Compose se incluye con las descargas de Mac y Windows, pero si se está en Linux, tendrá que añadirse manualmente. Puede hacerse ejecutando el comando <code>sudo pip install docker-compose</code> después de que la instalación de Docker haya finalizado.</p>
 <ul>
 <li>Para distribuciones basadas en <a href="https://wiki.archlinux.org/index.php/Docker">Arch</a> será algo tan fácil como ejecutar <code>pacman -S docker-compose</code>. (Si surgen problemas con algún fichero ya instalado en el sistema, borrar todos aquellos ficheros que estén involucrados y proceder con la instalación como se indica)</li>
+<li>Comprobar que el demonio de docker está corriendo haciendo uso del comando <code>systemctl</code></li>
 </ul>
 </li>
 </ul>
+<pre><code class="language-bash">$ sudo systemctl status docker.service
+</code></pre>
+<ul>
+<li>...y en caso de no estarlo ponerlo en marcha con:</li>
+</ul>
+<pre><code class="language-bash">$ sudo systemctl start docker.service
+</code></pre>
 <h2 id="184-docker-hola-mundo">18.4. Docker, Hola Mundo</h2>
 <ul>
 <li>Docker se envía con su propia imagen de "Hello, World" que es un primer paso útil para comprobar la instalación. Introducir en la línea de comandos el comando <code>docker run hello-world</code>. Esto descargará una imagen Docker oficial y luego se ejecutará dentro de un contenedor. Se discutirá sobre las imágenes y los contenedores en breve.</li>
 </ul>
-<pre><code class="language-bash">$ docker run hello-world
+<pre><code class="language-bash">$ sudo docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
 1b930d010525: Pull complete
@@ -269,7 +253,7 @@ https://docs.docker.com/get-started/
 <ul>
 <li>El comando <code>docker info</code> nos permite inspeccionar Docker. Contendrá una gran cantidad de información, pero si nos centramos en las líneas superiores tenemos 1 contenedor que se detenido y 1 imagen.</li>
 </ul>
-<pre><code class="language-bash">$ docker info
+<pre><code class="language-bash">$ sudo docker info
 Client:
  Debug Mode: false
 
@@ -282,20 +266,15 @@ Server:
 ...
 </code></pre>
 <h2 id="185-django-hola-mundo">18.5. Django, Hola mundo</h2>
-<ul>
-<li>
 <p>Ahora vamos a crear un proyecto de Django "Hello, World" que se ejecuta localmente en nuestro ordenador y luego lo moveremos por completo dentro de Docker para que se pueda ver cómo encajan todas las piezas.</p>
-</li>
-<li>
-<p>El primer paso es elegir una ubicación para nuestro código. Esto puede ser en cualquier parte del ordenador pero si se está en Linux, una ubicación fácil de encontrar es el Escritorio . Desde la línea de comandos navegamos hasta el <code>Escritorio</code> y creamos un directorio <code>code</code> para todos los ejemplos:</p>
-</li>
+<ul>
+<li>El primer paso es elegir una ubicación para nuestro código. Esto puede ser en cualquier parte del ordenador pero si se está en Linux, una ubicación fácil de encontrar es el Escritorio. Desde la línea de comandos navegamos hasta el <code>Escritorio</code> y creamos un directorio <code>code</code> para todos los ejemplos:</li>
 </ul>
 <pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir code &amp;&amp; cd code
 </code></pre>
 <ul>
-<li>Luego creeamos un directorio <code>hello</code> donde  instalaremos Django usando Pipenv que crea un archivo Pipfile y un archivo Pipfile.lock.  Activamos el entorno virtual con
-  el comando <code>shell</code>.</li>
+<li>Luego creeamos un directorio <code>hello</code> donde  instalaremos Django usando Pipenv que crea un archivo Pipfile y un archivo Pipfile.lock.  Activamos el entorno virtual con el comando <code>shell</code>.</li>
 </ul>
 <pre><code class="language-bash">$ mkdir hello &amp;&amp; cd hello
 pipenv install django==2.2.7
@@ -303,7 +282,7 @@ $ pipenv shell
 (hello) $
 </code></pre>
 <ul>
-<li>Si se necesita ayuda para instalar Pipenv o Python 3, se pueden encontrar más detalles <a href="https://djangoforbeginners.com/initial-setup/">aquí</a>.
+<li>Si se necesita ayuda para instalar Pipenv o Python 3, se pueden encontrar más detalles <a href="https://mentecatodev.github.io/intermezzo/entornos_virtuales/">aquí</a>.
   Ahora podemos usar el comando <code>startproject</code> para crear un nuevo proyecto de Django llamado <code>hello_project</code>. Añadir un punto, <code>.</code>, al final del comando es un paso opcional pero muchos desarrolladores de Django lo hacen. Sin el punto, Django añade un directorio adicional al proyecto; con el <code>.</code>, esto no ocurre.</li>
 <li>Por último, utilice el comando <code>migrate</code> para inicializar la base de datos e iniciar la web local con el comando <code>runserver</code>.</li>
 </ul>
@@ -316,61 +295,54 @@ $ pipenv shell
 </ul>
 <p><img alt="img01" src="../img_docker/img01.png" /></p>
 <h2 id="186-pages-app">18.6. Pages App</h2>
+<p>Ahora haremos una página de inicio simple creando una <code>pages</code> <strong>app</strong> específica  para ello. </p>
 <ul>
-<li>Ahora haremos una página de inicio simple creando una <code>pages</code> <strong>app</strong> específica  para ello. Parar el servidor local escribiendo <em>Control+c</em> y luego usar el comando <code>startapp</code> añadiendo el nombre de la <code>pages</code> que se desee.</li>
+<li>Parar el servidor local escribiendo <em>Control+c</em> y luego usar el comando <code>startapp</code> añadiendo el nombre de la <code>pages</code> que se desee.</li>
 </ul>
 <pre><code class="language-bash">(hola) $ python manage.py startapp pages
 </code></pre>
-<ul>
-<li>
 <p>Django instala automáticamente un nuevo directorio de páginas y varios archivos para nosotros. Pero incluso aunque la app ha sido creada, nuestro <code>hello_project</code> no la reconocerá hasta que la añadamos a la configuración de <code>INSTALLED_APPS</code> de archivo <code>hello_project/settings.py</code>.</p>
-</li>
-<li>
 <p>Django carga las apps de arriba a abajo, por lo que, en general, es una buena práctica añadir las nuevas aplicaciones debajo de las aplicaciones incorporadas en las que pueden confiar, tales como <code>admin</code>, <code>auth</code>, y todas las aplicaciones restantes.</p>
-</li>
-<li>
-<p>Téngase en cuenta que si bien es posible simplemente escribir el nombre de la app, <code>pages</code>,  es mejor escribir la <code>pages.apps.apps.PagesConfig</code> completa lo que abre más posibilidades en la configuración de las apps.</p>
-</li>
-</ul>
-<pre><code class="language-python"># hello_project/settings.py
-INSTALLED_APPS = [
+<p>Téngase en cuenta que si bien es posible simplemente escribir el nombre de la app, <code>pages</code>,  es mejor escribir la <code>pages.apps.PagesConfig</code> completa ya que abre más posibilidades en la configuración de las apps.</p>
+<p>FICHERO:  <code>hello_project/settings.py</code></p>
+<pre><code class="language-python">INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages.apps.apps.PagesConfig', # nuevo
+    'pages.apps.apps.PagesConfig',    # new
 ]
 </code></pre>
 <ul>
 <li>Ahora podemos establecer la ruta URL para la app <code>pages</code>. Ya que queremos que nuestro mensaje aparezca en la página de inicio usaremos la cadena vacía <code>''</code> . No olvidar añadir la importación de <code>include</code> en la segunda línea también.</li>
 </ul>
-<pre><code class="language-python"># hello_project/urls.py
-from django.contrib import admin
-from django.urls import path, include # nuevo
+<p>FICHERO: <code>hello_project/urls.py</code></p>
+<pre><code class="language-python">from django.contrib import admin
+from django.urls import path, include # new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')), # nuevo
+    path('', include('pages.urls')), # new
 ]
 </code></pre>
 <ul>
 <li>En lugar de crear una plantilla en este punto, podemos simplemente codificar un mensaje en nuestra capa de la vista <code>pages/views.py</code> que producirá la cadena <code>Hello, World!</code>.</li>
 </ul>
-<pre><code class="language-python"># pages/views.py
-from django.http import HttpResponse
+<p>FICHERO: `pages/views.py</p>
+<pre><code class="language-python">from django.http import HttpResponse
 
 def home_page_view(request):
-    return HttpResponse('Hello, World!')
+    return HttpResponse('¡Hola, Mundo!')
 </code></pre>
 <ul>
-<li>¿Qué es lo siguiente? El último paso es crear un archivo <code>urls.py</code> dentro de la app <code>pages</code>y enlazarlo to <code>home_page_view</code>. Si se encuentra en un ordenador Mac o Linux, el comando <code>touch</code> se puede usar desde la línea de comandos para crear nuevos archivos. En Windows habrá que crear el nuevo archivo con un editor de texto.</li>
+<li>¿Qué es lo siguiente? El último paso es crear un archivo <code>urls.py</code> dentro de la app <code>pages</code> y enlazarlo a <code>home_page_view</code>. Si se encuentra en un ordenador Mac o Linux, se puede usar el comando <code>touch</code> desde la línea de comandos para crear nuevos archivos. En Windows habrá que crear el nuevo archivo con un editor de texto.</li>
 </ul>
 <pre><code class="language-bash">(hola) $ touch pages/urls.py
 </code></pre>
 <ul>
-<li>En el editor de texto importar <code>path</code> en la primera línea, añadir la <code>home_page_view</code>, y colocar su ruta para otra vez ser la cadena vacía ''. Nótese que también provee un nombre opcional, <code>home</code>, para esta ruta lo cual es una buena práctica.</li>
+<li>En el editor de texto importar <code>path</code> en la primera línea, añadir la <code>home_page_view</code>, y colocar su ruta para otra vez ser la cadena vacía <code>''</code>. Nótese que también provee un nombre opcional, <code>home</code>, para esta ruta lo cual, como ya sabemos, es una buena práctica.</li>
 </ul>
 <pre><code class="language-python"># pages/urls.py
 from django.urls import path
@@ -381,16 +353,15 @@ from .views import home_page_view
 urlpatterns = [
 path('', home_page_view, name='home')
 ]
-
 </code></pre>
 <ul>
 <li>
 <p>El flujo completo de nuestra página web Django es el siguiente:</p>
-<ul>
+<ol>
 <li>cuando un usuario va a su <em>homepage</em> será primero encaminado a <code>hello_project/urls.py</code></li>
 <li>luego a <code>pages/urls.py</code></li>
 <li>y finalmente dirigido a la <code>home_page_view</code> que devuelve la cadena <code>Hello, World!</code></li>
-</ul>
+</ol>
 </li>
 <li>
 <p>El trabajo para una página de inicio básica ha terminado. Iniciemos de nuevo el servidor local.</p>
@@ -399,14 +370,14 @@ path('', home_page_view, name='home')
 <pre><code class="language-bash">(hola) $ python manage.py runserver
 </code></pre>
 <ul>
-<li>Si se actualiza el navegador web en http://127.0.0.1:8000/, ahora saldrá nuestro deseado mensaje.</li>
-</ul>
-<p><img alt="image02" src="../img_docker/img02.png" /></p>
-<ul>
-<li>Ahora es el momento de cambiar a Docker. Detengamos de nuevo el servidor local con <em>Ctrl+C</em> y salgamos de nuestro entorno virtual, que ya no necesitamos, escribiendo <code>exit</code>.</li>
+<li>
+<p>Si se actualiza el navegador web en http://127.0.0.1:8000/, ahora saldrá nuestro deseado mensaje.</p>
+</li>
+<li>
+<p>Ahora es el momento de cambiar a Docker. Detengamos de nuevo el servidor local con <em>Ctrl+C</em> y salgamos de nuestro entorno virtual, que ya no necesitamos, escribiendo <code>exit</code>.</p>
+</li>
 </ul>
 <pre><code class="language-bash">(hello) $ exit
-$
 </code></pre>
 <ul>
 <li>¿Cómo sabemos que nuestro entorno virtual ya no está activo? No habrá un paréntesis alrededor del nombre de directorio en el prompt. Cualquier comando Django normal que se intente ejecutar en este punto fallará. Por ejemplo, probar <code>python manage.py runserver</code> para ver lo que ocurre.</li>
@@ -423,7 +394,7 @@ SyntaxError: invalid syntax
 <h2 id="187-imagenes-contenedores-y-el-docker-host">18.7. Imágenes, Contenedores y el "Docker Host"</h2>
 <ul>
 <li>
-<p>Una <strong>imagen</strong> Docker es una instantánea en el tiempo de lo que contiene un proyecto. Está representado por un <code>Dockerfile</code> y es literalmente una lista de instrucciones que deben ser construidas/ejecutadas. Un <strong>contenedor</strong> Docker es una instancia en ejecución de una imagen. Para continuar con la analogía de nuestro apartamento de antes, la imagen es el plano o conjunto de planos del apartamento; el contenedor es el edificio real totalmente construido.</p>
+<p>Una <strong>imagen</strong> Docker es una instantánea en el tiempo de lo que contiene un proyecto. Está representado por un <code>Dockerfile</code> y es literalmente una lista de instrucciones que deben ser construidas/ejecutadas. Un <strong>contenedor</strong> Docker es una instancia en ejecución de una imagen. Para continuar con la analogía de nuestra habitación de hotel de antes, la imagen es el plano o conjunto de planos de las habitaciones; el contenedor es el hotel totalmente construido.</p>
 </li>
 <li>
 <p>El tercer concepto central es el <strong>Docker host</strong>, que es el sistema operativo subyacente. Es posible tener varios contenedores ejecutándose dentro de un mismo <strong>Docker host</strong>. Cuando nos referimos a código o procesos que se ejecutan en el Docker, significa que se ejecutan en el <strong>Docker host</strong>.</p>
@@ -437,8 +408,9 @@ SyntaxError: invalid syntax
 <ul>
 <li>Dentro del <code>Dockerfile</code> agregamos el siguiente código que recorreremos línea por línea más abajo.</li>
 </ul>
+<p>FICHERO:  <code>Dockerfile</code></p>
 <pre><code class="language-Dockerfile"># Pull base image
-FROM python:3.8
+FROM python:3.9
 
 
 # Set environment variables
@@ -460,7 +432,7 @@ COPY . /code/
 </code></pre>
 <ul>
 <li>
-<p>Los <code>Dockerfiles</code> se leen de arriba hacia abajo cuando se crea una imagen. La primera instrucción debe ser el comando <code>FROM</code> que nos permite importar una <strong>imagen base</strong> que usar, en nuestro caso <em>Python 3.8</em>.</p>
+<p>Los <code>Dockerfiles</code> se leen de arriba hacia abajo cuando se crea una imagen. La primera instrucción debe ser el comando <code>FROM</code> que nos permite importar una <strong>imagen base</strong> que usar, en nuestro caso <em>Python 3.9</em>.</p>
 </li>
 <li>
 <p>Luego usamos el comando <code>ENV</code> para establecer dos variables de entorno:</p>
@@ -485,18 +457,18 @@ COPY . /code/
 <p>Cuando estamos trabajando con Docker donde hay código tanto local en nuestro ordenador como también dentro de Docker, el potencial de conflictos de <code>Pipfile.lock</code> surge cuando se actualizan paquetes de software.</p>
 </li>
 <li>
-<p>Siguiendo adelante usamos el comando <code>RUN</code> para instalar primero <code>pipenv</code> y luego <code>pipenv install</code> para instalar los paquetes de software listados en nuestro Pipfile.lock, actualmente sólo Django. Es un es importante añadir también el indicador <code>--system</code>, ya que por defecto Pipenv buscará el parámetro en el que instalar cualquier paquete, pero como estamos dentro de Docker ahora, técnicamente no hay ningún entorno virtual. En cierto modo, el contenedor Docker es nuestro entorno virtual y mucho más. Así que debemos usar la bandera <code>--system</code> para asegurarnos de que nuestros paquestes están disponibles en todo el Docker para nosotros.</p>
+<p>Siguiendo adelante usamos el comando <code>RUN</code> para instalar primero <code>pipenv</code> y luego <code>pipenv install</code> para instalar los paquetes de software listados en nuestro Pipfile.lock, actualmente sólo Django. Es  importante añadir también el indicador <code>--system</code>, ya que por defecto Pipenv buscará el parámetro en el que instalar cualquier paquete, pero como estamos dentro de Docker ahora, técnicamente no hay ningún entorno virtual. En cierto modo, el contenedor Docker es nuestro entorno virtual y mucho más. Así que debemos usar la bandera <code>--system</code> para asegurarnos de que nuestros paquestes están disponibles en todo el Docker para nosotros.</p>
 </li>
 <li>
 <p>Como paso final copiamos el resto de nuestro código local en el directorio <code>/code/</code> dentro de Docker. ¿Por qué copiamos el código local dos veces, primero el Pipfile y Pipfile.lock y luego el resto? La razón es que las imágenes se crean en base a instrucciones de arriba hacia abajo por lo que queremos que las cosas que cambian a menudo -como nuestro código local- sea el último. De esta manera sólo tenemos que regenerar esa parte de la imagen ante un cambio y no se reinstala todo cada vez que lo haya. Como el software de los paquetes contenidos en nuestros <code>Pipfile</code> y <code>Pipfile.lock</code> cambian con poca frecuencia, implica que no tiene sentido copiarlos e instalarlos antes.</p>
 </li>
 <li>
-<p>Nuestras instrucciones de imagen ya están hechas, así que vamos a construir la imagen usando el comando <code>docker build .</code>. El punto <code>.</code> indica que el directorio actual es donde se debe ejecutar el comando comando. Se genera una gran cantidad de texto en pantalla; sólo se incluye las dos primeras líneas y las tres últimas.</p>
+<p>Nuestras instrucciones de imagen ya están hechas, así que vamos a construir la imagen usando el comando <code>docker build .</code>. El punto <code>.</code> indica que el directorio actual es donde se debe ejecutar el comando. Se genera una gran cantidad de texto en pantalla; sólo se incluye las dos primeras líneas y las tres últimas.</p>
 </li>
 </ul>
 <pre><code class="language-bash">$ docker build .
 Sending build context to Docker daemon 154.1kB
-Step 1/7 : FROM python:3.8
+Step 1/7 : FROM python:3.9
 ...
 Step 7/7 : COPY . /code/
 ---&gt; a48b2acb1fcc
@@ -510,7 +482,7 @@ Successfully built a48b2acb1fcc
 <ul>
 <li>Contendrá el siguiente código</li>
 </ul>
-<pre><code>version: '3.7'
+<pre><code class="language-yaml">version: '3.7'
 
 services:
   web:
@@ -557,7 +529,7 @@ web_1 | Quit the server with CONTROL-C.
 <p>Para confirmar que realmente funcionó, volveremos a poner <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> en el navegador web. Actualizaremos la página y aparecerá la página "Hello, World".</p>
 </li>
 <li>
-<p>Django se está ejecutando ahora puramente dentro de un contenedor Docker. No estamos trabajando dentro de un entorno virtual local. No ejecutamos el comando <code>runserver</code>. Todo nuestro código y nuestro servidor Django se está ejecutando desde dentro de un Docker autónomo. !Todo un éxito!</p>
+<p>Django se está ejecutando ahora puramente dentro de un contenedor Docker. No estamos trabajando dentro de un entorno virtual local. No ejecutamos el comando <code>runserver</code>. Todo nuestro código y nuestro servidor Django se está ejecutando desde dentro de un Docker autónomo. ¡Todo un éxito!</p>
 </li>
 <li>
 <p>Detendremos el contenedor con <em>Ctrl+C</em> y además escribiremos <code>docker-compose down</code>. Los contenedores absorben una gran cantidad de memoria, así que es una buena idea detenerlos de esta manera cuando hayamos terminado de usarlos.</p>
@@ -574,6 +546,15 @@ Removing network hello_default
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../portfolio/portfolio/" class="btn btn-neutral float-right" title="Portafolio">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../16_comentarios/" class="btn btn-neutral" title="16. Comentarios"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -597,6 +578,10 @@ Removing network hello_default
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../16_comentarios/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../portfolio/portfolio/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
