@@ -3,8 +3,8 @@
 - Objetivos 
   - Configurar el entorno para programar en proyectos Django
   - Uso de la línea de comandos para instalar: 
-    - Django 3.1
-    - Python 3.9
+    - Django 3.2
+    - Python 3.10
   - Git
   - Editor de texto
 

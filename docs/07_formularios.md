@@ -90,9 +90,10 @@ FICHERO: `templates/post_new.html`
 
 {% block content %}
     <h1>Nuevo post</h1>
-    <form action="" method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Guardar"/>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar"/>
     </form>
 {% endblock content%}
 ```
@@ -241,10 +242,10 @@ urlpatterns = [
 - Ahora, si se hace click en una entrada del blog, se verá el nuevo botón *Editar*.
 - Si se hace clic en *"+ Editar Post"* se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.
 - Téngase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.
--  Vamos a hacer un cambio...
+-  Hagamos un cambio en el Post...
 
-- Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del *post* en el que se puede ver el cambio. Esto se debe a la configuración `get_absolute_url`.
-- Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.
+- ...y después de pulsar el botón "Actualizar" somos redirigidos a la vista de detalles del *post* en el que se puede ver el cambio. Esto se debe a la configuración `get_absolute_url`.
+- Si se navega a la página principal se podrá ver el cambio junto a todas las demás entradas.
 
 ## 7.3 Borrar la vista
 

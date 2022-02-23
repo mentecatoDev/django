@@ -17,7 +17,7 @@
 $ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.9
+$ pipenv install --python 3.10
 $ pipenv install django
 $ pipenv shell
 (pages) $ django-admin startproject pages_project .
@@ -103,6 +103,7 @@ FICHERO: `pages/views.py`
 ```python
 from django.views.generic import TemplateView
 
+
 class HomePageView(TemplateView):
     template_name = 'home.html'
 ```
@@ -164,6 +165,7 @@ from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
+
 
 class AboutPageView(TemplateView):
     template_name = 'about.html'
@@ -325,15 +327,15 @@ Logged in as will@wsvincent.com
 
 - Especificar la versión de Python que se está usando en `Pipfile`
 
-```pipfile
+```toml
 # Pipfile
 [requires]
 python_version = "3.9"
 ```
 
-- Luego ejecutar `pipenv lock` para generar el archivo `Pipfile.lock` apropiado.
+Luego ejecutar `pipenv lock` para generar el archivo `Pipfile.lock` apropiado.
 
-```
+```bash
 (pages) $ pipenv lock
 ```
 

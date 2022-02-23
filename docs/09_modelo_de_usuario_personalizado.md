@@ -1,9 +1,9 @@
 # 9. Modelo de usuario personalizado
 La documentación oficial de Django recomienda encarecidamente utilizar un **modelo de usuario personalizado** para los nuevos proyectos. La razón es que si se quiere hacer cualquier cambio en el modelo de usuario en el futuro -por ejemplo, añadir un campo edad- utilizar un modelo de usuario personalizado desde el principio lo convierte en algo sencillo. Pero si **no** se crea, **actualizar el modelo de usuario** por defecto en un proyecto Django existente es muy, **muy difícil**.
 
-Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo `AbstractBaseUser` cuando si sólo se utiliza `AbstractUser` las cosas son mucho más sencillas y aún así personalizables es mucho mejor práctica.
+Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo `AbstractBaseUser` no es una buena práctica cuando si sólo se utiliza `AbstractUser` hace que las cosas sean mucho más sencillas y aún así personalizables.
 
-Y ahora, **hagamos un periódico** (homenaje a las raíces de Django como un framework construido para editores y periodistas en el [Lawrence Journal-World](https://en.wikipedia.org/wiki/Lawrence_Journal-World)).
+Ahora, **hagamos un periódico** (homenaje a las raíces de Django como un framework construido para editores y periodistas en el [Lawrence Journal-World](https://en.wikipedia.org/wiki/Lawrence_Journal-World)).
 
 ## 9.1. Setup
 ```bash
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountsConfig',                          # new
+    'accounts.apps.AccountsConfig',                       # new
 ]
 ...
 # Authentication                                          # new
@@ -107,7 +107,7 @@ Para ambos formularios se usa el modelo `CustomUser` con los campos por defecto 
 El modelo de `CustomUser` contiene todos los campos del modelo de usuario por defecto y el campo `age` adicional que se ha definido.
 
 Para los nuevos formularios usamos la clase `Meta` para anular los campos por defecto estableciendo el
-modelo a nuestro `CustomUser` y utilizando los campos por defecto a través de `Meta.fields` que incluye todos los campos por defecto. Para añadir nuestro campo `age` personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
+modelo a nuestro `CustomUser` y utilizando los campos por defecto a través de `Meta.fields` que los incluye todos. Para añadir nuestro campo `age` personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
 El concepto de campos en un formulario puede ser confuso al principio, así que vamos a dedicar un momento a explorarlo más a fondo. Nuestro modelo `CustomUser` contiene todos los campos del modelo `User` por defecto y el campo adicional que hemos establecido.
 
 ¿Pero cuáles son estos campos por defecto?
@@ -119,8 +119,6 @@ Sin embargo, cuando un usuario se registra en una nueva cuenta en Django, el for
 Esto nos dice que la configuración predeterminada para los campos en `UserCreationForm` son sólo el `username`,  `email` y `password` aunque hay muchos más campos disponibles.
 
 Por tanto, entender los formularios y los modelos correctamente lleva algún tiempo.
-
-
 
 El paso final es actualizar el archivo `admin.py` ya que *Admin* está estrechamente unido al modelo de usuario por defecto. Se extenderá la clase existente `UserAdmin` para usar el nuevo modelo de `CustomUser` y los dos nuevos formularios.
 
@@ -172,9 +170,9 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username', 'age', 'is_staff', ]
-    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)
+    list_display = ['email', 'username', 'age', 'is_staff', ]               #new
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)		#new
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)#new
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

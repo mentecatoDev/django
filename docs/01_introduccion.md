@@ -327,10 +327,10 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 
 2.Configuración inicial 
 
-- Django 3.1
-- Python 3.9
+- Django 3.2
+- Python 3.10
 - Pipenv
-  - Emacs/Vim/VS Codium/Pycharm
+- Emacs/Vim/VS Codium/Pycharm
 - Terminal
 
 3.Aplicación "Hello World"

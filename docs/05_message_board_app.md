@@ -168,7 +168,7 @@ class HomePageView(ListView):             # new
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('template'))],   # new
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],   # new
         ...
     },
 ]
@@ -241,10 +241,10 @@ urlpatterns = [										# new
 - Reiniciar el servidor que ahora mostrará los post del tablón de mensajes
 - Añádanse más posts ;-)
 - No olvidar
-```
+```bash
 (mb) $ git init
 (mb) $ git add -A
-(mb) $ git commit -m 'Commit inicial'
+(mb) $ git commit -m 'Crea Commit inicial'
 ```
 ## 5.6. Tests
 - Se necesita usar `TestCase` en lugar de `SimpleTestCase` dado que ahora tenemos una base de datos y no solo una página estática.
@@ -298,39 +298,39 @@ Destroying test database for alias 'default'...
 -  
 Se necesita añadir un `import` más para `reverse` y una nueva clase `HomePageViewTest`
 ```python
-from django.test import TestCase
-from django.urls import reverse  #new
-from .models import Post
+    from django.test import TestCase
+    from django.urls import reverse  #new
+    from .models import Post
 
 
-class PostModelTest(TestCase):
- 
-    def setUp(self):
-        Post.objects.create(text='just a test')
+    class PostModelTest(TestCase):
 
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
+        def setUp(self):
+            Post.objects.create(text='just a test')
+
+        def test_text_content(self):
+            post=Post.objects.get(id=1)
+            expected_object_name = f'{post.text}'
+            self.assertEqual(expected_object_name, 'just a test')
 
 
-class HomePageViewTest(TestCase): 						# new
+    class HomePageViewTest(TestCase): 						# new
 
-    def setUp(self):									# new
-        Post.objects.create(text='this is another test')# new
+        def setUp(self):									# new
+            Post.objects.create(text='this is another test')# new
 
-    def test_view_url_exists_at_proper_location(self):  # new
-        resp = self.client.get('/')                     # new
-        self.assertEqual(resp.status_code, 200)         # new
+        def test_view_url_exists_at_proper_location(self):  # new
+            resp = self.client.get('/')                     # new
+            self.assertEqual(resp.status_code, 200)         # new
 
-     def test_view_url_by_name(self):                   # new
-        resp = self.client.get(reverse('home'))         # new
-        self.assertEqual(resp.status_code, 200)         # new
+         def test_view_url_by_name(self):                   # new
+            resp = self.client.get(reverse('home'))         # new
+            self.assertEqual(resp.status_code, 200)         # new
 
-    def test_view_uses_correct_template(self):          # new
-        resp = self.client.get(reverse('home'))         # new
-        self.assertEqual(resp.status_code, 200)         # new
-        self.assertTemplateUsed(resp, 'home.html')      # new
+        def test_view_uses_correct_template(self):          # new
+            resp = self.client.get(reverse('home'))         # new
+            self.assertEqual(resp.status_code, 200)         # new
+            self.assertTemplateUsed(resp, 'home.html')      # new
 ```
 - Ejecutando el test:
 ```bash
@@ -367,7 +367,7 @@ FICHERO: `Pipfile`
 ```Pipfile
 # Pipfile
 [requires]
-python_version = "3.9"
+python_version = "3.10"
 ```
 Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 ```bash
@@ -378,18 +378,24 @@ Ejecutar `pipenv lock` para generar el `Pipfile.lock` adecuado.
 ```bash
 (mb) $ touch Procfile
 ```
-### 5.8.3. Instalar `gunicorn`
-- Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero `mb_project.wsgi` para más instrucciones.
+al que le añadiremos el siguiente contenido
+
+FICHERO: `Procfile`
 
 ```text
 web: gunicorn mb_project.wsgi --log-file -
 ```
+
+### 5.8.3. Instalar `gunicorn`
+- Por ahora Heroku usa `gunicorn` como servidor de producción y mira en el fichero `mb_project.wsgi` para más instrucciones.
 
 - Luego, se instala `gunicorn`, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.
 
 ```
 (mb) $ pipenv install gunicorn
 ```
+
+
 ### 5.8.4. Actualizar `settings.py`
 - Anteriormente, establecíamos `ALLOWED_HOSTS` en `*`, lo que significaba aceptar todos los hosts; esto es una atajo peligroso. Podemos, y debemos, ser más específicos. Los dos hosts locales en los que se ejecuta Django son: `localhost:8000` y `127.0.0.1:8000`. También sabemos que, una vez desplegado, cualquier sitio Heroku terminará con `.herokuapp.com`. Podemos añadir las tres rutas a nuestra configuración.
 
@@ -422,12 +428,12 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 (mb) $ heroku git:remote -a agile-inlet-25811
 ```
 - Indicar a que ignore los archivos estáticos (se tratará más adelante).
-```
+```bash
 (mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
 ```
 -  Subir el código a Heroku y añadir escalado gratuito para que se ejecute realmente en línea, de lo contrario el código sólo se quedará alojado.
-```
-(mb) $ git push heroku master
+```bash
+(mb) $ git push heroku main (ó master)
 (mb) $ heroku ps:scale web=1
 ```
 - Abrir el código con `heroku open` y automáticamente mostrará un navegador con la URL de la aplicación.

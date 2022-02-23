@@ -218,8 +218,9 @@ TEMPLATE: `templates/signup.html`
 ```
 Crear un nuevo repo en GitHub al que se puede llamar como se desee.
 ```bash
-(blog) $ git remote add origin git@bitbucket.org:wsvincent/blog-app.git
-(blog) $ git push -u origin master
+(blog) $ git remote add origin https://github.com/mentecatoDev/blog.git
+(blog) $ git branch -M main
+(blog) $ git push -u origin main
 ```
 ## 8.6. Configuración de Heroku
 - Hay cuatro cambios que hacer para el despliegue en Heroku.
@@ -256,7 +257,7 @@ ALLOWED_HOSTS = ['*']
 (blog) $ git status
 (blog) $ git add -A
 (blog) $ git commit -m 'Añade ficheros de configuración Heroku'
-(blog) $ git push -u origin master
+(blog) $ git push -u origin main
 ```
 ## 8.7. Despliegue en Heroku
 ```bash
@@ -321,7 +322,7 @@ Finalmente podemos subir el código a Heroku y añadir un proceso web para que e
 ```
 
 ## 8.8. Conclusión
-Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Bajo el capó, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.
+Con una mínima cantidad de código, el framework de Django nos ha permitido crear un flujo de autenticación de usuario de inicio de sesión, cierre de sesión y registro. Entre bambalinas, se han cubierto muchos problemas de seguridad que pueden surgir si se intenta crear un flujo de autenticación de usuario propio desde cero.
 
 
 

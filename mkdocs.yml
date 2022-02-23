@@ -18,7 +18,6 @@ nav:
   - 15. Permisos y Autorización: 15_permisos_y_autorizacion.md
   - 16. Comentarios: 16_comentarios.md
   - 17. Docker: 17_docker.md
-  - Portafolio: portfolio/portfolio.md
 theme: readthedocs
 
 plugins:

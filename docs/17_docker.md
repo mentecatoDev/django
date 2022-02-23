@@ -1,4 +1,4 @@
-# 18. Docker
+# 17. Docker
 
 La configuración adecuada de un entorno de desarrollo local sigue siendo un gran reto a pesar de todos los otros avances de la programación moderna. Simplemente hay demasiadas variables: **diferentes ordenadores**, **sistemas operativos**, **versiones de lenguajes** y **frameworks**, **opciones de entornos virtuales**,  y así sucesivamente. Cuando se añade el reto de **trabajar en equipo** en un entorno en el que todos necesitan tener la misma configuración, el problema se magnifica.
 
@@ -12,7 +12,7 @@ En lugar de eso, con Docker sólo se tienen que compartir dos archivos: `Dockerf
 
 Docker no es una tecnología perfecta. Todavía es relativamente nueva y compleja bajo el capó; aún está en desarrollo activo. Pero aspira a la promesa de una política coherente y a un entorno de desarrollo compartible, que pueda ejecutarse localmente en cualquier ordenador o desplegado en cualquier servidor, lo que lo convierte en una opción sólida.
 
-## 18.1. ¿Qué es Docker?
+## 17.1. ¿Qué es Docker?
 Docker es una forma de aislar todo un sistema operativo a través de **contenedores Linux** que son un tipo de virtualización. La virtualización tiene sus raíces en los inicios de la informática cuando las computadoras grandes y caras eran la norma. ¿Cómo podrían varios programadores utilizar la misma máquina?. La respuesta fue la virtualización y específicamente las máquinas virtuales que son copias completas de un sistema informático desde el sistema operativo en adelante.![https://diveintodocker.com/assets/courses/virtual-machine-vs-docker-container-diveintodocker-da32029afb09e889fdee17b66876493d3b2441f30e77708520cd9bf338a21866.jpg](img_docker/img00.png)
 
 Cuando se alquila un espacio en un proveedor de cloud computing como Amazon Web Services (AWS) normalmente no se proporciona una pieza de hardware dedicada. En lugar de eso, se comparte un servidor físico con otros clientes. Pero como cada cliente tiene su propio sistema virtual que se ejecuta en el servidor, le parece que tiene el suyo propio.
@@ -27,7 +27,7 @@ Esto, fundamentalmente, es Docker: ¡una forma de implementar contenedores Linux
 
 Una analogía que podemos usar es la de los unifamiliares y las habitaciones de hotel. Las máquinas virtuales son como unifamiliares: edificios independientes con su propia infraestructura, incluida la fontanería y calefacción, así como cocina, baños, dormitorios, etc. Los contenedores Docker son como apartamentos: comparten una infraestructura común como la fontanería y la calefacción, cocinas, comedores, salones, piscinas... y vienen en varios tamaños que se ajustan a las necesidades exactas de cada huésped.
 
-## 18.2. Contenedores vs. Entornos Virtuales
+## 17.2. Contenedores vs. Entornos Virtuales
 
 Como programador de Python se debe estar familiarizado con el concepto de **entornos virtuales** que son una forma de aislar los paquetes Python. Gracias al entorno virtual, una computadora puede ejecutar múltiples proyectos localmente. Por ejemplo, el Proyecto A podría usar Python 3.4 y Django 1.11 entre otras dependencias; mientras que el Proyecto B usa Python 3.8 y Django 2.2. Configurando un entorno virtual dedicado en cada proyecto se puede gestionar estos diferentes paquetes de software sin contaminar nuestro entorno global.
 
@@ -39,7 +39,7 @@ Los contenedores Linux van un paso más allá y **aíslan todo el sistema operat
 
 Docker en sí mismo es un tema complejo y no se va a profundizar tanto en él, sin embargo, es importante comprender sus antecedentes y componentes clave. Si quieres aprender más sobre él puedes acceder a diferentes cursos de los que dispones en la plataforma de [OpenWebinars](https://www.openwebinars.com).
 
-## 18.3. Instalar Docker
+## 17.3. Instalar Docker
 
 Ok, suficiente teoría. Empecemos a usar Docker y Django juntos. El primer paso es registrarse en [Docker Hub](https://hub.docker.com/signup) para obtener una cuenta gratuita y luego instalar la aplicación de escritorio Docker en nuestra máquina local:
 
@@ -57,9 +57,14 @@ $ docker --version
 Docker version 20.10.4, build d3cb89ee53
 ```
 
-- Docker se utiliza a menudo con una herramienta adicional, [Docker Compose](https://docs.docker.com/compose/), para ayudar a automatizar los comandos. Docker Compose se incluye con las descargas de Mac y Windows, pero si se está en Linux, tendrá que añadirse manualmente. Puede hacerse ejecutando el comando `sudo pip install docker-compose` después de que la instalación de Docker haya finalizado.
+- Docker se utiliza a menudo con una herramienta adicional, [Docker Compose](https://docs.docker.com/compose/), para ayudar a automatizar los comandos. Docker Compose se incluye con las descargas de Mac y Windows, pero si se está en Linux, tendrá que añadirse manualmente. Puede hacerse ejecutando el comando
+```bash
+$ sudo pip install docker-compose
+```
 
-    - Para distribuciones basadas en [Arch](https://wiki.archlinux.org/index.php/Docker) será algo tan fácil como ejecutar `pacman -S docker-compose`. (Si surgen problemas con algún fichero ya instalado en el sistema, borrar todos aquellos ficheros que estén involucrados y proceder con la instalación como se indica)
+- ...después de que la instalación de Docker haya finalizado.
+
+- Para distribuciones basadas en [Arch](https://wiki.archlinux.org/index.php/Docker) será algo tan fácil como ejecutar `pacman -S docker-compose`. (Si surgen problemas con algún fichero ya instalado en el sistema, borrar todos aquellos ficheros que estén involucrados y proceder con la instalación como se indica)
 - Comprobar que el demonio de docker está corriendo haciendo uso del comando `systemctl`
 
 ```bash
@@ -71,7 +76,7 @@ $ sudo systemctl status docker.service
 $ sudo systemctl start docker.service
 ```
 
-## 18.4. Docker, Hola Mundo
+## 17.4. Docker, Hola Mundo
 
 - Docker se envía con su propia imagen de "Hello, World" que es un primer paso útil para comprobar la instalación. Introducir en la línea de comandos el comando `docker run hello-world`. Esto descargará una imagen Docker oficial y luego se ejecutará dentro de un contenedor. Se discutirá sobre las imágenes y los contenedores en breve.
 
@@ -114,7 +119,7 @@ Server:
 ...
 ```
 
-## 18.5. Django, Hola mundo
+## 17.5. Django, Hola mundo
 
 Ahora vamos a crear un proyecto de Django "Hello, World" que se ejecuta localmente en nuestro ordenador y luego lo moveremos por completo dentro de Docker para que se pueda ver cómo encajan todas las piezas.
 
@@ -129,7 +134,7 @@ $ mkdir code && cd code
 
 ```bash
 $ mkdir hello && cd hello
-pipenv install django==2.2.7
+$ pipenv install django==2.2.7
 $ pipenv shell
 (hello) $
 ```
@@ -147,7 +152,7 @@ $ pipenv shell
 
 ![img01](img_docker/img01.png)
 
-## 18.6. Pages App
+## 17.6. Pages App
 
 Ahora haremos una página de inicio simple creando una `pages` **app** específica  para ello. 
 
@@ -172,7 +177,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages.apps.apps.PagesConfig',    # new
+    'pages.apps.PagesConfig',    # new
 ]
 ```
 
@@ -215,7 +220,7 @@ from .views import home_page_view
 
 
 urlpatterns = [
-path('', home_page_view, name='home')
+	path('', home_page_view, name='home')
 ]
 ```
 - El flujo completo de nuestra página web Django es el siguiente:
@@ -250,7 +255,7 @@ SyntaxError: invalid syntax
 
 - Esto significa que estamos totalmente fuera del entorno virtual y preparados para Docker.
 
-## 18.7. Imágenes, Contenedores y el "Docker Host"
+## 17.7. Imágenes, Contenedores y el "Docker Host"
 
 - Una **imagen** Docker es una instantánea en el tiempo de lo que contiene un proyecto. Está representado por un `Dockerfile` y es literalmente una lista de instrucciones que deben ser construidas/ejecutadas. Un **contenedor** Docker es una instancia en ejecución de una imagen. Para continuar con la analogía de nuestra habitación de hotel de antes, la imagen es el plano o conjunto de planos de las habitaciones; el contenedor es el hotel totalmente construido.
 
@@ -331,7 +336,7 @@ $ touch docker-compose.yml
 - Contendrá el siguiente código
 
 ```yaml
-version: '3.7'
+version: '3.9'
 
 services:
   web:

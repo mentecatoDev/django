@@ -355,7 +355,7 @@ A continuación queremos añadir todos los cambios utilizando el comando `add -A
 
 ```bash
 (helloworld) $ git add -A
-(helloworld) $ git commit -m "Commit inicial"
+(helloworld) $ git commit -m "Inicializa proyecto"
 ```
 ### 3.6.2 GitHub
 Es un buen hábito crear un repositorio remoto de tu código para cada proyecto. De esta manera se tiene una copia de seguridad en caso de que le pase algo a tu ordenador y, lo que es más importante, permite la colaboración con otros desarrolladores de software. Las opciones más populares son GitHub , Bitbucket y GitLab.
@@ -363,7 +363,7 @@ Es un buen hábito crear un repositorio remoto de tu código para cada proyecto.
 Nosotros utilizaremos GitHub, pero los tres servicios ofrecen una funcionalidad similar para los recién llegados.
 
 Regístrate para obtener una cuenta gratuita en la página principal de GitHub y verifica tu dirección de correo electrónico. Luego navega a la página "Crear un nuevo repositorio" situada en https://github.com/new.
-Introduce el nombre del repositorio hello_world y haz clic en el botón de la parte inferior "Crear Repositorio".
+Introduce el nombre del repositorio `hello_world` y haz clic en el botón de la parte inferior "Crear Repositorio".
 
 ¡Tu primer repositorio ya está creado! Sin embargo, todavía no hay código en él. Desplázate hacia abajo en la página hasta donde dice “...or push an existing repository from the command line.” Eso es lo que queremos.
 
@@ -372,5 +372,5 @@ Copia el texto que se encuentra inmediatamente debajo de este encabezado y péga
 El último paso es subir el contenido con `push`:
 
 ```bash
-$ git push -u origin master
+$ git push -u origin master (ó main)
 ```
