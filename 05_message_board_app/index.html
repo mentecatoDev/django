@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -186,6 +185,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -384,7 +384,7 @@ class HomePageView(ListView):             # new
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('template'))],   # new
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],   # new
         ...
     },
 ]
@@ -457,9 +457,9 @@ urlpatterns = [                                     # new
 <li>Añádanse más posts ;-)</li>
 <li>No olvidar</li>
 </ul>
-<pre><code>(mb) $ git init
+<pre><code class="language-bash">(mb) $ git init
 (mb) $ git add -A
-(mb) $ git commit -m 'Commit inicial'
+(mb) $ git commit -m 'Crea Commit inicial'
 </code></pre>
 <h2 id="56-tests">5.6. Tests</h2>
 <ul>
@@ -518,39 +518,39 @@ Destroying test database for alias 'default'...
 <li>El segundo test comprueba una sola página: la <em>homepage</em>. En concreto comprueba que exista (lanza una respuesta HTTP 200). Usa la vista <code>home</code> y la plantilla <code>home.html</code>.</li>
 <li>Se necesita añadir un <code>import</code> más para <code>reverse</code> y una nueva clase <code>HomePageViewTest</code></li>
 </ul>
-<pre><code class="language-python">from django.test import TestCase
-from django.urls import reverse  #new
-from .models import Post
+<pre><code class="language-python">    from django.test import TestCase
+    from django.urls import reverse  #new
+    from .models import Post
 
 
-class PostModelTest(TestCase):
+    class PostModelTest(TestCase):
 
-    def setUp(self):
-        Post.objects.create(text='just a test')
+        def setUp(self):
+            Post.objects.create(text='just a test')
 
-    def test_text_content(self):
-        post=Post.objects.get(id=1)
-        expected_object_name = f'{post.text}'
-        self.assertEqual(expected_object_name, 'just a test')
+        def test_text_content(self):
+            post=Post.objects.get(id=1)
+            expected_object_name = f'{post.text}'
+            self.assertEqual(expected_object_name, 'just a test')
 
 
-class HomePageViewTest(TestCase):                       # new
+    class HomePageViewTest(TestCase):                       # new
 
-    def setUp(self):                                    # new
-        Post.objects.create(text='this is another test')# new
+        def setUp(self):                                    # new
+            Post.objects.create(text='this is another test')# new
 
-    def test_view_url_exists_at_proper_location(self):  # new
-        resp = self.client.get('/')                     # new
-        self.assertEqual(resp.status_code, 200)         # new
+        def test_view_url_exists_at_proper_location(self):  # new
+            resp = self.client.get('/')                     # new
+            self.assertEqual(resp.status_code, 200)         # new
 
-     def test_view_url_by_name(self):                   # new
-        resp = self.client.get(reverse('home'))         # new
-        self.assertEqual(resp.status_code, 200)         # new
+         def test_view_url_by_name(self):                   # new
+            resp = self.client.get(reverse('home'))         # new
+            self.assertEqual(resp.status_code, 200)         # new
 
-    def test_view_uses_correct_template(self):          # new
-        resp = self.client.get(reverse('home'))         # new
-        self.assertEqual(resp.status_code, 200)         # new
-        self.assertTemplateUsed(resp, 'home.html')      # new
+        def test_view_uses_correct_template(self):          # new
+            resp = self.client.get(reverse('home'))         # new
+            self.assertEqual(resp.status_code, 200)         # new
+            self.assertTemplateUsed(resp, 'home.html')      # new
 </code></pre>
 <ul>
 <li>Ejecutando el test:</li>
@@ -598,7 +598,7 @@ FICHERO: <code>Pipfile</code></li>
 </ul>
 <pre><code class="language-Pipfile"># Pipfile
 [requires]
-python_version = &quot;3.9&quot;
+python_version = &quot;3.10&quot;
 </code></pre>
 <p>Ejecutar <code>pipenv lock</code> para generar el <code>Pipfile.lock</code> adecuado.</p>
 <pre><code class="language-bash">(mb) $ pipenv lock
@@ -609,14 +609,18 @@ python_version = &quot;3.9&quot;
 </ul>
 <pre><code class="language-bash">(mb) $ touch Procfile
 </code></pre>
-<h3 id="583-instalar-gunicorn">5.8.3. Instalar <code>gunicorn</code></h3>
-<ul>
-<li>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero <code>mb_project.wsgi</code> para más instrucciones.</li>
-</ul>
+<p>al que le añadiremos el siguiente contenido</p>
+<p>FICHERO: <code>Procfile</code></p>
 <pre><code class="language-text">web: gunicorn mb_project.wsgi --log-file -
 </code></pre>
+<h3 id="583-instalar-gunicorn">5.8.3. Instalar <code>gunicorn</code></h3>
 <ul>
-<li>Luego, se instala <code>gunicorn</code>, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.</li>
+<li>
+<p>Por ahora Heroku usa <code>gunicorn</code> como servidor de producción y mira en el fichero <code>mb_project.wsgi</code> para más instrucciones.</p>
+</li>
+<li>
+<p>Luego, se instala <code>gunicorn</code>, que se usará en producción mientras se siga usando el servidor interno de Django para desarrollo local.</p>
+</li>
 </ul>
 <pre><code>(mb) $ pipenv install gunicorn
 </code></pre>
@@ -657,12 +661,12 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
 <ul>
 <li>Indicar a que ignore los archivos estáticos (se tratará más adelante).</li>
 </ul>
-<pre><code>(mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
+<pre><code class="language-bash">(mb) $ heroku config:set DISABLE_COLLECTSTATIC=1
 </code></pre>
 <ul>
 <li>Subir el código a Heroku y añadir escalado gratuito para que se ejecute realmente en línea, de lo contrario el código sólo se quedará alojado.</li>
 </ul>
-<pre><code>(mb) $ git push heroku master
+<pre><code class="language-bash">(mb) $ git push heroku main (ó master)
 (mb) $ heroku ps:scale web=1
 </code></pre>
 <ul>
@@ -709,17 +713,18 @@ https://agile-inlet-25811.herokuapp.com/ | https://git.heroku.com/agile-inlet-25
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../04_pages_app/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../06_blog_app/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../04_pages_app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../06_blog_app/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

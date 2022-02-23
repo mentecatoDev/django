@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -150,6 +149,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -480,17 +480,17 @@ nothing added to commit but untracked files present (use &quot;git add&quot; to 
 </code></pre>
 <p>A continuación queremos añadir todos los cambios utilizando el comando <code>add -A</code> y luego confirmar los cambios con <code>commit</code>  junto con un mensaje, (-m), describiendo lo que ha cambiado.</p>
 <pre><code class="language-bash">(helloworld) $ git add -A
-(helloworld) $ git commit -m &quot;Commit inicial&quot;
+(helloworld) $ git commit -m &quot;Inicializa proyecto&quot;
 </code></pre>
 <h3 id="362-github">3.6.2 GitHub</h3>
 <p>Es un buen hábito crear un repositorio remoto de tu código para cada proyecto. De esta manera se tiene una copia de seguridad en caso de que le pase algo a tu ordenador y, lo que es más importante, permite la colaboración con otros desarrolladores de software. Las opciones más populares son GitHub , Bitbucket y GitLab.</p>
 <p>Nosotros utilizaremos GitHub, pero los tres servicios ofrecen una funcionalidad similar para los recién llegados.</p>
 <p>Regístrate para obtener una cuenta gratuita en la página principal de GitHub y verifica tu dirección de correo electrónico. Luego navega a la página "Crear un nuevo repositorio" situada en https://github.com/new.
-Introduce el nombre del repositorio hello_world y haz clic en el botón de la parte inferior "Crear Repositorio".</p>
+Introduce el nombre del repositorio <code>hello_world</code> y haz clic en el botón de la parte inferior "Crear Repositorio".</p>
 <p>¡Tu primer repositorio ya está creado! Sin embargo, todavía no hay código en él. Desplázate hacia abajo en la página hasta donde dice “...or push an existing repository from the command line.” Eso es lo que queremos.</p>
 <p>Copia el texto que se encuentra inmediatamente debajo de este encabezado y pégalo en la línea de comandos. Esto sincroniza el directorio local en nuestro ordenador con el repositorio remoto en el sitio web de GitHub.</p>
 <p>El último paso es subir el contenido con <code>push</code>:</p>
-<pre><code class="language-bash">$ git push -u origin master
+<pre><code class="language-bash">$ git push -u origin master (ó main)
 </code></pre>
               
             </div>
@@ -525,17 +525,18 @@ Introduce el nombre del repositorio hello_world y haz clic en el botón de la pa
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../02_configuracion_inicial/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../04_pages_app/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../02_configuracion_inicial/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../04_pages_app/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

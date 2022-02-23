@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -194,6 +193,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -214,7 +214,7 @@
 <pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.9
+$ pipenv install --python 3.10
 $ pipenv install django
 $ pipenv shell
 (pages) $ django-admin startproject pages_project .
@@ -286,6 +286,7 @@ $ pipenv shell
 <p>FICHERO: <code>pages/views.py</code> </p>
 <pre><code class="language-python">from django.views.generic import TemplateView
 
+
 class HomePageView(TemplateView):
     template_name = 'home.html'
 </code></pre>
@@ -335,6 +336,7 @@ urlpatterns = [
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
+
 
 class AboutPageView(TemplateView):
     template_name = 'about.html'
@@ -498,14 +500,12 @@ Logged in as will@wsvincent.com
 <p>Especificar la versión de Python que se está usando en <code>Pipfile</code></p>
 </li>
 </ul>
-<pre><code class="language-pipfile"># Pipfile
+<pre><code class="language-toml"># Pipfile
 [requires]
 python_version = &quot;3.9&quot;
 </code></pre>
-<ul>
-<li>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</li>
-</ul>
-<pre><code>(pages) $ pipenv lock
+<p>Luego ejecutar <code>pipenv lock</code> para generar el archivo <code>Pipfile.lock</code> apropiado.</p>
+<pre><code class="language-bash">(pages) $ pipenv lock
 </code></pre>
 <ul>
 <li>Heroku busca en <code>Pipfile.lock</code> información sobre el entorno virtual.</li>
@@ -630,17 +630,18 @@ ignore los archivos estáticos como CSS y JavaScript que Django por defecto inte
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../03_hello_world_app/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../05_message_board_app/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../03_hello_world_app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../05_message_board_app/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

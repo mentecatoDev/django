@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -160,6 +159,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -256,9 +256,10 @@ class BlogCreateView(CreateView): # new
 
 {% block content %}
     &lt;h1&gt;Nuevo post&lt;/h1&gt;
-    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
-      {{ form.as_p }}
-      &lt;input type=&quot;submit&quot; value=&quot;Guardar&quot;/&gt;
+    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        &lt;input type=&quot;submit&quot; value=&quot;Guardar&quot;/&gt;
     &lt;/form&gt;
 {% endblock content%}
 </code></pre>
@@ -414,12 +415,12 @@ urlpatterns = [
 <li>Si se hace clic en <em>"+ Editar Post"</em> se redirigirá a http://127.0.0.1:8000/post/1/edit/ si esa es la primera entrada en el blog.</li>
 <li>Téngase en cuenta que el formulario está precargado con los datos existentes en la base de datos para el post.</li>
 <li>
-<p>Vamos a hacer un cambio...</p>
+<p>Hagamos un cambio en el Post...</p>
 </li>
 <li>
-<p>Y después de pulsar el botón "Update" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.</p>
+<p>...y después de pulsar el botón "Actualizar" somos redirigidos a la vista de detalles del <em>post</em> en el que se puede ver el cambio. Esto se debe a la configuración <code>get_absolute_url</code>.</p>
 </li>
-<li>Si se navega a la página principal se podrás ver el cambio junto a todas las demás entradas.</li>
+<li>Si se navega a la página principal se podrá ver el cambio junto a todas las demás entradas.</li>
 </ul>
 <h2 id="73-borrar-la-vista">7.3 Borrar la vista</h2>
 <ul>
@@ -646,17 +647,18 @@ class BlogTests(TestCase):
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../06_blog_app/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../08_cuentas_de_usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../06_blog_app/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../08_cuentas_de_usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

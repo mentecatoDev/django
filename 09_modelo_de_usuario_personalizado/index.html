@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -25,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
         <a href=".." class="icon icon-home"> Django</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -164,13 +163,14 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
                 <h1 id="9-modelo-de-usuario-personalizado">9. Modelo de usuario personalizado</h1>
 <p>La documentación oficial de Django recomienda encarecidamente utilizar un <strong>modelo de usuario personalizado</strong> para los nuevos proyectos. La razón es que si se quiere hacer cualquier cambio en el modelo de usuario en el futuro -por ejemplo, añadir un campo edad- utilizar un modelo de usuario personalizado desde el principio lo convierte en algo sencillo. Pero si <strong>no</strong> se crea, <strong>actualizar el modelo de usuario</strong> por defecto en un proyecto Django existente es muy, <strong>muy difícil</strong>.</p>
-<p>Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo <code>AbstractBaseUser</code> cuando si sólo se utiliza <code>AbstractUser</code> las cosas son mucho más sencillas y aún así personalizables es mucho mejor práctica.</p>
-<p>Y ahora, <strong>hagamos un periódico</strong> (homenaje a las raíces de Django como un framework construido para editores y periodistas en el <a href="https://en.wikipedia.org/wiki/Lawrence_Journal-World">Lawrence Journal-World</a>).</p>
+<p>Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo <code>AbstractBaseUser</code> no es una buena práctica cuando si sólo se utiliza <code>AbstractUser</code> hace que las cosas sean mucho más sencillas y aún así personalizables.</p>
+<p>Ahora, <strong>hagamos un periódico</strong> (homenaje a las raíces de Django como un framework construido para editores y periodistas en el <a href="https://en.wikipedia.org/wiki/Lawrence_Journal-World">Lawrence Journal-World</a>).</p>
 <h2 id="91-setup">9.1. Setup</h2>
 <pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir news
@@ -202,7 +202,7 @@ $ pipenv shell
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountsConfig',                          # new
+    'accounts.apps.AccountsConfig',                       # new
 ]
 ...
 # Authentication                                          # new
@@ -257,7 +257,7 @@ class CustomUserChangeForm(UserChangeForm):
 <p>Para ambos formularios se usa el modelo <code>CustomUser</code> con los campos por defecto de <code>Meta.fields</code>.</p>
 <p>El modelo de <code>CustomUser</code> contiene todos los campos del modelo de usuario por defecto y el campo <code>age</code> adicional que se ha definido.</p>
 <p>Para los nuevos formularios usamos la clase <code>Meta</code> para anular los campos por defecto estableciendo el
-modelo a nuestro <code>CustomUser</code> y utilizando los campos por defecto a través de <code>Meta.fields</code> que incluye todos los campos por defecto. Para añadir nuestro campo <code>age</code> personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
+modelo a nuestro <code>CustomUser</code> y utilizando los campos por defecto a través de <code>Meta.fields</code> que los incluye todos. Para añadir nuestro campo <code>age</code> personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
 El concepto de campos en un formulario puede ser confuso al principio, así que vamos a dedicar un momento a explorarlo más a fondo. Nuestro modelo <code>CustomUser</code> contiene todos los campos del modelo <code>User</code> por defecto y el campo adicional que hemos establecido.</p>
 <p>¿Pero cuáles son estos campos por defecto?</p>
 <p>Resulta que hay muchos, incluyendo <code>username</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>password</code>, <code>groups</code> y más.</p>
@@ -306,9 +306,9 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username', 'age', 'is_staff', ]
-    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)
+    list_display = ['email', 'username', 'age', 'is_staff', ]               #new
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('age',)}),)       #new
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields':('age',)}),)#new
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
@@ -352,17 +352,18 @@ admin.site.register(CustomUser, CustomUserAdmin)
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../08_cuentas_de_usuarios/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../10_autenticacion_de_usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../08_cuentas_de_usuarios/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../10_autenticacion_de_usuarios/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
