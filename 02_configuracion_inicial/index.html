@@ -1,61 +1,55 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>2. Configuración Inicial - Django</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "2. Configuraci\u00f3n Inicial";
-    var mkdocs_page_input_path = "02_configuracion_inicial.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>2. Configuración Inicial - Django</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. Configuraci\u00f3n Inicial";
+        var mkdocs_page_input_path = "02_configuracion_inicial.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Django</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> Django
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">2. Configuración Inicial</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">2. Configuración Inicial</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#21-la-linea-de-comandos">2.1 La línea de comandos</a>
     </li>
@@ -76,107 +70,97 @@
     <li class="toctree-l2"><a class="reference internal" href="#27-borrar-el-proyecto">2.7. Borrar el proyecto</a>
     </li>
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
-                    </li>
-                </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Django</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Django</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>2. Configuración Inicial</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>2. Configuración Inicial</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
-
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="2-configuracion-inicial">2 Configuración inicial</h1>
 <ul>
 <li>Objetivos </li>
 <li>Configurar el entorno para programar en proyectos Django</li>
 <li>Uso de la línea de comandos para instalar: <ul>
-<li>Django 3.2</li>
+<li>Django 4.1</li>
 <li>Python 3.10</li>
 </ul>
 </li>
@@ -185,9 +169,9 @@
 </ul>
 <h2 id="21-la-linea-de-comandos">2.1 La línea de comandos</h2>
 <ul>
-<li>Konsole, Tmux, zsh</li>
+<li>Konsole, Tmux, zsh, kitty</li>
 <li>cd, cd .., ls, pwd, mkdir, touch</li>
-<li>Práctica: </li>
+<li>Práctica:</li>
 <li>Recorrer los directorios del sistema, hacer una lista de ellos</li>
 <li>Mostrar el directorio de trabajo</li>
 <li>Crear un nuevo directorio y crear un fichero <code>index.html</code> en él</li>
@@ -229,7 +213,7 @@
 &gt;&gt;&gt; print(path)
 </code></pre>
 <ul>
-<li>Generalmente no hay que preocuparse de asigarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</li>
+<li>Generalmente no hay que preocuparse de asignarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo <code>manage.py</code>).</li>
 </ul>
 <h2 id="23-entornos-virtuales">2.3 Entornos Virtuales</h2>
 <ul>
@@ -237,12 +221,15 @@
 </ul>
 <h2 id="24-instalacion-de-django">2.4 Instalación de Django</h2>
 <pre><code class="language-bash">$ cd ~/Escritorio
-$ mkdir django
-$ cd django
-$ pipenv shell
-$ pipenv install django
+$ mkdir project
+$ cd project
+$ poetry init
+$ poetry install
+$ poetry add django
+$ poetry shell
 </code></pre>
 <ul>
+<li>Advertencia: No nombrar el directorio del proyecto igual que alguno de los paquetes que se pretenden  instalar.</li>
 <li>Crear nuevo proyecto <code>test</code>. No olvidar el "." al final.</li>
 </ul>
 <pre><code class="language-bash">$ django-admin startproject test_project .
@@ -293,8 +280,8 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 <li>PyCharm</li>
 </ul>
 <h2 id="27-borrar-el-proyecto">2.7. Borrar el proyecto</h2>
-<p>El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio <code>~/.local/share/virtualenvs/&lt;directorio-código&gt;</code>. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando <code>pipenv --rm</code> para hacerlo desde el directorio del proyecto.</p>
-<pre><code class="language-bash">$ pipenv --rm
+<p>El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio <code>~/.cache/pypoetry/virtualenvs/&lt;directorio-código&gt;</code>. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando <code>poetry env remove</code> para hacerlo desde el directorio del proyecto.</p>
+<pre><code class="language-bash">$ poetry env remove &lt;directorio del proyecto&gt;
 </code></pre>
 <p>Una vez elminado el entorno virtual podemos proceder a borrar el proyecto, desde su directorio padre, usando el málefico comando: </p>
 <pre><code class="language-bash">$ rm -rf &lt;directorio del proyecto&gt;
@@ -302,29 +289,21 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 <p>Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizarndo wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../01_introduccion/" class="btn btn-neutral float-left" title="1. Introducción"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../03_hello_world_app/" class="btn btn-neutral float-right" title="3. Hello World app">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../01_introduccion/" class="btn btn-neutral" title="1. Introducción"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -332,7 +311,7 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     

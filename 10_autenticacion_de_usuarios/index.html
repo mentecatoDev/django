@@ -1,93 +1,87 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>10. Autenticación de Usuarios - Django</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "10. Autenticaci\u00f3n de Usuarios";
-    var mkdocs_page_input_path = "10_autenticacion_de_usuarios.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>10. Autenticación de Usuarios - Django</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "10. Autenticaci\u00f3n de Usuarios";
+        var mkdocs_page_input_path = "10_autenticacion_de_usuarios.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Django</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> Django
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">10. Autenticación de Usuarios</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">10. Autenticación de Usuarios</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#101-plantillas">10.1. Plantillas</a>
     </li>
@@ -98,73 +92,63 @@
     <li class="toctree-l2"><a class="reference internal" href="#104-conclusion">10.4. Conclusión</a>
     </li>
     </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
-                    </li>
-                </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Django</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Django</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>10. Autenticación de Usuarios</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>10. Autenticación de Usuarios</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
-
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="10-autenticacion-de-usuarios">10. Autenticación de usuarios</h1>
 <h2 id="101-plantillas">10.1. Plantillas</h2>
 <p>Por defecto, el cargador de plantillas de Django las busca en una estructura anidada dentro de cada aplicación. Así que una plantilla <code>home.html</code> de <code>accounts</code> tendría que estar ubicada en <code>accounts/templates/accounts/home.html</code>.</p>
-<p>Pero el enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que se usará.</p>
+<p>Pero el enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que se usará éste.</p>
 <pre><code class="language-bash">(news) $ mkdir templates
 (news) $ mkdir templates/registration
 </code></pre>
@@ -183,7 +167,8 @@
 </blockquote>
 <p>Añadir estas dos líneas en la parte inferior del archivo settings.py.</p>
 <p>FICHERO: <code>newspaper_project/settings.py</code></p>
-<pre><code class="language-python">LOGIN_REDIRECT_URL = 'home'
+<pre><code class="language-python"># Redirect
+LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 </code></pre>
 <p>Ahora se pueden crear cuatro nuevas plantillas:</p>
@@ -195,8 +180,7 @@ LOGOUT_REDIRECT_URL = 'home'
 <p>Veamos el código HTML para cada archivo.</p>
 <p><code>base.html</code> será heredada por cada una de las otras plantillas del proyecto. Usando un bloque como <code>{% block content %}</code> se puede más tarde sobreescribir el contenido sólo en este lugar desde otras plantillas.</p>
 <p>FICHERO: <code>templates/base.html</code></p>
-<pre><code class="language-html">&lt;!doctype html&gt;
-&lt;html lang=&quot;es&quot;&gt;
+<pre><code class="language-html">&lt;html lang=&quot;es&quot;&gt;
 &lt;head&gt;
   &lt;meta charset=&quot;utf-8&quot;&gt;
   &lt;title&gt;{% block title %}Newspaper App{% endblock title %}&lt;/title&gt;
@@ -255,7 +239,8 @@ LOGOUT_REDIRECT_URL = 'home'
 </code></pre>
 <h2 id="102-urls">10.2. URLs</h2>
 <p>En el archivo <code>urls.py</code>, a nivel de proyecto, se quiere que la plantilla <code>home.html</code> aparezca como página de inicio. Pero no se quiere construir una app <code>pages</code> dedicada todavía, así que se puede usar el atajo de importar <code>TemplateView</code> y establecer el <code>template_name</code> justo en el patrón url.</p>
-<p>A continuación se quiere "incluir" tanto la app <code>accounts</code> como la app <code>auth</code> que incorpora django. La razón es que la app <code>auth</code>  ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el <strong>registro hay que crear una vista y una url propias</strong>. Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>accounts/</code> para que las URLs sean <code>/accounts/login</code>, <code>/accounts/logout</code> y <code>/accounts/signup</code>.</p>
+<p>A continuación se quiere "incluir" tanto la app <code>accounts</code> como la app <code>auth</code> que incorpora django. La razón es que la app <code>auth</code>  ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero <strong>para el registro hay que crear una vista y una url propias</strong>.</p>
+<p>Para asegurar que las rutas URL sean consistentes se colocarán ambas en <code>accounts/</code> para que las URLs sean <code>/accounts/login</code>, <code>/accounts/logout</code> y <code>/accounts/signup</code>.</p>
 <p>FICHERO: <code>newspaper_project/urls.py</code></p>
 <pre><code class="language-python">from django.contrib import admin
 from django.urls import path, include                                       # new
@@ -296,6 +281,13 @@ class SignUp(CreateView):
     template_name = 'registration/signup.html'
 </code></pre>
 <p>Arrancar el servidor con python <code>manage.py runserver</code> e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario <code>testuser</code>.</p>
+<blockquote>
+<p>Recuerda establecer el idioma en el fichero <code>settings.py</code>.</p>
+<p>```python
+LANGUAGE_CODE = 'es'</p>
+<p>TIME_ZONE = 'Europe/Madrid'
+```</p>
+</blockquote>
 <p>Como tenemos un nuevo campo <code>age</code> añadámoslo al template <code>home.html</code>. Es un campo del modelo de usuario por lo que para mostrarlo sólo tenemos que usar <code>{{ user.age }}</code> pero comprobando previamente que su contenido no es <code>null</code>.</p>
 <p>FICHERO: <code>templates/home.html</code></p>
 <pre><code class="language-html">{% extends 'base.html' %}
@@ -328,14 +320,12 @@ from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = UserCreationForm.Meta.fields
 
 
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model = CustomUser
         fields = UserChangeForm.Meta.fields
@@ -359,33 +349,25 @@ class CustomUserChangeForm(UserChangeForm):
 </code></pre>
 <p>El flujo de autenticación de usuarios de Django requiere un poco de configuración, pero puede verse que también proporciona una increíble flexibilidad para configurar el registro e iniciar la sesión exactamente como se requiera.</p>
 <h2 id="104-conclusion">10.4. Conclusión</h2>
-<p>Hasta ahora la aplicación <code>Newspaper</code> tiene un modelo de usuario personalizado y funciona con páginas de <em>registro</em>, <em>login</em> y <em>logout</em> aunque no tiene muy buen aspecto. Próximamente se añadirá <strong>Bootstrap</strong> para mejorar el estilo además de una <em>app</em> dedicada de <code>pages</code> .</p>
+<p>Hasta ahora la aplicación <code>Newspaper</code> tiene un modelo de usuario personalizado y funciona con páginas de <em>registro</em>, <em>login</em> y <em>logout</em> aunque no tiene muy buen aspecto. Próximamente se añadirá <strong>Bootstrap</strong> para mejorar el estilo además de una <em>app</em> dedicada <code>pages</code> .</p>
 <p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../09_modelo_de_usuario_personalizado/" class="btn btn-neutral float-left" title="9. Modelo de Usuario Personalizado"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../11_bootstrap/" class="btn btn-neutral float-right" title="11. Bootstrap">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../09_modelo_de_usuario_personalizado/" class="btn btn-neutral" title="9. Modelo de Usuario Personalizado"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -393,7 +375,7 @@ class CustomUserChangeForm(UserChangeForm):
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     

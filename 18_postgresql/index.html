@@ -1,164 +1,148 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>19. PostgreSQL - Django</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "19. PostgreSQL";
-    var mkdocs_page_input_path = "18_postgresql.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>18. PostgreSQL - Django</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "18. PostgreSQL";
+        var mkdocs_page_input_path = "18_postgresql.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Django</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> Django
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
-                    </li>
-                </ul>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00_por_que_django/">¿Por qué Django?</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../01_introduccion/">1. Introducción</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../02_configuracion_inicial/">2. Configuración Inicial</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../03_hello_world_app/">3. Hello World app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../04_pages_app/">4. Pages app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../05_message_board_app/">5. Message Board app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../06_blog_app/">6. Blog app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../07_formularios/">7. Formularios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../08_cuentas_de_usuarios/">8. Cuentas de Usuarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../09_modelo_de_usuario_personalizado/">9. Modelo de Usuario Personalizado</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../10_autenticacion_de_usuarios/">10. Autenticación de Usuarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../11_bootstrap/">11. Bootstrap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../12_cambio_y_restauracion_de_contrasenas/">12. Cambio y Restauración de Contraseñas</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../13_email/">13. Email</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../14_newspaper_app/">14. Newspaper app</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../15_permisos_y_autorizacion/">15. Permisos y Autorización</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../16_comentarios/">16. Comentarios</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../17_docker/">17. Docker</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Django</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Django</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>19. PostgreSQL</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>18. PostgreSQL</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
-
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
-                <h1 id="19-postgresql">19. PostgreSQL</h1>
+                <h1 id="18-postgresql">18. PostgreSQL</h1>
 <p>Una de las diferencias más inmediatas entre trabajar en una "aplicación de juguete" en Django y una aplicación lista para producción es la base de datos. Django se suministra con <a href="https://sqlite.org/index.html">SQLite</a> como opción predeterminada para el desarrollo local porque es pequeña, rápida y basada en archivos, lo que la hace fácil de usar. No se requiere ninguna instalación o configuración adicional.
 Sin embargo, esta comodidad tiene un coste. En general, SQLite no es una buena elección de base de datos para sitios web profesionales. Por lo tanto, aunque está bien usar SQLite localmente mientras se hace un prototipo de una idea, es raro usar realmente SQLite como la base de datos en un proyecto de producción.
 Django se suministra con soporte incorporado para <a href="https://docs.djangoproject.com/es/3.0/ref/databases/">cuatro bases de datos</a>: SQLite, PostgreSQL, MySQL y Oracle. Utilizaremos <a href="https://www.postgresql.org/">PostgreSQL</a> en este libro ya que es la opción más popular para los desarrolladores de Django, sin embargo, la belleza del <strong>ORM</strong> de Django es que incluso si quisiéramos utilizar MySQL u Oracle, el código real de Django que escribamos será casi idéntico. El ORM de Django se encarga de la traducción del código Python a las bases de datos por uno, lo cual es bastante sorprendente si se piensa.
 El reto de utilizar estas tres bases de datos es que cada una de ellas debe estar instalada y funcionar localmente si se quiere imitar fielmente un entorno de producción en la computadora local. ¡Y eso es lo que se quiere! Aunque Django se encarga de los detalles del cambio entre bases de datos, inevitablemente hay pequeños errores difíciles de detectar que pueden surgir si se utiliza SQLite para el desarrollo local, pero una base de datos diferente en producción.
 Por lo tanto, la mejor práctica es usar la misma base de datos localmente y en producción.
 Se comenzará un nuevo proyecto Django con una base de datos SQLite y luego se pasará a Docker y PostgreSQL.</p>
-<h2 id="191-empezando">19.1. Empezando</h2>
+<h2 id="181-empezando">18.1. Empezando</h2>
 <p>Crear un nuevo directorio <code>postgresql</code> para el nuevo código.</p>
 <pre><code class="language-bash">$ cd ..
 $ mkdir postgresql &amp;&amp; cd postgresql
@@ -181,7 +165,7 @@ Detener el servidor local con <code>&lt;Control&gt;+C</code> y luego usar el com
 <pre><code class="language-bash">(postresql) $ ls
 Pipfile   Pipfile.lock   db.sqlite3   manage.py   postgresql_project
 </code></pre>
-<h2 id="192-docker">19.2. Docker</h2>
+<h2 id="182-docker">18.2. Docker</h2>
 <p>Para pasar a Docker, primero hay que salir del entorno virtual y luego crear un <code>Dockerfile</code>
 y los archivos <code>docker-compose.yml</code> que controlarán la imagen y el contenedor Docker
 respectivamente.</p>
@@ -207,12 +191,10 @@ COPY . /code/
 Did you notice that the Dockerfile built an image much faster this time around? That’s
 because Docker looks locally on your computer first for a specific image. If it doesn’t
 find an image locally it will then download it. And since many of these images were
-Chapter 2: PostgreSQL
- 33
 already on the computer from the previous chapter, Docker didn’t need to download
 them all again!
-Time now for the docker-compose.yml file which also matches what we saw previously
-in Chapter 1.</p>
+Time now for the docker-compose.yml file which also matches what we saw in the previous
+Chapter.</p>
 <pre><code class="language-yml">docker-compose.yml
 version: '3.8'
 services:
@@ -224,7 +206,7 @@ volumes:
 ports:
 - 8000:8000
 </code></pre>
-<h2 id="193-modo-independiente">19.3. Modo Independiente</h2>
+<h2 id="183-modo-independiente">18.3. Modo Independiente</h2>
 <p>Ahora se pondrá en marcha el contenedor, pero esta vez en modo 'detached', lo que requiere la bandera <code>-d</code> o <code>-detach</code>.</p>
 <pre><code class="language-bash">$ docker-compose up -d
 </code></pre>
@@ -364,20 +346,17 @@ El punto clave es que con Docker ya no se necesita estar en un entorno virtual l
 El host de Docker esencialmente reemplaza al sistema operativo local y dentro de él se pueden ejecutar múltiples contenedores, como para la aplicación web y para la base de datos, que pueden ser aislados y ejecutados por separado.</p>
               
             </div>
-          </div>
-          <footer>
-  
+          </div><footer>
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -385,7 +364,7 @@ El host de Docker esencialmente reemplaza al sistema operativo local y dentro de
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
+  <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
