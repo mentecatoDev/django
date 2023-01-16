@@ -1,4 +1,4 @@
-# 19. PostgreSQL
+# 18. PostgreSQL
 
 Una de las diferencias más inmediatas entre trabajar en una "aplicación de juguete" en Django y una aplicación lista para producción es la base de datos. Django se suministra con [SQLite](https://sqlite.org/index.html) como opción predeterminada para el desarrollo local porque es pequeña, rápida y basada en archivos, lo que la hace fácil de usar. No se requiere ninguna instalación o configuración adicional.
 Sin embargo, esta comodidad tiene un coste. En general, SQLite no es una buena elección de base de datos para sitios web profesionales. Por lo tanto, aunque está bien usar SQLite localmente mientras se hace un prototipo de una idea, es raro usar realmente SQLite como la base de datos en un proyecto de producción.
@@ -7,7 +7,7 @@ El reto de utilizar estas tres bases de datos es que cada una de ellas debe esta
 Por lo tanto, la mejor práctica es usar la misma base de datos localmente y en producción.
 Se comenzará un nuevo proyecto Django con una base de datos SQLite y luego se pasará a Docker y PostgreSQL.
 
-## 19.1. Empezando
+## 18.1. Empezando
 
 Crear un nuevo directorio `postgresql` para el nuevo código.
 
@@ -40,7 +40,7 @@ Detener el servidor local con `<Control>+C` y luego usar el comando `ls` para li
 (postresql) $ ls
 Pipfile   Pipfile.lock   db.sqlite3   manage.py   postgresql_project
 ```
-## 19.2. Docker
+## 18.2. Docker
 
 Para pasar a Docker, primero hay que salir del entorno virtual y luego crear un `Dockerfile`
 y los archivos `docker-compose.yml` que controlarán la imagen y el contenedor Docker
@@ -71,12 +71,10 @@ Go ahead and build the initial image now using the docker build . command.
 Did you notice that the Dockerfile built an image much faster this time around? That’s
 because Docker looks locally on your computer first for a specific image. If it doesn’t
 find an image locally it will then download it. And since many of these images were
-Chapter 2: PostgreSQL
- 33
 already on the computer from the previous chapter, Docker didn’t need to download
 them all again!
-Time now for the docker-compose.yml file which also matches what we saw previously
-in Chapter 1.
+Time now for the docker-compose.yml file which also matches what we saw in the previous
+Chapter.
 ```yml
 docker-compose.yml
 version: '3.8'
@@ -89,7 +87,7 @@ volumes:
 ports:
 - 8000:8000
 ```
-## 19.3. Modo Independiente
+## 18.3. Modo Independiente
 
 Ahora se pondrá en marcha el contenedor, pero esta vez en modo 'detached', lo que requiere la bandera `-d` o `-detach`.
 

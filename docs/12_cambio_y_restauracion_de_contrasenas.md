@@ -52,10 +52,10 @@ FICHERO: `templates/registration/password_change_done.html`
 ```html
 {% extends 'base.html' %}
 
-{% block title %}Cambio de Contraseña Exitoso{% endblock %}
+{% block title %}Cambio de contraseña exitoso{% endblock %}
 
 {% block content %}
-  <h1>Cambio de Contraseña exitoso</h1>
+  <h1>Cambio de contraseña exitoso</h1>
   <p>Su contraseña ha cambiado.</p>
 {% endblock content %}
 ```
@@ -78,7 +78,7 @@ Listo. Django se encargará del resto. Probar desde http://127.0.0.1:8000/accoun
 
 Asegurar que la dirección de correo electrónico coincida con una de las cuentas de usuario. Una vez enviado, se será redirigido a la página de restablecimiento de contraseña en http://127.0.0.1:8000/accounts/password_reset/done/ que informa de que se revise el correo electrónico. Ya que se le ha dicho a Django que envíe correos electrónicos a la consola de la línea de comando, el texto del correo electrónico estará ahora allí. Esto es lo que se muestra por consola:
 
-``` tex
+``` text
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit

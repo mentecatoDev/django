@@ -231,7 +231,7 @@ Cosas que **no** se pueden hacer en una plantilla Django:
 
 - **Ejecutar código Python**
 - **Asignar un valor a una variable**
-- **Realizar la lógica avanzada**
+- **Realizar lógica avanzada**
 
 Las plantillas de Django también añaden **características de seguridad adicionales** como el **escape automático de todas las cadenas**, **Cross-Site Scripting** y la protección **Cross-Site Request Forgery**. Estos dos últimos temas van más allá de un texto inicial, pero es útil comprender que **las plantillas de Django son seguras de forma predeterminada**, por lo que no hay que preocuparse de introducir problemas de seguridad en el sitio web de forma accidental.
 
@@ -296,7 +296,7 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 - Lo que hace que Django sea impresionante es su filosofía de "viene en la caja" ó "pilas incluidas" (*"comes with the box"* ó *"batteries-included"*). Permite una rápida implementación porque las partes más importantes ya están allí.
 - Robusto 
   - Instagram, Pinterest (Flask; más personalizable y adecuado para  API's), Bitbucket, Disqus, Nasa, Mozilla Firefox, Onion, Mahalo, The  Washington Post, Eventbrite
-- Se usará `pipenv`
+- Se usará `pipenv`/`poetry`
 
 ### 1.4.1. Por qué Django *"comes with the box"* ó *"batteries-included"*
 
@@ -316,8 +316,8 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 
 ### 1.4.2. Por qué unos apuntes
 
-- Django está bien [documentado](https://docs.djangoproject.com/es/3.1/) pero es difícil de abordar para el principiante
-- Incluso el [tutorial básico](https://docs.djangoproject.com/es/3.1/intro/tutorial01/) es notablemente arduo
+- Django está bien [documentado](https://docs.djangoproject.com/en/4.1/) pero es difícil de abordar para el principiante
+- Incluso el [tutorial básico](https://docs.djangoproject.com/en/4.1/intro/tutorial01/) es notablemente arduo
 - El problema viene de que está orientado a la **profundidad** y no a la **facilidad de uso**
 - Aunque no es estrictamente necesario, se recomienda tener conocimientos sobre Python, HTML y CSS
 
@@ -327,9 +327,9 @@ Así que eso es todo en cuanto a nuestra mirada de alto nivel a la estructura de
 
 2.Configuración inicial 
 
-- Django 3.2
+- Django 4.1
 - Python 3.10
-- Pipenv
+- Pipenv/Poetry
 - Emacs/Vim/VS Codium/Pycharm
 - Terminal
 

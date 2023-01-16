@@ -216,7 +216,6 @@ Se añade ahora:
 
 FICHERO: `templates/base.html`
 ```html
-<!doctype html>
 <html lang="es">
   <head>
     <!-- Required meta tags -->

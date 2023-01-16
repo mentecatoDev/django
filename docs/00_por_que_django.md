@@ -38,7 +38,7 @@ Algunos datos interesantes de la encuesta de desarrolladores de Stack Overflow d
 - Python es ya más común que PHP.
 - Python es el lenguaje más buscado entre todos los desarrolladores, saltando cuatro lugares desde 2016 y superando a JavaScript en el primer lugar.
 - Los trabajos en Python son pagados mejor que los tradicionales de Microsoft (C#, C++, VBA y .NET).
-- En 2020, y según [StackOverflow](https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-wanted), si observamos las tecnologías que los desarrolladores reportan que no usan pero que quieren aprender, Python ocupa el primer lugar por cuarto año consecutivo.
+- En 2020, y según [StackOverflow](https://insights.stackoverflow.com/survey), si observamos las tecnologías que los desarrolladores reportan que no usan pero que quieren aprender, Python ocupa el primer lugar por cuarto año consecutivo.
 
 ### 2. Pilas incluidas
 
@@ -129,7 +129,7 @@ Django es **open source** desde 2005, después de haber funcionado durante vario
 
 Después de crecer desde el 2005, Django ahora no sólo corre en empresas de publicación de noticias como el **Washington Post**, sino que también dirige todas o parte de las principales empresas globales como **Pinterest**, **Instagram**, **Disqus**, **Bitbucket**, **EventBrite**,  **Zapier**, **Knight Foundation**, **MacArthur Foundation**, **Mozilla**,  **National Geographic**, **Open Knowledge Foundation** u **Open Stack**.
 
-Django continúa creciendo en popularidad. [Djangosites](https://www.djangosites.org/) enumera más de 5490 sitios que usan Django, y eso sólo son los registrados en la web.
+Django continúa creciendo en popularidad. [Djangosites](https://www.djangosites.org/) enumera más de 5.531 sitios que usan Django, y eso sólo son los registrados en la web.
 
 Sería imposible adivinar cuántas páginas sirve Django cada día en comparación con otras tecnologías de Internet, pero eso es, en gran medida, irrelevante: **Django ha demostrado su valía en los últimos años gestionando algunos de los sitios de mayor tráfico de Internet**, y sigue aumentando su base de usuarios en la actualidad.
 
@@ -139,7 +139,7 @@ Casi todo lo que se quiera hacer con Django ya se ha hecho antes.
 
 Mucha gente de la gran comunidad internacional de desarrolladores de Django devuelven sus proyectos liberados como paquetes de código abierto.
 
-El mayor repositorio de estos proyectos se puede encontrar en el sitio [Django Packages](https://djangopackages.org/). A día de hoy, Django Packages enumera más de 4253 aplicaciones, sitios y herramientas reutilizables de Django para usar en proyectos propios. Un rápido recorrido por los paquetes más populares incluye:
+El mayor repositorio de estos proyectos se puede encontrar en el sitio [Django Packages](https://djangopackages.org/). A día de hoy, Django Packages enumera más de 3931 aplicaciones, 178 frameworks, 209 projectos y 700 herramientas reutilizables de Django para usar en proyectos propios. Un rápido recorrido por los paquetes más populares incluye:
 
 + **Wagtail, Mezzanine y django CMS**.- Sistemas de gestión de contenidos
 + **Cookiecutter**.- Configuración rápida y sencilla del proyecto Django y de las estructuras de las aplicaciones para aplicaciones más avanzadas

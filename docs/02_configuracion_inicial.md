@@ -3,16 +3,16 @@
 - Objetivos 
   - Configurar el entorno para programar en proyectos Django
   - Uso de la línea de comandos para instalar: 
-    - Django 3.2
+    - Django 4.1
     - Python 3.10
   - Git
   - Editor de texto
 
 ## 2.1 La línea de comandos
 
-- Konsole, Tmux, zsh
+- Konsole, Tmux, zsh, kitty
 - cd, cd .., ls, pwd, mkdir, touch
-- Práctica: 
+- Práctica:
   - Recorrer los directorios del sistema, hacer una lista de ellos
   - Mostrar el directorio de trabajo
   - Crear un nuevo directorio y crear un fichero `index.html` en él
@@ -45,7 +45,7 @@
 >>> from sys import path
 >>> print(path)
 ```
-  - Generalmente no hay que preocuparse de asigarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
+  - Generalmente no hay que preocuparse de asignarle valores a "Python Path" — Python y Django se encargan automáticamente de hacer esas cosas entre bastidores. (Si se quiere curiosear, establecer el Python path es una de las cosas que hace el archivo `manage.py`).
 
 ## 2.3 Entornos Virtuales
 
@@ -55,12 +55,15 @@
 
 ```bash
 $ cd ~/Escritorio
-$ mkdir django
-$ cd django
-$ pipenv shell
-$ pipenv install django
+$ mkdir project
+$ cd project
+$ poetry init
+$ poetry install
+$ poetry add django
+$ poetry shell
 ```
 
+- Advertencia: No nombrar el directorio del proyecto igual que alguno de los paquetes que se pretenden  instalar.
 - Crear nuevo proyecto `test`. No olvidar el "." al final.
 
 ```bash
@@ -126,10 +129,10 @@ $ git config --globar user.email "<Correo electrónico>"
 
 ## 2.7. Borrar el proyecto
 
-El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio `~/.local/share/virtualenvs/<directorio-código>`. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando `pipenv --rm` para hacerlo desde el directorio del proyecto.
+El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio `~/.cache/pypoetry/virtualenvs/<directorio-código>`. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando `poetry env remove` para hacerlo desde el directorio del proyecto.
 
 ```bash
-$ pipenv --rm
+$ poetry env remove <directorio del proyecto>
 ```
 
 Una vez elminado el entorno virtual podemos proceder a borrar el proyecto, desde su directorio padre, usando el málefico comando: 

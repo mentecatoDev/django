@@ -1,4 +1,4 @@
-
+# 3. Hello World
 
 Esta sección tiene como **objetivo** comenzar las pruebas con django creando la típica aplicación "Hello World"
 
@@ -8,13 +8,15 @@ Esta sección tiene como **objetivo** comenzar las pruebas con django creando la
 $ cd ~/Escritorio
 $ mkdir helloworld
 $ cd helloworld
-$ pipenv shell
-$ pipenv install django
-(helloworld) $ django-admin startproject helloworld_project .
-(helloworld) $ tree
+$ poetry init
+$ poetry shell
+$ poetry add django
+
+(helloworld-py3.10) $ django-admin startproject helloworld_project .
+(helloworld-py3.10) $ tree
 .
-├── Pipfile
-├── Pipfile.lock
+├── pyproject.toml
+├── poetry.lock
 ├── manage.py
 └── helloworld_project
     ├── asgi.py
@@ -40,8 +42,7 @@ $ pipenv install django
 
 Nótese que la salida de la línea de comandos contendrá información adicional, incluyendo una advertencia sobre 18 migraciones no aplicadas.
 
-Técnicamente esta advertencia no importa en este momento. Django se está quejando de que no hemos
-aún "migrado", o configurado, nuestra base de datos inicial. Como no vamos a utilizar una base de datos por ahora, la advertencia no afectará al resultado final.
+Técnicamente esta advertencia no importa en este momento. Django se está quejando de que no hemos aún "migrado", o configurado, nuestra base de datos inicial. Como no vamos a utilizar una base de datos por ahora, la advertencia no afectará al resultado final.
 Sin embargo, como las advertencias son molestas, podemos eliminarlas deteniendo primero el servidor local con el comando `<Ctrl>-C` y luego ejecutando `python manage.py migrate`.
 
 ## 3.2 Crear una **app**

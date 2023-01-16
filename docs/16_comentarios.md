@@ -132,7 +132,7 @@ class Comment(models.Model):
         verbose_name='Autor'
     )
 
-    def__str__(self):
+    def __str__(self):
         return self.comment
 
     def get_absolute_url(self):

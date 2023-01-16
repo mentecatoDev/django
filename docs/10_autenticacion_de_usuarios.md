@@ -5,7 +5,7 @@
 ## 10.1. Plantillas
 Por defecto, el cargador de plantillas de Django las busca en una estructura anidada dentro de cada aplicación. Así que una plantilla `home.html` de `accounts` tendría que estar ubicada en `accounts/templates/accounts/home.html`.
 
-Pero el enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que se usará.
+Pero el enfoque de carpeta de plantillas a nivel de proyecto es más limpio y se escala mejor, así que se usará éste.
 
 ```bash
 (news) $ mkdir templates
@@ -30,6 +30,7 @@ Añadir estas dos líneas en la parte inferior del archivo settings.py.
 
 FICHERO: `newspaper_project/settings.py`
 ```python
+# Redirect
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 ```
@@ -47,7 +48,6 @@ Veamos el código HTML para cada archivo.
 
 FICHERO: `templates/base.html`
 ```html
-<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -114,7 +114,9 @@ FICHERO: `templates/registration/signup.html`
 
 En el archivo `urls.py`, a nivel de proyecto, se quiere que la plantilla `home.html` aparezca como página de inicio. Pero no se quiere construir una app `pages` dedicada todavía, así que se puede usar el atajo de importar `TemplateView` y establecer el `template_name` justo en el patrón url.
 
-A continuación se quiere "incluir" tanto la app `accounts` como la app `auth` que incorpora django. La razón es que la app `auth`  ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero para el **registro hay que crear una vista y una url propias**. Para asegurar que las rutas URL sean consistentes se colocarán ambas en `accounts/` para que las URLs sean `/accounts/login`, `/accounts/logout` y `/accounts/signup`.
+A continuación se quiere "incluir" tanto la app `accounts` como la app `auth` que incorpora django. La razón es que la app `auth`  ya proporciona vistas y urls para el inicio y el cierre de sesión. Pero **para el registro hay que crear una vista y una url propias**.
+
+Para asegurar que las rutas URL sean consistentes se colocarán ambas en `accounts/` para que las URLs sean `/accounts/login`, `/accounts/logout` y `/accounts/signup`.
 
 FICHERO: `newspaper_project/urls.py`
 ```python
@@ -167,6 +169,14 @@ class SignUp(CreateView):
 
 Arrancar el servidor con python `manage.py runserver` e ir a la página principal en http://127.0.0.1:8000/. Probar todo y crear un nuevo usuario `testuser`.
 
+> Recuerda establecer el idioma en el fichero `settings.py`.
+>
+> ```python
+> LANGUAGE_CODE = 'es'
+> 
+> TIME_ZONE = 'Europe/Madrid'
+> ```
+
 Como tenemos un nuevo campo `age` añadámoslo al template `home.html`. Es un campo del modelo de usuario por lo que para mostrarlo sólo tenemos que usar `{{ user.age }}` pero comprobando previamente que su contenido no es `null`.
 
 FICHERO: `templates/home.html`
@@ -191,8 +201,6 @@ FICHERO: `templates/home.html`
 {% endblock content %}
 ```
 
-
-
 ## 10.3. Admin
 Entrar también en el administrador para ver las dos cuentas de usuario. No se podrá entrar con una cuenta que no sea de superusuario.
 
@@ -210,14 +218,12 @@ from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = UserCreationForm.Meta.fields
 
 
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model = CustomUser
         fields = UserChangeForm.Meta.fields
@@ -245,7 +251,7 @@ El flujo de autenticación de usuarios de Django requiere un poco de configuraci
 
 ## 10.4. Conclusión
 
-Hasta ahora la aplicación `Newspaper` tiene un modelo de usuario personalizado y funciona con páginas de *registro*, *login* y *logout* aunque no tiene muy buen aspecto. Próximamente se añadirá **Bootstrap** para mejorar el estilo además de una *app* dedicada de `pages` .
+Hasta ahora la aplicación `Newspaper` tiene un modelo de usuario personalizado y funciona con páginas de *registro*, *login* y *logout* aunque no tiene muy buen aspecto. Próximamente se añadirá **Bootstrap** para mejorar el estilo además de una *app* dedicada `pages` .
 
 
 
