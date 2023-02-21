@@ -337,19 +337,21 @@ Supuestamente ya deberíamos tener Git instalado y configurado como nuestro sist
 
 ```bash
 (helloworld) $ git status
-On branch master
-No commits yet
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
+En la rama master
 
-       Pipfile
-       Pipfile.lock
-       config/
-       db.sqlite3
-       manage.py
-       pages/
+No hay commits todavía
 
-nothing added to commit but untracked files present (use "git add" to track)
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        db.sqlite3
+        helloworld_project/
+        manage.py
+        pages/
+        poetry.lock
+        pyproject.toml
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+
 ```
 
 A continuación queremos añadir todos los cambios utilizando el comando `add -A` y luego confirmar los cambios con `commit`  junto con un mensaje, (-m), describiendo lo que ha cambiado.

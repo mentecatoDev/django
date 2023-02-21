@@ -64,7 +64,7 @@ $ poetry shell
 ```
 
 - Advertencia: No nombrar el directorio del proyecto igual que alguno de los paquetes que se pretenden  instalar.
-- Crear nuevo proyecto `test`. No olvidar el "." al final.
+- Crear nuevo proyecto `test_project`. No olvidar el "." al final.
 
 ```bash
 $ django-admin startproject test_project .
@@ -129,7 +129,7 @@ $ git config --globar user.email "<Correo electrónico>"
 
 ## 2.7. Borrar el proyecto
 
-El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio `~/.cache/pypoetry/virtualenvs/<directorio-código>`. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando `poetry env remove` para hacerlo desde el directorio del proyecto.
+El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio `~/.cache/pypoetry/virtualenvs/<directorio-código>`. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, se dispone del comando `poetry env remove` para hacerlo desde el directorio del proyecto.
 
 ```bash
 $ poetry env remove <directorio del proyecto>
@@ -141,4 +141,4 @@ Una vez elminado el entorno virtual podemos proceder a borrar el proyecto, desde
 $ rm -rf <directorio del proyecto>
 ```
 
-Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizarndo wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.
+Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizando wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.

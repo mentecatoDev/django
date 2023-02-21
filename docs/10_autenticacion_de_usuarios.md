@@ -17,7 +17,7 @@ FICHERO: `newspaper_project/settings.py`
 TEMPLATES = [
     {
     ...
-    'DIRS': [str(BASE_DIR.joinpath('templates'))],
+		'DIRS': [BASE_DIR / 'templates'],
     ...
     }
 ]
@@ -194,7 +194,7 @@ FICHERO: `templates/home.html`
   {% endif %}
   <p><a href="{% url 'logout' %}">Logout</a></p>
 {% else %}
-  <p>No estás logueado</p>
+  <p>No has iniciado sesión</p>
   <a href="{% url 'login' %}">Login</a> |
   <a href="{% url 'signup' %}">Registro</a>
 {% endif %}

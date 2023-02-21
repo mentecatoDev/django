@@ -7,11 +7,11 @@ Ahora, **hagamos un periódico** (homenaje a las raíces de Django como un frame
 
 ## 9.1. Setup
 ```bash
-$ cd ~/Desktop
 $ mkdir news
 $ cd news
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (news) $ django-admin startproject newspaper_project .
 (news) $ python manage.py startapp accounts
 (news) $ python manage.py runserver
@@ -106,8 +106,7 @@ Para ambos formularios se usa el modelo `CustomUser` con los campos por defecto 
 
 El modelo de `CustomUser` contiene todos los campos del modelo de usuario por defecto y el campo `age` adicional que se ha definido.
 
-Para los nuevos formularios usamos la clase `Meta` para anular los campos por defecto estableciendo el
-modelo a nuestro `CustomUser` y utilizando los campos por defecto a través de `Meta.fields` que los incluye todos. Para añadir nuestro campo `age` personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
+Para los nuevos formularios usamos la clase `Meta` para anular los campos por defecto estableciendo el modelo a nuestro `CustomUser` y utilizando los campos por defecto a través de `Meta.fields` que los incluye todos. Para añadir nuestro campo `age` personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
 El concepto de campos en un formulario puede ser confuso al principio, así que vamos a dedicar un momento a explorarlo más a fondo. Nuestro modelo `CustomUser` contiene todos los campos del modelo `User` por defecto y el campo adicional que hemos establecido.
 
 ¿Pero cuáles son estos campos por defecto?
@@ -177,7 +176,17 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 ```
+- En este ejemplo, la clase `CustomUserAdmin` es una subclase de `UserAdmin`.
+- El campo `list_display` se utiliza para especificar los campos que deben mostrarse en la *list view* de las cuentas de usuario en la app *admin* de Django.
+- El campo `list_filter` permitiría especificar los filtros que deben estar disponibles en la barra lateral derecha de la *list view*.
+- El campo `fieldsets` se utiliza para especificar las diferentes secciones que deben mostrarse en las páginas de edición y adición de usuarios en el administrador de Django.
+- El campo `add_fieldsets` se utiliza para especificar los campos que deben mostrarse en la página de añadir usuario.
+- El campo `search_fields` permite especificar los campos que deben buscarse al buscar cuentas de usuario en el administrador de Django.
+- El campo `ordering` se utiliza para especificar el orden por defecto de las cuentas de usuario en la vista de lista del admin de Django.
+- Por último, el campo `filter_horizontal` permite especificar los campos que deben mostrarse como filtro horizontal en la página de edición de usuarios del administrador de Django.
 - Actualizar la página y ver el resultado
+
+En resumen, todos estos campos nos permiten el control de los formularios de gestión de usuarios de la app admin de Django.
 
 ## 9.5. Conclusión
 Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación *Newspaper*.
@@ -185,3 +194,4 @@ Con el modelo de usuario personalizado completo, ahora podemos centrarnos en con
 
 
 |\/| [- |\| ~|~ [- ( /\ ~|~ () ^/_ '|
+M   E  N   T    E CA  T   O

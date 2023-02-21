@@ -18,8 +18,9 @@
 ```bash
 $ mkdir mb
 $ cd mb
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (mb) $ django-admin startproject mb_project .
 (mb) $ python manage.py startapp posts
 ```
@@ -161,14 +162,14 @@ class HomePageView(ListView):             # new
 (mb) $ mkdir templates
 (mb) $ touch templates/home.html
 ```
-- Actualizar el campo `DIRS` del archivo`settings.py` para que Django sepa cómo acceder a la carpeta `templates`.
+- Actualizar el campo `DIRS` del archivo `settings.py` para que Django sepa cómo acceder a la carpeta `templates`.
 
 ```python
 # settings.py
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],   # new
+        'DIRS': [BASE_DIR / 'templates']   # new
         ...
     },
 ]

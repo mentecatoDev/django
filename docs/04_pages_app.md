@@ -17,9 +17,9 @@
 $ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.10
-$ pipenv install django
-$ pipenv shell
+$ poetry init -n
+$ poetry shell
+(pages) $ poetry add django
 (pages) $ django-admin startproject pages_project .
 (pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startapp pages
 ```
@@ -75,13 +75,13 @@ FICHERO: `pages_project/settings.py`
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+         'DIRS': [BASE_DIR / 'templates'],
         ...
     },
 ]
 ```
 
-> `str(BASE_DIR.joinpath('templates'))` toma el directorio base y le abrega el directorio `templates` para finalmente construir una cadena con el *path* completo. También se podría utilizar la función `os.path.join` que une el *path* base de la aplicación (`BASE_DIR`) con el nuevo directorio `templates` añadiendo `/` según sea conveniente. Hemos de importar la librería `os` (`import os`) para hacer uso de esta segunda función.
+> La librería pathlib añade una funcionalidad adicional al símbolo "/" con lo que podremos crear una ruta de forma más simple al tradicional  'DIRS': [str(BASE_DIR.joinpath('templates'))],
 
 FICHERO: `templates/home.html` 
 
@@ -132,6 +132,7 @@ from django.contrib import admin
 from django.urls import path, include # new
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('', include('pages.urls')), # new
 ]
@@ -228,7 +229,7 @@ FICHERO: `templates/base.html`
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Homepage</h1>
+	<h1>Homepage</h1>
 {% endblock content %}
 ```
 FICHERO: `templates/about.html`

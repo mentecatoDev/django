@@ -276,7 +276,8 @@ FICHERO: `templates/post_delete.html`
 
 {% block content %}
   <h1>Delete post</h1>
-  <form action="" method="post">{% csrf_token %}
+  <form action="" method="post">
+	{% csrf_token %}
     <p>¿Seguro que quiere borrar "{{ post.title }}"?</p>
     <input type="submit" value="Confirmar" />
   </form>
@@ -368,7 +369,7 @@ class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='testuser',
+            username='tester',
             email='test@email.com',
             password='secret'
         )
@@ -387,7 +388,7 @@ class BlogTests(TestCase):
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.author}', 'tester')
         self.assertEqual(f'{self.post.body}', 'Nice body content')
 
     def test_post_list_view(self):

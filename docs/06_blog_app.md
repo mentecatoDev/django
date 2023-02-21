@@ -15,11 +15,11 @@
     - actualizar `settings.py`
 
 ```bash
-$ cd ~/Desktop 
 $ mkdir blog
 $ cd blog
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (blog) $ django-admin startproject blog_project .
 (blog) $ python manage.py startapp blog
 (blog) $ python manage.py migrate
@@ -34,7 +34,7 @@ FICHERO: `blog_project/settings.py`
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
-        'django.contrib.messages',
+        'django.contrib.mssages',
         'django.contrib.staticfiles',
         'blog.apps.BlogConfig',        # new
     ]
@@ -161,7 +161,9 @@ FICHERO: `blog_project/settings.py`
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [
+            BASE_DIR / 'templates',
+                 ],
         ...
     },
 ]
@@ -217,7 +219,7 @@ FICHERO:  `templates/home.html`
 
 FICHERO: `blog_project/settings.py`
 ```python
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 ```
 
 - Crear una carpeta `css` dentro de `static` y crear el fichero `base.css`
@@ -337,7 +339,7 @@ class BlogDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
 ```
-- Por defecto `DetailView` proporciona un objeto de contexto que podemos usar en la plantilla llamado `objeto` o el nombre en minúsculas de nuestro modelo, `post`.
+- Por defecto `DetailView` proporciona un objeto de contexto que podemos usar en la plantilla llamado `object` o el nombre en minúsculas de nuestro modelo, `post`.
 -  Además, `DetailView` espera que se le pase una clave primaria o un *slug* como identificador. Más sobre esto en breve.
 
 ```bash
@@ -355,7 +357,7 @@ FICHERO: `templates/post_detail.html`
   </div>
 {% endblock content %}
 ```
-- En la parte superior se especifica que esta plantilla hereda de base.html.
+- En la parte superior se especifica que esta plantilla hereda de `base.html`.
 - Luego se muestra el título y cuerpo del objeto de contexto, que `DetailView` hace accesible como `post`.
 - La denominación de los objetos de contexto en vistas genéricas es extremadamente confusa cuando se ve Django por primera vez. Debido a que nuestro objeto de contexto de `DetailView` es o bien el nombre de modelo `post` o bien `object`, podríamos también actualizar nuestro modelo de la siguiente manera y funcionaría exactamente igual.
 
@@ -440,7 +442,7 @@ FICHERO: `templates/home.html`
 FICHERO: `blog/tests.py`
 ```python
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 from .models import Post
 
@@ -449,7 +451,7 @@ class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='testuser',
+            username='tester',
             email='test@email.com',
             password='secret'
         )
@@ -465,7 +467,7 @@ class BlogTests(TestCase):
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.author}', 'tester')
         self.assertEqual(f'{self.post.body}', 'Nice body content')
     
     def test_post_list_view(self):
