@@ -1,0 +1,500 @@
+:: DJ061 ::
+El comando para iniciar una app en django es
+{
+= python .\manage.py startapp HelloWorld 
+~%-25% python .\manage.py appstart HelloWorld 
+~%-25% python .\manage.py startapplication HelloWorld 
+~%-25% python .\manage.py newApp HelloWorld
+}
+
+:: DJ062 ::
+Para arrancar el servidor con un puerto distinto al que establece por defecto django, en este caso el puerto 4000, utilizaremos el siguiente comando\:
+{ 
+= python .\manage.py runserver 4000 
+~%-25% python .\manage.py runserver\:4000
+~%-25% python .\manage.py runserver port 4000 
+~%-25% python .\manage.py startserver 400
+} 
+
+:: DJ063 ::
+Para iniciar el shell de Django usaremos el siguiente comando\:
+{ 
+~%-25% python .\manage.py start shell = python .\manage.py shell 
+~%-25% python .\manage.py shellstart 
+~%-25% python .\manage.py runshell
+}
+
+:: DJ064 ::
+El comando para crear un usuario administrador para Django es\:
+{ 
+~%-25% python .\manage.py createadminuser 
+~%-25% python .\manage.py createadmin 
+~%-25% python .\manage.py createuser 
+= python .\manage.py createsuperuser
+}
+
+:: DJ031 ::
+Si incluimos esta línea de código ‘from django.urls import path, include’ en nuestro archivo ‘urls.py’ de nuestro proyecto
+{
+~%-25% Nos permite devolver respuestas HTTP desde vistas en Django.
+~%-25% Nos permite crear patrones de URL personalizados en nuestra aplicación y asociarlos con vistas específicas.
+~%-25% Nos permite incluir patrones de URL personalizados de aplicaciones externas en nuestro proyecto.
+= Nos permite crear patrones de URL personalizados y también incluir los de otras aplicaciones en nuestro proyecto.
+}
+
+:: DJ032 ::
+¿Cómo crearemos una aplicación de nombre blog?
+{
+= python manage.py startapp blog
+~%-25% python startapp __init__.py blog
+~%-25% python startapp blog manage.py 
+~%-25% Todas las opciones son correctas.
+}
+
+:: DJ033 ::
+¿Qué archivo de tu proyecto Django se utiliza para ejecutar comandos?
+{
+~%-25% asgi.py
+~%-25% wsgi
+= manage.py
+~%-25% settings.py
+}
+
+:: DJ034 ::
+¿Para qué sirven las etiquetas ‘\{% block %\} \{% endblock %\}’?
+{
+~%-25% Es una etiqueta utilizada para heredar el contenido de una plantilla base y extenderla con contenido adicional en una nueva.
+= Es una etiqueta utilizada en plantillas para definir una sección específica del contenido de una página, siendo reutilizada en otras páginas.
+~%-25% Es una etiqueta utilizada para recorrer un objeto iterable y mostrar su contenido en la plantilla.
+~%-25% Es una etiqueta utilizada para la protección de falsificación entre sitios de Django.
+}
+
+:: DJ092 ::
+La creación del modelo de usuario personalizado requiere cuatro pasos\:
+{
+~%-25% No se pueden crear.
+~%-25% Crear un nuevo modelo CustomUser añadiendo un nuevo campo age, Actualizar settings.py.
+~%-25%  Crear un nuevo modelo CustomUser añadiendo un nuevo campo age.
+= Actualizar settings.py , Crear un nuevo modelo CustomUser añadiendo un nuevo campo age , Crear nuevos formularios para UserCreation y UserChangeForm , Actualizar la app admin.
+}
+
+:: DJ094 ::
+¿Cómo crearemos un super usuario?
+{
+= $ python manage.py createsuperuser
+~%-25% No se puede crear
+~%-25% $ python manage.py migrate
+~%-25% Todas las opciones son correctas.
+}
+
+:: DJ091 ::
+ Modelo de usuario personalizado como haer el set up
+{
+~%-25% Todas son correctas
+~%-25% $ cd ~/Desktop ,$ mkdir news ,$ cd news ,(news) $ python manage.py startapp accounts ,(news) $ python manage.py runserver
+= $ cd ~/Desktop ,$ mkdir news ,$ cd news ,$ pipenv install django ,$ pipenv shell , (news) $ django-admin startproject newspaper_project .,(news) $ python manage.py startapp accounts ,(news) $ python manage.py runserver
+~%-25% django.contrib.admin
+}
+
+:: DJ093 ::
+¿Pero cuáles son estos campos por defecto vistos en los apuntes entre otros?
+{
+~%-25% username, first_name, email,.
+= username, first_name, last_name, email, password, groups .
+~%-25% No tiene nunguno por defecto.
+~%-25% Todas son correctas.
+}
+
+:: DJ021 ::
+¿Cuál es el comando correcto para iniciar Django?
+{
+= python manage.py runserver
+~%-25% django manage.py
+~%-25% django-admin manage.py -run
+~%-25% django manage.py runserver`
+}
+
+:: DJ022 ::
+¿Cuál es el comando para iniciar un proyecto?
+{
+= django-admin startproject helloworld_project 
+~%-25% django startproject helloworld_project .
+~%-25% django start helloworld_project .
+~%-25% django helloworld_project . -start
+}
+
+:: DJ023 ::
+¿Cómo crear una cuenta de usuario en Django?
+{
+= python manage.py createsuperuser
+~%-25% django . adduser
+~%-25% django-admin manage.py adduser
+~%-25% python django usercreate
+}
+
+:: DJ024 ::
+¿Qué hace el comando “migrate” de Django (Ejemplo de uso\: python manage.py migrate)?
+{
+= Crea una base de datos inicial basada en la configuración por defecto de Django. 
+~%-25% Nos permite migrar nuestro proyecto de Django
+~%-25% Se encarga de migrar la base de datos de nuestro Django
+~%-25% Activa la opción de migrado de Django
+}
+
+:: DJ071 ::
+¿Qué archivo se utiliza para definir las rutas de una aplicación en Django?
+{
+= urls.py
+~%-25% routes.py
+~%-25% paths.py
+~%-25% No se definen, las detecta solas
+}
+
+:: DJ072 ::
+¿Cuál es el comando para crear una nueva migración en Django?
+{
+~%-25% python manage.py make
+= python manage.py makemigrations
+~%-25% python manage.py migrate
+~%-25% python manage.py newmigration
+}
+
+:: DJ073 ::
+¿Cuál es la forma correcta de acceder a una variable de contexto en una plantilla de Django?
+{
+= \{\{ var \}\}
+~%-25% \{% var %\}
+~%-25% \{\{ % var \}\}
+~%-25% \{% % var % %\}
+}
+
+:: DJ074 ::
+¿Cuál es la forma de ejecutar todos los tests de una aplicación en Django?
+{
+~%-25% Ejecutar el comando "python manage.py test" en la raíz del proyecto
+= Ejecutar el comando "python manage.py test app_name" en la raíz del proyecto
+~%-25% Ejecutar el comando "python manage.py test app_name.tests" en la raíz del proyecto
+~%-25% Ejecutar el comando "python manage.py test app_name.test" en la raíz del proyecto
+}
+
+:: DJ101 ::
+En el fichero urls.py¿Qué se le añade siempre al HomePageView cuando se usan vistas basadas en clases?\:
+{
+~%-25% view
+~%-25% .viewas()
+~%-25% ass_view()
+= .as_view()
+}
+
+:: DJ102 ::
+¿En que fichero se puede cambiar la TIME_ZONE?
+{
+~%-25% python views.py
+~%-25% python urls.py
+~%-25% python manage.py
+= python settings.py
+}
+
+:: DJ103 ::
+¿Qué son las vistas basadas en clases en Django?
+{
+~%-25% Una nueva forma de definir rutas
+~%-25% Una forma de crear plantillas HTML
+~%-25% Una forma de conectar vistas a URLs
+= Una forma de definir la lógica de una página web usando clases
+}
+
+:: DJ104 ::
+¿Qué se debe hacer para especificar los campos de un formulario en Django?
+{
+~%-25% Ninguna de las anteriores
+~%-25% Especificar cada campo individualmente
+~%-25% Usar la fórmula 'none' para no especificar ningún campo
+= Usar la fórmula 'all' para especificar todos los campos
+}
+
+:: DJ051 ::
+¿Para qué utilizamos el "." en el comando "django-admin startproject test_project ."?
+{
+~%-25% Si no se usa, el comando no funciona
+= Si no se usa el "." aparecerá una redundante y molesta estructura de directorios
+~%-25% Es parte de la sintaxis del comando
+~%-25% No se utiliza
+}
+
+:: DJ052 ::
+¿Cómo instalamos django?
+{
+~%-25% poetry django
+~%-25% poetry install django
+~%-25% Django viene instalado con poetry de serie, no hace falta
+= poetry add django
+}
+
+:: DJ053 ::
+¿Qué se usa para arrancar el servidor?
+{
+~%-25% poetry manage.py runserver
+~%-25% poetry manage
+~%-25% poetry runserver
+= python manage.py runserver
+}
+
+:: DJ054 ::
+¿Como se inicia una aplicación?
+{
+~%-25% poetry manage.py startapp
+~%-25% poetry new app
+~%-25% poetry manage.py startapp pages
+= python manage.py startapp lol
+}
+
+:: DJ111 ::
+¿Qué es Django?
+{
+= Django es un framework de desarrollo web de código abierto escrito en Python
+~%-25% Django es un lenguaje de programación
+~%-25% Django es un motor de base de datos
+~%-25% Django es una biblioteca de funciones para Python
+}
+
+:: DJ112 ::
+¿Qué es una vista en Django?
+{
+= Una vista en Django es una función de Python que procesa una solicitud web y devuelve una respuesta HTTP
+~%-25% Una vista en Django es una plantilla HTML
+~%-25% Una vista en Django es una clase de Python que procesa una solicitud web
+~%-25% Una vista en Django es una función de Python que procesa una solicitud de base de datos
+}
+
+:: DJ113 ::
+¿Qué es un modelo en Django?
+{
+= Un modelo en Django es una clase de Python que define una tabla en la base de datos y los campos que la componen.
+~%-25%¿Un modelo en Django es una función de Python que procesa una solicitud web?
+~%-25%¿Un modelo en Django es un archivo de configuración de la base de datos?
+~%-25%¿Un modelo en Django es una plantilla HTML?
+}
+
+:: DJ114 ::
+¿Cómo se crea un nuevo proyecto de Django?
+{
+= Un nuevo proyecto de Django se crea ejecutando el comando "django-admin startproject <nombre del proyecto>" en la línea de comandos.
+~%-25% ¿Un nuevo proyecto de Django se crea ejecutando el comando "python startproject <nombre del proyecto>" en la línea de comandos?
+~%-25% ¿Un nuevo proyecto de Django se crea ejecutando el comando "django startproject <nombre del proyecto>" en la línea de comandos?
+~%-25% ¿Un nuevo proyecto de Django se crea ejecutando el comando "newproject start <nombre del proyecto>" en la línea de comandos?
+}
+
+:: DJ051 ::
+¿Cómo se cambia el puerto en el que se conecta Django por defecto cuando ejecutamos runserver (por ejemplo al 4000) {
+~%-25% python manage.py runserver -p 4000 
+= python manage.py runserver 4000
+~%-25% python manage.py runserver\:4000
+~%-25% python manage.py runserver --port 4000
+}
+
+:: DJ052 ::
+¿Qué fichero nos permite crear tablas para posteriormente agregarlas a nuestra base de datos
+{
+= models.py
+~%-25% forms.py
+~%-25% views.py
+~%-25% sql.py
+}
+
+:: DJ053 ::
+Si queremos añadir en la URL una variable que sea un tipo entero con el nombre id, ¿cómo lo pondríamos?
+{
+~%-25% path('example/id_as_variable')
+~%-25% path('example/id/int')
+= path('example/<int\:id>')
+~%-25% path('<int\:id>/example')
+}
+
+:: DJ054 ::
+Como recorremos los datos con un bucle for dentro de Django
+{
+~%-25% for project in projects
+~%-25% \{\{for project in projects\}\}
+~%-25% \{%for% project in %projects%\}
+= \{% for project in projects %\}
+}
+
+:: DJ121 ::
+¿Qué es un queryset en Django?
+{
+= Un objeto que representa una consulta a la base de datos
+~Una función que devuelve un valor booleano
+~Un tipo de dato que almacena información sobre el estado de una aplicación
+}
+
+:: DJ122 ::
+¿Cuál es el comando de Django para crear una nueva aplicación?
+{
+= python manage.py startapp <nombre de la aplicación>
+~%-25% python manage.py createapp <nombre de la aplicación>
+~%-25% python manage.py newapp <nombre de la aplicación>
+~%-25% python manage.py app <nombre de la aplicación>
+}
+
+:: DJ123 ::
+¿Qué es una relación many-to-many en Django?
+{
+= Una relación entre dos modelos donde un modelo tiene múltiples instancias de otro modelo y viceversa
+~%-25% Una relación entre dos modelos donde un modelo tiene una sola instancia del otro modelo
+~%-25% Una relación entre tres o más modelos en la que uno o más modelos pueden tener múltiples instancias de otro modelo
+~%-25% No se permiten relaciones de muchos a muchos en Django
+}
+
+:: DJ124 ::
+¿Cuál es el comando de Django para ejecutar las migraciones pendientes?
+{
+= python manage.py migrate
+~%-25% python manage.py update
+~%-25% python manage.py apply
+~%-25% python manage.py migrateapp
+}
+
+:: DJ041 ::
+¿Para qué se utiliza la función `include()` en el archivo `urls.py` de una aplicación Django?
+{
+~%-25% Para incluir una plantilla HTML en una vista
+~%-25% Define la interfaz de usuario de la aplicación.
+= Para incluir las URL de otra aplicación Django en el archivo urls.py de una aplicación
+~%-25% Para incluir un archivo CSS en una plantilla
+}
+
+:: DJ042 ::
+¿Qué significa el error "There are unapplied migrations" en Django?
+{
+~%-25% Significa que se ha producido un error en el archivo settings.py y que se deben corregir las variables de configuración.
+~%-25% Significa que se ha producido un error en la base de datos y que se deben eliminar las migraciones no aplicadas.
+~%-25% Significa que se han realizado cambios en la base de datos manualmente y que las migraciones no están sincronizadas con la base de datos.
+= Significa que se han realizado cambios en el modelo de datos pero que las migraciones correspondientes aún no se han aplicado a la base de datos.
+}
+
+:: DJ043 ::
+¿Cómo se pueden aplicar las migraciones pendientes en Django?
+{
+= Ejecutando el comando "python manage.py migrate" en la terminal.
+~%-25% Ejecutando el comando "python manage.py makemigrations" en la terminal.
+~%-25% Eliminando todas las migraciones no aplicadas y creando una nueva migración desde cero.
+~%-25% Actualizando el archivo settings.py con las nuevas configuraciones de migración.
+}
+
+:: DJ044 ::
+¿Cómo se configura el directorio de templates en Django?
+{
+~%-25% Creando una nueva aplicación Django y definiendo el directorio de templates en el archivo urls.py.
+~%-25% Creando una variable de entorno "TEMPLATES_DIR" y asignándole la ruta del directorio de templates en el archivo settings.py.
+~%-25% Creando una nueva carpeta "templates" dentro de la aplicación y definiéndola en el archivo views.py.
+= Creando una nueva carpeta "templates" en el proyecto y definiéndo su ruta en el archivo settings.py, en el objeto "TEMPLATES", en la propiedad "DIRS".
+}
+
+:: DJ011 ::
+En el fichero `settings.py` se pueden añadir aplicaciones ...
+{
+= Incluyendo la aplicación en la lista `INSTALLED_APPS`
+~%-25% Incluyendo la aplicación en la lista `MIDDLEWARE`
+~%-25% Incluyendo la aplicación en la lista `TEMPLATES`
+~%-25% Incluyendo la aplicación en el diccionario `DATABASES`
+}
+
+:: DJ012 ::
+Cuando se crea un apliación de Django dentro de un proyecto utilizando la línea de comandos se crean los ficheros
+{
+= `admin.py`, `apps.py`, `migrations/`, `models.py`, `tests.py`, `views.py`
+~%-25% `admin.py`, `migrations/`, `settings.py`, `models.py`, `tests.py`, `views.py`
+~%-25% `admin.py`, `apps.py`, `models.py`, `tests.py`, `views.py`
+~%-25% `admin.py`, `apps.py`, `models.py`, `views.py`
+}
+
+:: DJ013 ::
+Las vistas de Django ...
+{
+= Se pueden crear usando funciones o clases
+~%-25% Solo se pueden crear utilizando funciones
+~%-25% Solo se pueden crear utilizando clases
+~%-25% Son un fichero de HTML
+}
+
+:: DJ014 ::
+En Django, cuando usamos `\{% csrf_token %\}`
+{
+= Lo hacemos en un formulario, así se evitan ataques de `cross-site scripting`
+~%-25% Se utiliza antes de poner un enlace
+~%-25% Solo hay que incluirlo en formularios con información sensible
+~%-25% Se debe incluir en todos los formularios para evitar ataques basados en `SQL injection`
+}
+
+:: DJ301 ::
+¿Qué es un middleware en Django?
+{
+= Un componente que se encarga de procesar las peticiones HTTP antes de que lleguen a la vista correspondiente
+~%-25% Un componente que se encarga de procesar las respuestas HTTP antes de que se envíen al cliente
+~%-25% Un componente que se encarga de definir las rutas URL de una aplicación
+~%-25% Un componente que se encarga de gestionar las sesiones de usuario en un sitio web 
+}
+
+:: DJ302 ::
+¿Qué es un "serializer" en Django REST framework?  
+{
+= Un componente que se encarga de transformar objetos Python en formato JSON
+~%-25% Un componente que se encarga de transformar objetos JSON en objetos Python 
+~%-25% Un componente que se encarga de generar formularios HTML a partir de modelos de Django 
+~%-25% Un componente que se encarga de gestionar la autenticación de usuarios en una API RESTful
+}
+
+:: DJ303 ::
+¿Qué es un decorador (decorator) en Django?
+{
+= Un patrón de diseño que se utiliza para añadir funcionalidad adicional a una función o método existente
+~%-25% Una función que se encarga de procesar una petición HTTP y devuelve una respuesta HTTP
+~%-25% Una clase que se encarga de definir la estructura de una base de datos
+~%-25% Una plantilla HTML que se utiliza para renderizar la respuesta HTTP
+}
+
+:: DJ304 ::
+¿Qué comando se utiliza en Django para ejecutar las migraciones pendientes?
+{
+= django migrate
+~%-25% django runmigrations
+~%-25% django execmigrations
+~%-25% django applymigrations
+}
+
+:: DJ304 ::
+¿Cómo podemos ver todas las migraciones hechas en nuestro proyecto?
+{
+= django-admin showmigrations
+~%-25% django-admin migrate
+~%-25% python manage.py allmigrations
+~%-25% python manage.py viewmigrations
+}
+
+:: DJ304 ::
+¿Qué es una migración en Django?
+{
+= Un archivo que define la estructura de la base de datos de una aplicación
+~%-25% El proceso con el que se instalan los paquetes necesarios para que funcione Django
+~%-25% Una nueva versión de la biblioteca estándar de Python
+~%-25% El proceso por el que podemos pasar automáticamente de una versión del framework a otra
+}
+
+:: DJ304 ::
+¿Qué es una cookie en Django?
+{
+~%-25% Un objeto que maneja la entrada de datos del usuario
+~%-25% Una función que procesa las solicitudes del usuario
+= Un componente que se utiliza para almacenar información del usuario en el navegador
+~%-25% Django utiliza tokens en lugar de cookies
+}
+
+:: DJ304 ::
+¿Qué es el ORM en Django?
+{
+~%-25% Un lenguaje de programación
+~%-25% Un motor de base de datos
+= Un mapeador de objetos relacionales (correcta)
+~%-25% Un framework
+}

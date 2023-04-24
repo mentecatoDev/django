@@ -1,7 +1,7 @@
 # 9. Modelo de usuario personalizado
 La documentación oficial de Django recomienda encarecidamente utilizar un **modelo de usuario personalizado** para los nuevos proyectos. La razón es que si se quiere hacer cualquier cambio en el modelo de usuario en el futuro -por ejemplo, añadir un campo edad- utilizar un modelo de usuario personalizado desde el principio lo convierte en algo sencillo. Pero si **no** se crea, **actualizar el modelo de usuario** por defecto en un proyecto Django existente es muy, **muy difícil**.
 
-Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo `AbstractBaseUser` no es una buena práctica cuando si sólo se utiliza `AbstractUser` hace que las cosas sean mucho más sencillas y aún así personalizables.
+Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo `AbstractBaseUser` no es una buena práctica; en su lugar utilizar `AbstractUser` hace que las cosas sean mucho más sencillas y aún así personalizables.
 
 Ahora, **hagamos un periódico** (homenaje a las raíces de Django como un framework construido para editores y periodistas en el [Lawrence Journal-World](https://en.wikipedia.org/wiki/Lawrence_Journal-World)).
 
