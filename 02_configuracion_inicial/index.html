@@ -230,7 +230,7 @@ $ poetry shell
 </code></pre>
 <ul>
 <li>Advertencia: No nombrar el directorio del proyecto igual que alguno de los paquetes que se pretenden  instalar.</li>
-<li>Crear nuevo proyecto <code>test</code>. No olvidar el "." al final.</li>
+<li>Crear nuevo proyecto <code>test_project</code>. No olvidar el "." al final.</li>
 </ul>
 <pre><code class="language-bash">$ django-admin startproject test_project .
 </code></pre>
@@ -280,13 +280,13 @@ $ git config --globar user.email &quot;&lt;Correo electrónico&gt;&quot;
 <li>PyCharm</li>
 </ul>
 <h2 id="27-borrar-el-proyecto">2.7. Borrar el proyecto</h2>
-<p>El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio <code>~/.cache/pypoetry/virtualenvs/&lt;directorio-código&gt;</code>. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, dispone del comando <code>poetry env remove</code> para hacerlo desde el directorio del proyecto.</p>
+<p>El proyecto no es más que una colección de ficheros bajo el directorio que hemos creado más el correspondiente entorno virtual que se ubicará, a menos que se especifique lo contrario, en el directorio <code>~/.cache/pypoetry/virtualenvs/&lt;directorio-código&gt;</code>. Si se borra el proyecto, aún quedará pendiente borrar el entorno virtual que, si bien se puede hacer igualmente a mano, se dispone del comando <code>poetry env remove</code> para hacerlo desde el directorio del proyecto.</p>
 <pre><code class="language-bash">$ poetry env remove &lt;directorio del proyecto&gt;
 </code></pre>
 <p>Una vez elminado el entorno virtual podemos proceder a borrar el proyecto, desde su directorio padre, usando el málefico comando: </p>
 <pre><code class="language-bash">$ rm -rf &lt;directorio del proyecto&gt;
 </code></pre>
-<p>Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizarndo wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.</p>
+<p>Las advertencias nunca serán suficientes para poner de manifiesto que ejecutar este comando de forma inadecuada (con derechos de administrador, utilizando wildcards, ubicado en el directorio incorrecto...) se podría acabar con el sistema al completo.</p>
               
             </div>
           </div><footer>

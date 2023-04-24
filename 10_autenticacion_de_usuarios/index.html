@@ -156,7 +156,7 @@
 <pre><code class="language-python">TEMPLATES = [
     {
     ...
-    'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [BASE_DIR / 'templates'],
     ...
     }
 ]
@@ -302,7 +302,7 @@ LANGUAGE_CODE = 'es'</p>
   {% endif %}
   &lt;p&gt;&lt;a href=&quot;{% url 'logout' %}&quot;&gt;Logout&lt;/a&gt;&lt;/p&gt;
 {% else %}
-  &lt;p&gt;No estás logueado&lt;/p&gt;
+  &lt;p&gt;No has iniciado sesión&lt;/p&gt;
   &lt;a href=&quot;{% url 'login' %}&quot;&gt;Login&lt;/a&gt; |
   &lt;a href=&quot;{% url 'signup' %}&quot;&gt;Registro&lt;/a&gt;
 {% endif %}

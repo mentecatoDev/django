@@ -182,11 +182,11 @@
 </ul>
 </li>
 </ul>
-<pre><code class="language-bash">$ cd ~/Desktop 
-$ mkdir blog
+<pre><code class="language-bash">$ mkdir blog
 $ cd blog
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (blog) $ django-admin startproject blog_project .
 (blog) $ python manage.py startapp blog
 (blog) $ python manage.py migrate
@@ -199,7 +199,7 @@ $ pipenv shell
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
-        'django.contrib.messages',
+        'django.contrib.mssages',
         'django.contrib.staticfiles',
         'blog.apps.BlogConfig',        # new
     ]
@@ -320,7 +320,9 @@ class BlogListView(ListView):
 <pre><code class="language-python">TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [
+            BASE_DIR / 'templates',
+                 ],
         ...
     },
 ]
@@ -373,7 +375,7 @@ class BlogListView(ListView):
 <li>Añadir en la parte inferior del archivo, debajo de la entrada para <code>STATIC_URL</code>.</li>
 </ul>
 <p>FICHERO: <code>blog_project/settings.py</code></p>
-<pre><code class="language-python">STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+<pre><code class="language-python">STATICFILES_DIRS = [BASE_DIR / 'static']
 </code></pre>
 <ul>
 <li>Crear una carpeta <code>css</code> dentro de <code>static</code> y crear el fichero <code>base.css</code></li>
@@ -494,7 +496,7 @@ class BlogDetailView(DetailView):
     template_name = 'post_detail.html'
 </code></pre>
 <ul>
-<li>Por defecto <code>DetailView</code> proporciona un objeto de contexto que podemos usar en la plantilla llamado <code>objeto</code> o el nombre en minúsculas de nuestro modelo, <code>post</code>.</li>
+<li>Por defecto <code>DetailView</code> proporciona un objeto de contexto que podemos usar en la plantilla llamado <code>object</code> o el nombre en minúsculas de nuestro modelo, <code>post</code>.</li>
 <li>Además, <code>DetailView</code> espera que se le pase una clave primaria o un <em>slug</em> como identificador. Más sobre esto en breve.</li>
 </ul>
 <pre><code class="language-bash">(blog) $ touch templates/post_detail.html
@@ -510,7 +512,7 @@ class BlogDetailView(DetailView):
 {% endblock content %}
 </code></pre>
 <ul>
-<li>En la parte superior se especifica que esta plantilla hereda de base.html.</li>
+<li>En la parte superior se especifica que esta plantilla hereda de <code>base.html</code>.</li>
 <li>Luego se muestra el título y cuerpo del objeto de contexto, que <code>DetailView</code> hace accesible como <code>post</code>.</li>
 <li>La denominación de los objetos de contexto en vistas genéricas es extremadamente confusa cuando se ve Django por primera vez. Debido a que nuestro objeto de contexto de <code>DetailView</code> es o bien el nombre de modelo <code>post</code> o bien <code>object</code>, podríamos también actualizar nuestro modelo de la siguiente manera y funcionaría exactamente igual.</li>
 </ul>
@@ -596,7 +598,7 @@ urlpatterns = [
 <h2 id="69-tests">6.9. Tests</h2>
 <p>FICHERO: <code>blog/tests.py</code></p>
 <pre><code class="language-python">from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import TestCase
 from django.urls import reverse
 from .models import Post
 
@@ -605,7 +607,7 @@ class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='testuser',
+            username='tester',
             email='test@email.com',
             password='secret'
         )
@@ -621,7 +623,7 @@ class BlogTests(TestCase):
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.author}', 'tester')
         self.assertEqual(f'{self.post.body}', 'Nice body content')
 
     def test_post_list_view(self):

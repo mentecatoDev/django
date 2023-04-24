@@ -484,19 +484,21 @@ urlpatterns = [
 <li>Si luego escribes <code>git status</code> verás una lista de cambios desde el último commit de Git. Como este es nuestra  primera confirmación, esta lista contiene todos los cambios realizados hasta ahora.</li>
 </ul>
 <pre><code class="language-bash">(helloworld) $ git status
-On branch master
-No commits yet
-Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+En la rama master
 
-       Pipfile
-       Pipfile.lock
-       config/
-       db.sqlite3
-       manage.py
-       pages/
+No hay commits todavía
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
+Archivos sin seguimiento:
+  (usa &quot;git add &lt;archivo&gt;...&quot; para incluirlo a lo que será confirmado)
+        db.sqlite3
+        helloworld_project/
+        manage.py
+        pages/
+        poetry.lock
+        pyproject.toml
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa &quot;git add&quot; para hacerles seguimiento)
+
 </code></pre>
 <p>A continuación queremos añadir todos los cambios utilizando el comando <code>add -A</code> y luego confirmar los cambios con <code>commit</code>  junto con un mensaje, (-m), describiendo lo que ha cambiado.</p>
 <pre><code class="language-bash">(helloworld) $ git add -A

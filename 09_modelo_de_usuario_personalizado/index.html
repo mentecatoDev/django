@@ -153,14 +153,14 @@
               
                 <h1 id="9-modelo-de-usuario-personalizado">9. Modelo de usuario personalizado</h1>
 <p>La documentación oficial de Django recomienda encarecidamente utilizar un <strong>modelo de usuario personalizado</strong> para los nuevos proyectos. La razón es que si se quiere hacer cualquier cambio en el modelo de usuario en el futuro -por ejemplo, añadir un campo edad- utilizar un modelo de usuario personalizado desde el principio lo convierte en algo sencillo. Pero si <strong>no</strong> se crea, <strong>actualizar el modelo de usuario</strong> por defecto en un proyecto Django existente es muy, <strong>muy difícil</strong>.</p>
-<p>Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo <code>AbstractBaseUser</code> no es una buena práctica cuando si sólo se utiliza <code>AbstractUser</code> hace que las cosas sean mucho más sencillas y aún así personalizables.</p>
+<p>Sin embargo, el ejemplo de la documentación oficial no es realmente lo que muchos expertos en Django recomiendan. Utilizar el complejo <code>AbstractBaseUser</code> no es una buena práctica; en su lugar utilizar <code>AbstractUser</code> hace que las cosas sean mucho más sencillas y aún así personalizables.</p>
 <p>Ahora, <strong>hagamos un periódico</strong> (homenaje a las raíces de Django como un framework construido para editores y periodistas en el <a href="https://en.wikipedia.org/wiki/Lawrence_Journal-World">Lawrence Journal-World</a>).</p>
 <h2 id="91-setup">9.1. Setup</h2>
-<pre><code class="language-bash">$ cd ~/Desktop
-$ mkdir news
+<pre><code class="language-bash">$ mkdir news
 $ cd news
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (news) $ django-admin startproject newspaper_project .
 (news) $ python manage.py startapp accounts
 (news) $ python manage.py runserver
@@ -240,8 +240,7 @@ class CustomUserChangeForm(UserChangeForm):
 </code></pre>
 <p>Para ambos formularios se usa el modelo <code>CustomUser</code> con los campos por defecto de <code>Meta.fields</code>.</p>
 <p>El modelo de <code>CustomUser</code> contiene todos los campos del modelo de usuario por defecto y el campo <code>age</code> adicional que se ha definido.</p>
-<p>Para los nuevos formularios usamos la clase <code>Meta</code> para anular los campos por defecto estableciendo el
-modelo a nuestro <code>CustomUser</code> y utilizando los campos por defecto a través de <code>Meta.fields</code> que los incluye todos. Para añadir nuestro campo <code>age</code> personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
+<p>Para los nuevos formularios usamos la clase <code>Meta</code> para anular los campos por defecto estableciendo el modelo a nuestro <code>CustomUser</code> y utilizando los campos por defecto a través de <code>Meta.fields</code> que los incluye todos. Para añadir nuestro campo <code>age</code> personalizado simplemente lo añadimos al final y se mostrará automáticamente en nuestra futura página de registro. Bastante ingenioso, ¿no?.
 El concepto de campos en un formulario puede ser confuso al principio, así que vamos a dedicar un momento a explorarlo más a fondo. Nuestro modelo <code>CustomUser</code> contiene todos los campos del modelo <code>User</code> por defecto y el campo adicional que hemos establecido.</p>
 <p>¿Pero cuáles son estos campos por defecto?</p>
 <p>Resulta que hay muchos, incluyendo <code>username</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>password</code>, <code>groups</code> y más.</p>
@@ -298,11 +297,21 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
 <ul>
+<li>En este ejemplo, la clase <code>CustomUserAdmin</code> es una subclase de <code>UserAdmin</code>.</li>
+<li>El campo <code>list_display</code> se utiliza para especificar los campos que deben mostrarse en la <em>list view</em> de las cuentas de usuario en la app <em>admin</em> de Django.</li>
+<li>El campo <code>list_filter</code> permitiría especificar los filtros que deben estar disponibles en la barra lateral derecha de la <em>list view</em>.</li>
+<li>El campo <code>fieldsets</code> se utiliza para especificar las diferentes secciones que deben mostrarse en las páginas de edición y adición de usuarios en el administrador de Django.</li>
+<li>El campo <code>add_fieldsets</code> se utiliza para especificar los campos que deben mostrarse en la página de añadir usuario.</li>
+<li>El campo <code>search_fields</code> permite especificar los campos que deben buscarse al buscar cuentas de usuario en el administrador de Django.</li>
+<li>El campo <code>ordering</code> se utiliza para especificar el orden por defecto de las cuentas de usuario en la vista de lista del admin de Django.</li>
+<li>Por último, el campo <code>filter_horizontal</code> permite especificar los campos que deben mostrarse como filtro horizontal en la página de edición de usuarios del administrador de Django.</li>
 <li>Actualizar la página y ver el resultado</li>
 </ul>
+<p>En resumen, todos estos campos nos permiten el control de los formularios de gestión de usuarios de la app admin de Django.</p>
 <h2 id="95-conclusion">9.5. Conclusión</h2>
 <p>Con el modelo de usuario personalizado completo, ahora podemos centrarnos en construir el resto de la aplicación <em>Newspaper</em>.</p>
-<p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|</p>
+<p>|\/| [- || ~|~ [- ( /\ ~|~ () ^/_ '|
+M   E  N   T    E CA  T   O</p>
               
             </div>
           </div><footer>

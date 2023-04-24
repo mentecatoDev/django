@@ -198,9 +198,9 @@
 <pre><code class="language-bash">$ cd ~/Desktop
 $ mkdir pages
 $ cd pages
-$ pipenv install --python 3.10
-$ pipenv install django
-$ pipenv shell
+$ poetry init -n
+$ poetry shell
+(pages) $ poetry add django
 (pages) $ django-admin startproject pages_project .
 (pages) $ python manage.py startapp pages   # ó (pages) $ django-admin startapp pages
 </code></pre>
@@ -246,13 +246,13 @@ $ pipenv shell
 <pre><code class="language-python">TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+         'DIRS': [BASE_DIR / 'templates'],
         ...
     },
 ]
 </code></pre>
 <blockquote>
-<p><code>str(BASE_DIR.joinpath('templates'))</code> toma el directorio base y le abrega el directorio <code>templates</code> para finalmente construir una cadena con el <em>path</em> completo. También se podría utilizar la función <code>os.path.join</code> que une el <em>path</em> base de la aplicación (<code>BASE_DIR</code>) con el nuevo directorio <code>templates</code> añadiendo <code>/</code> según sea conveniente. Hemos de importar la librería <code>os</code> (<code>import os</code>) para hacer uso de esta segunda función.</p>
+<p>La librería pathlib añade una funcionalidad adicional al símbolo "/" con lo que podremos crear una ruta de forma más simple al tradicional  'DIRS': [str(BASE_DIR.joinpath('templates'))],</p>
 </blockquote>
 <p>FICHERO: <code>templates/home.html</code> </p>
 <pre><code class="language-html">   &lt;h1&gt;Homepage&lt;/h1&gt;
@@ -294,6 +294,7 @@ urlpatterns = [
 from django.urls import path, include # new
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('', include('pages.urls')), # new
 ]
@@ -386,7 +387,7 @@ class AboutPageView(TemplateView):
 <pre><code class="language-html">{% extends 'base.html' %}
 
 {% block content %}
-&lt;h1&gt;Homepage&lt;/h1&gt;
+    &lt;h1&gt;Homepage&lt;/h1&gt;
 {% endblock content %}
 </code></pre>
 <p>FICHERO: <code>templates/about.html</code></p>

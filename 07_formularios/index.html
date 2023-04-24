@@ -434,7 +434,8 @@ urlpatterns = [
 
 {% block content %}
   &lt;h1&gt;Delete post&lt;/h1&gt;
-  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;{% csrf_token %}
+  &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+    {% csrf_token %}
     &lt;p&gt;¿Seguro que quiere borrar &quot;{{ post.title }}&quot;?&lt;/p&gt;
     &lt;input type=&quot;submit&quot; value=&quot;Confirmar&quot; /&gt;
   &lt;/form&gt;
@@ -525,7 +526,7 @@ class BlogTests(TestCase):
 
     def setUp(self):
         self.user = get_user_model().objects.create_user(
-            username='testuser',
+            username='tester',
             email='test@email.com',
             password='secret'
         )
@@ -544,7 +545,7 @@ class BlogTests(TestCase):
 
     def test_post_content(self):
         self.assertEqual(f'{self.post.title}', 'A good title')
-        self.assertEqual(f'{self.post.author}', 'testuser')
+        self.assertEqual(f'{self.post.author}', 'tester')
         self.assertEqual(f'{self.post.body}', 'Nice body content')
 
     def test_post_list_view(self):

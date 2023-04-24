@@ -197,8 +197,9 @@
 </ul>
 <pre><code class="language-bash">$ mkdir mb
 $ cd mb
-$ pipenv install django
-$ pipenv shell
+$ poetry init
+$ poetry add django
+$ poetry shell
 (mb) $ django-admin startproject mb_project .
 (mb) $ python manage.py startapp posts
 </code></pre>
@@ -362,13 +363,13 @@ class HomePageView(ListView):             # new
 (mb) $ touch templates/home.html
 </code></pre>
 <ul>
-<li>Actualizar el campo <code>DIRS</code> del archivo<code>settings.py</code> para que Django sepa cómo acceder a la carpeta <code>templates</code>.</li>
+<li>Actualizar el campo <code>DIRS</code> del archivo <code>settings.py</code> para que Django sepa cómo acceder a la carpeta <code>templates</code>.</li>
 </ul>
 <pre><code class="language-python"># settings.py
 TEMPLATES = [
     {
         ...
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],   # new
+        'DIRS': [BASE_DIR / 'templates']   # new
         ...
     },
 ]
