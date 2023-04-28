@@ -218,7 +218,7 @@ En otras palabras, escribimos mucho menos código y tenemos menos oportunidades 
 <li>Dentro de la <strong>aplicación de administración</strong> que permite, como superusuarios, modificar los usuarios existentes.</li>
 </ul>
 <p>Así que hay que actualizar los dos formularios incorporados para esta funcionalidad: <code>UserCreationForm</code> y <code>UserChangeForm</code>.</p>
-<pre><code class="language-bash">(noticias) $ touch accounts/forms.py
+<pre><code class="language-bash">$ touch accounts/forms.py
 </code></pre>
 <p>FICHERO: <code>accounts/forms.py</code></p>
 <pre><code class="language-python">from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -264,8 +264,8 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 </code></pre>
 <p>Ejecutar <code>makemigrations</code> y <code>migrate</code> por primera vez para crear una nueva base de datos que utilice el modelo de usuario personalizado.</p>
-<pre><code class="language-bash">(news) $ python manage.py makemigrations
-(news) $ python manage.py migrate
+<pre><code class="language-bash">$ python manage.py makemigrations
+$ python manage.py migrate
 </code></pre>
 <h2 id="94-superusuario">9.4. Superusuario</h2>
 <p>Vamos a crear una cuenta de superusuario para confirmar que todo funciona como se espera. En la línea de comandos, escribir el siguiente comando y cumplir con las indicaciones.</p>
